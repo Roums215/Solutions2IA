@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "motion/react";
 import { useEffect, useState } from "react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 /* ─── Presets — un par domaine de page ─── */
 type Preset =
@@ -560,6 +561,7 @@ interface FluidMouseFieldProps {
 export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldProps) {
   const cfg = PRESETS[preset];
   const finalIntensity = intensity ?? cfg.intensity;
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
 
   const [enabled, setEnabled] = useState(false);
   const [size, setSize] = useState({ w: 1, h: 1 });
@@ -592,7 +594,7 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (shouldReduceMotion || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const isCoarse = window.matchMedia("(pointer: coarse)").matches;
 
     setEnabled(true);
@@ -601,13 +603,13 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
     window.addEventListener("resize", update);
 
     if (isCoarse) {
-      // Mobile : oscillation autonome
+      // Mobile : oscillation autonome ralentie pour préserver la batterie.
       let t = 0;
       const id = window.setInterval(() => {
-        t += 0.012;
-        mx.set(0.5 + Math.sin(t) * 0.25);
-        my.set(0.5 + Math.cos(t * 0.7) * 0.18);
-      }, 32);
+        t += 0.018;
+        mx.set(0.5 + Math.sin(t) * 0.16);
+        my.set(0.5 + Math.cos(t * 0.7) * 0.12);
+      }, 96);
       return () => {
         window.clearInterval(id);
         window.removeEventListener("resize", update);
@@ -623,11 +625,14 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("resize", update);
     };
-  }, [mx, my]);
+  }, [mx, my, shouldReduceMotion]);
 
-  if (!enabled) return null;
+  if (!enabled || shouldReduceMotion) return null;
 
   const shapes = shapesFor(cfg);
+  const renderScan = cfg.scan && !isMobile;
+  const renderFocus = !isMobile;
+  const renderShapes = !isMobile;
 
   return (
     <div
@@ -650,7 +655,7 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
       )}
 
       {/* Scan lines verticales (web/automation) */}
-      {cfg.scan && (
+      {renderScan && (
         <svg className="absolute inset-0 w-full h-full opacity-[0.05]" preserveAspectRatio="none">
           {Array.from({ length: 12 }, (_, i) => (
             <motion.line
@@ -674,13 +679,13 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
         style={{
           left: primaryX,
           top: primaryY,
-          width: Math.max(size.w, 900),
-          height: Math.max(size.w, 900),
+          width: isMobile ? 680 : Math.max(size.w, 900),
+          height: isMobile ? 680 : Math.max(size.w, 900),
           x: "-50%",
           y: "-50%",
           background: `radial-gradient(circle, rgba(${cfg.primary},0.18) 0%, rgba(${cfg.primary},0.08) 30%, transparent 60%)`,
-          filter: "blur(40px)",
-          opacity: 0.9 * finalIntensity,
+          filter: isMobile ? "blur(34px)" : "blur(40px)",
+          opacity: (isMobile ? 0.55 : 0.9) * finalIntensity,
           willChange: "transform",
         }}
       />
@@ -691,36 +696,38 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
         style={{
           left: secondaryX,
           top: secondaryY,
-          width: 700,
-          height: 700,
+          width: isMobile ? 440 : 700,
+          height: isMobile ? 440 : 700,
           x: "-50%",
           y: "-50%",
           background: `radial-gradient(circle, rgba(${cfg.secondary},0.14) 0%, rgba(${cfg.secondary},0.05) 35%, transparent 65%)`,
-          filter: "blur(50px)",
-          opacity: 0.85 * finalIntensity,
+          filter: isMobile ? "blur(38px)" : "blur(50px)",
+          opacity: (isMobile ? 0.45 : 0.85) * finalIntensity,
           willChange: "transform",
         }}
       />
 
       {/* Noyau focus (suit rapidement) */}
-      <motion.div
-        className="absolute rounded-full mix-blend-screen"
-        style={{
-          left: focusX,
-          top: focusY,
-          width: 240,
-          height: 240,
-          x: "-50%",
-          y: "-50%",
-          background: `radial-gradient(circle, rgba(${cfg.accent},0.18) 0%, rgba(${cfg.secondary},0.08) 40%, transparent 70%)`,
-          filter: "blur(20px)",
-          opacity: 0.7 * finalIntensity,
-          willChange: "transform",
-        }}
-      />
+      {renderFocus && (
+        <motion.div
+          className="absolute rounded-full mix-blend-screen"
+          style={{
+            left: focusX,
+            top: focusY,
+            width: 240,
+            height: 240,
+            x: "-50%",
+            y: "-50%",
+            background: `radial-gradient(circle, rgba(${cfg.accent},0.18) 0%, rgba(${cfg.secondary},0.08) 40%, transparent 70%)`,
+            filter: "blur(20px)",
+            opacity: 0.7 * finalIntensity,
+            willChange: "transform",
+          }}
+        />
+      )}
 
       {/* Formes 3D flottantes parallaxées */}
-      {shapes.map((s, i) => (
+      {renderShapes && shapes.map((s, i) => (
         <FloatingShape
           key={i}
           index={i}

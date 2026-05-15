@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 type Preset = "home" | "services" | "web" | "apps" | "ai" | "automation" | "studio" | "about" | "contact";
 
@@ -47,6 +48,19 @@ function FloatingLine({ x1, y1, x2, y2, color, delay = 0 }: {
 }
 
 export function PageAtmosphere({ preset }: PageAtmosphereProps) {
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+
+  if (isMobile || shouldReduceMotion) {
+    return (
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
+        <div className="absolute inset-0 bg-radial-top opacity-70" />
+        <div className="absolute -top-40 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-accent-primary/[0.07] blur-[110px]" />
+        <div className="absolute bottom-[-12rem] right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-cyan/[0.055] blur-[120px]" />
+        <div className="absolute inset-0 bg-grid opacity-[0.018]" />
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
       {/* ═══════════ HOME ═══════════ */}

@@ -13,6 +13,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 /* ═══════════════════════════════════════════════════════════════
    TYPES
@@ -237,6 +238,15 @@ const INJECT_CSS = `
 .iris-blade {
   transform-origin: 50% 100%;
   transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .portal-sphere {
+    animation: none;
+  }
+  .iris-preview,
+  .iris-blade {
+    transition-duration: 0.25s;
+  }
 }
 `;
 
@@ -1978,8 +1988,8 @@ function DomainModal({
   );
 }
 
-function ParticleField() {
-  const particles = Array.from({ length: 40 }, (_, i) => ({
+function ParticleField({ light = false }: { light?: boolean }) {
+  const particles = Array.from({ length: light ? 10 : 40 }, (_, i) => ({
     id: i,
     x: (i * 97) % 100,
     y: (i * 61) % 100,
@@ -1996,8 +2006,8 @@ function ParticleField() {
           key={p.id}
           className="absolute rounded-full bg-accent-light"
           style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size, opacity: p.opacity }}
-          animate={{ opacity: [p.opacity, p.opacity * 3, p.opacity] }}
-          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
+          animate={light ? undefined : { opacity: [p.opacity, p.opacity * 3, p.opacity] }}
+          transition={light ? undefined : { duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
         />
       ))}
     </div>
@@ -2010,6 +2020,8 @@ export function WebGalaxyShowcase() {
   const activeDomain = DOMAINS.find((d) => d.id === openDomain) ?? null;
   const previewDomain = DOMAINS.find((d) => d.id === selectedDomain) ?? DOMAINS[0];
   const preview = DASHBOARD_COPY[previewDomain.id];
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const lightMotion = isMobile || shouldReduceMotion;
 
   useEffect(() => {
     if (document.getElementById("wgs-styles")) return;
@@ -2062,7 +2074,7 @@ export function WebGalaxyShowcase() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <ParticleField />
+            <ParticleField light={lightMotion} />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(99,102,241,0.12),transparent_58%)]" />
             <div className="absolute inset-0 bg-grid opacity-[0.035]" />
 
@@ -2105,8 +2117,8 @@ export function WebGalaxyShowcase() {
                           borderColor: isActive ? `rgba(${domain.rgb},0.4)` : "rgba(255,255,255,0.07)",
                           background: isActive ? `rgba(${domain.rgb},0.12)` : "rgba(255,255,255,0.025)",
                         }}
-                        whileHover={{ x: 2 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={lightMotion ? undefined : { x: 2 }}
+                        whileTap={lightMotion ? undefined : { scale: 0.98 }}
                         onMouseEnter={() => setSelectedDomain(domain.id)}
                         onFocus={() => setSelectedDomain(domain.id)}
                         onClick={() => setSelectedDomain(domain.id)}
@@ -2201,8 +2213,16 @@ export function WebGalaxyShowcase() {
                             className="flex-1 origin-bottom rounded-t-lg"
                             style={{ background: `linear-gradient(180deg, rgba(${previewDomain.rgb},0.72), rgba(${previewDomain.rgb},0.16))` }}
                             initial={{ scaleY: 0.18, opacity: 0.4 }}
-                            animate={{ scaleY: [scale, Math.min(0.96, scale + 0.14), scale], opacity: [0.62, 1, 0.62] }}
-                            transition={{ duration: 4 + i * 0.08, delay: i * 0.04, repeat: Infinity, ease: "easeInOut" }}
+                            animate={
+                              lightMotion
+                                ? { scaleY: scale, opacity: 0.72 }
+                                : { scaleY: [scale, Math.min(0.96, scale + 0.14), scale], opacity: [0.62, 1, 0.62] }
+                            }
+                            transition={
+                              lightMotion
+                                ? { duration: 0.45, ease: [0.16, 1, 0.3, 1] }
+                                : { duration: 4 + i * 0.08, delay: i * 0.04, repeat: Infinity, ease: "easeInOut" }
+                            }
                           />
                         );
                       })}
@@ -2220,8 +2240,8 @@ export function WebGalaxyShowcase() {
                           <motion.span
                             className="grid h-8 w-8 shrink-0 place-items-center rounded-xl border text-[10px] font-bold"
                             style={{ borderColor: `rgba(${previewDomain.rgb},0.32)`, color: previewDomain.color, background: `rgba(${previewDomain.rgb},0.08)` }}
-                            animate={{ scale: [1, 1.05, 1] }}
-                            transition={{ duration: 3, delay: i * 0.25, repeat: Infinity, ease: "easeInOut" }}
+                            animate={lightMotion ? undefined : { scale: [1, 1.05, 1] }}
+                            transition={lightMotion ? undefined : { duration: 3, delay: i * 0.25, repeat: Infinity, ease: "easeInOut" }}
                           >
                             {i + 1}
                           </motion.span>
@@ -2286,8 +2306,8 @@ export function WebGalaxyShowcase() {
                   color: `rgba(${d.rgb},0.75)`,
                   background: `rgba(${d.rgb},0.06)`,
                 }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
+                whileHover={lightMotion ? undefined : { scale: 1.04 }}
+                whileTap={lightMotion ? undefined : { scale: 0.97 }}
                 onClick={() => handleOpen(d.id)}
               >
                 <span

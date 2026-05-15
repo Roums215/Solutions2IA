@@ -2,6 +2,7 @@
 
 import { motion, useInView, useMotionValue, useTransform, useSpring, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -545,7 +546,8 @@ export function TransformationCard({
 }: TransformationCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const reduceMotion = useReducedMotion() ?? false;
+  const { shouldReduceMotion } = usePerformanceMode();
+  const reduceMotion = (useReducedMotion() ?? false) || shouldReduceMotion;
   const [isActive, setIsActive] = useState(false);
   const config = variantConfig[variant];
   const details = transformationDetails[variant];

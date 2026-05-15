@@ -4,10 +4,13 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroVisual } from "./HeroVisual";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+
   return (
     <section className="relative flex items-center overflow-hidden">
       {/* Multi-layer background */}
@@ -157,9 +160,11 @@ export function HeroSection() {
           </div>
 
           {/* Visual composition */}
-          <div className="relative lg:pl-4">
-            <HeroVisual />
-          </div>
+          {!isMobile && !shouldReduceMotion && (
+            <div className="relative lg:pl-4">
+              <HeroVisual />
+            </div>
+          )}
         </div>
       </div>
 

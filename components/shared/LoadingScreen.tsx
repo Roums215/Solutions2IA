@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -14,16 +15,24 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [mounted, setMounted] = useState(false);
   const [showLogo, setShowLogo] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
 
   useEffect(() => {
+    if (window.sessionStorage.getItem("solutions-2ia-loaded") === "1") {
+      onComplete?.();
+      return;
+    }
+
     setMounted(true);
 
-    const logoTimer = setTimeout(() => setShowLogo(true), 300);
-    const exitTimer = setTimeout(() => setIsExiting(true), 2800);
+    const lightMode = isMobile || shouldReduceMotion;
+    const logoTimer = setTimeout(() => setShowLogo(true), lightMode ? 40 : 120);
+    const exitTimer = setTimeout(() => setIsExiting(true), lightMode ? 360 : 920);
     const doneTimer = setTimeout(() => {
+      window.sessionStorage.setItem("solutions-2ia-loaded", "1");
       document.body.style.overflow = "";
       onComplete?.();
-    }, 3400);
+    }, lightMode ? 560 : 1180);
 
     document.body.style.overflow = "hidden";
 
@@ -33,7 +42,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       clearTimeout(doneTimer);
       document.body.style.overflow = "";
     };
-  }, [onComplete]);
+  }, [isMobile, onComplete, shouldReduceMotion]);
 
   if (!mounted) return null;
 
@@ -65,11 +74,11 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
               border: `1px solid rgba(99, 102, 241, ${0.12 - i * 0.02})`,
             }}
             initial={{ scale: 0.8, opacity: 0 }}
-            animate={{
+            animate={shouldReduceMotion || isMobile ? { opacity: 0.18, scale: 1 } : {
               scale: [0.8, 1.15, 0.8],
               opacity: [0, 0.6, 0],
             }}
-            transition={{
+            transition={shouldReduceMotion || isMobile ? { duration: 0.2 } : {
               duration: 3 + i * 0.3,
               repeat: Infinity,
               ease: "easeInOut",
@@ -83,22 +92,22 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           style={{
             background: "radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)",
           }}
-          animate={{
+          animate={shouldReduceMotion || isMobile ? { opacity: 0.55, scale: 1 } : {
             scale: [1, 1.15, 1],
             opacity: [0.5, 0.8, 0.5],
           }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          transition={shouldReduceMotion || isMobile ? { duration: 0.2 } : { duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full"
           style={{
             background: "radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 60%)",
           }}
-          animate={{
+          animate={shouldReduceMotion || isMobile ? { opacity: 0.45, scale: 1 } : {
             scale: [1.1, 1, 1.1],
             opacity: [0.4, 0.7, 0.4],
           }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          transition={shouldReduceMotion || isMobile ? { duration: 0.2 } : { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
         />
       </div>
 
@@ -112,8 +121,8 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
         >
           <motion.div
             className="relative w-full h-full"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            animate={shouldReduceMotion || isMobile ? undefined : { y: [0, -8, 0] }}
+            transition={shouldReduceMotion || isMobile ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             <Image
               src="/branding/logo-s2ia.png"
@@ -130,14 +139,14 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
           <motion.div
             className="absolute inset-0 rounded-full pointer-events-none"
-            animate={{
+            animate={shouldReduceMotion || isMobile ? undefined : {
               boxShadow: [
                 "0 0 30px rgba(99,102,241,0.3), inset 0 0 20px rgba(99,102,241,0.1)",
                 "0 0 50px rgba(34,211,238,0.4), inset 0 0 30px rgba(34,211,238,0.15)",
                 "0 0 30px rgba(99,102,241,0.3), inset 0 0 20px rgba(99,102,241,0.1)",
               ],
             }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={shouldReduceMotion || isMobile ? undefined : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
       )}
@@ -151,13 +160,13 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       >
         <div className="w-52 h-[2px] bg-white/5 rounded-full overflow-hidden">
           <motion.div
-            className="h-full rounded-full"
+            className="h-full origin-left rounded-full"
             style={{
               background: "linear-gradient(90deg, rgba(99,102,241,0.9), rgba(34,211,238,1), rgba(129,140,248,0.9))",
             }}
-            initial={{ width: "0%" }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2.2, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: isMobile || shouldReduceMotion ? 0.35 : 0.9, ease: [0.4, 0, 0.2, 1] }}
           />
         </div>
         <motion.p
