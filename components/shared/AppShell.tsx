@@ -61,11 +61,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const handleLoadingComplete = () => {
+  const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
     setShowContent(true);
     setHideHeaderLogo(false);
-  };
+  }, []);
 
   return (
     <LoadingContext.Provider value={{ isLoading, hideHeaderLogo, logoPosition, registerLogoRef }}>

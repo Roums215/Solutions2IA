@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 type Style = "dots" | "grid-dots" | "crosses" | "hexagons" | "sparks" | "bubbles" | "code-rain" | "circuit-nodes";
 
@@ -26,13 +27,16 @@ export function SectionParticles({
   className,
 }: SectionParticlesProps) {
   const [mounted, setMounted] = useState(false);
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const effectiveCount = shouldReduceMotion ? 0 : isMobile ? Math.min(count, 4) : Math.min(count, 10);
+
   const items = useMemo(() => {
-    return Array.from({ length: count }, (_, i) => {
+    return Array.from({ length: effectiveCount }, (_, i) => {
       const r = (s: number) => seeded(i * 100 + s);
       return {
         x: r(1) * 100,
@@ -45,10 +49,10 @@ export function SectionParticles({
         drift: (r(8) - 0.5) * 16,
       };
     });
-  }, [count]);
+  }, [effectiveCount]);
 
   // Don't render on server to avoid hydration mismatch
-  if (!mounted) {
+  if (!mounted || shouldReduceMotion) {
     return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`} />;
   }
 
@@ -56,6 +60,23 @@ export function SectionParticles({
     <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`}>
       {items.map((p, i) => {
         const c = p.useSecondary ? secondaryColor : color;
+
+        if (isMobile) {
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: Math.max(2, p.size * 0.8),
+                height: Math.max(2, p.size * 0.8),
+                background: c,
+                opacity: 0.18,
+              }}
+            />
+          );
+        }
 
         if (style === "crosses") {
           return (
