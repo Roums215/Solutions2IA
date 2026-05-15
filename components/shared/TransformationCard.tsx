@@ -173,13 +173,15 @@ function DomainParticles({
   variant,
   isSolved,
   reduceMotion,
+  compact = false,
 }: {
   variant: TransformationVariant;
   isSolved: boolean;
   reduceMotion: boolean;
+  compact?: boolean;
 }) {
   const config = variantConfig[variant];
-  const particles = Array.from({ length: 8 }, (_, i) => ({
+  const particles = Array.from({ length: compact ? 4 : 8 }, (_, i) => ({
     x: 10 + (i * 12) % 80,
     y: 15 + (i * 17) % 70,
     size: 2 + (i % 3),
@@ -219,16 +221,20 @@ function FlowBridge({
   metric,
   variant,
   reduceMotion,
+  flatDepth = false,
+  compact = false,
 }: {
   active: boolean;
   metric: string;
   variant: TransformationVariant;
   reduceMotion: boolean;
+  flatDepth?: boolean;
+  compact?: boolean;
 }) {
   const config = variantConfig[variant];
 
   return (
-    <div className="relative flex min-h-36 items-center justify-center sm:min-h-40 lg:min-h-[260px]" style={{ transformStyle: "preserve-3d" }}>
+    <div className="relative flex min-h-36 items-center justify-center sm:min-h-40 lg:min-h-[260px]" style={{ transformStyle: flatDepth ? "flat" : "preserve-3d" }}>
       <div className="absolute left-1/2 top-6 bottom-6 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-border-accent/35 to-transparent lg:left-0 lg:right-0 lg:top-1/2 lg:h-px lg:w-auto lg:translate-y-[-50%] lg:bg-gradient-to-r" />
 
       <motion.div
@@ -239,7 +245,7 @@ function FlowBridge({
         transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {[0, 1, 2].map((i) => (
+      {(compact ? [0, 1] : [0, 1, 2]).map((i) => (
         <motion.div
           key={i}
           aria-hidden="true"
@@ -261,7 +267,7 @@ function FlowBridge({
         style={{
           borderColor: `${config.gradientFrom}55`,
           boxShadow: `0 24px 70px ${config.glowColor}`,
-          transform: "translateZ(52px)",
+          transform: flatDepth ? undefined : "translateZ(52px)",
         }}
         animate={reduceMotion ? undefined : { y: active ? [0, -5, 0] : [0, -3, 0], rotateZ: active ? [0, 1.2, 0] : [0, 0.5, 0] }}
         transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
@@ -343,6 +349,8 @@ function ProblemScene({
   reduceMotion,
   details,
   flow,
+  flatDepth = false,
+  compact = false,
 }: {
   before: string;
   beforeLabel: string;
@@ -351,16 +359,18 @@ function ProblemScene({
   reduceMotion: boolean;
   details: string[];
   flow: string[];
+  flatDepth?: boolean;
+  compact?: boolean;
 }) {
   return (
     <motion.div
       className="relative h-full overflow-hidden rounded-2xl border border-red-500/20 bg-[linear-gradient(145deg,rgba(22,24,38,0.92),rgba(42,14,24,0.72))] p-4 sm:p-5 lg:min-h-[430px] lg:p-6"
-      style={{ transform: "translateZ(28px)" }}
+      style={{ transform: flatDepth ? undefined : "translateZ(28px)" }}
       animate={reduceMotion ? undefined : { opacity: active ? 0.9 : 1, scale: active ? 0.985 : 1 }}
       transition={{ duration: 0.9, ease: premiumEase }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(239,68,68,0.14),transparent_58%)]" />
-      <DomainParticles variant={variant} isSolved={false} reduceMotion={reduceMotion} />
+      <DomainParticles variant={variant} isSolved={false} reduceMotion={reduceMotion} compact={compact} />
 
       <div className="absolute inset-0 overflow-hidden">
         {[18, 44, 72].map((top, i) => (
@@ -440,6 +450,8 @@ function SolutionScene({
   reduceMotion,
   details,
   flow,
+  flatDepth = false,
+  compact = false,
 }: {
   after: string;
   afterLabel: string;
@@ -448,6 +460,8 @@ function SolutionScene({
   reduceMotion: boolean;
   details: string[];
   flow: string[];
+  flatDepth?: boolean;
+  compact?: boolean;
 }) {
   const config = variantConfig[variant];
 
@@ -456,13 +470,13 @@ function SolutionScene({
       className="relative h-full overflow-hidden rounded-2xl border bg-[linear-gradient(145deg,rgba(18,20,34,0.94),rgba(20,28,48,0.78))] p-4 sm:p-5 lg:min-h-[430px] lg:p-6"
       style={{
         borderColor: `${config.gradientFrom}38`,
-        transform: "translateZ(46px)",
+        transform: flatDepth ? undefined : "translateZ(46px)",
       }}
       animate={reduceMotion ? undefined : { scale: active ? 1.015 : 1, y: active ? -4 : 0 }}
       transition={{ duration: 0.9, ease: premiumEase }}
     >
       <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at top right, ${config.glowColor}, transparent 62%)` }} />
-      <DomainParticles variant={variant} isSolved reduceMotion={reduceMotion} />
+      <DomainParticles variant={variant} isSolved reduceMotion={reduceMotion} compact={compact} />
 
       <motion.div
         aria-hidden="true"
@@ -546,8 +560,11 @@ export function TransformationCard({
 }: TransformationCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const { shouldReduceMotion } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
   const reduceMotion = (useReducedMotion() ?? false) || shouldReduceMotion;
+  const disableTilt = isMobile || reduceMotion;
+  const compactMotion = isMobile;
+  const sceneReduceMotion = reduceMotion || (isMobile && !isInView);
   const [isActive, setIsActive] = useState(false);
   const config = variantConfig[variant];
   const details = transformationDetails[variant];
@@ -560,6 +577,7 @@ export function TransformationCard({
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-5, 5]), { stiffness: 220, damping: 32, mass: 0.7 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    if (disableTilt) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const xVal = (e.clientX - rect.left) / rect.width - 0.5;
     const yVal = (e.clientY - rect.top) / rect.height - 0.5;
@@ -576,14 +594,14 @@ export function TransformationCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40, rotateX: -10 }}
-      animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 40, rotateX: -10 }}
+      initial={disableTilt ? { opacity: 0, y: 28 } : { opacity: 0, y: 40, rotateX: -10 }}
+      animate={isInView ? (disableTilt ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, rotateX: 0 }) : (disableTilt ? { opacity: 0, y: 28 } : { opacity: 0, y: 40, rotateX: -10 })}
       transition={{ duration: 0.8, delay: index * 0.15, ease: premiumEase }}
-      className="perspective-[1400px]"
+      className={disableTilt ? "" : "perspective-[1400px]"}
     >
       <motion.div
         className="relative cursor-pointer"
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        style={disableTilt ? { transformStyle: "flat" } : { rotateX, rotateY, transformStyle: "preserve-3d" }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsActive(true)}
         onMouseLeave={handleMouseLeave}
@@ -592,24 +610,24 @@ export function TransformationCard({
         <motion.div
           className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-card/72 p-3 shadow-[0_28px_90px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:rounded-[1.75rem] sm:p-5 lg:p-6"
           style={{
-            transformStyle: "preserve-3d",
+            transformStyle: disableTilt ? "flat" : "preserve-3d",
             boxShadow: `0 28px 90px rgba(0,0,0,0.26), 0 0 70px ${isActive ? config.glowColor : "rgba(99,102,241,0.08)"}`,
           }}
-          animate={reduceMotion ? undefined : { y: isActive ? -3 : 0 }}
+          animate={sceneReduceMotion ? undefined : { y: isActive ? -3 : 0 }}
           transition={{ duration: 0.8, ease: premiumEase }}
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.045),transparent_58%)]" />
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
           <div className="relative grid gap-3 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_10.5rem_minmax(0,1fr)] lg:items-stretch lg:gap-5 xl:grid-cols-[minmax(0,1fr)_12.5rem_minmax(0,1fr)]">
-            <ProblemScene before={before} beforeLabel={beforeLabel} variant={variant} active={isActive} reduceMotion={reduceMotion} details={details.before} flow={details.beforeFlow} />
+            <ProblemScene before={before} beforeLabel={beforeLabel} variant={variant} active={isActive} reduceMotion={sceneReduceMotion} details={details.before} flow={details.beforeFlow} flatDepth={disableTilt} compact={compactMotion} />
             <div className="relative flex flex-col justify-center rounded-2xl border border-border-subtle/60 bg-white/[0.018] px-3 py-2 lg:border-0 lg:bg-transparent lg:px-0 lg:py-0">
-              <FlowBridge active={isActive || isInView} metric={metric} variant={variant} reduceMotion={reduceMotion} />
+              <FlowBridge active={isActive || isInView} metric={metric} variant={variant} reduceMotion={sceneReduceMotion} flatDepth={disableTilt} compact={compactMotion} />
               <div className="relative z-10 mx-auto -mt-2 max-w-[13rem] pb-2 text-center text-[10px] font-medium uppercase leading-relaxed tracking-[0.16em] text-text-tertiary lg:absolute lg:inset-x-0 lg:bottom-3 lg:mt-0 lg:max-w-[11rem] lg:pb-0">
                 {details.bridge}
               </div>
             </div>
-            <SolutionScene after={after} afterLabel={afterLabel} variant={variant} active={isActive} reduceMotion={reduceMotion} details={details.after} flow={details.afterFlow} />
+            <SolutionScene after={after} afterLabel={afterLabel} variant={variant} active={isActive} reduceMotion={sceneReduceMotion} details={details.after} flow={details.afterFlow} flatDepth={disableTilt} compact={compactMotion} />
           </div>
         </motion.div>
 

@@ -36,10 +36,8 @@ export function usePerformanceMode(): PerformanceMode {
       const isMobile = mobileQuery.matches;
       const isCoarsePointer = coarseQuery.matches;
       const isLowPowerDevice =
-        isMobile ||
-        isCoarsePointer ||
-        (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 4) ||
-        (typeof nav.hardwareConcurrency === "number" && nav.hardwareConcurrency <= 4);
+        (typeof nav.deviceMemory === "number" && nav.deviceMemory <= 3) ||
+        (typeof nav.hardwareConcurrency === "number" && nav.hardwareConcurrency <= 2);
 
       setMode({
         mounted: true,
@@ -47,7 +45,7 @@ export function usePerformanceMode(): PerformanceMode {
         isCoarsePointer,
         prefersReducedMotion: motionQuery.matches,
         isLowPowerDevice,
-        shouldReduceMotion: motionQuery.matches || isLowPowerDevice,
+        shouldReduceMotion: motionQuery.matches,
       });
     };
 

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils/cn";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -26,7 +27,9 @@ export function PageHero({
   visual,
   glowColor = "bg-accent-primary/5",
 }: PageHeroProps) {
-  const hasVisual = !!visual;
+  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const showVisual = !!visual && !isMobile && !shouldReduceMotion;
+  const hasVisual = showVisual;
 
   return (
     <section className={cn("relative flex items-center overflow-hidden", !hasVisual && "min-h-[72vh]")}>
@@ -112,7 +115,7 @@ export function PageHero({
           </div>
 
           {/* Visual */}
-          {visual && (
+          {showVisual && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

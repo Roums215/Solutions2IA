@@ -63,7 +63,7 @@ export function SectionParticles({
 
         if (isMobile) {
           return (
-            <div
+            <motion.div
               key={i}
               className="absolute rounded-full"
               style={{
@@ -74,6 +74,8 @@ export function SectionParticles({
                 background: c,
                 opacity: 0.18,
               }}
+              animate={{ y: [0, p.drift * 0.5, 0], opacity: [0.12, 0.26, 0.12] }}
+              transition={{ duration: Math.max(5, p.duration), delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
             />
           );
         }

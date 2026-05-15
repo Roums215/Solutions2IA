@@ -51,11 +51,22 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
   const { isMobile, shouldReduceMotion } = usePerformanceMode();
 
   if (isMobile || shouldReduceMotion) {
+    const animate = shouldReduceMotion ? undefined : { opacity: [0.55, 0.8, 0.55], scale: [1, 1.04, 1] };
+    const transition = { duration: 9, repeat: Infinity, ease: "easeInOut" as const };
+
     return (
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
         <div className="absolute inset-0 bg-radial-top opacity-70" />
-        <div className="absolute -top-40 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-accent-primary/[0.07] blur-[110px]" />
-        <div className="absolute bottom-[-12rem] right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-cyan/[0.055] blur-[120px]" />
+        <motion.div
+          className="absolute -top-40 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-accent-primary/[0.07] blur-[110px]"
+          animate={animate}
+          transition={transition}
+        />
+        <motion.div
+          className="absolute bottom-[-12rem] right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-cyan/[0.055] blur-[120px]"
+          animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.68, 0.45], scale: [1, 1.05, 1] }}
+          transition={{ ...transition, delay: 2.5 }}
+        />
         <div className="absolute inset-0 bg-grid opacity-[0.018]" />
       </div>
     );
