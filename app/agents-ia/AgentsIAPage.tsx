@@ -3,13 +3,14 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
 import { TransformationCard } from "@/components/shared/TransformationCard";
 import { AIBrainScene } from "@/components/scenes/ai/AIBrainScene";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const capabilities = [
@@ -54,10 +55,34 @@ const deliverables = [
   "Optimisation continue post-livraison",
 ];
 
+const agentFlow = [
+  {
+    meta: "Connaissance",
+    title: "Connecter le contexte utile",
+    description: "Documents, CRM, FAQ, données métier et règles internes deviennent la mémoire exploitable de l'agent.",
+  },
+  {
+    meta: "Raisonnement",
+    title: "Encadrer la décision",
+    description: "Prompts, garde-fous, seuils de confiance et validations humaines sécurisent les décisions sensibles.",
+  },
+  {
+    meta: "Actions",
+    title: "Brancher les outils",
+    description: "L'agent peut créer, classer, répondre, relancer, notifier ou mettre à jour vos systèmes existants.",
+  },
+  {
+    meta: "Monitoring",
+    title: "Observer et améliorer",
+    description: "Chaque action reste traçable avec scores, logs, retours utilisateurs et optimisation continue.",
+  },
+];
+
 export function AgentsIAPage() {
   return (
     <>
       <PageAtmosphere preset="ai" />
+      <FluidMouseField preset="ai" />
       <PageHero
         label="Agents IA"
         title={<>L&apos;intelligence qui <span className="text-gradient-strong">travaille pour vous</span></>}
@@ -67,39 +92,48 @@ export function AgentsIAPage() {
         visual={<AIBrainScene />}
       />
 
-      <DepthDivider preset="neural" />
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Cycle de l'agent"
+            title="Un agent IA fiable n'est pas juste un chatbot, c'est une chaîne d'exécution contrôlée."
+            description="Nous construisons vos agents avec mémoire, raisonnement, actions connectées et supervision pour qu'ils soient utiles dès les premiers jours."
+            steps={agentFlow}
+            accent="139, 92, 246"
+          />
+        </div>
+      </section>
 
       {/* Gains */}
-      <section className="relative py-32 lg:py-40 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="sparks" count={12} color="rgba(129,140,248,0.15)" secondaryColor="rgba(34,211,238,0.1)" />
         <div className="absolute inset-0" style={{ perspective: "500px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(50deg) scale(1.5)", transformOrigin: "center center" }} />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <motion.div className="text-center mb-16" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Performance</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ce que nos agents IA délivrent</h2>
           </motion.div>
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-10">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {gains.map((g, i) => (
-              <motion.div key={g.label} variants={fadeInUp} className="text-center">
-                <motion.span className="text-5xl lg:text-6xl font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>{g.value}</motion.span>
+              <motion.div key={g.label} variants={fadeInUp} className="metric-tile px-5 py-6 sm:px-6 sm:py-7 text-center">
+                <motion.span className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>{g.value}</motion.span>
                 <h3 className="text-base font-semibold mt-4 mb-1.5">{g.label}</h3>
-                <p className="text-xs text-text-tertiary leading-relaxed">{g.detail}</p>
+                <p className="text-xs text-text-tertiary leading-relaxed max-w-[18rem] mx-auto">{g.detail}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Avant / Après */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="hexagons" count={12} color="rgba(129,140,248,0.06)" secondaryColor="rgba(34,211,238,0.04)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Transformation" title="Sans agent / Avec agent" description="La différence entre gérer manuellement et déléguer à une intelligence artificielle qui travaille pour vous." />
-          <div className="space-y-5">
+          <div className="space-y-6 lg:space-y-8">
             {beforeAfter.map((item, i) => (
               <TransformationCard
                 key={item.metric}
@@ -116,31 +150,31 @@ export function AgentsIAPage() {
         </div>
       </section>
 
-      <DepthDivider preset="neural" />
 
       {/* Capabilities */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="crosses" count={14} color="rgba(129,140,248,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Capacités" title="Des agents qui pensent et agissent" description="Chaque agent est conçu pour un rôle précis, avec une chaîne de raisonnement transparente et des actions mesurables." />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             {capabilities.map((c) => (
-              <GlowCard key={c.title}>
-                <div className="w-10 h-10 rounded-xl bg-accent-glow border border-accent-primary/15 flex items-center justify-center mb-6">{c.icon}</div>
-                <h3 className="text-lg font-semibold mb-3 tracking-tight">{c.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{c.description}</p>
-              </GlowCard>
+              <motion.div key={c.title} variants={fadeInUp}>
+                <SpotlightCard glow="139,92,246" tilt={5} pulse className="p-7 sm:p-8 h-full">
+                  <div className="w-10 h-10 rounded-xl bg-accent-glow border border-accent-primary/15 flex items-center justify-center mb-6" style={{ transform: "translateZ(35px)" }}>{c.icon}</div>
+                  <h3 className="text-lg font-semibold mb-3 tracking-tight" style={{ transform: "translateZ(22px)" }}>{c.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed" style={{ transform: "translateZ(12px)" }}>{c.description}</p>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Use cases */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={10} color="rgba(129,140,248,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Cas d'usage" title="L'IA au service du concret" description="Des applications réelles qui transforment votre quotidien opérationnel et multiplient votre impact." />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 gap-7">
             {useCases.map((uc, i) => (
@@ -162,12 +196,11 @@ export function AgentsIAPage() {
         </div>
       </section>
 
-      <DepthDivider preset="neural" />
 
       {/* Livrables */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="grid-dots" count={16} color="rgba(129,140,248,0.04)" />
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="section-container-narrow">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Livrables</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ce que vous obtenez <span className="text-gradient-strong">concrètement</span></h2>
@@ -187,7 +220,7 @@ export function AgentsIAPage() {
       </section>
 
       {/* Live status */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="section-shell-compact">
         <div className="absolute inset-0" style={{ perspective: "600px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(45deg) scale(2)", transformOrigin: "center center" }} />
         </div>

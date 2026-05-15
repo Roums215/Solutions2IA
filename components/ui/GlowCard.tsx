@@ -16,17 +16,14 @@ export function GlowCard({ children, className, hover = true, accent = false }: 
     <motion.div
       variants={fadeInUp}
       className={cn(
-        "relative rounded-2xl border bg-bg-card p-6 sm:p-8 card-shine",
+        "surface-card relative rounded-[1.5rem] p-6 sm:p-8 card-shine",
         accent ? "border-border-accent" : "border-border-subtle",
         hover &&
-          "transition-all duration-500 hover:border-border-accent hover:bg-bg-card-hover hover:shadow-xl hover:shadow-accent-glow/5 hover:-translate-y-1",
+          "transition-all duration-500 hover:border-border-accent hover:bg-bg-card-hover hover:shadow-[0_24px_60px_rgba(11,14,26,0.42)] hover:-translate-y-1",
         className
       )}
     >
-      {/* Top edge glow on hover */}
-      {hover && (
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-primary/0 to-transparent transition-all duration-500 group-hover:via-accent-primary/40" />
-      )}
+      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-accent-primary/25 to-transparent" />
       {children}
     </motion.div>
   );

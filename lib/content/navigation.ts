@@ -34,4 +34,10 @@ export const footerNav = {
     { label: "Automatisation", href: "/automatisation" },
     { label: "Studio visuel", href: "/studio-visuel" },
   ],
+  legal: [
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "Confidentialité", href: "/confidentialite" },
+    { label: "Cookies", href: "/cookies" },
+    { label: "CGV", href: "/cgv" },
+  ],
 };

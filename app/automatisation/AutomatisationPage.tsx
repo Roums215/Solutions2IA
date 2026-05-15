@@ -3,12 +3,14 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
+import { TransformationCard } from "@/components/shared/TransformationCard";
 import { AutomationScene } from "@/components/scenes/automation/AutomationScene";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const features = [
@@ -38,10 +40,47 @@ const integrations = [
   { name: "API REST", desc: "Toute API externe" },
 ];
 
+const beforeAfter = [
+  {
+    before: "Vos équipes copient les données entre outils, vérifient les statuts à la main et relancent les clients au cas par cas.",
+    after: "Un workflow déclenche les actions, synchronise les données, met à jour le CRM et notifie les bonnes personnes automatiquement.",
+    metric: "73% temps",
+  },
+  {
+    before: "Chaque erreur bloque le process : facture oubliée, lead non traité, fichier mal nommé, reporting incomplet.",
+    after: "Les contrôles, retries, alertes et logs rendent le processus fiable, traçable et beaucoup plus simple à piloter.",
+    metric: "0.02% erreur",
+  },
+];
+
+const automationFlow = [
+  {
+    meta: "Déclencheur",
+    title: "Identifier le bon signal",
+    description: "Formulaire, nouveau lead, facture, email, webhook ou changement de statut : tout part d'un événement fiable.",
+  },
+  {
+    meta: "Règles",
+    title: "Décider sans ambiguïté",
+    description: "Conditions, exceptions, validation humaine et priorités rendent le workflow robuste dans les vrais cas métier.",
+  },
+  {
+    meta: "Connexions",
+    title: "Synchroniser vos outils",
+    description: "CRM, tableur, email, Slack, API, base de données : chaque système reçoit la bonne information au bon moment.",
+  },
+  {
+    meta: "Contrôle",
+    title: "Suivre les exécutions",
+    description: "Logs, retries, alertes et métriques permettent de piloter les automatisations comme un système de production.",
+  },
+];
+
 export function AutomatisationPage() {
   return (
     <>
       <PageAtmosphere preset="automation" />
+      <FluidMouseField preset="automation" />
       <PageHero
         label="Automatisation intelligente"
         title={<>Éliminez le <span className="text-gradient-strong">travail répétitif</span></>}
@@ -52,26 +91,36 @@ export function AutomatisationPage() {
         glowColor="bg-cyan/5"
       />
 
-      <DepthDivider preset="circuit" />
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Flux automatisé"
+            title="Une automatisation utile doit montrer ce qui circule, ce qui décide et ce qui se vérifie."
+            description="Nous concevons vos workflows comme des chaînes opérationnelles lisibles : événement, logique métier, intégrations, contrôle qualité."
+            steps={automationFlow}
+            accent="34, 211, 238"
+          />
+        </div>
+      </section>
 
       {/* Metrics band */}
-      <section className="relative py-24 lg:py-28 bg-bg-secondary overflow-hidden">
+      <section className="section-shell-tight">
         <SectionParticles style="sparks" count={18} color="rgba(34,211,238,0.3)" secondaryColor="rgba(99,102,241,0.2)" />
         <div className="absolute inset-0" style={{ perspective: "500px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.03]" style={{ transform: "rotateX(50deg) scale(1.5)", transformOrigin: "center center" }} />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5"
           >
             {metrics.map((m, i) => (
-              <motion.div key={m.label} variants={fadeInUp} className="text-center">
+              <motion.div key={m.label} variants={fadeInUp} className="metric-tile px-5 py-6 sm:px-6 sm:py-7 text-center">
                 <motion.span
-                  className="text-5xl lg:text-6xl font-bold text-gradient-strong block leading-none"
+                  className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gradient-strong block leading-none"
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   viewport={{ once: true }}
@@ -80,20 +129,19 @@ export function AutomatisationPage() {
                   {m.value}
                 </motion.span>
                 <h3 className="text-base font-semibold mt-3 mb-1">{m.label}</h3>
-                <p className="text-xs text-text-tertiary">{m.description}</p>
+                <p className="text-xs text-text-tertiary leading-relaxed max-w-[18rem] mx-auto">{m.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Capabilities */}
-      <section className="relative py-28 lg:py-36 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="circuit-nodes" count={14} color="rgba(34,211,238,0.15)" secondaryColor="rgba(99,102,241,0.1)" />
         <div className="absolute inset-0 bg-radial-top" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading
             label="Capacités"
             title="L'automatisation qui s'adapte à vous"
@@ -107,24 +155,25 @@ export function AutomatisationPage() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {features.map((f) => (
-              <GlowCard key={f.title}>
-                <div className="w-10 h-10 rounded-xl bg-cyan-glow border border-cyan/15 flex items-center justify-center mb-5">
-                  {f.icon}
-                </div>
-                <h3 className="text-lg font-semibold mb-3 tracking-tight">{f.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{f.description}</p>
-              </GlowCard>
+              <motion.div key={f.title} variants={fadeInUp}>
+                <SpotlightCard glow="34,211,238" tilt={4} pulse className="p-7 sm:p-8 h-full">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-glow border border-cyan/15 flex items-center justify-center mb-5" style={{ transform: "translateZ(30px)" }}>
+                    {f.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold mb-3 tracking-tight" style={{ transform: "translateZ(20px)" }}>{f.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed" style={{ transform: "translateZ(10px)" }}>{f.description}</p>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="circuit" />
 
       {/* Integrations grid */}
-      <section className="relative py-28 lg:py-36 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={12} color="rgba(34,211,238,0.12)" secondaryColor="rgba(99,102,241,0.08)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading
             label="Intégrations"
             title="Connecté à tout votre écosystème"
@@ -154,62 +203,31 @@ export function AutomatisationPage() {
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Before / After */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="section-shell-tight">
         <SectionParticles style="sparks" count={10} color="rgba(34,211,238,0.25)" secondaryColor="rgba(74,222,128,0.2)" />
-        <motion.div
-          className="relative max-w-4xl mx-auto px-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="text-center mb-12">
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Impact concret</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Le jour et la nuit</h2>
+        <div className="section-container">
+          <SectionHeading
+            label="Impact concret"
+            title="Le jour et la nuit"
+            description="On ne se contente pas de gagner du temps : on construit des flux fiables entre vos outils, vos données et vos équipes."
+          />
+          <div className="space-y-6 lg:space-y-8">
+            {beforeAfter.map((item, i) => (
+              <TransformationCard
+                key={item.metric}
+                variant="automation"
+                before={item.before}
+                after={item.after}
+                metric={item.metric}
+                beforeLabel="Sans workflow"
+                afterLabel="Workflow Solutions 2IA"
+                index={i}
+              />
+            ))}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
-            <motion.div
-              className="rounded-2xl border border-border-subtle bg-bg-card/30 p-8 text-center"
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <span className="text-xs text-text-tertiary uppercase tracking-wider block mb-4">Sans automatisation</span>
-              <span className="text-5xl font-bold text-text-tertiary/30 block mb-3">8h</span>
-              <span className="text-sm text-text-tertiary block mb-4">par jour de tâches manuelles</span>
-              <div className="space-y-2 text-left">
-                {["Copier-coller entre outils", "Envoi de mails un par un", "Mise à jour manuelle du CRM", "Reporting à la main"].map((t) => (
-                  <div key={t} className="flex items-center gap-2 text-xs text-text-tertiary">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-400/40"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div
-              className="rounded-2xl border border-cyan/15 bg-cyan/[0.03] p-8 text-center"
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <span className="text-xs text-cyan uppercase tracking-wider block mb-4">Avec Solutions 2IA</span>
-              <span className="text-5xl font-bold text-gradient-strong block mb-3">2h</span>
-              <span className="text-sm text-text-secondary block mb-4">focus sur la valeur réelle</span>
-              <div className="space-y-2 text-left">
-                {["Données synchronisées en temps réel", "Emails envoyés automatiquement", "CRM mis à jour instantanément", "Rapports générés chaque matin"].map((t) => (
-                  <div key={t} className="flex items-center gap-2 text-xs text-text-secondary">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-400/60"><polyline points="20 6 9 17 4 12" /></svg>
-                    {t}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
+        </div>
       </section>
 
       <CTABand

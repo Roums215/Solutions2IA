@@ -86,7 +86,20 @@ export function Footer() {
           </motion.div>
         </div>
 
-        <motion.div variants={fadeInUp} className="mt-16 pt-8 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div variants={fadeInUp} className="mt-12 border-t border-border-subtle pt-8">
+          <h4 className="sr-only">Informations légales</h4>
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:justify-start">
+            {footerNav.legal.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-xs text-text-tertiary transition-colors duration-300 hover:text-text-secondary">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.div variants={fadeInUp} className="mt-8 pt-8 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-tertiary">&copy; {new Date().getFullYear()} Solutions 2IA. Tous droits réservés.</p>
           <p className="text-xs text-text-tertiary">
             Conçu et développé avec exigence par <span className="text-text-secondary">Solutions 2IA</span>

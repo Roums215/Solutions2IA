@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils/cn";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -28,9 +29,9 @@ export function PageHero({
   const hasVisual = !!visual;
 
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden">
+    <section className={cn("relative flex items-center overflow-hidden", !hasVisual && "min-h-[72vh]")}>
       {/* Background layers */}
-      <div className="absolute inset-0 bg-grid opacity-[0.08]" />
+      <div className="absolute inset-0 bg-grid opacity-[0.07]" />
       <div className="absolute inset-0 bg-radial-top" />
       <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] ${glowColor} rounded-full blur-[150px]`} />
 
@@ -51,15 +52,15 @@ export function PageHero({
         transition={{ duration: 2, delay: 0.6 }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 lg:pt-40 lg:pb-28 w-full">
-        <div className={hasVisual ? "grid lg:grid-cols-2 gap-16 lg:gap-12 items-center" : "max-w-3xl mx-auto text-center"}>
+      <div className="section-container relative z-10 pt-28 pb-16 lg:pt-36 lg:pb-20 w-full">
+        <div className={hasVisual ? "grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center" : "max-w-3xl mx-auto text-center"}>
           {/* Text */}
           <div className={hasVisual ? "max-w-2xl" : ""}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: premiumEase }}
-              className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-subtle bg-bg-card/40 backdrop-blur-sm mb-8 ${!hasVisual ? "mx-auto" : ""}`}
+              className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${!hasVisual ? "mx-auto" : ""}`}
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75" />
@@ -72,7 +73,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: premiumEase }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold tracking-[-0.02em] leading-[1.06]"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
             >
               {title}
             </motion.h1>
@@ -81,7 +82,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: premiumEase }}
-              className={`mt-7 text-lg sm:text-xl text-text-secondary leading-[1.7] max-w-xl ${!hasVisual ? "mx-auto" : ""}`}
+              className={`mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty ${!hasVisual ? "mx-auto" : ""}`}
             >
               {description}
             </motion.p>
@@ -91,7 +92,7 @@ export function PageHero({
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: premiumEase }}
-                className={`mt-10 flex flex-wrap gap-4 ${!hasVisual ? "justify-center" : ""}`}
+                className={`mt-9 flex flex-wrap gap-4 ${!hasVisual ? "justify-center" : ""}`}
               >
                 {primaryCta && (
                   <Button variant="primary" size="lg" href={primaryCta.href}>
@@ -116,7 +117,7 @@ export function PageHero({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.3, ease: premiumEase }}
-              className="relative"
+              className="relative lg:pl-4"
             >
               {visual}
             </motion.div>
@@ -124,8 +125,6 @@ export function PageHero({
         </div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-bg-primary to-transparent" />
     </section>
   );
 }

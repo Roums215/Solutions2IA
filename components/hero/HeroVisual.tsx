@@ -1,8 +1,26 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, MotionValue } from "motion/react";
+import { useEffect, useRef, createContext, useContext } from "react";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
+
+/* ─── Parallax mouse context ─── */
+interface ParallaxCtx {
+  mx: MotionValue<number>; // -1..1
+  my: MotionValue<number>; // -1..1
+}
+const ParallaxContext = createContext<ParallaxCtx | null>(null);
+
+function useParallaxLayer(depth: number) {
+  const ctx = useContext(ParallaxContext);
+  const zero = useMotionValue(0);
+  const tx = useTransform(ctx?.mx ?? zero, (v) => v * depth);
+  const ty = useTransform(ctx?.my ?? zero, (v) => v * depth);
+  const ry = useTransform(ctx?.mx ?? zero, (v) => v * (depth * 0.18));
+  const rx = useTransform(ctx?.my ?? zero, (v) => -v * (depth * 0.18));
+  return { tx, ty, rx, ry };
+}
 
 function FloatingPanel({
   className,
@@ -10,6 +28,7 @@ function FloatingPanel({
   duration = 6,
   amplitude = 12,
   rotate = 0,
+  depth = 18,
   children,
 }: {
   className?: string;
@@ -17,25 +36,39 @@ function FloatingPanel({
   duration?: number;
   amplitude?: number;
   rotate?: number;
+  depth?: number;
   children: React.ReactNode;
 }) {
+  const { tx, ty, rx, ry } = useParallaxLayer(depth);
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, delay, ease: premiumEase }}
       className={className}
+      style={{ x: tx, y: ty, rotateX: rx, rotateY: ry, transformPerspective: 1200, transformStyle: "preserve-3d" }}
     >
       <motion.div
-        animate={{
-          y: [0, -amplitude, 0, -amplitude * 0.6, 0],
-          rotate: rotate ? [0, rotate, 0, -rotate * 0.5, 0] : 0,
-        }}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        whileHover={shouldReduceMotion ? undefined : { scale: 1.018 }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                y: [0, -amplitude, 0, -amplitude * 0.6, 0],
+                rotate: rotate ? [0, rotate, 0, -rotate * 0.5, 0] : 0,
+              }
+        }
+        transition={
+          shouldReduceMotion
+            ? { duration: 0.2, ease: premiumEase }
+            : {
+                duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+        }
       >
         {children}
       </motion.div>
@@ -91,12 +124,61 @@ function OrbitDot({ radius, duration, delay, size = 4, color = "bg-accent-light/
 }
 
 export function HeroVisual() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const mx = useSpring(rawX, { stiffness: 70, damping: 18, mass: 0.8 });
+  const my = useSpring(rawY, { stiffness: 70, damping: 18, mass: 0.8 });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onMove = (e: PointerEvent) => {
+      const rect = el.getBoundingClientRect();
+      // Centre du conteneur, valeur normalisée -1..1
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      rawX.set(x * 2);
+      rawY.set(y * 2);
+    };
+    const onLeave = () => {
+      rawX.set(0);
+      rawY.set(0);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerleave", onLeave);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerleave", onLeave);
+    };
+  }, [rawX, rawY]);
+
   return (
-    <div className="relative w-full h-[560px] sm:h-[660px] lg:h-[740px]">
+    <ParallaxContext.Provider value={{ mx, my }}>
+    <div ref={containerRef} className="relative w-full h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]" style={{ perspective: "1400px", transformStyle: "preserve-3d" }}>
       {/* Layered glow system */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-primary/8 rounded-full blur-[120px]" />
       <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-cyan/5 rounded-full blur-[100px]" />
       <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-accent-dark/10 rounded-full blur-[80px]" />
+      <motion.div
+        aria-hidden
+        className="absolute left-1/2 top-[52%] h-[360px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-[999px] border border-accent-light/[0.06]"
+        initial={{ opacity: 0, scale: 0.92, rotate: -6 }}
+        animate={{ opacity: 1, scale: 1, rotate: -6 }}
+        transition={{ duration: 1.1, delay: 0.25, ease: premiumEase }}
+        style={{ transformStyle: "preserve-3d" }}
+      />
+      <motion.div
+        aria-hidden
+        className="absolute left-1/2 top-[56%] h-[210px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-[999px] border border-cyan/[0.045]"
+        initial={{ opacity: 0, scale: 0.9, rotate: 8 }}
+        animate={{ opacity: 1, scale: 1, rotate: 8 }}
+        transition={{ duration: 1.2, delay: 0.4, ease: premiumEase }}
+        style={{ transformStyle: "preserve-3d" }}
+      />
 
       {/* Ambient particles */}
       <Particle x="15%" y="20%" size={3} delay={0} />
@@ -207,7 +289,7 @@ export function HeroVisual() {
       {/* ═══════════════════ FLOATING PANELS ═══════════════════ */}
 
       {/* Dashboard Panel — top left */}
-      <FloatingPanel className="absolute top-0 left-0 sm:top-2 sm:left-0 lg:top-4 lg:left-0" delay={0.4} duration={7} amplitude={14} rotate={0.4}>
+      <FloatingPanel className="absolute top-0 left-0 sm:top-2 sm:left-0 lg:top-4 lg:left-0" delay={0.4} duration={7} amplitude={14} rotate={0.4} depth={26}>
         <div className="w-56 sm:w-64 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
@@ -256,7 +338,7 @@ export function HeroVisual() {
       </FloatingPanel>
 
       {/* Mobile App — top right */}
-      <FloatingPanel className="absolute top-8 right-0 sm:top-12 sm:right-0 lg:top-[150px] lg:right-0" delay={0.6} duration={8.5} amplitude={18} rotate={-0.6}>
+      <FloatingPanel className="absolute top-8 right-0 sm:top-12 sm:right-0 lg:top-[150px] lg:right-0" delay={0.6} duration={8.5} amplitude={18} rotate={-0.6} depth={32}>
         <div className="w-[140px] sm:w-[156px] rounded-2xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-2.5 px-0.5">
             <span className="text-[8px] text-text-tertiary font-medium">9:41</span>
@@ -312,7 +394,7 @@ export function HeroVisual() {
       </FloatingPanel>
 
       {/* AI Agent Panel — bottom center */}
-      <FloatingPanel className="absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-2" delay={0.8} duration={6.5} amplitude={16} rotate={0.3}>
+      <FloatingPanel className="absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-2" delay={0.8} duration={6.5} amplitude={16} rotate={0.3} depth={14}>
         <div className="w-[260px] sm:w-[280px] rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine">
           <div className="flex items-center gap-3 mb-4">
             <motion.div
@@ -386,8 +468,9 @@ export function HeroVisual() {
             <div className="h-1 rounded-full bg-bg-tertiary overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-accent-primary to-cyan"
-                initial={{ width: "0%" }}
-                animate={{ width: "78%" }}
+                style={{ width: "78%", transformOrigin: "left center" }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
                 transition={{ delay: 2.2, duration: 1.2, ease: premiumEase }}
               />
             </div>
@@ -396,7 +479,7 @@ export function HeroVisual() {
       </FloatingPanel>
 
       {/* Code Terminal — middle left */}
-      <FloatingPanel className="absolute top-[44%] left-0 sm:top-[46%] sm:left-0 lg:top-[42%] lg:left-0 hidden sm:block" delay={1.0} duration={7.5} amplitude={13} rotate={-0.5}>
+      <FloatingPanel className="absolute top-[44%] left-0 sm:top-[46%] sm:left-0 lg:top-[42%] lg:left-0 hidden sm:block" delay={1.0} duration={7.5} amplitude={13} rotate={-0.5} depth={22}>
         <div className="w-52 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center gap-1.5 mb-2.5">
             <div className="w-2 h-2 rounded-full bg-red-400/80" />
@@ -428,7 +511,7 @@ export function HeroVisual() {
       </FloatingPanel>
 
       {/* Performance Widget — top right (lg) */}
-      <FloatingPanel className="absolute top-0 right-0 hidden lg:block" delay={0.5} duration={9} amplitude={11} rotate={0.5}>
+      <FloatingPanel className="absolute top-0 right-0 hidden lg:block" delay={0.5} duration={9} amplitude={11} rotate={0.5} depth={28}>
         <div className="w-48 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-[9px] text-text-tertiary uppercase tracking-[0.12em] font-medium">Performance</span>
@@ -439,8 +522,9 @@ export function HeroVisual() {
               <motion.div
                 key={i}
                 className="flex-1 rounded-t-sm bg-gradient-to-t from-accent-primary/30 to-accent-light/50"
-                initial={{ height: 0 }}
-                animate={{ height: `${h}%` }}
+                style={{ height: `${h}%`, transformOrigin: "bottom center" }}
+                initial={{ scaleY: 0, opacity: 0.35 }}
+                animate={{ scaleY: 1, opacity: 1 }}
                 transition={{ delay: 1.0 + i * 0.06, duration: 0.5, ease: premiumEase }}
               />
             ))}
@@ -453,7 +537,7 @@ export function HeroVisual() {
       </FloatingPanel>
 
       {/* Automation status — middle-bottom right */}
-      <FloatingPanel className="absolute top-[62%] right-0 md:top-[58%] lg:top-[58%] lg:right-0 hidden md:block" delay={1.1} duration={8} amplitude={12} rotate={-0.4}>
+      <FloatingPanel className="absolute top-[62%] right-0 md:top-[58%] lg:top-[58%] lg:right-0 hidden md:block" delay={1.1} duration={8} amplitude={12} rotate={-0.4} depth={30}>
         <div className="w-40 rounded-lg border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <span className="text-[9px] text-text-tertiary uppercase tracking-[0.12em] font-medium block mb-2">Workflows</span>
           {[
@@ -478,5 +562,6 @@ export function HeroVisual() {
         </div>
       </FloatingPanel>
     </div>
+    </ParallaxContext.Provider>
   );
 }

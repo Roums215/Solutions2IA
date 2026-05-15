@@ -4,9 +4,10 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { Button } from "@/components/ui/Button";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const serviceOptions = [
@@ -33,6 +34,29 @@ const faq = [
   { q: "Proposez-vous de la maintenance ?", a: "Oui. Chaque livraison peut s'accompagner d'un contrat de maintenance et d'optimisation continue. Vos solutions restent performantes dans la durée." },
 ];
 
+const briefFlow = [
+  {
+    meta: "Objectif",
+    title: "Ce que vous voulez améliorer",
+    description: "Conversion, image, outil interne, automatisation, IA, productivité ou lancement d'un nouveau produit.",
+  },
+  {
+    meta: "Contexte",
+    title: "Votre situation actuelle",
+    description: "Site existant, outils utilisés, équipe, contraintes, données disponibles et ce qui bloque aujourd'hui.",
+  },
+  {
+    meta: "Priorités",
+    title: "Les zones critiques",
+    description: "Délais, budget, fonctionnalités indispensables, intégrations, niveau de finition attendu et risques connus.",
+  },
+  {
+    meta: "Décision",
+    title: "Le prochain pas concret",
+    description: "Après votre message, nous revenons avec les bonnes questions, une première lecture et une direction claire.",
+  },
+];
+
 export function ContactPage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -40,27 +64,40 @@ export function ContactPage() {
   return (
     <>
       <PageAtmosphere preset="contact" />
+      <FluidMouseField preset="contact" />
       <PageHero
         label="Contact"
         title={<>Démarrons votre <span className="text-gradient-strong">projet</span></>}
         description="Chaque grand projet commence par une conversation. Décrivez votre besoin, nous revenons vers vous sous 24h avec une première analyse personnalisée."
       />
 
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Brief utile"
+            title="Un bon premier message accélère déjà la qualité de la solution."
+            description="Pas besoin d'un cahier des charges parfait : quelques informations bien choisies suffisent pour comprendre le vrai sujet et préparer un échange précis."
+            steps={briefFlow}
+            accent="99, 102, 241"
+          />
+        </div>
+      </section>
+
       {/* Form section */}
-      <section className="relative py-16 lg:py-24 -mt-16 z-10">
+      <section className="section-shell-tight z-10">
         <SectionParticles style="dots" count={8} color="rgba(129,140,248,0.08)" />
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="section-container-narrow">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="rounded-2xl border border-border-subtle bg-bg-card/80 backdrop-blur-xl p-8 sm:p-12 lg:p-14 shadow-2xl shadow-accent-glow/5"
+            className="section-intro-panel rounded-[1.75rem] p-8 sm:p-12 lg:p-14"
           >
             {/* Service selection */}
             <motion.div variants={fadeInUp} className="mb-10">
               <label className="text-base font-semibold text-text-primary block mb-2">Quel type de projet vous intéresse ?</label>
-              <p className="text-sm text-text-tertiary mb-5">Sélectionnez un ou plusieurs services pour nous aider à comprendre votre besoin.</p>
+              <p className="text-sm text-text-secondary/85 mb-5">Sélectionnez un ou plusieurs services pour nous aider à comprendre votre besoin.</p>
               <div className="flex flex-wrap gap-3">
                 {serviceOptions.map((s) => (
                   <button
@@ -69,7 +106,7 @@ export function ContactPage() {
                     className={`px-4 py-2.5 text-sm rounded-xl border transition-all duration-300 cursor-pointer ${
                       selectedService === s
                         ? "border-accent-primary bg-accent-glow text-accent-light shadow-sm shadow-accent-glow/20"
-                        : "border-border-subtle bg-bg-tertiary/30 text-text-secondary hover:border-border-medium hover:text-text-primary"
+                        : "border-border-medium bg-bg-tertiary/45 text-text-secondary hover:border-border-accent hover:text-text-primary"
                     }`}
                   >
                     {s}
@@ -83,21 +120,21 @@ export function ContactPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
                   <label className="text-sm font-medium text-text-primary block mb-2.5">Nom *</label>
-                  <input type="text" placeholder="Votre nom complet" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/30 border border-border-subtle text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <input type="text" placeholder="Votre nom complet" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-text-primary block mb-2.5">Email *</label>
-                  <input type="email" placeholder="votre@email.com" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/30 border border-border-subtle text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <input type="email" placeholder="votre@email.com" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
                   <label className="text-sm font-medium text-text-primary block mb-2.5">Entreprise <span className="text-text-tertiary font-normal">(optionnel)</span></label>
-                  <input type="text" placeholder="Nom de votre entreprise" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/30 border border-border-subtle text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <input type="text" placeholder="Nom de votre entreprise" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-text-primary block mb-2.5">Budget estimé <span className="text-text-tertiary font-normal">(optionnel)</span></label>
-                  <select className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/30 border border-border-subtle text-sm text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
+                  <select className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-secondary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
                     <option>Sélectionner une fourchette</option>
                     <option>Moins de 3 000€</option>
                     <option>3 000€ — 8 000€</option>
@@ -109,7 +146,7 @@ export function ContactPage() {
               </div>
               <div>
                 <label className="text-sm font-medium text-text-primary block mb-2.5">Décrivez votre projet *</label>
-                <textarea rows={6} placeholder="Parlez-nous de votre projet : objectifs, contexte, contraintes, timeline souhaitée..." className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/30 border border-border-subtle text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all resize-none" />
+                <textarea rows={6} placeholder="Parlez-nous de votre projet : objectifs, contexte, contraintes, timeline souhaitée..." className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all resize-none" />
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-3">
                 <Button variant="primary" size="lg" type="submit">
@@ -123,12 +160,11 @@ export function ContactPage() {
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Process */}
-      <section className="relative py-32 lg:py-40 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="grid-dots" count={12} color="rgba(129,140,248,0.04)" />
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="section-container-narrow">
           <SectionParticles style="dots" count={6} color="rgba(129,140,248,0.06)" />
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Comment ça se passe</span>
@@ -154,11 +190,10 @@ export function ContactPage() {
         </div>
       </section>
 
-      <DepthDivider preset="wave" />
 
       {/* FAQ */}
-      <section className="relative py-32 lg:py-40 bg-bg-secondary overflow-hidden">
-        <div className="relative max-w-3xl mx-auto px-6">
+      <section className="section-shell">
+        <div className="section-container-narrow max-w-3xl">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Questions fréquentes</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Tout ce que vous devez savoir</h2>
@@ -204,8 +239,8 @@ export function ContactPage() {
       </section>
 
       {/* Contact alternatives */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="relative max-w-4xl mx-auto px-6">
+      <section className="section-shell-compact">
+        <div className="section-container-narrow">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
