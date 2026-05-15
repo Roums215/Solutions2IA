@@ -4,10 +4,12 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const services = [
@@ -65,10 +67,34 @@ const approach = [
   { title: "IA intégrée nativement", description: "L'intelligence artificielle n'est pas un add-on. Elle est pensée dès la conception pour maximiser la valeur de chaque solution." },
 ];
 
+const serviceFlow = [
+  {
+    meta: "Cadrage",
+    title: "Prioriser ce qui crée de la valeur",
+    description: "Objectifs, audience, contraintes, données disponibles et automatisations possibles sont clarifiés ensemble.",
+  },
+  {
+    meta: "Design",
+    title: "Transformer l'idée en expérience",
+    description: "Nous prototypons les parcours, les états, les interactions et la hiérarchie visuelle avant le build.",
+  },
+  {
+    meta: "Build",
+    title: "Développer sur une base solide",
+    description: "Architecture Next.js, composants premium, performances et intégrations sont construits proprement.",
+  },
+  {
+    meta: "Scale",
+    title: "Faire évoluer sans casser",
+    description: "Les livrables restent maintenables, mesurables et prêts à accueillir de nouveaux modules.",
+  },
+];
+
 export function ServicesPage() {
   return (
     <>
       <PageAtmosphere preset="services" />
+      <FluidMouseField preset="services" />
       <PageHero
         label="Nos services"
         title={<>Des solutions digitales <span className="text-gradient-strong">à la hauteur de vos ambitions</span></>}
@@ -77,13 +103,12 @@ export function ServicesPage() {
         secondaryCta={{ label: "À propos de nous", href: "/a-propos" }}
       />
 
-      <DepthDivider preset="wave" />
 
       {/* Services détaillés */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={12} color="rgba(129,140,248,0.1)" />
         <div className="absolute inset-0 bg-radial-top" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading
             label="Expertises"
             title="Chaque service, une excellence"
@@ -97,19 +122,21 @@ export function ServicesPage() {
             viewport={{ once: true, margin: "-60px" }}
             className="space-y-8"
           >
-            {services.map((service) => (
+            {services.map((service, idx) => {
+              const glows = ["99,102,241", "34,211,238", "129,140,248", "14,165,233", "168,85,247"];
+              return (
               <motion.div key={service.href} variants={fadeInUp}>
                 <Link href={service.href} className="group block">
-                  <div className="rounded-2xl border border-border-subtle bg-bg-card overflow-hidden card-shine transition-all duration-500 hover:border-border-accent hover:shadow-xl hover:shadow-accent-glow/5 hover:-translate-y-0.5">
+                  <SpotlightCard glow={glows[idx % glows.length]} tilt={3} pulse className="overflow-hidden">
                     <div className="p-8 sm:p-10 lg:p-12">
                       <div className="flex flex-col lg:flex-row lg:items-start gap-8">
                         {/* Icon + Info */}
                         <div className="flex-1">
                           <div className="flex items-center gap-5 mb-5">
-                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white shadow-lg shadow-accent-glow/20 transition-shadow duration-500 group-hover:shadow-accent-glow/40`}>
+                            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white shadow-lg shadow-accent-glow/20 transition-shadow duration-500 group-hover:shadow-accent-glow/40`} style={{ transform: "translateZ(30px)" }}>
                               {service.icon}
                             </div>
-                            <div>
+                            <div style={{ transform: "translateZ(20px)" }}>
                               <h3 className="text-xl font-semibold tracking-tight group-hover:text-accent-light transition-colors duration-300">{service.title}</h3>
                               <span className="text-xs text-accent-light/60 font-mono">{service.result}</span>
                             </div>
@@ -137,20 +164,33 @@ export function ServicesPage() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </SpotlightCard>
                 </Link>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
+
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Méthode de livraison"
+            title="Un service premium, mais surtout une exécution contrôlée."
+            description="Chaque expertise suit le même niveau d'exigence : précision stratégique, design haut de gamme, code propre et amélioration continue."
+            steps={serviceFlow}
+            accent="129, 140, 248"
+          />
+        </div>
+      </section>
+
 
       {/* Notre approche */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="hexagons" count={8} color="rgba(129,140,248,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading
             label="Approche"
             title="Ce qui nous différencie"

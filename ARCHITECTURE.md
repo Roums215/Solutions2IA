@@ -1,233 +1,364 @@
-# Solutions 2IA — Documentation d'architecture & design
+# Solutions 2IA — Architecture & Design System
 
-## Table des matières
+> Site vitrine **multi-pages** premium pour Solutions 2IA. Next.js 15 App Router, TypeScript strict, Tailwind v4, Motion + GSAP, Remotion intégré, prêt 3D/Three.js.
 
+## Sommaire
 1. [Vue d'ensemble](#vue-densemble)
 2. [Stack technique](#stack-technique)
 3. [Architecture des fichiers](#architecture-des-fichiers)
-4. [Design system](#design-system)
-5. [Système d'animation](#système-danimation)
-6. [Page d'accueil — Sections détaillées](#page-daccueil--sections-détaillées)
-7. [Composants réutilisables](#composants-réutilisables)
-8. [Performance & accessibilité](#performance--accessibilité)
-9. [Tests](#tests)
-10. [Évolutions futures](#évolutions-futures)
+4. [Routes & identité visuelle](#routes--identité-visuelle)
+5. [Système de background](#système-de-background)
+6. [Design system](#design-system)
+7. [Composants clés](#composants-clés)
+8. [Système d'animation](#système-danimation)
+9. [Remotion intégré](#remotion-intégré)
+10. [Performance & accessibilité](#performance--accessibilité)
+11. [Tests & commandes](#tests--commandes)
 
 ---
 
 ## Vue d'ensemble
 
-Solutions 2IA est un site vitrine premium single-page construit autour d'une **navigation par ancres** (#services, #expertise, #process, #showcase, #contact). L'ensemble du site est rendu côté client (`"use client"`) pour permettre les animations Motion et GSAP.
+**9 pages**, chacune avec sa propre identité visuelle (palette, forme 3D, scène) tout en gardant une cohérence globale (typographie, layout, micro-interactions, design tokens).
 
-**Philosophie :** pas d'images externes, pas de librairies UI tierces. Tous les visuels sont construits en **CSS + SVG + composants React animés**, ce qui garantit un contrôle total sur le rendu, le poids et les performances.
+**Philosophie :**
+- Pas d'images de décoration : tout est CSS + SVG + composants React animés
+- Tout en `transform`/`opacity` (compositing GPU) — jamais de mutation layout en animation
+- `useMotionValue` + `useSpring` pour les interactions souris (0 re-render React)
+- Backgrounds fluides réactifs souris uniformes via un système de presets par domaine
 
-**Flux de données :** aucun backend, aucun CMS. Le contenu est codé en dur dans chaque composant de section. Les données sont structurées en tableaux typés TypeScript au sein de chaque fichier.
+**Architecture rendu :**
+- Pages = Server Components avec metadata SEO
+- Rendus visuels = Client Components (`"use client"`) pour Motion/GSAP
+- Static export friendly (SSG)
 
 ---
 
 ## Stack technique
 
-| Technologie | Version | Rôle |
-|---|---|---|
-| **Next.js** | 15.5 | Framework React, App Router, SSG |
-| **React** | 19.0 | UI library |
-| **TypeScript** | 5.9 | Typage strict |
-| **Tailwind CSS** | 4.2 | Utility-first CSS via `@theme` directives |
-| **Motion** | 12.6 | Micro-interactions, reveal au scroll, hover states |
-| **GSAP + ScrollTrigger** | 3.12 | Scroll storytelling, animations complexes |
-| **Playwright** | 1.58 | Tests end-to-end |
-| **pnpm** | 10.x | Package manager |
+| Catégorie | Lib | Version | Rôle |
+|---|---|---|---|
+| Framework | **Next.js** | 15.5 | App Router, SSG, image optim |
+| UI | **React** | 19.0 | — |
+| Lang | **TypeScript** | 5.7 strict | — |
+| CSS | **Tailwind CSS v4** | 4.x | `@theme` dans `globals.css`, pas de config TS |
+| Anim 2D | **motion** | 12.6 | micro-interactions, reveal, parallax |
+| Anim scroll | **gsap + ScrollTrigger** | 3.12 | scroll storytelling (lazy import) |
+| 3D | **three / @react-three/fiber / drei** | — | scènes 3D (lazy `dynamic`) |
+| Vidéo prog | **Remotion 4** + plugins | 4.0 | compositions vidéo intégrées |
+| FX | **@tsparticles, lottie-web, pixi.js** | — | particules, lottie, GPU 2D |
+| Couleurs | **chroma-js, culori** | — | palettes, OKLCH |
+| Tests | **Playwright** | 1.50 | E2E |
+| Pkg | **pnpm** | 10.x | — |
 
-### Pourquoi ce choix
-
-- **Motion** (ex Framer Motion) : API déclarative parfaite pour les `whileInView`, `whileHover`, `AnimatePresence`. Léger et intégré nativement à React.
-- **GSAP** : puissance brute pour les timelines liées au scroll. Utilisé uniquement là où Motion ne suffit pas (ProcessSection timeline).
-- **Tailwind v4** : les design tokens sont définis via `@theme` directement dans `globals.css`, sans fichier `tailwind.config.ts`. Plus simple, plus centralisé.
+`next.config.ts` : `transpilePackages: [three, fiber, drei]` · `optimizePackageImports: [motion, drei, tsparticles, chroma, culori]` · `images.formats: [avif, webp]`
 
 ---
 
 ## Architecture des fichiers
 
 ```
-SiteSolutions2ia/
+SiteSolutions2iaV3/
 ├── app/
-│   ├── globals.css              # Design tokens + utilitaires CSS
-│   ├── layout.tsx               # Layout racine (HTML, fonts, SEO)
-│   └── page.tsx                 # Page d'accueil (assemblage des sections)
+│   ├── globals.css                 # Design tokens (@theme) + utilities + spacings
+│   ├── layout.tsx                  # Root (HTML, fonts Inter/JetBrains Mono, AppShell)
+│   ├── page.tsx                    # Home — Server Component
+│   ├── services/         page.tsx + ServicesPage.tsx
+│   ├── sites-web/        page.tsx + SitesWebPage.tsx
+│   ├── applications/     page.tsx + ApplicationsPage.tsx
+│   ├── agents-ia/        page.tsx + AgentsIAPage.tsx
+│   ├── automatisation/   page.tsx + AutomatisationPage.tsx
+│   ├── studio-visuel/    page.tsx + StudioVisuelPage.tsx
+│   ├── a-propos/         page.tsx + AProposPage.tsx
+│   └── contact/          page.tsx + ContactPage.tsx
 │
 ├── components/
-│   ├── ui/                      # Atomes du design system
-│   │   ├── Button.tsx           # Bouton polymorphe (lien ou button)
-│   │   ├── GlowCard.tsx         # Carte avec effet glow au hover
-│   │   └── SectionHeading.tsx   # Titre de section réutilisable
-│   │
-│   ├── layout/                  # Shell du site
-│   │   ├── Header.tsx           # Navigation fixe + menu mobile
-│   │   └── Footer.tsx           # Pied de page
-│   │
-│   ├── hero/                    # Section héro
-│   │   ├── HeroSection.tsx      # Texte + CTA + stats
-│   │   └── HeroVisual.tsx       # Composition visuelle animée
-│   │
-│   ├── sections/                # Sections de contenu
-│   │   ├── ServicesSection.tsx   # Grille des 6 services
-│   │   ├── BenefitsSection.tsx  # 4 métriques d'impact business
-│   │   ├── ExpertiseSection.tsx # 6 points de différenciation
-│   │   ├── ProcessSection.tsx   # Timeline 6 étapes (GSAP)
-│   │   ├── ShowcaseSection.tsx  # Mockups dashboard/mobile/IA
-│   │   └── CTASection.tsx       # Appel à l'action final
-│   │
-│   ├── animations/              # (réservé) composants d'animation
-│   ├── visuals/                 # (réservé) éléments visuels avancés
-│   └── robot/                   # (réservé) futur robot IA
+│   ├── ui/               Button, GlowCard, SectionHeading, SpotlightCard
+│   ├── layout/           Header, Footer
+│   ├── hero/             HeroSection, HeroVisual (parallax 3D context)
+│   ├── shared/           PageHero, CTABand, FluidMouseField, PageAtmosphere,
+│   │                     MouseParticles, NeonDivider, DepthDivider,
+│   │                     TransformationCard, SectionParticles, AppShell,
+│   │                     LoadingScreen, PageTransition, ParticleField,
+│   │                     AmbientBackground
+│   ├── sections/         ServicesSection, BenefitsSection, ExpertiseSection,
+│   │                     ProcessSection, ShowcaseSection, CTASection
+│   ├── scenes/
+│   │   ├── ai/           AIBrainScene
+│   │   ├── automation/   AutomationScene
+│   │   ├── web/          WebScene
+│   │   ├── mobile/       AppScene
+│   │   └── studio/       StudioScene
+│   ├── visuals/          (réservé fx/3D mutualisés)
+│   ├── navigation/       (réservé)
+│   └── robot/            (réservé futur Rive/3D)
+│
+├── remotion/
+│   ├── index.ts                    # registerRoot
+│   ├── Root.tsx                    # compositions
+│   └── compositions/
+│       └── HeroComposition.tsx     # démo : noise2D + spring + chroma OKLCH
 │
 ├── lib/
-│   ├── animation/
-│   │   ├── variants.ts          # Variants Motion réutilisables
-│   │   └── gsap-config.ts       # Initialisation GSAP + ScrollTrigger
-│   └── utils/
-│       └── cn.ts                # Utilitaire de classnames
+│   ├── animation/        variants.ts (Motion), gsap-config.ts
+│   ├── content/          navigation.ts
+│   └── utils/            cn.ts
 │
-├── tests/
-│   └── homepage.spec.ts         # Tests Playwright de base
-│
-├── public/
-│   ├── images/                  # (réservé) assets images
-│   ├── icons/                   # (réservé) icônes custom
-│   ├── branding/                # (réservé) logos, favicons
-│   └── visuals/                 # (réservé) assets visuels avancés
-│
-├── CLAUDE.md                    # Directives pour l'IA
-├── ARCHITECTURE.md              # Ce fichier
-├── playwright.config.ts         # Configuration Playwright
-├── next.config.ts               # Configuration Next.js
-├── postcss.config.mjs           # PostCSS (Tailwind v4)
-├── tsconfig.json                # TypeScript
-└── package.json                 # Dépendances et scripts
+├── tests/                homepage.spec.ts (Playwright)
+├── public/               assets statiques
+├── remotion.config.ts    config Remotion (entryPoint, codec)
+├── next.config.ts        Next.js (transpile, optimize, images)
+└── CLAUDE.md             directives IA (token-optimized)
 ```
 
-### Convention de nommage
+### Conventions
+| Type | Convention |
+|---|---|
+| Composants | `PascalCase.tsx` |
+| Hooks/utils | `camelCase.ts` |
+| CSS classes | `kebab-case` |
+| Tokens | `--color-{kebab}` |
 
-| Type | Convention | Exemple |
+---
+
+## Routes & identité visuelle
+
+Chaque page a un **preset** unique qui détermine palette, forme 3D flottante et décor.
+
+| Route | Preset | Couleurs (RGB) | Forme 3D | Scène contenu |
+|---|---|---|---|---|
+| `/` | `home` | `99,102,241` + `34,211,238` | **`blob`** (morph organique) | HeroVisual |
+| `/services` | `services` | `99,102,241` + `129,140,248` | **`crystal`** (facette gradient) | — |
+| `/sites-web` | `web` | `59,130,246` + `34,211,238` | **`browser`** (frame wireframe) | WebScene |
+| `/applications` | `apps` | `14,165,233` + `129,140,248` | **`device`** (phone glass) | AppScene |
+| `/agents-ia` | `ai` | `139,92,246` + `99,102,241` | **`neural`** (cluster connecté) | AIBrainScene |
+| `/automatisation` | `automation` | `34,211,238` + `6,182,212` | **`hex`** (chip avec pins) | AutomationScene |
+| `/studio-visuel` | `studio` | `168,85,247` + `34,211,238` + `251,146,60` | **`prism`** (triangle rainbow) | StudioScene |
+| `/a-propos` | `about` | `129,140,248` + `165,180,252` | **`halo`** (rings concentriques) | — |
+| `/contact` | `contact` | `99,102,241` + `139,92,246` | **`plasma`** (nuage diffus) | — |
+
+### Pattern de page (uniforme)
+```tsx
+export function XPage() {
+  return (
+    <>
+      <PageAtmosphere preset="X" />        {/* décor statique unique */}
+      <FluidMouseField preset="X" />       {/* fond fluide souris */}
+      <PageHero label title description visual primaryCta secondaryCta />
+      <section className="section-shell">
+        <SectionHeading label title description />
+        <motion.div variants={staggerContainer}>
+          {items.map(...)}                 {/* SpotlightCard recommandé */}
+        </motion.div>
+      </section>
+      {/* … autres sections */}
+      <CTABand title description />
+    </>
+  );
+}
+```
+
+---
+
+## Système de background
+
+Chaque page empile **3 couches** au-dessus du fond `body` :
+
+```
+┌─────────────────────────────────────────┐ z: contenu
+│  Sections, cards, hero, etc.            │
+├─────────────────────────────────────────┤
+│  PageAtmosphere (statique, unique)      │ fixed inset-0 z-0
+│  • Glow orbs animés                     │
+│  • Décor SVG (neural, circuits, formes) │
+├─────────────────────────────────────────┤
+│  FluidMouseField (mouse-reactive)       │ fixed inset-0 -z-0
+│  • 3 halos parallaxés (palette preset)  │
+│  • 4-7 formes 3D flottantes parallax    │
+│  • Grille / scan optionnels             │
+│  • Vignette périphérique                │
+├─────────────────────────────────────────┤
+│  body                                   │ radial gradient + linear
+└─────────────────────────────────────────┘
+```
+
+### `FluidMouseField` — détails techniques
+- **Mount lazy** : retourne `null` jusqu'à `enabled` (post-mount client)
+- **`prefers-reduced-motion`** : retourne `null`
+- **Tactile** : oscillation autonome (`sin`/`cos`)
+- **Mouse springs** : 2 paires `useSpring` (lent pour halos, rapide pour focus)
+- **Formes 3D** : container `perspective: 1200px` + `transformStyle: preserve-3d`
+- **`contain: strict`** sur le container fixed (isolation peinture)
+- **`will-change: transform`** sur les calques actifs
+
+### Formes disponibles (`ShapeKind`)
+| Kind | Visuel | Animation interne |
 |---|---|---|
-| Composants | PascalCase | `HeroSection.tsx` |
-| Utilitaires | camelCase | `variants.ts` |
-| Dossiers | kebab-case ou camelCase | `animation/`, `utils/` |
-| CSS classes custom | kebab-case | `.glow-accent`, `.bg-grid` |
-| Design tokens | kebab-case avec préfixe | `--color-accent-primary` |
+| `blob` | SVG path organique | Morphing entre 3 d= + rotation lente |
+| `crystal` | Polygone 6 facettes | Reflet diagonal animé + rotation |
+| `browser` | Mini frame navigateur | Tilt rotateY ±3° |
+| `device` | Phone outline + notch | Notif dot pulse + tilt rotateY |
+| `neural` | Cluster centre+5 satellites | Connexions opacity + circles scale |
+| `hex` | Hexagone + 5 pins/côté | Rotation lente + pulse central |
+| `prism` | Triangle gradient rainbow | Refraction line + rotation |
+| `halo` | 3 rings concentriques | Scale breathing + dot central |
+| `plasma` | Cloud radial diffus | Scale + opacity breathing |
 
 ---
 
 ## Design system
 
-### Palette de couleurs
-
-Le site utilise un système de couleurs sombre et futuriste, défini dans `globals.css` via la directive Tailwind `@theme`.
+### Palette (`@theme` dans `globals.css`)
 
 #### Fonds
 | Token | Valeur | Usage |
 |---|---|---|
-| `bg-primary` | `#050509` | Fond principal du site |
-| `bg-secondary` | `#0a0a14` | Sections alternées (Benefits, Process, CTA) |
-| `bg-tertiary` | `#0f0f1e` | Éléments encastrés dans les cartes |
-| `bg-card` | `#0d0d1a` | Fond des cartes |
-| `bg-card-hover` | `#12122a` | Cartes au survol |
+| `--color-bg-primary` | `#05060b` | Fond principal |
+| `--color-bg-secondary` | `#0b0d16` | Sections alternées |
+| `--color-bg-tertiary` | `#121524` | Encastrés |
+| `--color-bg-card` | `#111424` | Cartes |
+| `--color-bg-card-hover` | `#171b30` | Cartes hover |
 
 #### Accents
 | Token | Valeur | Usage |
 |---|---|---|
-| `accent-primary` | `#6366f1` | Couleur principale (boutons, bordures, glows) |
-| `accent-light` | `#818cf8` | Version claire (texte accent, labels) |
-| `accent-dark` | `#4f46e5` | Version foncée (hover bouton primary) |
-| `cyan` | `#22d3ee` | Accent secondaire (gradients, détails) |
+| `--color-accent-primary` | `#6366f1` | Indigo principal |
+| `--color-accent-light` | `#9ba5ff` | Texte/labels accent |
+| `--color-accent-dark` | `#4f46e5` | Hover boutons |
+| `--color-cyan` | `#22d3ee` | Accent secondaire |
 
 #### Texte
-| Token | Valeur | Usage |
-|---|---|---|
-| `text-primary` | `#f0f0f5` | Titres, texte principal |
-| `text-secondary` | `#a0a0b8` | Paragraphes, descriptions |
-| `text-tertiary` | `#6b6b82` | Labels, metadata, texte discret |
-| `text-accent` | `#818cf8` | Texte accentué (liens, badges) |
+| Token | Valeur |
+|---|---|
+| `--color-text-primary` | `#f5f7ff` |
+| `--color-text-secondary` | `#bcc1d6` |
+| `--color-text-tertiary` | `#8e95af` |
 
 #### Bordures
-| Token | Valeur | Usage |
-|---|---|---|
-| `border-subtle` | `rgba(255,255,255,0.06)` | Séparations discrètes |
-| `border-medium` | `rgba(255,255,255,0.1)` | Bordures de cartes |
-| `border-accent` | `rgba(99,102,241,0.3)` | Bordures accentuées (hover, panels IA) |
+| Token | Valeur |
+|---|---|
+| `--color-border-subtle` | `rgba(255,255,255,0.09)` |
+| `--color-border-medium` | `rgba(255,255,255,0.15)` |
+| `--color-border-accent` | `rgba(129,140,248,0.38)` |
 
 ### Typographie
+- **Inter** 300-800 — UI principale
+- **JetBrains Mono** 400-500 — code, métriques
 
-- **Inter** (300–800) : police principale pour tout le contenu
-- **JetBrains Mono** (400–500) : police monospace pour les snippets de code et les numéros
+### Spacings
+| Classe | Padding-block |
+|---|---|
+| `.section-shell` | `clamp(6rem, 9vw, 9rem)` |
+| `.section-shell-tight` | `clamp(4.5rem, 7vw, 6.5rem)` |
+| `.section-shell-compact` | `clamp(3.5rem, 5vw, 5rem)` |
+| `.section-stack > * + *` | `margin-top: clamp(2.5rem, 4vw, 4rem)` |
 
-**Échelle responsive des titres :**
-```
-h1 : text-4xl → sm:text-5xl → lg:text-6xl → xl:text-7xl
-h2 : text-3xl → sm:text-4xl → lg:text-5xl
-h3 : text-lg → text-xl
-```
+Auto-margin sous `SectionHeading` vers grids/flex/space-y : `clamp(3rem, 5vw, 4.5rem)`
 
-### Effets visuels (classes utilitaires)
-
+### Utility classes
 | Classe | Effet |
 |---|---|
-| `.text-gradient` | Gradient indigo→cyan sur le texte |
-| `.glow-accent` | Box-shadow diffuse violette |
-| `.glow-line` | Ligne horizontale gradient (séparateur de sections) |
-| `.bg-grid` | Grille de fond 60×60px semi-transparente |
-| `.bg-noise` | Texture de bruit SVG (pseudo-élément ::before) |
+| `.text-gradient[-strong]` | Gradient indigo→cyan sur le texte |
+| `.glow-line` | Ligne horizontale gradient |
+| `.bg-grid` | Grille 60×60px subtle |
+| `.bg-radial-top[-bottom]` | Halo radial coin section |
+| `.bg-noise` | Texture bruit SVG (::before) |
+| `.card-shine` | Reflet diagonal au hover |
+| `.section-surface` | Fond alterné avec bordures top/bottom |
+| `.section-vignette` | Bordures sombres radiales |
+| `.surface-card` | Style carte premium glassmorph |
+| `.metric-tile` | Style tuile de métrique |
 
-### Transitions
+### Easing
+Toutes les anims utilisent : `cubic-bezier(0.16, 1, 0.3, 1)` (ease-out-expo)
+Variable CSS : `--ease-premium`
 
-Toutes les animations utilisent la même courbe d'ease premium :
+---
+
+## Composants clés
+
+### `Button` (`components/ui/Button.tsx`)
+Polymorphe : `<a>` si `href`, `<button>` sinon.
+Props : `variant: primary|secondary|ghost` · `size: sm|md|lg` · `href` · `onClick` · `disabled` · `type`
+
+### `SectionHeading` (`components/ui/SectionHeading.tsx`)
+Props : `label?` · `title` · `description?` · `centered?`
+
+### `GlowCard` (`components/ui/GlowCard.tsx`)
+Carte simple avec hover glow. Encore utilisée pour les cards basiques. Pour les grids principaux, préférer `SpotlightCard`.
+
+### `SpotlightCard` (`components/ui/SpotlightCard.tsx`) ⭐
+Carte premium driven par `useMotionValue` (0 re-render) :
+- **Spotlight 380px** qui suit la souris (radial gradient)
+- **Tilt 3D** `rotateX/Y` via spring (`stiffness: 220, damping: 22`)
+- **Bordure conique réactive** au hover (mask composite XOR)
+- **Halo central pulsant** optionnel
+- Préserve `transform-style: preserve-3d` → enfants peuvent utiliser `translateZ(Npx)` pour profondeur
+
+```tsx
+<SpotlightCard glow="139,92,246" tilt={5} pulse className="p-8">
+  <div style={{ transform: "translateZ(30px)" }}>{icon}</div>
+  <h3 style={{ transform: "translateZ(20px)" }}>{title}</h3>
+  <p style={{ transform: "translateZ(10px)" }}>{description}</p>
+</SpotlightCard>
 ```
-cubic-bezier(0.16, 1, 0.3, 1)
-```
-C'est une courbe "ease-out expo" qui donne un démarrage rapide et une décélération douce et naturelle.
+
+Props : `glow` (rgb sans alpha) · `tilt` (° max) · `pulse` · `className`
+
+### `PageHero` (`components/shared/PageHero.tsx`)
+Hero standard de toute page non-home. Props : `label` · `title` · `description` · `visual?` · `primaryCta` · `secondaryCta`
+
+### `CTABand` (`components/shared/CTABand.tsx`)
+Bande CTA finale réutilisable. Props : `title` · `description`
+
+### `FluidMouseField` (`components/shared/FluidMouseField.tsx`) ⭐
+Voir [Système de background](#système-de-background). Props : `preset` · `intensity?`
+
+### `PageAtmosphere` (`components/shared/PageAtmosphere.tsx`)
+Couche statique décorative par preset. Coexiste avec `FluidMouseField`. Props : `preset`
+
+### `HeroVisual` (`components/hero/HeroVisual.tsx`) ⭐
+Composition home avec **parallax 3D** :
+- `ParallaxContext` propage `mx`/`my` (springs) à chaque `FloatingPanel`
+- Container `perspective: 1400px` + `transformStyle: preserve-3d`
+- Chaque panel a un `depth` propre (14→32) → vrai parallax + tilt rotateX/Y
+- 6 panels distincts (Dashboard IA, Mobile App, AI Agent, Code Editor, Performance Widget, Workflows)
+- Connexions SVG `pathLength` animé · particules ambiantes · orbites
+
+### `TransformationCard` (`components/shared/TransformationCard.tsx`)
+Card avant/après réutilisable (variants : `general`, `web`, etc.)
+
+### `SectionParticles`
+Particules d'ambiance par section (styles : `dots`, `sparks`, `hexagons`, `crosses`, `grid-dots`, `code-rain`)
 
 ---
 
 ## Système d'animation
 
-### Architecture à deux niveaux
-
+### Architecture
 ```
-┌──────────────────────────────────────────────────┐
-│                    Motion (motion/react)           │
-│                                                    │
-│  • whileInView → reveal au scroll                 │
-│  • whileHover / whileTap → micro-interactions     │
-│  • AnimatePresence → menu mobile                  │
-│  • variants → animations orchestrées              │
-│  • animate → boucles infinies (floating panels)   │
-│                                                    │
-│  Utilisé dans : TOUS les composants               │
-├──────────────────────────────────────────────────┤
-│                GSAP + ScrollTrigger               │
-│                                                    │
-│  • ScrollTrigger scrub → timeline au scroll       │
-│  • gsap.fromTo → animation de la ligne verticale  │
-│                                                    │
-│  Utilisé dans : ProcessSection uniquement          │
-│  Chargement : import dynamique (lazy)             │
-└──────────────────────────────────────────────────┘
+Motion (motion/react)              GSAP + ScrollTrigger
+─────────────────────              ────────────────────
+• whileInView (reveal)             • scrub timelines
+• whileHover/whileTap              • séquences complexes
+• useMotionValue/useSpring         • lazy import
+• useTransform (parallax)
+• animate (boucles)
+• AnimatePresence (transitions)
 ```
 
-### Variants Motion réutilisables (`lib/animation/variants.ts`)
+**Règle d'or** : Motion et GSAP **jamais sur le même élément**.
 
-| Variant | Effet | Durée |
-|---|---|---|
-| `fadeInUp` | Opacité 0→1, Y +30→0 | 0.6s |
-| `fadeIn` | Opacité 0→1 | 0.6s |
-| `scaleIn` | Opacité 0→1, Scale 0.95→1 | 0.5s |
-| `staggerContainer` | Orchestre les enfants (stagger 0.1s, delay 0.1s) | — |
-| `slideInLeft` | Opacité 0→1, X -40→0 | 0.6s |
-| `slideInRight` | Opacité 0→1, X +40→0 | 0.6s |
+### Variants Motion (`lib/animation/variants.ts`)
+| Variant | Effet |
+|---|---|
+| `fadeInUp` | opacity 0→1, y +30→0, 0.6s |
+| `fadeIn` | opacity 0→1, 0.6s |
+| `scaleIn` | opacity + scale 0.95→1 |
+| `slideInLeft` / `slideInRight` | x ±40→0 |
+| `staggerContainer` | orchestre enfants (stagger 0.1, delay 0.1) |
 
-### Pattern d'animation standard
-
-Chaque section suit le même pattern :
+### Pattern reveal standard
 ```tsx
 <motion.div
   variants={staggerContainer}
@@ -236,365 +367,105 @@ Chaque section suit le même pattern :
   viewport={{ once: true, margin: "-80px" }}
 >
   <motion.div variants={fadeInUp}>...</motion.div>
-  <motion.div variants={fadeInUp}>...</motion.div>
 </motion.div>
 ```
 
-- `once: true` → l'animation ne se joue qu'une seule fois
-- `margin: "-80px"` → se déclenche 80px avant que l'élément entre dans le viewport
-
-### GSAP — Scroll Timeline (ProcessSection)
-
-```
-Déclencheur : le parent de la ligne verticale entre dans le viewport
-Début : top de l'élément à 60% de la fenêtre
-Fin : bottom de l'élément à 40% de la fenêtre
-Scrub : 1 (suit le scroll avec un léger lissage)
-Animation : scaleY de 0 à 1 (la ligne "pousse" vers le bas)
-```
-
-GSAP est importé dynamiquement pour ne pas alourdir le bundle initial :
-```ts
-const { gsap, ScrollTrigger } = await import("@/lib/animation/gsap-config");
-```
-
----
-
-## Page d'accueil — Sections détaillées
-
-### 1. Header (`components/layout/Header.tsx`)
-
-**Comportement :**
-- Position fixe (`fixed top-0`), z-index 50
-- Transparent au repos, backdrop-blur + fond semi-transparent au scroll (>20px)
-- Animation d'entrée : slide down + fade in
-
-**Desktop :**
-```
-[ Logo: Solutions 2IA ]  [ Services  Expertise  Méthode  Réalisations ]  [ Démarrer un projet → ]
-```
-
-**Mobile :**
-- Hamburger animé (3 lignes → croix avec rotation Motion)
-- Menu plein écran avec overlay blur
-- Liens animés en cascade (stagger 0.1s)
-- Verrouillage du scroll (`overflow: hidden`) quand ouvert
-
-**Navigation :**
-| Lien | Ancre |
-|---|---|
-| Services | `#services` |
-| Expertise | `#expertise` |
-| Méthode | `#process` |
-| Réalisations | `#showcase` |
-| Démarrer un projet | `#contact` |
-
----
-
-### 2. Hero Section (`components/hero/HeroSection.tsx` + `HeroVisual.tsx`)
-
-**La section la plus importante du site.** Layout en deux colonnes sur desktop, empilé sur mobile.
-
-#### Colonne gauche — Contenu
-
-1. **Badge de statut** : pastille verte pulsante + "Studio digital & intelligence artificielle"
-2. **Titre h1** : "Des expériences digitales **intelligentes**" (gradient sur le dernier mot)
-3. **Sous-titre** : proposition de valeur en une phrase
-4. **Deux CTA** : Primary "Démarrer un projet →" + Secondary "Découvrir nos services"
-5. **Stats rapides** : IA | Web | Auto (séparées par des lignes verticales)
-
-**Animations d'entrée :** séquence staggerée de haut en bas avec délais croissants (0.1s → 0.6s).
-
-#### Colonne droite — Composition visuelle (`HeroVisual.tsx`)
-
-Une scène composée de **6 panels flottants** positionnés en absolu dans un conteneur de 420–560px de hauteur :
-
-```
-    ┌─────────────┐       ┌──────────┐
-    │ Dashboard IA│       │ Perf.    │       ┌─────────┐
-    │ bars + stats│       │ barchart │       │ Mobile  │
-    └─────────────┘       └──────────┘       │ App     │
-                                              └─────────┘
-         ╲ ─ ─ ─ SVG connections ─ ─ ─ ╱
-
-              ┌─────────────────────┐
-              │  Agent IA actif     │
-    ┌────────┐│  ✓ Analyse terminée │
-    │ Code   ││  ✓ Auto. déployée  │
-    │ editor ││  ● Optimisation... │
-    └────────┘└─────────────────────┘
-```
-
-**Détail des panels :**
-
-| Panel | Position | Contenu | Animation spéciale |
-|---|---|---|---|
-| Dashboard IA | top-left | 4 barres de données + 2 stats | Barres avec scaleX staggeré |
-| Performance | top-center (lg only) | 10 colonnes de bar chart | Hauteur animée séquentiellement |
-| App Mobile | top-right | Frame smartphone avec UI mock | Floating bob (5s) |
-| Agent IA | bottom-center | 3 lignes de statut (2 ✓ + 1 en cours) | Apparition séquentielle + pulse |
-| Code Editor | bottom-left (sm+) | 3 lignes de pseudo-code coloré | Apparition ligne par ligne |
-| SVG Connections | overlay | 2 courbes + 1 cercle pulsant | pathLength animation |
-
-**Chaque panel** est enveloppé dans `FloatingPanel` qui applique :
-- Animation d'entrée (opacity + y + scale)
-- Animation perpétuelle de flottement (y: [0, -6, 0] sur 5–7s)
-
-**Fond :** grille CSS semi-transparente + deux radial glows (accent + cyan) + gradient de fondu en bas.
-
----
-
-### 3. Services (`components/sections/ServicesSection.tsx`)
-
-**Grille de 6 cartes** (1 col mobile, 2 cols tablette, 3 cols desktop).
-
-| Service | Icône SVG | Description clé |
-|---|---|---|
-| Sites web premium | Écran moniteur | Design, animations, performance, conversion |
-| Applications | Smartphone | Web et mobile, UX irréprochable, architecture solide |
-| Agents IA | Silhouette robot | Assistants intelligents, analyse, automatisation |
-| Automatisation | Engrenage soleil | Workflows, intégrations, gain d'heures |
-| UI / UX Design | Couches empilées | Pixel-perfect, interactions fluides |
-| Expériences visuelles | Étoile | Animations, motion, 2D/3D, univers immersifs |
-
-**Implémentation :** chaque carte utilise `GlowCard` (bordure subtle → accent au hover, fond qui s'éclaircit, shadow glow). L'icône est dans un carré 48px avec fond `accent-glow` et bordure accent.
-
----
-
-### 4. Bénéfices (`components/sections/BenefitsSection.tsx`)
-
-**4 colonnes de métriques** sur fond `bg-secondary` avec une ligne glow en haut.
-
-| Métrique | Valeur | Message |
-|---|---|---|
-| Gain de temps | **73%** | Automatisez les tâches répétitives |
-| Meilleure conversion | **×3** | Un site premium transforme les visiteurs |
-| Agents IA actifs | **24/7** | Vos assistants travaillent sans interruption |
-| Sur mesure | **100%** | Pas de templates, du code pensé pour vous |
-
-**Rendu :** les chiffres utilisent `.text-gradient` (gradient indigo→cyan), ce qui crée un effet visuel fort.
-
----
-
-### 5. Expertise (`components/sections/ExpertiseSection.tsx`)
-
-**6 blocs numérotés** (01–06) avec ligne d'accent verticale à gauche.
-
-Chaque bloc a :
-- Un trait vertical gradient (accent-primary/60 → transparent)
-- Un halo de blur (5px) en haut de la ligne
-- Un numéro en font mono + couleur accent
-- Un titre + une description
-
-**Layout :** 3 colonnes desktop, 2 tablette, 1 mobile. Gap vertical de 48px (3rem).
-
----
-
-### 6. Process / Méthode (`components/sections/ProcessSection.tsx`)
-
-**Timeline verticale de 6 étapes** avec layout alterné gauche-droite sur desktop.
-
-```
-            01 Découverte ─────── ●
-                                  │  ← ligne animée par GSAP
-      ● ─────── 02 Stratégie     │
-                                  │
-            03 Design ─────────── ●
-                                  │
-      ● ─────── 04 Développement │
-                                  │
-       05 IA & Automatisation ── ●
-                                  │
-      ● ─── 06 Livraison         │
-```
-
-**Ligne verticale :** deux layers superposés :
-1. Fond statique `border-subtle` (toujours visible)
-2. Gradient animé `accent-primary → cyan → accent-primary` avec `scaleY` contrôlé par ScrollTrigger
-
-**Points :** cercles 12px avec bordure accent-primary et fond bg-primary.
-
-**Mobile :** tous les contenus sont à droite de la ligne (pas d'alternance).
-
----
-
-### 7. Showcase (`components/sections/ShowcaseSection.tsx`)
-
-**3 mockups interactifs** dans une grille 12 colonnes (7 + 5).
-
-#### MockDashboard (7 cols)
-- Barre de titre avec traffic lights (rouge/jaune/vert) + URL
-- Grille de 3 stats (Utilisateurs: 12,847, Revenus: €47.2K, Conversion: 8.4%)
-- Graphique à barres (24 colonnes, hauteurs calculées avec sin + random)
-
-#### MockMobileApp (5 cols, haut)
-- Barre de statut iPhone (9:41)
-- Card de contenu avec gradient
-- 3 lignes de liste avec icônes
-- Tab bar avec 4 icônes
-
-#### MockAIChat (5 cols, bas)
-- Avatar IA avec gradient + statut "En ligne"
-- 3 messages de conversation (bot → user → bot)
-- Style : bulles arrondies avec coins asymétriques
-
-**Tags de technologies :** 12 badges en flex-wrap sous les mockups (Next.js, React, TypeScript, Agents IA, GSAP, Motion Design, Tailwind CSS, Automatisation, 2D/3D, Remotion, Rive, API REST).
-
----
-
-### 8. CTA Final (`components/sections/CTASection.tsx`)
-
-- Fond `bg-secondary` avec glow central (500px, accent-primary/5, blur 120px)
-- Badge : "Prêt à démarrer ?"
-- Titre : "Donnons vie à votre **prochain projet**" (gradient)
-- Description : invitation à discuter
-- Deux boutons : "Prendre contact →" (mailto) + "Revoir les services"
-- Ligne de réassurance : "Réponse sous 24h — Premier échange offert — Sans engagement"
-
----
-
-### 9. Footer (`components/layout/Footer.tsx`)
-
-**4 colonnes** (brand sur 2 cols + 2 groupes de liens).
-
-```
-[ Solutions 2IA                          ]  [ Navigation     ]  [ Services        ]
-[ Expériences digitales intelligentes... ]  [ Services       ]  [ Sites web       ]
-[                                        ]  [ Expertise      ]  [ Applications    ]
-[                                        ]  [ Méthode        ]  [ Agents IA       ]
-[                                        ]  [ Réalisations   ]  [ Automatisation  ]
-─────────────────────────────────────────────────────────────────────────────────────
-[ © 2026 Solutions 2IA. Tous droits réservés.        Conçu et développé par S2IA  ]
-```
-
----
-
-## Composants réutilisables
-
-### Button
-
+### Pattern parallax souris (préféré pour interactions)
 ```tsx
-<Button variant="primary" size="lg" href="#contact">
-  Démarrer un projet
-</Button>
+const mx = useMotionValue(0);
+const my = useMotionValue(0);
+const sx = useSpring(mx, { stiffness: 70, damping: 18 });
+const tx = useTransform(sx, v => v * depth);
+// → 0 re-render React, 100% GPU
 ```
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `variant` | `"primary" \| "secondary" \| "ghost"` | `"primary"` | Style visuel |
-| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Taille (padding + font) |
-| `href` | `string?` | — | Si présent, rend un `<a>` au lieu d'un `<button>` |
-| `onClick` | `() => void?` | — | Handler de clic |
-| `disabled` | `boolean?` | — | État désactivé |
-| `type` | `"button" \| "submit" \| "reset"` | `"button"` | Type HTML |
+---
 
-**Animation :** scale 1.02 au hover, 0.98 au tap (Motion).
+## Remotion intégré
 
-### GlowCard
+Compositions vidéo programmatiques **dans le projet Next.js** (pas de projet séparé).
 
-```tsx
-<GlowCard hover={true} className="p-8">
-  <h3>Titre</h3>
-  <p>Description</p>
-</GlowCard>
+```
+remotion/
+├── index.ts              registerRoot(RemotionRoot)
+├── Root.tsx              <Composition id="Hero" component={HeroComposition} />
+└── compositions/
+    └── HeroComposition.tsx   noise2D + spring + chroma OKLCH gradient
 ```
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | `ReactNode` | — | Contenu de la carte |
-| `hover` | `boolean?` | `true` | Active l'effet glow au survol |
-| `className` | `string?` | — | Classes additionnelles |
+`remotion.config.ts` : `entryPoint: ./remotion/index.ts` · `concurrency: 4` · `videoImageFormat: jpeg`
 
-**Effet hover :** bordure passe de `border-subtle` à `border-accent`, fond s'éclaircit, shadow glow apparaît.
+### Règles Remotion
+- Toujours `useCurrentFrame()` + `interpolate(... { extrapolateRight: "clamp" })`
+- 3D = `ThreeCanvas` de `@remotion/three` (jamais `Canvas` R3F brut)
+- `spring({ stiffness: 80, damping: 12 })` pour entrées/sorties
+- Couleurs via `chroma.scale().mode("oklch")`
+- Lecture web : `<Player>` de `@remotion/player` chargé en `dynamic({ ssr: false })`
 
-### SectionHeading
-
-```tsx
-<SectionHeading
-  label="Services"
-  title="Des solutions digitales complètes"
-  description="De la conception au déploiement..."
-  centered={true}
-/>
+### Commandes
+```bash
+pnpm remotion:studio       # Remotion Studio
+pnpm remotion:render       # rendu MP4 (Hero, h264, 60 fps)
 ```
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | `string?` | — | Badge au-dessus du titre |
-| `title` | `string` | — | Titre principal (h2) |
-| `description` | `string?` | — | Paragraphe de description |
-| `centered` | `boolean?` | `true` | Centrage horizontal |
 
 ---
 
 ## Performance & accessibilité
 
 ### Performance
-
-| Mesure | Valeur |
-|---|---|
-| Page JS | 50.1 kB |
-| First Load JS | 152 kB |
-| Rendu | Static (SSG) |
-| Images | Aucune (tout en CSS/SVG) |
-| GSAP | Import dynamique (lazy) |
-| Scroll listener | `{ passive: true }` |
+- **Animations** : `transform`/`opacity` exclusivement → GPU compositing
+- **`will-change: transform`** ciblé sur les calques actifs
+- **`contain: strict`** sur les containers fixed (isolation peinture)
+- **`useMotionValue`/`useSpring`** au lieu de `useState` pour le mouvement → **0 re-render**
+- **Lazy mounting** : `FluidMouseField`, `MouseParticles`, `LoadingScreen` retournent `null` jusqu'à `enabled`
+- **GSAP** : import dynamique (`await import()`)
+- **Three.js / Remotion Player** : `dynamic(import, { ssr: false })`
+- **Next.js** :
+  - `optimizePackageImports` pour motion, drei, tsparticles, chroma, culori
+  - `transpilePackages` pour three/r3f/drei
+  - `images.formats: [avif, webp]`
 
 ### Accessibilité
-
-- **`prefers-reduced-motion`** : toutes les animations sont désactivées via une media query globale dans `globals.css`
+- **`prefers-reduced-motion`** géré globalement (`globals.css`) + dans `FluidMouseField`, `MouseParticles`, `HeroVisual` (return null / no spring)
 - **Sémantique HTML** : `<header>`, `<main>`, `<footer>`, `<nav>`, `<section>`
-- **Contraste** : texte `#f0f0f5` sur fond `#050509` → ratio > 15:1
-- **Menu mobile** : `aria-label="Menu"` sur le bouton hamburger
-- **Scroll lock** : `overflow: hidden` sur body quand le menu mobile est ouvert
+- **Contraste** : texte `#f5f7ff` sur fond `#05060b` → ratio > 17:1
+- **Menu mobile** : `aria-label`, scroll lock
+- **Pointer coarse** (mobile/tactile) : oscillation autonome au lieu d'écouter pointermove
 
 ---
 
-## Tests
+## Tests & commandes
 
-### Playwright (`tests/homepage.spec.ts`)
-
-5 tests de smoke couvrant les éléments critiques :
-
-| Test | Vérifie |
-|---|---|
-| Hero heading | Le `h1` est visible et contient "digitales" |
-| Header logo | Le `header` est visible et contient "Solutions" |
-| Services section | L'élément `#services` est attaché au DOM |
-| CTA section | L'élément `#contact` est attaché au DOM |
-| Footer | Le `footer` est visible et contient "Solutions 2IA" |
-
-**Lancer les tests :**
+### Commandes
 ```bash
-pnpm exec playwright test
+pnpm dev                    # serveur dev (port 3000 ou suivant libre)
+pnpm build                  # build production SSG
+pnpm start                  # serveur production
+pnpm lint                   # ESLint Next
+pnpm exec playwright test   # tests E2E
+pnpm remotion:studio        # Remotion Studio
+pnpm remotion:render        # rendu MP4
 ```
 
+### Tests Playwright (`tests/homepage.spec.ts`)
+Tests smoke sur la home : h1 visible, header/footer présents, sections critiques attachées au DOM.
+
 ---
 
-## Évolutions futures
+## Évolutions prévues
 
-Les dossiers suivants sont réservés pour de futures extensions :
-
-| Dossier | Usage prévu |
+| Dossier | Usage |
 |---|---|
-| `components/animations/` | Composants d'animation réutilisables (parallax, reveal custom) |
-| `components/visuals/` | Éléments visuels avancés (particles, scenes) |
-| `components/robot/` | Robot IA 2D/3D (Rive, Lottie, ou Three.js) |
-| `components/dashboard/` | Composants de dashboard interactifs |
-| `components/mobile/` | Composants de simulation mobile |
-| `public/images/` | Photos, illustrations |
-| `public/icons/` | Icônes SVG custom |
-| `public/branding/` | Logo, favicon, OG image |
-| `public/visuals/` | Assets visuels (Rive, Lottie, vidéos) |
+| `components/visuals/` | FX/3D mutualisés (Three.js scenes, shaders) |
+| `components/robot/` | Robot IA Rive/Lottie/3D |
+| `components/dashboards/` | Dashboards interactifs |
+| `remotion/compositions/` | Nouvelles compositions vidéo |
 
-### Pistes d'amélioration
-
-- **Robot IA animé** dans la Hero (Rive ou Lottie)
-- **Particles WebGL** en fond (via tsparticles ou Three.js)
-- **Cursor custom** avec trailing effect
-- **Page transitions** avec AnimatePresence
-- **Dark/light mode** (structure de tokens prête)
-- **Formulaire de contact** avec validation et envoi
-- **Internationalisation** (fr/en)
-- **CMS headless** pour le contenu (Sanity, Strapi)
-- **Analytics** (Plausible, Vercel Analytics)
+### Pistes
+- Robot IA animé Rive/Lottie dans la Hero
+- Particules WebGL via tsparticles ou Three.js
+- Page transitions avec AnimatePresence
+- Formulaire contact avec validation et envoi
+- Internationalisation (fr/en)
+- CMS headless (Sanity, Strapi)
+- Analytics (Plausible, Vercel Analytics)

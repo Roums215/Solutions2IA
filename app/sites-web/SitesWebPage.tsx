@@ -3,13 +3,15 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
 import { TransformationCard } from "@/components/shared/TransformationCard";
 import { WebScene } from "@/components/scenes/web/WebScene";
+import { WebGalaxyShowcase } from "@/components/sections/WebGalaxyShowcase";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const features = [
@@ -56,10 +58,34 @@ const process = [
   { step: "05", title: "Tests & Lancement", desc: "Tests exhaustifs, optimisation Lighthouse, déploiement et monitoring des performances.", duration: "1 semaine" },
 ];
 
+const webFlow = [
+  {
+    meta: "Positionnement",
+    title: "Clarifier la promesse",
+    description: "Le message, la preuve et les CTA sont structurés pour que le visiteur comprenne vite pourquoi vous choisir.",
+  },
+  {
+    meta: "Interface",
+    title: "Créer une lecture premium",
+    description: "Typographie, rythme, contraste et motion sont calibrés pour guider sans fatiguer.",
+  },
+  {
+    meta: "Performance",
+    title: "Optimiser chaque interaction",
+    description: "LCP, responsive, accessibilité et animations GPU-only restent sous contrôle à chaque étape.",
+  },
+  {
+    meta: "Conversion",
+    title: "Transformer l'attention",
+    description: "Les parcours orientent naturellement vers l'action avec des sections fluides et des preuves visibles.",
+  },
+];
+
 export function SitesWebPage() {
   return (
     <>
       <PageAtmosphere preset="web" />
+      <FluidMouseField preset="web" />
       <PageHero
         label="Sites web premium"
         title={<>Des sites qui <span className="text-gradient-strong">marquent les esprits</span> et convertissent</>}
@@ -69,41 +95,53 @@ export function SitesWebPage() {
         visual={<WebScene />}
       />
 
-      <DepthDivider preset="wave" />
+      {/* Galaxie de domaines — vitrines sectorielles interactives */}
+      <WebGalaxyShowcase />
+
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Qualité web"
+            title="Un site premium doit être beau, rapide et commercialement précis."
+            description="Nous travaillons le site comme une interface de vente : perception immédiate, navigation fluide, preuve claire et performance mesurable."
+            steps={webFlow}
+            accent="34, 211, 238"
+          />
+        </div>
+      </section>
 
       {/* Gains — chiffres clés */}
-      <section className="relative py-32 lg:py-40 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="sparks" count={10} color="rgba(129,140,248,0.15)" secondaryColor="rgba(34,211,238,0.1)" />
         <div className="absolute inset-0" style={{ perspective: "500px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(50deg) scale(1.5)", transformOrigin: "center center" }} />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <motion.div className="text-center mb-16" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Résultats concrets</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ce qu&apos;un site premium change réellement</h2>
           </motion.div>
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-10">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {gains.map((g, i) => (
-              <motion.div key={g.label} variants={fadeInUp} className="text-center">
-                <motion.span className="text-5xl lg:text-6xl font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
+              <motion.div key={g.label} variants={fadeInUp} className="metric-tile px-5 py-6 sm:px-6 sm:py-7 text-center">
+                <motion.span className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>
                   {g.value}
                 </motion.span>
                 <h3 className="text-base font-semibold mt-4 mb-1.5">{g.label}</h3>
-                <p className="text-xs text-text-tertiary leading-relaxed">{g.detail}</p>
+                <p className="text-xs text-text-tertiary leading-relaxed max-w-[18rem] mx-auto">{g.detail}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Avant / Après */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="code-rain" count={16} color="rgba(129,140,248,0.08)" secondaryColor="rgba(34,211,238,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Transformation" title="Avant / Après" description="La différence entre un site ordinaire et un site Solutions 2IA — en termes d'impact réel sur votre activité." />
-          <div className="space-y-5">
+          <div className="space-y-6 lg:space-y-8">
             {beforeAfter.map((item, i) => (
               <TransformationCard
                 key={item.metric}
@@ -119,36 +157,36 @@ export function SitesWebPage() {
         </div>
       </section>
 
-      <DepthDivider preset="wave" />
 
       {/* Features */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="grid-dots" count={20} color="rgba(129,140,248,0.04)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Expertise" title="Ce qui rend nos sites différents" description="Chaque site que nous créons est une combinaison d'excellence technique, de design premium et de stratégie business." />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {features.map((f) => (
-              <GlowCard key={f.title}>
-                <div className="w-10 h-10 rounded-xl bg-accent-glow border border-accent-primary/15 flex items-center justify-center mb-6">{f.icon}</div>
-                <h3 className="text-lg font-semibold mb-3 tracking-tight">{f.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{f.description}</p>
-              </GlowCard>
+            {features.map((f, i) => (
+              <motion.div key={f.title} variants={fadeInUp}>
+                <SpotlightCard glow="59,130,246" tilt={4} pulse className="p-7 sm:p-8 h-full">
+                  <div className="w-10 h-10 rounded-xl bg-accent-glow border border-accent-primary/15 flex items-center justify-center mb-6" style={{ transform: "translateZ(30px)" }}>{f.icon}</div>
+                  <h3 className="text-lg font-semibold mb-3 tracking-tight" style={{ transform: "translateZ(20px)" }}>{f.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed" style={{ transform: "translateZ(10px)" }}>{f.description}</p>
+                </SpotlightCard>
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Ce que vous obtenez */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={10} color="rgba(129,140,248,0.08)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-4 block">Livrables</span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight leading-[1.1] mb-6">Ce que vous obtenez <span className="text-gradient-strong">concrètement</span></h2>
-              <p className="text-lg text-text-secondary leading-relaxed mb-8">
+              <p className="text-lg reading-copy mb-8">
                 Pas de surprises, pas d&apos;ambiguïté. Voici exactement ce qui est inclus dans chaque projet de site web premium.
               </p>
               <div className="space-y-4">
@@ -185,11 +223,10 @@ export function SitesWebPage() {
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Tech */}
-      <section className="relative py-24 lg:py-32 bg-bg-secondary overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
+      <section className="section-shell-tight">
+        <div className="section-container text-center">
           <motion.span className="text-xs text-text-tertiary uppercase tracking-[0.2em] block mb-3" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>Stack technique</motion.span>
           <motion.h3 className="text-xl font-semibold mb-10" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>Technologies utilisées pour vos sites</motion.h3>
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-wrap justify-center gap-3">

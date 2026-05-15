@@ -76,11 +76,11 @@ export function Header() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
           scrolled
-            ? "bg-bg-primary/70 backdrop-blur-2xl border-b border-border-subtle shadow-lg shadow-black/10"
+            ? "bg-bg-primary/82 backdrop-blur-2xl border-b border-border-subtle shadow-lg shadow-black/15"
             : "bg-transparent"
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 h-36 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-24 lg:h-28 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative z-10 flex items-center group">
             <div ref={registerLogoRef} className="flex items-center">
@@ -89,7 +89,7 @@ export function Header() {
               <AnimatePresence mode="wait">
                 {logoPhase === "full" && (
                   <motion.div
-                    className="relative w-[350px] h-[175px]"
+                    className="relative w-[290px] h-[145px] lg:w-[320px] lg:h-[160px]"
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{
@@ -108,7 +108,7 @@ export function Header() {
                       alt="Solutions 2IA"
                       fill
                       className="object-contain object-left"
-                      sizes="350px"
+                      sizes="320px"
                       priority
                     />
                   </motion.div>
@@ -124,7 +124,7 @@ export function Header() {
                   >
                     {/* Logo S - stays in place */}
                     <motion.div
-                      className="relative w-14 h-14 transition-transform duration-300 group-hover:scale-105"
+                      className="relative w-12 h-12 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:scale-105"
                     >
                       <Image
                         src="/branding/logo-s.png"
@@ -143,7 +143,7 @@ export function Header() {
                       transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                     >
                       <motion.span
-                        className="text-xl font-bold tracking-tight text-text-primary whitespace-nowrap block"
+                        className="text-lg lg:text-xl font-bold tracking-tight text-text-primary whitespace-nowrap block"
                         initial={{ opacity: 0, x: -5 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.4, ease: premiumEase }}
@@ -161,7 +161,7 @@ export function Header() {
 
                     {/* Logo 2IA - gets pushed right smoothly by the expanding text */}
                     <motion.div
-                      className="relative w-24 h-24 -mt-5 transition-transform duration-300 group-hover:scale-105"
+                      className="relative w-20 h-20 lg:w-24 lg:h-24 -mt-4 lg:-mt-5 transition-transform duration-300 group-hover:scale-105"
                     >
                       <Image
                         src="/branding/logo-2ia.png"

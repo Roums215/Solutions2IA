@@ -3,10 +3,11 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const values = [
@@ -44,10 +45,34 @@ const process = [
   { number: "06", title: "Optimisation continue", desc: "Suivi des métriques, A/B testing, améliorations itératives. Votre produit reste performant et pertinent dans la durée.", duration: "Continu" },
 ];
 
+const qualityFlow = [
+  {
+    meta: "Clarté",
+    title: "Décisions visibles",
+    description: "Chaque choix de design, contenu, stack ou automatisation est justifié par l'objectif business.",
+  },
+  {
+    meta: "Revue",
+    title: "Design et motion contrôlés",
+    description: "Les interfaces sont relues pour le rythme, la hiérarchie, le responsive et la cohérence avec le système visuel.",
+  },
+  {
+    meta: "Qualité",
+    title: "Code vérifié",
+    description: "Lint, build, composants réutilisables, accessibilité et performance sont traités comme des livrables.",
+  },
+  {
+    meta: "Suivi",
+    title: "Lancement mesurable",
+    description: "Le produit reste observable après mise en ligne : métriques, retours, bugs, priorités et améliorations.",
+  },
+];
+
 export function AProposPage() {
   return (
     <>
       <PageAtmosphere preset="about" />
+      <FluidMouseField preset="about" />
       <PageHero
         label="À propos de Solutions 2IA"
         title={<>Un studio digital tourné vers <span className="text-gradient-strong">l&apos;excellence</span></>}
@@ -56,16 +81,25 @@ export function AProposPage() {
         secondaryCta={{ label: "Nos services", href: "/services" }}
       />
 
-      <DepthDivider preset="glow" />
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Quality gates"
+            title="Notre exigence n'est pas seulement esthétique, elle est opérationnelle."
+            description="Chaque projet passe par des points de contrôle simples et stricts pour garder une qualité constante sans alourdir la collaboration."
+            steps={qualityFlow}
+            accent="99, 102, 241"
+          />
+        </div>
+      </section>
 
       {/* Vision */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={10} color="rgba(129,140,248,0.08)" />
         <div className="absolute inset-0" style={{ perspective: "600px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(45deg) scale(2)", transformOrigin: "center center" }} />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-secondary via-transparent to-bg-secondary" />
-        <div className="relative max-w-4xl mx-auto px-6">
+        <div className="section-container-narrow">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-6 block">Notre vision</span>
             <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.1] mb-8">
@@ -81,12 +115,11 @@ export function AProposPage() {
         </div>
       </section>
 
-      <DepthDivider preset="neural" />
 
       {/* Ce que nous croyons / Ce que nous refusons */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="crosses" count={10} color="rgba(129,140,248,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -117,12 +150,11 @@ export function AProposPage() {
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Values */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="hexagons" count={8} color="rgba(129,140,248,0.05)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Valeurs" title="Ce qui guide chaque décision" description="Ces principes ne sont pas des slogans. Ils sont la raison pour laquelle nos clients reviennent et recommandent." />
           <motion.div
             variants={staggerContainer}
@@ -144,12 +176,11 @@ export function AProposPage() {
         </div>
       </section>
 
-      <DepthDivider preset="wave" />
 
       {/* Process */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="grid-dots" count={18} color="rgba(129,140,248,0.04)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Méthode" title="Un processus rigoureux, un résultat premium" description="Chaque projet suit une méthode éprouvée qui garantit qualité, transparence et résultat à la hauteur de vos ambitions." />
           <motion.div
             variants={staggerContainer}

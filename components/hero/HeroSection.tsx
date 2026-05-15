@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroVisual } from "./HeroVisual";
 
@@ -8,13 +9,27 @@ const premiumEase = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative flex items-center overflow-hidden">
       {/* Multi-layer background */}
       <div className="absolute inset-0 bg-grid opacity-20" />
       <div className="absolute inset-0 bg-radial-top" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] bg-accent-primary/4 rounded-full blur-[160px]" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan/3 rounded-full blur-[120px]" />
       <div className="absolute top-1/4 left-0 w-[300px] h-[400px] bg-accent-dark/4 rounded-full blur-[100px]" />
+      <motion.div
+        aria-hidden
+        className="absolute left-1/2 top-[18%] h-[38rem] w-[38rem] -translate-x-1/2 rounded-full border border-accent-light/[0.06]"
+        initial={{ opacity: 0, scale: 0.94 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, delay: 0.2, ease: premiumEase }}
+      />
+      <motion.div
+        aria-hidden
+        className="absolute right-[-10%] top-[16%] h-64 w-64 rounded-full border border-cyan/[0.08]"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 0.75, scale: 1 }}
+        transition={{ duration: 1.2, delay: 0.45, ease: premiumEase }}
+      />
 
       {/* Decorative horizontal lines */}
       <motion.div
@@ -30,8 +45,8 @@ export function HeroSection() {
         transition={{ duration: 2, delay: 0.7 }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 lg:pt-36 lg:pb-24 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <div className="section-container relative z-10 pt-24 pb-14 lg:pt-32 lg:pb-18 w-full">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center">
           {/* Text content */}
           <div className="max-w-2xl">
             {/* Status badge */}
@@ -39,7 +54,8 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: premiumEase }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-subtle bg-bg-card/40 backdrop-blur-sm mb-8"
+              whileHover={{ y: -2 }}
+              className="group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_14px_40px_rgba(99,102,241,0.08)] transition-colors duration-300 hover:border-border-accent"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -55,7 +71,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 36 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.12, ease: premiumEase }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-bold tracking-[-0.02em] leading-[1.06]"
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
             >
               Des expériences
               <br />
@@ -68,7 +84,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.24, ease: premiumEase }}
-              className="mt-7 text-lg sm:text-xl text-text-secondary leading-[1.7] max-w-xl"
+              className="mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty"
             >
               Sites web premium, applications performantes, agents IA et
               automatisation sur mesure. Nous concevons les solutions digitales qui
@@ -84,9 +100,7 @@ export function HeroSection() {
             >
               <Button variant="primary" size="lg" href="/contact">
                 Démarrer un projet
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-0.5" />
               </Button>
               <Button variant="secondary" size="lg" href="/services">
                 Découvrir nos services
@@ -98,7 +112,7 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.7 }}
-              className="mt-14 flex items-center gap-10"
+              className="mt-12 flex flex-wrap items-start gap-x-8 gap-y-4"
             >
               {[
                 { label: "Agents intelligents", value: "IA", icon: (
@@ -127,9 +141,10 @@ export function HeroSection() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-                  className="flex items-center gap-3"
+                  whileHover={{ y: -3 }}
+                  className="group flex items-center gap-3"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-accent-glow border border-border-subtle flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-lg bg-accent-glow border border-border-subtle flex items-center justify-center transition-colors duration-300 group-hover:border-border-accent group-hover:bg-accent-glow-strong">
                     {item.icon}
                   </div>
                   <div>
@@ -142,14 +157,12 @@ export function HeroSection() {
           </div>
 
           {/* Visual composition */}
-          <div className="relative">
+          <div className="relative lg:pl-4">
             <HeroVisual />
           </div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-bg-primary via-bg-primary/80 to-transparent" />
     </section>
   );
 }

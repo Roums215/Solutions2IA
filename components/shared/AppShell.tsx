@@ -5,6 +5,9 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/shared/PageTransition";
 import { LoadingScreen } from "@/components/shared/LoadingScreen";
+import { MouseParticles } from "@/components/shared/MouseParticles";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -66,14 +69,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <LoadingContext.Provider value={{ isLoading, hideHeaderLogo, logoPosition, registerLogoRef }}>
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-      <div className={showContent ? "app-content-visible" : "app-content-hidden"}>
-        <Header />
-        <main className="min-h-screen">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
-      </div>
+      <TooltipProvider>
+        {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+        <div className={showContent ? "app-content-visible" : "app-content-hidden"}>
+          <MouseParticles />
+          <Header />
+          <main className="min-h-screen">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Footer />
+        </div>
+        <Toaster richColors position="bottom-right" />
+      </TooltipProvider>
     </LoadingContext.Provider>
   );
 }

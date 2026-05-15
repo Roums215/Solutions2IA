@@ -3,13 +3,14 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { GlowCard } from "@/components/ui/GlowCard";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { DepthDivider } from "@/components/shared/DepthDivider";
 import { TransformationCard } from "@/components/shared/TransformationCard";
 import { StudioScene } from "@/components/scenes/studio/StudioScene";
+import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const disciplines = [
@@ -54,10 +55,34 @@ const showcaseItems = [
   { title: "Vidéo programmatique", description: "Génération de vidéos personnalisées à la volée. Templates dynamiques, données en temps réel, export automatique à grande échelle.", tech: "Remotion" },
 ];
 
+const motionFlow = [
+  {
+    meta: "Intention",
+    title: "Définir le rôle du mouvement",
+    description: "Chaque animation doit guider, expliquer, rassurer ou révéler. Rien n'est décoratif par défaut.",
+  },
+  {
+    meta: "Timing",
+    title: "Calibrer le rythme",
+    description: "Easing, durée, stagger et inertie sont ajustés pour donner une sensation premium sans brusquer le scroll.",
+  },
+  {
+    meta: "Profondeur",
+    title: "Composer les plans visuels",
+    description: "Parallax, halos, micro-3D et layers donnent du relief tout en gardant le contenu lisible.",
+  },
+  {
+    meta: "Performance",
+    title: "Rester fluide partout",
+    description: "Transform, opacity, GPU, reduced motion et tests responsive garantissent une expérience propre sur mobile et desktop.",
+  },
+];
+
 export function StudioVisuelPage() {
   return (
     <>
       <PageAtmosphere preset="studio" />
+      <FluidMouseField preset="studio" />
       <PageHero
         label="Studio visuel"
         title={<>Des expériences qui <span className="text-gradient-strong">repoussent les limites</span></>}
@@ -67,39 +92,48 @@ export function StudioVisuelPage() {
         visual={<StudioScene />}
       />
 
-      <DepthDivider preset="wave" />
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Motion system"
+            title="Le premium se joue dans le rythme, la profondeur et la retenue."
+            description="Nous traitons le motion design comme un système : chaque effet a une intention, une durée, une trajectoire et une limite de performance."
+            steps={motionFlow}
+            accent="168, 85, 247"
+          />
+        </div>
+      </section>
 
       {/* Gains */}
-      <section className="relative py-32 lg:py-40 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="sparks" count={12} color="rgba(129,140,248,0.15)" secondaryColor="rgba(34,211,238,0.1)" />
         <div className="absolute inset-0" style={{ perspective: "500px" }}>
           <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(50deg) scale(1.5)", transformOrigin: "center center" }} />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <motion.div className="text-center mb-16" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Impact visuel</span>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ce que le motion design change réellement</h2>
           </motion.div>
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-2 lg:grid-cols-4 gap-10">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {gains.map((g, i) => (
-              <motion.div key={g.label} variants={fadeInUp} className="text-center">
-                <motion.span className="text-5xl lg:text-6xl font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>{g.value}</motion.span>
+              <motion.div key={g.label} variants={fadeInUp} className="metric-tile px-5 py-6 sm:px-6 sm:py-7 text-center">
+                <motion.span className="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-gradient-strong block leading-none" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}>{g.value}</motion.span>
                 <h3 className="text-base font-semibold mt-4 mb-1.5">{g.label}</h3>
-                <p className="text-xs text-text-tertiary leading-relaxed">{g.detail}</p>
+                <p className="text-xs text-text-tertiary leading-relaxed max-w-[18rem] mx-auto">{g.detail}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Avant / Après */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="crosses" count={14} color="rgba(129,140,248,0.06)" secondaryColor="rgba(34,211,238,0.04)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Transformation" title="Avant / Après" description="La différence entre un digital ordinaire et une expérience visuelle Solutions 2IA." />
-          <div className="space-y-5">
+          <div className="space-y-6 lg:space-y-8">
             {beforeAfter.map((item, i) => (
               <TransformationCard
                 key={item.metric}
@@ -115,31 +149,34 @@ export function StudioVisuelPage() {
         </div>
       </section>
 
-      <DepthDivider preset="wave" />
 
       {/* Disciplines */}
-      <section className="relative py-32 lg:py-44 bg-bg-secondary overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="hexagons" count={10} color="rgba(129,140,248,0.05)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <SectionHeading label="Disciplines" title="L'art et la technique, réunis" description="Chaque projet visuel est l'alliance d'une vision créative forte et d'une exécution technique irréprochable." />
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {disciplines.map((d) => (
-              <GlowCard key={d.title}>
-                <div className={`w-full h-1 rounded-full bg-gradient-to-r ${d.color} mb-6 opacity-40`} />
-                <h3 className="text-lg font-semibold mb-3 tracking-tight">{d.title}</h3>
-                <p className="text-sm text-text-secondary leading-relaxed">{d.description}</p>
-              </GlowCard>
-            ))}
+            {disciplines.map((d, i) => {
+              const glows = ["168,85,247", "34,211,238", "251,146,60"];
+              return (
+                <motion.div key={d.title} variants={fadeInUp}>
+                  <SpotlightCard glow={glows[i % glows.length]} tilt={5} pulse className="p-7 sm:p-8 h-full">
+                    <div className={`w-full h-1 rounded-full bg-gradient-to-r ${d.color} mb-6 opacity-60`} style={{ transform: "translateZ(25px)" }} />
+                    <h3 className="text-lg font-semibold mb-3 tracking-tight" style={{ transform: "translateZ(20px)" }}>{d.title}</h3>
+                    <p className="text-sm text-text-secondary leading-relaxed" style={{ transform: "translateZ(10px)" }}>{d.description}</p>
+                  </SpotlightCard>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
-      <DepthDivider preset="glow" />
 
       {/* Showcase + Livrables */}
-      <section className="relative py-32 lg:py-44 overflow-hidden">
+      <section className="section-shell">
         <SectionParticles style="dots" count={8} color="rgba(129,140,248,0.06)" />
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-4 block">Démonstrations</span>
