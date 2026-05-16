@@ -33,7 +33,7 @@ export function SectionParticles({
     setMounted(true);
   }, []);
 
-  const effectiveCount = shouldReduceMotion ? 0 : isMobile ? Math.min(count, 4) : Math.min(count, 10);
+  const effectiveCount = shouldReduceMotion ? 0 : isMobile ? Math.min(count, 6) : Math.min(count, 10);
 
   const items = useMemo(() => {
     return Array.from({ length: effectiveCount }, (_, i) => {

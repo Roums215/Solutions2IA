@@ -18,6 +18,76 @@ interface PageHeroProps {
   glowColor?: string;
 }
 
+function MobileHeroPreview({ label, reduceMotion }: { label: string; reduceMotion: boolean }) {
+  const steps = ["Signal", "Analyse", "Action"];
+
+  return (
+    <motion.div
+      data-mobile-hero-preview
+      className="relative mt-10 overflow-hidden rounded-3xl border border-border-subtle bg-bg-card/70 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:hidden"
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.36, ease: premiumEase }}
+    >
+      <motion.div
+        aria-hidden="true"
+        className="absolute -right-14 -top-16 h-44 w-44 rounded-full bg-accent-primary/[0.12] blur-3xl"
+        animate={reduceMotion ? undefined : { opacity: [0.48, 0.78, 0.48], scale: [1, 1.05, 1] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        aria-hidden="true"
+        className="absolute -bottom-20 left-8 h-40 w-40 rounded-full bg-cyan/[0.09] blur-3xl"
+        animate={reduceMotion ? undefined : { opacity: [0.36, 0.62, 0.36], scale: [1, 1.06, 1] }}
+        transition={{ duration: 7, delay: 1.2, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <div className="relative flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light/85">
+            Interface active
+          </span>
+          <span className="mt-1 block truncate text-sm font-semibold text-text-primary">{label}</span>
+        </div>
+        <div className="flex items-center gap-1.5 rounded-full border border-green-400/20 bg-green-400/10 px-2.5 py-1 text-[10px] font-medium text-green-300">
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-green-300"
+            animate={reduceMotion ? undefined : { opacity: [0.45, 1, 0.45], scale: [0.9, 1.2, 0.9] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          Live
+        </div>
+      </div>
+
+      <div className="relative mt-5 grid gap-3">
+        {steps.map((step, index) => (
+          <motion.div
+            key={step}
+            className="flex items-center gap-3 rounded-2xl border border-white/[0.065] bg-white/[0.035] px-3 py-3"
+            animate={reduceMotion ? undefined : { y: [0, -2, 0], opacity: [0.82, 1, 0.82] }}
+            transition={{ duration: 4 + index * 0.35, delay: index * 0.22, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-xl border border-accent-light/20 bg-accent-glow text-[11px] font-bold text-accent-light">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold text-text-primary">{step}</div>
+              <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+                <motion.div
+                  className="h-full origin-left rounded-full bg-gradient-to-r from-accent-primary to-cyan"
+                  initial={{ scaleX: 0.36 + index * 0.16 }}
+                  animate={reduceMotion ? undefined : { scaleX: [0.38 + index * 0.14, 0.7 + index * 0.08, 0.38 + index * 0.14] }}
+                  transition={{ duration: 3.8 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 export function PageHero({
   label,
   title,
@@ -29,6 +99,7 @@ export function PageHero({
 }: PageHeroProps) {
   const { isMobile, shouldReduceMotion } = usePerformanceMode();
   const showVisual = !!visual && !isMobile && !shouldReduceMotion;
+  const showMobilePreview = !!visual && isMobile;
   const hasVisual = showVisual;
 
   return (
@@ -89,6 +160,8 @@ export function PageHero({
             >
               {description}
             </motion.p>
+
+            {showMobilePreview && <MobileHeroPreview label={label} reduceMotion={shouldReduceMotion} />}
 
             {(primaryCta || secondaryCta) && (
               <motion.div

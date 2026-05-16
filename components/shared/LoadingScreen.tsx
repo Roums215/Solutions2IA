@@ -25,14 +25,15 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
     setMounted(true);
 
-    const lightMode = isMobile || shouldReduceMotion;
-    const logoTimer = setTimeout(() => setShowLogo(true), lightMode ? 40 : 120);
-    const exitTimer = setTimeout(() => setIsExiting(true), lightMode ? 360 : 920);
+    const mobileNow = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
+    const lightMode = mobileNow || isMobile || shouldReduceMotion;
+    const logoTimer = setTimeout(() => setShowLogo(true), lightMode ? 20 : 120);
+    const exitTimer = setTimeout(() => setIsExiting(true), lightMode ? 220 : 920);
     const doneTimer = setTimeout(() => {
       window.sessionStorage.setItem("solutions-2ia-loaded", "1");
       document.body.style.overflow = "";
       onComplete?.();
-    }, lightMode ? 560 : 1180);
+    }, lightMode ? 320 : 1180);
 
     document.body.style.overflow = "hidden";
 
