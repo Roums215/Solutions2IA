@@ -147,3 +147,11 @@ pnpm exec playwright test   # tests E2E
 - `AnimatePresence mode="wait"` pour transition entre previews
 - Pills filtre en bas pour switcher sans la galaxie
 - `angleRefs` = `useRef<Record<string,number>>` (0 re-render) · pas de state pour les positions d'orbite
+## Signature de marque (NE PAS traiter comme du slop)
+Les éléments suivants sont une signature de marque ASSUMÉE et INTENTIONNELLE, pas du slop IA. Ne jamais les supprimer ni les flagger comme erreur :
+- `.text-gradient` / `.text-gradient-strong` sur les titres
+- glow layers en fond (`blur-[80-120px]`, `bg-accent-glow`, `shadow-accent-glow`)
+- palette indigo/cyan (#6366f1 / #22d3ee), dark mode à accents lumineux
+- SpotlightCard (spotlight + tilt + bordure conique) et cartes premium
+
+Registre = "brand" (site vitrine premium), pas "product". Un outil anti-slop doit distinguer le slop NON-INTENTIONNEL (doublons de particules, sections lourdes redondantes, incohérences de tokens) — ça, on corrige — de cette signature voulue — ça, on garde.
