@@ -1,26 +1,9 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform, MotionValue } from "motion/react";
-import { useEffect, useRef, createContext, useContext } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { ParallaxField, useParallaxLayer } from "@/lib/animation/parallaxField";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
-
-/* ─── Parallax mouse context ─── */
-interface ParallaxCtx {
-  mx: MotionValue<number>; // -1..1
-  my: MotionValue<number>; // -1..1
-}
-const ParallaxContext = createContext<ParallaxCtx | null>(null);
-
-function useParallaxLayer(depth: number) {
-  const ctx = useContext(ParallaxContext);
-  const zero = useMotionValue(0);
-  const tx = useTransform(ctx?.mx ?? zero, (v) => v * depth);
-  const ty = useTransform(ctx?.my ?? zero, (v) => v * depth);
-  const ry = useTransform(ctx?.mx ?? zero, (v) => v * (depth * 0.18));
-  const rx = useTransform(ctx?.my ?? zero, (v) => -v * (depth * 0.18));
-  return { tx, ty, rx, ry };
-}
 
 function FloatingPanel({
   className,
@@ -124,41 +107,8 @@ function OrbitDot({ radius, duration, delay, size = 4, color = "bg-accent-light/
 }
 
 export function HeroVisual() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const mx = useSpring(rawX, { stiffness: 70, damping: 18, mass: 0.8 });
-  const my = useSpring(rawY, { stiffness: 70, damping: 18, mass: 0.8 });
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const el = containerRef.current;
-    if (!el) return;
-
-    const onMove = (e: PointerEvent) => {
-      const rect = el.getBoundingClientRect();
-      // Centre du conteneur, valeur normalisée -1..1
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      rawX.set(x * 2);
-      rawY.set(y * 2);
-    };
-    const onLeave = () => {
-      rawX.set(0);
-      rawY.set(0);
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    window.addEventListener("pointerleave", onLeave);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerleave", onLeave);
-    };
-  }, [rawX, rawY]);
-
   return (
-    <ParallaxContext.Provider value={{ mx, my }}>
-    <div ref={containerRef} className="relative w-full h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]" style={{ perspective: "1400px", transformStyle: "preserve-3d" }}>
+    <ParallaxField className="relative w-full h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]">
       {/* Layered glow system */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-primary/8 rounded-full blur-[120px]" />
       <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-cyan/5 rounded-full blur-[100px]" />
@@ -561,7 +511,6 @@ export function HeroVisual() {
           ))}
         </div>
       </FloatingPanel>
-    </div>
-    </ParallaxContext.Provider>
+    </ParallaxField>
   );
 }

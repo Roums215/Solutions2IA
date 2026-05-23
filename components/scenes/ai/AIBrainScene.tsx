@@ -1,6 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { ParallaxField, useParallaxLayer } from "@/lib/animation/parallaxField";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -25,9 +28,406 @@ function NeuralPulse({ d, delay, color = "accent" }: { d: string; delay: number;
   );
 }
 
+/* ──────────────────────────────────────────────────────────────────
+   FloatingPanel (parallax + autoplay y oscillation fallback)
+   - OUTER motion.div : reveal + parallax x/y/tilt
+   - INNER motion.div : oscillation y autoplay (toujours active, sert
+     de fallback quand parallax désactivé)
+   ────────────────────────────────────────────────────────────────── */
+function FloatingPanel({
+  depth,
+  amplitude = 8,
+  duration = 7,
+  initial,
+  delay,
+  className,
+  style,
+  children,
+}: {
+  depth: number;
+  amplitude?: number;
+  duration?: number;
+  initial: { opacity: number; x?: number; y?: number };
+  delay: number;
+  className?: string;
+  style?: CSSProperties;
+  children: React.ReactNode;
+}) {
+  const { tx, ty, rx, ry } = useParallaxLayer(depth);
+  return (
+    <motion.div
+      className={className}
+      initial={initial}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ delay, duration: 0.8, ease }}
+      style={{
+        x: tx,
+        y: ty,
+        rotateX: rx,
+        rotateY: ry,
+        transformPerspective: 1200,
+        transformStyle: "preserve-3d",
+        ...style,
+      }}
+    >
+      <motion.div
+        animate={{ y: [0, -amplitude, 0] }}
+        transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   StepIndicator — 3 layers crossfade en opacity uniquement
+   ────────────────────────────────────────────────────────────────── */
+type StepStatus = "pending" | "active" | "done";
+
+function StepIndicator({ status }: { status: StepStatus }) {
+  return (
+    <div className="relative w-4 h-4 mt-0.5">
+      <motion.div
+        className="absolute inset-0 w-4 h-4 rounded-full border border-border-subtle"
+        animate={{ opacity: status === "pending" ? 1 : 0 }}
+        transition={{ duration: 0.3, ease }}
+      />
+      <motion.div
+        className="absolute inset-0 w-4 h-4 rounded-full"
+        animate={{ opacity: status === "active" ? 1 : 0 }}
+        transition={{ duration: 0.3, ease }}
+      >
+        <motion.div
+          className="w-4 h-4 rounded-full border-2 border-accent-light/40 border-t-accent-light"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+        />
+      </motion.div>
+      <motion.div
+        className="absolute inset-0 w-4 h-4 rounded-full bg-green-400/15 flex items-center justify-center"
+        animate={{ opacity: status === "done" ? 1 : 0 }}
+        transition={{ duration: 0.3, ease }}
+      >
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="3">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Chaîne de pensée — cycle 5 steps + palier done ≈ 13s
+   ────────────────────────────────────────────────────────────────── */
+const STEPS = [
+  { step: "Perception", detail: "Ingestion de 24K données" },
+  { step: "Analyse", detail: "Extraction de 12 patterns" },
+  { step: "Raisonnement", detail: "Évaluation de 8 hypothèses" },
+  { step: "Décision", detail: "Sélection de l'action optimale" },
+  { step: "Exécution", detail: "Déploiement de la solution" },
+] as const;
+
+function ChainOfThoughtCard() {
+  const { mounted, isMobile, prefersReducedMotion } = usePerformanceMode();
+  const staticMode = !mounted ? false : isMobile || prefersReducedMotion;
+
+  const [active, setActive] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inViewRef = useRef(true);
+
+  useEffect(() => {
+    if (staticMode) return;
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewRef.current = entry.isIntersecting;
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [staticMode]);
+
+  useEffect(() => {
+    if (staticMode) return;
+    const id = setInterval(() => {
+      if (!inViewRef.current) return;
+      setActive((prev) => (prev + 1) % (STEPS.length + 1));
+    }, 2200);
+    return () => clearInterval(id);
+  }, [staticMode]);
+
+  const statusOf = (i: number): StepStatus => {
+    if (staticMode) return "done";
+    if (i < active) return "done";
+    if (i === active) return "active";
+    return "pending";
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine"
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <motion.div
+          className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-primary to-accent-dark flex items-center justify-center"
+          animate={{ opacity: [0.85, 1, 0.85] }}
+          transition={{ duration: 2.5, repeat: Infinity }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>
+        </motion.div>
+        <span className="text-[10px] text-text-tertiary uppercase tracking-[0.15em] font-semibold">
+          Chaîne de pensée
+        </span>
+      </div>
+      <div className="space-y-2">
+        {STEPS.map((item, i) => {
+          const status = statusOf(i);
+          return (
+            <motion.div
+              key={item.step}
+              className="flex items-start gap-2.5"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.1, duration: 0.4, ease }}
+            >
+              <StepIndicator status={status} />
+              <div>
+                <motion.span
+                  className="text-[10px] font-semibold block"
+                  animate={{
+                    color:
+                      status === "active"
+                        ? "rgb(165,180,252)"
+                        : status === "done"
+                        ? "rgb(203,213,225)"
+                        : "rgb(148,163,184)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {item.step}
+                </motion.span>
+                <span className="text-[9px] text-text-tertiary">{item.detail}</span>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Mémoire contextuelle — décor inchangé (le panneau extérieur gère la
+   parallax via FloatingPanel)
+   ────────────────────────────────────────────────────────────────── */
+function KnowledgeGraphCard() {
+  const NODES = [
+    { x: 40, y: 30 }, { x: 100, y: 20 }, { x: 160, y: 35 },
+    { x: 30, y: 70 }, { x: 80, y: 60 }, { x: 130, y: 75 },
+    { x: 170, y: 80 }, { x: 60, y: 95 }, { x: 140, y: 95 },
+  ];
+  const EDGES = [
+    "M40 30 L100 20", "M100 20 L160 35", "M40 30 L80 60",
+    "M100 20 L80 60", "M160 35 L130 75", "M80 60 L130 75",
+    "M30 70 L80 60", "M130 75 L170 80", "M60 95 L140 95",
+    "M30 70 L60 95", "M170 80 L140 95",
+  ];
+  return (
+    <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl card-shine">
+      <span className="text-[9px] text-text-tertiary uppercase tracking-[0.15em] font-semibold block mb-3">
+        Mémoire contextuelle
+      </span>
+      <div className="relative h-28 rounded-lg bg-bg-tertiary/20 border border-border-subtle overflow-hidden">
+        <svg className="w-full h-full" viewBox="0 0 200 110">
+          {NODES.map((node, i) => (
+            <motion.circle
+              key={i}
+              cx={node.x}
+              cy={node.y}
+              r="4"
+              fill={i % 3 === 0 ? "var(--color-accent-light)" : i % 3 === 1 ? "var(--color-cyan)" : "var(--color-accent-primary)"}
+              opacity="0.6"
+              initial={{ scale: 0 }}
+              animate={{ scale: [0, 1.2, 1] }}
+              transition={{ delay: 1.5 + i * 0.08, duration: 0.4 }}
+            />
+          ))}
+          {EDGES.map((d, i) => (
+            <motion.path
+              key={i}
+              d={d}
+              stroke="var(--color-border-medium)"
+              strokeWidth="0.5"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 0.4 }}
+              transition={{ delay: 1.8 + i * 0.05, duration: 0.5 }}
+            />
+          ))}
+        </svg>
+      </div>
+      <div className="flex justify-between mt-2">
+        <span className="text-[8px] text-text-tertiary font-mono">847 nœuds</span>
+        <span className="text-[8px] text-accent-light font-mono">2.4K connexions</span>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Sortie agent — flux continu, typing, max 3 lignes, pause hors écran
+   ────────────────────────────────────────────────────────────────── */
+type LineColor = "accent" | "cyan" | "green";
+const COLOR_CLASS: Record<LineColor, string> = {
+  accent: "text-accent-light",
+  cyan: "text-cyan",
+  green: "text-green-400",
+};
+
+const OUTPUT_POOL: { color: LineColor; text: string }[] = [
+  { color: "accent", text: "Analyse de 24,847 points de données" },
+  { color: "cyan", text: "3 recommandations prioritaires identifiées" },
+  { color: "green", text: "Action déployée — +34% efficacité" },
+  { color: "accent", text: "Mise à jour mémoire contextuelle (847 nœuds)" },
+  { color: "cyan", text: "Détection d'anomalie sur cluster N-3" },
+  { color: "green", text: "Workflow CRM synchronisé (12 entrées)" },
+  { color: "accent", text: "Re-évaluation des seuils de confiance (97.4%)" },
+];
+
+interface OutputLine {
+  id: number;
+  color: LineColor;
+  text: string;
+}
+
+interface TypingState {
+  id: number;
+  color: LineColor;
+  full: string;
+  shown: string;
+}
+
+const TYPING_CHAR_MS = 28;
+const NEW_LINE_INTERVAL_MS = 4000;
+const MAX_LINES = 3;
+
+function AgentOutputCard() {
+  const { mounted, isMobile, prefersReducedMotion } = usePerformanceMode();
+  const staticMode = !mounted ? false : isMobile || prefersReducedMotion;
+
+  const [lines, setLines] = useState<OutputLine[]>([]);
+  const [typing, setTyping] = useState<TypingState | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inViewRef = useRef(true);
+  const counterRef = useRef(0);
+  const typingRef = useRef<TypingState | null>(null);
+
+  useEffect(() => {
+    typingRef.current = typing;
+  }, [typing]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    if (staticMode) {
+      setLines(OUTPUT_POOL.slice(0, MAX_LINES).map((l, i) => ({ id: i, ...l })));
+      setTyping(null);
+    } else {
+      setLines([]);
+      counterRef.current = 0;
+    }
+  }, [mounted, staticMode]);
+
+  useEffect(() => {
+    if (staticMode) return;
+    const el = containerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewRef.current = entry.isIntersecting;
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [staticMode]);
+
+  useEffect(() => {
+    if (!mounted || staticMode) return;
+    const tick = () => {
+      if (!inViewRef.current) return;
+      if (typingRef.current) return;
+      const next = OUTPUT_POOL[counterRef.current % OUTPUT_POOL.length];
+      counterRef.current += 1;
+      setTyping({ id: counterRef.current, color: next.color, full: next.text, shown: "" });
+    };
+    const id = setInterval(tick, NEW_LINE_INTERVAL_MS);
+    const kickoff = setTimeout(tick, 600);
+    return () => {
+      clearInterval(id);
+      clearTimeout(kickoff);
+    };
+  }, [mounted, staticMode]);
+
+  useEffect(() => {
+    if (staticMode) return;
+    if (!typing) return;
+    if (typing.shown.length >= typing.full.length) {
+      const completed: OutputLine = { id: typing.id, color: typing.color, text: typing.full };
+      setLines((prev) => [...prev, completed].slice(-MAX_LINES));
+      setTyping(null);
+      return;
+    }
+    const timer = setTimeout(() => {
+      setTyping((cur) =>
+        cur && cur.id === typing.id
+          ? { ...cur, shown: typing.full.slice(0, typing.shown.length + 1) }
+          : cur,
+      );
+    }, TYPING_CHAR_MS);
+    return () => clearTimeout(timer);
+  }, [typing, staticMode]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine"
+    >
+      <div className="flex items-center gap-2 mb-3">
+        <motion.div
+          className="w-2 h-2 rounded-full bg-green-400"
+          animate={{ scale: [1, 1.4, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        />
+        <span className="text-[10px] text-green-400 font-semibold">Sortie agent — Confiance : 97.4%</span>
+      </div>
+      <div className="rounded-lg bg-bg-primary/40 p-3 font-mono text-[9px] text-text-secondary leading-relaxed space-y-1.5 min-h-[68px]">
+        {lines.map((l) => (
+          <div key={l.id}>
+            <span className={COLOR_CLASS[l.color]}>{">"}</span> {l.text}
+          </div>
+        ))}
+        {typing && (
+          <div key={`t-${typing.id}`}>
+            <span className={COLOR_CLASS[typing.color]}>{">"}</span> {typing.shown}
+            <motion.span
+              className="inline-block w-[5px] h-[10px] align-middle bg-accent-light/80 ml-[2px]"
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   AIBrainScene
+   ────────────────────────────────────────────────────────────────── */
 export function AIBrainScene() {
   return (
-    <div className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+    <ParallaxField className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
       {/* Deep layered glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-primary/6 rounded-full blur-[160px]" />
       <div className="absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent-light/8 rounded-full blur-[120px]" />
@@ -62,20 +462,31 @@ export function AIBrainScene() {
           animate={{ opacity: ring.opacity, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2 + i * 0.15, ease }}
         >
-          {/* Orbiting nodes */}
           <motion.div
             className="absolute inset-0"
             animate={{ rotate: 360 }}
             transition={{ duration: ring.speed, repeat: Infinity, ease: "linear" }}
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className={`w-${i < 2 ? 3 : 2} h-${i < 2 ? 3 : 2} rounded-full ${i % 2 === 0 ? "bg-accent-light/60" : "bg-cyan/50"}`}
-                style={{ width: 6 - i, height: 6 - i, boxShadow: `0 0 ${8 - i * 2}px ${i % 2 === 0 ? "rgba(129,140,248,0.4)" : "rgba(34,211,238,0.3)"}` }}
+              <div
+                className="rounded-full"
+                style={{
+                  width: 6 - i,
+                  height: 6 - i,
+                  background: i % 2 === 0 ? "rgba(129,140,248,0.6)" : "rgba(34,211,238,0.5)",
+                  boxShadow: `0 0 ${8 - i * 2}px ${i % 2 === 0 ? "rgba(129,140,248,0.4)" : "rgba(34,211,238,0.3)"}`,
+                }}
               />
             </div>
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-              <div className="rounded-full"
-                style={{ width: 4, height: 4, background: i % 2 === 0 ? "rgba(34,211,238,0.4)" : "rgba(129,140,248,0.3)", boxShadow: `0 0 6px ${i % 2 === 0 ? "rgba(34,211,238,0.3)" : "rgba(129,140,248,0.2)"}` }}
+              <div
+                className="rounded-full"
+                style={{
+                  width: 4,
+                  height: 4,
+                  background: i % 2 === 0 ? "rgba(34,211,238,0.4)" : "rgba(129,140,248,0.3)",
+                  boxShadow: `0 0 6px ${i % 2 === 0 ? "rgba(34,211,238,0.3)" : "rgba(129,140,248,0.2)"}`,
+                }}
               />
             </div>
           </motion.div>
@@ -90,7 +501,6 @@ export function AIBrainScene() {
         transition={{ duration: 0.8, delay: 0.1, ease }}
       >
         <div className="relative">
-          {/* Outer pulse */}
           <motion.div
             className="absolute -inset-4 rounded-3xl bg-accent-primary/10"
             animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.25, 0.1] }}
@@ -102,13 +512,11 @@ export function AIBrainScene() {
             transition={{ duration: 4, repeat: Infinity }}
           />
 
-          {/* Core body */}
-          <div className="w-28 h-28 rounded-3xl bg-gradient-to-br from-accent-primary via-accent-dark to-accent-primary flex items-center justify-center shadow-2xl"
+          <div
+            className="w-28 h-28 rounded-3xl bg-gradient-to-br from-accent-primary via-accent-dark to-accent-primary flex items-center justify-center shadow-2xl"
             style={{ boxShadow: "0 0 40px rgba(99,102,241,0.3), 0 0 80px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.1)" }}
           >
-            {/* AI face / icon */}
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-              {/* Head outline */}
               <motion.path
                 d="M24 4C14 4 8 12 8 20v4c0 4 2 8 6 10v6c0 2 2 4 4 4h12c2 0 4-2 4-4v-6c4-2 6-6 6-10v-4c0-8-6-16-16-16z"
                 stroke="white" strokeWidth="1.5" strokeLinecap="round"
@@ -117,7 +525,6 @@ export function AIBrainScene() {
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 1.5, delay: 0.3 }}
               />
-              {/* Left eye */}
               <motion.circle
                 cx="18" cy="22" r="3"
                 fill="none" stroke="white" strokeWidth="1.5"
@@ -132,7 +539,6 @@ export function AIBrainScene() {
                 animate={{ scale: [0, 1, 1, 1] }}
                 transition={{ delay: 1, duration: 0.3 }}
               />
-              {/* Right eye */}
               <motion.circle
                 cx="30" cy="22" r="3"
                 fill="none" stroke="white" strokeWidth="1.5"
@@ -147,7 +553,6 @@ export function AIBrainScene() {
                 animate={{ scale: [0, 1, 1, 1] }}
                 transition={{ delay: 1.1, duration: 0.3 }}
               />
-              {/* Eye glow pulse */}
               <motion.circle
                 cx="18" cy="22" r="4" fill="rgba(129,140,248,0.3)"
                 animate={{ r: [4, 6, 4], opacity: [0.3, 0.6, 0.3] }}
@@ -158,7 +563,6 @@ export function AIBrainScene() {
                 animate={{ r: [4, 6, 4], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
               />
-              {/* Neural pattern on forehead */}
               <motion.path
                 d="M16 14h16M20 10h8M22 7h4"
                 stroke="rgba(255,255,255,0.3)" strokeWidth="1" strokeLinecap="round"
@@ -179,7 +583,6 @@ export function AIBrainScene() {
             <stop offset="100%" stopColor="var(--color-accent-light)" stopOpacity="0" />
           </radialGradient>
         </defs>
-        {/* Neural paths radiating from center */}
         <NeuralPulse d="M350 320 C300 280 200 250 120 200" delay={0} color="accent" />
         <NeuralPulse d="M350 320 C400 280 500 250 580 200" delay={0.3} color="cyan" />
         <NeuralPulse d="M350 320 C300 360 200 400 100 450" delay={0.6} color="accent" />
@@ -189,7 +592,6 @@ export function AIBrainScene() {
         <NeuralPulse d="M350 320 C280 310 180 300 80 320" delay={0.4} color="accent" />
         <NeuralPulse d="M350 320 C420 310 520 300 620 320" delay={0.7} color="cyan" />
 
-        {/* Data nodes at endpoints */}
         {[
           { cx: 120, cy: 200 }, { cx: 580, cy: 200 },
           { cx: 100, cy: 450 }, { cx: 600, cy: 450 },
@@ -208,155 +610,39 @@ export function AIBrainScene() {
       </svg>
 
       {/* Floating intelligence panels */}
-
-      {/* Thought process panel — top left */}
-      <motion.div
-        className="absolute top-4 left-2 sm:left-6 z-30 w-56 sm:w-64"
+      <FloatingPanel
+        depth={24}
+        amplitude={8}
+        duration={7}
+        delay={0.8}
         initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.8, duration: 0.8, ease }}
+        className="absolute top-4 left-2 sm:left-6 z-30 w-56 sm:w-64"
       >
-        <motion.div
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <div className="rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine">
-            <div className="flex items-center gap-2 mb-3">
-              <motion.div
-                className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-primary to-accent-dark flex items-center justify-center"
-                animate={{ boxShadow: ["0 0 8px rgba(99,102,241,0.2)", "0 0 20px rgba(99,102,241,0.5)", "0 0 8px rgba(99,102,241,0.2)"] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" /></svg>
-              </motion.div>
-              <span className="text-[10px] text-text-tertiary uppercase tracking-[0.15em] font-semibold">Chaîne de pensée</span>
-            </div>
-            <div className="space-y-2">
-              {[
-                { step: "Perception", detail: "Ingestion de 24K données", status: "done" },
-                { step: "Analyse", detail: "Extraction de 12 patterns", status: "done" },
-                { step: "Raisonnement", detail: "Évaluation de 8 hypothèses", status: "done" },
-                { step: "Décision", detail: "Sélection de l'action optimale", status: "active" },
-                { step: "Exécution", detail: "Déploiement de la solution", status: "pending" },
-              ].map((item, i) => (
-                <motion.div
-                  key={item.step}
-                  className="flex items-start gap-2.5"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2 + i * 0.15, duration: 0.4, ease }}
-                >
-                  <div className="mt-0.5">
-                    {item.status === "done" ? (
-                      <div className="w-4 h-4 rounded-full bg-green-400/15 flex items-center justify-center">
-                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="3"><polyline points="20 6 9 17 4 12" /></svg>
-                      </div>
-                    ) : item.status === "active" ? (
-                      <motion.div
-                        className="w-4 h-4 rounded-full border-2 border-accent-light/40 border-t-accent-light"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-                      />
-                    ) : (
-                      <div className="w-4 h-4 rounded-full border border-border-subtle" />
-                    )}
-                  </div>
-                  <div>
-                    <span className={`text-[10px] font-semibold block ${item.status === "active" ? "text-accent-light" : item.status === "done" ? "text-text-secondary" : "text-text-tertiary"}`}>{item.step}</span>
-                    <span className="text-[9px] text-text-tertiary">{item.detail}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+        <ChainOfThoughtCard />
+      </FloatingPanel>
 
-      {/* Knowledge graph — top right */}
-      <motion.div
-        className="absolute top-6 right-2 sm:right-6 z-30 w-48 sm:w-52"
+      <FloatingPanel
+        depth={32}
+        amplitude={6}
+        duration={8}
+        delay={1.0}
         initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 1.0, duration: 0.8, ease }}
+        className="absolute top-6 right-2 sm:right-6 z-30 w-48 sm:w-52"
       >
-        <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}>
-          <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl card-shine">
-            <span className="text-[9px] text-text-tertiary uppercase tracking-[0.15em] font-semibold block mb-3">Mémoire contextuelle</span>
-            <div className="relative h-28 rounded-lg bg-bg-tertiary/20 border border-border-subtle overflow-hidden">
-              {/* Mini graph visualization */}
-              <svg className="w-full h-full" viewBox="0 0 200 110">
-                {/* Nodes */}
-                {[
-                  { x: 40, y: 30 }, { x: 100, y: 20 }, { x: 160, y: 35 },
-                  { x: 30, y: 70 }, { x: 80, y: 60 }, { x: 130, y: 75 },
-                  { x: 170, y: 80 }, { x: 60, y: 95 }, { x: 140, y: 95 },
-                ].map((node, i) => (
-                  <g key={i}>
-                    <motion.circle
-                      cx={node.x} cy={node.y} r="4"
-                      fill={i % 3 === 0 ? "var(--color-accent-light)" : i % 3 === 1 ? "var(--color-cyan)" : "var(--color-accent-primary)"}
-                      opacity="0.6"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: [0, 1.2, 1] }}
-                      transition={{ delay: 1.5 + i * 0.08, duration: 0.4 }}
-                    />
-                  </g>
-                ))}
-                {/* Edges */}
-                {[
-                  "M40 30 L100 20", "M100 20 L160 35", "M40 30 L80 60",
-                  "M100 20 L80 60", "M160 35 L130 75", "M80 60 L130 75",
-                  "M30 70 L80 60", "M130 75 L170 80", "M60 95 L140 95",
-                  "M30 70 L60 95", "M170 80 L140 95",
-                ].map((d, i) => (
-                  <motion.path
-                    key={i} d={d} stroke="var(--color-border-medium)" strokeWidth="0.5"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 0.4 }}
-                    transition={{ delay: 1.8 + i * 0.05, duration: 0.5 }}
-                  />
-                ))}
-              </svg>
-            </div>
-            <div className="flex justify-between mt-2">
-              <span className="text-[8px] text-text-tertiary font-mono">847 nœuds</span>
-              <span className="text-[8px] text-accent-light font-mono">2.4K connexions</span>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+        <KnowledgeGraphCard />
+      </FloatingPanel>
 
-      {/* Output panel — bottom */}
-      <motion.div
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 w-72 sm:w-80"
+      <FloatingPanel
+        depth={16}
+        amplitude={5}
+        duration={6}
+        delay={1.2}
         initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.8, ease }}
+        className="absolute bottom-4 left-1/2 z-30 w-72 sm:w-80"
+        style={{ marginLeft: "-9rem" }}
       >
-        <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
-          <div className="rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine">
-            <div className="flex items-center gap-2 mb-3">
-              <motion.div
-                className="w-2 h-2 rounded-full bg-green-400"
-                animate={{ scale: [1, 1.4, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <span className="text-[10px] text-green-400 font-semibold">Sortie agent — Confiance : 97.4%</span>
-            </div>
-            <div className="rounded-lg bg-bg-primary/40 p-3 font-mono text-[9px] text-text-secondary leading-relaxed space-y-1.5">
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.0 }}>
-                <span className="text-accent-light">{">"}</span> Analyse complète de 24,847 points de données
-              </motion.div>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.3 }}>
-                <span className="text-cyan">{">"}</span> 3 recommandations prioritaires identifiées
-              </motion.div>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6 }}>
-                <span className="text-green-400">{">"}</span> Action déployée — Impact estimé : +34% efficacité
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
+        <AgentOutputCard />
+      </FloatingPanel>
 
       {/* Ambient floating particles */}
       {Array.from({ length: 16 }, (_, i) => {
@@ -375,14 +661,14 @@ export function AIBrainScene() {
               background: i % 2 === 0 ? "rgba(129,140,248,0.3)" : "rgba(34,211,238,0.25)",
             }}
             animate={{
-              y: [0, -(10 + i % 5 * 3), 0],
-              x: [0, (i % 2 === 0 ? 5 : -4), 0],
+              y: [0, -(10 + (i % 5) * 3), 0],
+              x: [0, i % 2 === 0 ? 5 : -4, 0],
               opacity: [0.2, 0.6, 0.2],
             }}
             transition={{ duration: 4 + (i % 4), repeat: Infinity, delay: i * 0.3, ease: "easeInOut" }}
           />
         );
       })}
-    </div>
+    </ParallaxField>
   );
 }
