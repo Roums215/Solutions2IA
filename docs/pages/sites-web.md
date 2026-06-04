@@ -1,4 +1,4 @@
-# /sites-web — Brief V6.2 (consolidé définitif)
+# /sites-web — Brief V6.3 (patch ciblé V6.2)
 
 > À déposer dans `docs/pages/sites-web.md`. Réf : `PLAYBOOK.md` + `docs/pages/rag.md` + `docs/pages/automatisation.md`.
 > Page MAJEURE — carrefour d'acquisition. Point d'entrée vers `/automatisation` et `/rag`.
@@ -7,6 +7,8 @@
 > **V6.1 (mise à jour)** : multi-cible explicite (CG1), test des 3 questions UX (CG2), flux de valeur en S5 (CG3), workflow 4 moments en S7 (CG4), fusion S11+S12, accordion mobile S6, motion Option B clarifiée, copy révisé.
 >
 > **V6.2 (mise à jour)** : renommage S5 « Comment une opportunité devient un client » (au lieu de « Flux de valeur ») pour lisibilité multi-cible · ajout S7bis « Exemple concret » scénario AVANT/APRÈS pédagogique entre S7 et S8 · CTA final « Croissance » → « Résultat » (factualité au lieu de promesse marketing).
+>
+> **V6.3 (patch ciblé)** : réordre — le Blueprint 9 stations passe **juste après le hero** (V6.2 S4 → V6.3 S1) · **suppression de S5 V6.2** (5 étapes opportunité → client) absorbée par le Blueprint, renumérotation S6→S4, S7→S5, S7bis→S5bis, S8→S6, S8bis→S6bis, S9→S7, S10→S8, S11→S9, S12→S10 · **reformulation du bloc ✗ S9 V6.3 (ex-S11 V6.2)** en 3 lignes ton cabinet (suppression des mentions de prix et multiplicateurs) · **ajustement H1** : `« C'est le point de départ de vos opportunités. »` → `« C'est le moteur de vos prochains clients. »` · **CG1 étendu à 6 audiences explicites** (auto-entrepreneurs, artisans, cabinets conseil/libéraux, commerces locaux, PME, sociétés de services — Solutions2IA ne cible pas les particuliers). Sprint S5 V6.2 annulé. Roadmap S4.5 → S12 V6.2 maintenue (renumérotée en interne).
 
 ---
 
@@ -40,33 +42,43 @@ Le visiteur doit comprendre, en lisant cette page :
 
 ## 1. Public cible
 
-Cette page s'adresse à toute structure qui transforme un site en levier opérationnel :
+Cette page s'adresse à **6 audiences professionnelles** qui transforment un site en levier opérationnel (liste de référence V6.3 pour CG1) :
 
-- indépendants · auto-entrepreneurs · professions libérales
-- artisans · commerçants · associations
-- startups · TPE · PME · ETI
+1. **Auto-entrepreneurs** (et professions libérales en nom propre)
+2. **Artisans** (BTP, métiers de bouche, décoration, services à la personne organisés)
+3. **Cabinets** (conseil, libéraux : avocats, experts-comptables, médecins, architectes)
+4. **Commerces locaux** (boutiques physiques, magasins de proximité, salons)
+5. **PME** (multi-équipes, services, outils métier en place ou à structurer)
+6. **Sociétés de services** (prestataires B2B, agences, ESN, bureaux d'étude)
 
 Tous secteurs : artisanat, BTP, immobilier, restauration, hôtellerie, santé, médical, juridique, assurance, finance, industrie, transport, e-commerce, commerce local, conseil, recrutement, formation, événementiel, tourisme, services à la personne.
 
-**Ne jamais donner l'impression que Solutions 2IA est spécialisé dans un seul secteur ou une seule taille.** Le message est universel — les exemples sectoriels et l'architecture par taille sont là pour illustrer, pas pour cadrer.
+**Solutions 2IA ne cible pas les particuliers.** L'offre suppose une activité professionnelle (CRM, automatisation métier, équipe ou collaborateurs à orchestrer, outils business à connecter).
+
+**Ne jamais donner l'impression que Solutions 2IA est spécialisé dans un seul secteur ou une seule taille.** Le message est universel sur les 6 audiences ci-dessus — les exemples sectoriels (S5 V6.3 Cockpit) et l'architecture par taille (S4 V6.3 Paliers) sont là pour illustrer, pas pour cadrer.
 
 ---
 
-## 1bis. Vérification de lecture multi-cible (CG1)
+## 1bis. Vérification de lecture multi-cible (CG1 — étendu V6.3)
 
-La page ne doit **jamais** donner l'impression de s'adresser uniquement aux PME. Elle doit rester compréhensible et pertinente pour les **8 typologies** : indépendant · auto-entrepreneur · artisan · commerçant · profession libérale · TPE · PME · ETI.
+La page ne doit **jamais** donner l'impression de s'adresser uniquement aux PME. Elle doit rester compréhensible et pertinente pour les **6 audiences professionnelles V6.3** (cf. Section 1).
 
-**Règle d'écriture** — à chaque section structurante (S5, S6, S7, S8, S9), le brief inclut explicitement **3 lignes de vérification de lecture** :
+**Règle d'écriture** — à chaque section structurante (S1 Blueprint, S4 Paliers, S5 Cockpit, S6 Méthode, S7 Ce qui change selon numérotation V6.3), le brief inclut explicitement **6 lignes de vérification de lecture** (minimum) — une par audience :
 
-1. *Ce qu'un indépendant comprend en lisant la section.*
-2. *Ce qu'une PME comprend en lisant la section.*
-3. *Ce qu'une structure plus importante (ETI) comprend en lisant la section.*
+1. *Ce qu'un **auto-entrepreneur** comprend en lisant la section.*
+2. *Ce qu'un **artisan** comprend en lisant la section.*
+3. *Ce qu'un **cabinet** (conseil, libéral) comprend en lisant la section.*
+4. *Ce qu'un **commerce local** comprend en lisant la section.*
+5. *Ce qu'une **PME** comprend en lisant la section.*
+6. *Ce qu'une **société de services** comprend en lisant la section.*
 
-Si les 3 lectures convergent vers le même bénéfice (formulé à 3 échelles), la section est conforme.
+Si les 6 lectures convergent vers le même bénéfice (formulé à 6 échelles d'activité), la section est conforme.
 
-Si une seule des 3 lectures aboutit à *« c'est intéressant mais c'est trop gros pour moi »* ou *« c'est trop petit pour moi »*, la section est **non conforme** et doit être resimplifiée.
+Si une seule des 6 lectures aboutit à *« c'est intéressant mais c'est trop gros pour moi »* ou *« c'est trop petit pour moi »* ou *« ça ne parle pas de mon activité »*, la section est **non conforme** et doit être resimplifiée.
 
-L'effet à éviter : *« c'est intéressant mais c'est trop gros pour moi »*.
+L'effet à éviter : *« c'est intéressant mais c'est trop gros pour moi »* — quelle que soit l'audience.
+
+> **Note V6.3** : les vérifications CG1 héritées de V6.2 (déjà rédigées en 3 lignes indé/PME/ETI) restent valides — il faut les **étendre** à 6 lignes lors de la mise à jour de chaque section, pas les remplacer.
 
 ---
 
@@ -230,40 +242,47 @@ Si une réponse aux questions **6/7/8** ne vient pas en moins de 5 secondes de r
 
 ---
 
-# ARCHITECTURE FINALE — 12 SECTIONS (V6.1)
+# ARCHITECTURE FINALE V6.3 — 10 SECTIONS PRINCIPALES + S5bis + S6bis
 
-| # | Section | Statut | Type |
-|---|---|---|---|
-| 1 | Hero | ✅ Live | PageHero |
-| 2 | Pain « Sans / Avec site connecté » | ✅ Live | Comparaison 2-col |
-| 3 | Pourquoi nous ne sommes pas une agence web classique | ✅ Live | Comparaison 2-col |
-| 4 | Blueprint « De votre visiteur à votre prochain client » | ✅ Live | Flux vertical 9 stations |
-| 5 | **Comment une opportunité devient un client (5 étapes)** (CG3) | 🔨 S5 | Flux horizontal |
-| 6 | Architecture par taille (4 paliers, accordion mobile) | 🔨 S6 | Cascade descendante |
-| 7 | **Cockpit sectoriel (workflow 4 moments)** (CG4) | 🔨 S7 | Selector + mini-flux |
-| 7bis | **Exemple concret (scénario AVANT/APRÈS)** 🆕 | 🔨 S7 | Scénario flux comparé |
-| 8 | Comment nous construisons | 🔨 S8 | Timeline 6 étapes |
-| 8bis | Respiration éditoriale | 🔨 S8 | Citation pleine largeur |
-| 9 | Ce qui change (6 paires inline barré) | 🔨 S9 | Liste inline |
-| 10 | Fondations techniques | 🔨 S10 | Grille 4×2 |
-| 11 | **Nos engagements (✓ + ✗ fusionnés)** | 🔨 S11 | Bipartite |
-| 12 | CTA final | 🔨 S11 | CTABand révisé |
+> **Réordre V6.3** : le Blueprint 9 stations (V6.2 S4 → V6.3 S1) passe juste après le hero — *montrer d'abord, contextualiser ensuite, convaincre à la fin*.
+> **Suppression V6.3** : S5 V6.2 (5 étapes opportunité → client) absorbée par le Blueprint (redondance confirmée).
+> **Renumérotation V6.3** : S6 V6.2 → S4 V6.3 · S7 → S5 · S7bis → S5bis · S8 → S6 · S8bis → S6bis · S9 → S7 · S10 → S8 · S11 → S9 · S12 → S10.
 
-## Section 1 — Hero ✅ LIVE
+| V6.3 | V6.2 | Section | Statut | Type |
+|---|---|---|---|---|
+| **S0** | S1 | Hero (H1 ajusté V6.3) | ✅ Live | PageHero |
+| **S1** | S4 | Blueprint « De votre visiteur à votre prochain client » (9 stations) — **déplacé V6.3** | ✅ Live | Flux vertical 9 stations |
+| **S2** | S2 | Pain « Sans / Avec site connecté » | ✅ Live | Comparaison 2-col |
+| **S3** | S3 | Pourquoi nous ne sommes pas une agence web classique | ✅ Live | Comparaison 2-col |
+| ~~—~~ | ~~S5~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ **Supprimée V6.3** | (absorbée par S1 Blueprint) |
+| **S4** | S6 | Architecture par taille (4 paliers, accordion mobile) | 🔨 sprint ex-S6 V6.2 | Cascade descendante |
+| **S5** | S7 | Cockpit sectoriel (workflow 4 moments) | 🔨 sprint ex-S7 V6.2 | Selector + mini-flux |
+| **S5bis** | S7bis | Exemple concret (scénario AVANT/APRÈS) | 🔨 sprint ex-S7 V6.2 | Scénario flux comparé |
+| **S6** | S8 | Comment nous construisons | 🔨 sprint ex-S8 V6.2 | Timeline 6 étapes |
+| **S6bis** | S8bis | Respiration éditoriale | 🔨 sprint ex-S8 V6.2 | Citation pleine largeur |
+| **S7** | S9 | Ce qui change (6 paires inline barré) | 🔨 sprint ex-S9 V6.2 | Liste inline |
+| **S8** | S10 | Fondations techniques | 🔨 sprint ex-S10 V6.2 | Grille 4×2 |
+| **S9** | S11 | Nos engagements (✓ + ✗ **reformulé V6.3 ton cabinet**) | 🔨 sprint ex-S11 V6.2 | Bipartite |
+| **S10** | S12 | CTA final | 🔨 sprint ex-S11 V6.2 | CTABand révisé |
+
+## S0 V6.3 — Hero ✅ LIVE (H1 ajusté V6.3)
 
 **Type composant :** PageHero refondu (positionnement « système »).
 
-**Statut :** déjà en production. Conserver tel quel.
+**Statut :** déjà en production. **V6.3 modifie uniquement le H1.** Tout le reste est conservé tel quel.
 
 **Pour mémoire** :
-- Label pill : `Sites web premium · Système connecté`
-- H1 : *« Votre site n'est pas un site. C'est le point de départ de vos opportunités. »*
-- Sous-titre : *« Un site connecté qui travaille avec votre entreprise, pas à côté d'elle. »*
-- CTA primaire : *« Concevoir mon système numérique »*
-- CTA secondaire : *« Voir comment circule une opportunité »* (ancre vers Section 4)
+- Label pill : `Sites web premium · Système connecté` *(inchangé)*
+- **H1 V6.3 (à appliquer)** : *« Votre site n'est pas un site. C'est le moteur de vos prochains clients. »*
+- H1 V6.2 (ancien, à remplacer) : ~~*« Votre site n'est pas un site. C'est le point de départ de vos opportunités. »*~~
+- Sous-titre : *« Un site connecté qui travaille avec votre entreprise, pas à côté d'elle. »* *(inchangé)*
+- CTA primaire : *« Concevoir mon système numérique »* *(inchangé)*
+- CTA secondaire : *« Voir comment circule une opportunité »* (ancre vers **S1 V6.3 Blueprint**, ex-S4 V6.2) *(libellé inchangé, ancre relogée)*
 - Visual : `WebScene` 3D conservé (gated `usePerformanceMode`)
 
-Pill micro-label sous le hero (déjà live) : `Site web · Automatisation · IA documentaire · Outils métier`.
+Pill micro-label sous le hero (déjà live) : `Site web · Automatisation · IA documentaire · Outils métier` *(inchangé)*.
+
+**Raison du changement H1 V6.3** : *« point de départ de vos opportunités »* (abstrait — le mot « opportunité » n'est pas dans le vocabulaire quotidien des 6 audiences) devient *« moteur de vos prochains clients »* (concret — « prochain client » est l'unité de bénéfice business directement reconnaissable). Structure rhétorique « n'est pas… c'est… » conservée.
 
 ---
 
@@ -298,11 +317,13 @@ Ton **factuel sans dénigrement**.
 
 ---
 
-## Section 4 — Blueprint « De votre visiteur à votre prochain client » ✅ LIVE
+## S1 V6.3 — Blueprint « De votre visiteur à votre prochain client » ✅ LIVE (déplacé V6.3)
 
 **Type composant :** Diagramme de flux vertical 9 stations (style blueprint / control room).
 
-**Statut :** déjà en production. **Cap visuel locké** — toutes les sections suivantes héritent de cette grammaire.
+**Statut :** déjà en production. **V6.3 déplace cette section** : ex-S4 V6.2 → S1 V6.3 (juste après le hero). Aucune modification du composant `WebOpportunityFlow` ni du copy interne — seule la **position dans `SitesWebPage.tsx`** change.
+
+**Cap visuel locké** — toutes les sections suivantes héritent de cette grammaire.
 
 **Pour mémoire** :
 - Badge `COMMENT CIRCULE UNE OPPORTUNITÉ`
@@ -312,68 +333,40 @@ Ton **factuel sans dénigrement**.
 - 8 connecteurs SVG fins · **1 anim cœur** draw one-shot
 - Phrase fermante : *« Le site déclenche le flux. Chaque étape transmet le contexte. Personne n'a à y penser — et personne ne tombe entre les mailles. »*
 
----
+### Bridges narratifs V6.3 (relogés depuis S5 V6.2 supprimée)
 
-## Section 5 — Comment une opportunité devient un client (5 étapes) 🔨 À CONSTRUIRE
+Les bridges narratifs vers `/rag` et `/automatisation` qui étaient ancrés dans S5 V6.2 (supprimée en V6.3) sont **relogés ici dans le Blueprint** :
 
-**Type composant :** Flux de valeur métier horizontal — `Visiteur → Demande → Qualification → Action → Résultat`. Les outils sont **secondaires** (sous-label discret), le **bénéfice métier est principal**.
+- Sous la station **Qualification**, sous-label italique discret : *« Voir comment l'IA retrouve vos connaissances → `/rag` »*
+- Sous la station **Notification** (ou regroupé avec **Suivi**), sous-label italique discret : *« Voir les automatisations métier → `/automatisation` »*
 
-**Pourquoi pas une topologie de 4 zones avec les outils en avant ?** Parce que « voici les zones de mon infrastructure » exhibe une grille fonctionnelle sans raconter le chemin concret d'une opportunité. Le flux raconte ce que vit l'opportunité — les outils prennent en charge, ils n'occupent pas la scène.
+Ces bridges respectent la règle existante du Blueprint : sous-label discret, pas de modification visuelle majeure du composant, pas d'animation supplémentaire. Ils servent la cohérence de gamme (cf. Section 3 du brief).
 
-**Structure principale (ce qui se voit en premier)** :
+### Universalité Blueprint V6.3 (règle inviolable)
 
-```
-Visiteur  →  Demande  →  Qualification  →  Action  →  Résultat
-```
+**Le Blueprint 9 stations doit rester générique et universel.** Aucune variante par audience, aucune mention sectorielle, aucun outil nommé dans les stations principales. Les 9 stations servent **les 6 audiences simultanément** (auto-entrepreneur, artisan, cabinet, commerce local, PME, société de services). L'adaptation par maturité (paliers) est traitée en S4 V6.3 ; l'adaptation par métier (cockpits) est traitée en S5 V6.3.
 
-**Lecture annotée (chips métier sobres sous chaque étape)** : Demande = `capter` · Qualification = `comprendre` · Action = `déclencher` · Résultat = `mémoriser & livrer`. Ces 4 zones fonctionnelles restent la grille invisible — ce qui se voit, c'est le chemin.
+### Vérification multi-cible étendue V6.3 (CG1 — 6 lectures)
 
-**Outils en sous-label `ToolBadge` discret sous chaque étape** :
-
-| Étape | Sous-label outils |
-|---|---|
-| **Demande** | `Formulaire avec logique de qualification · WhatsApp Business · API métier` |
-| **Qualification** | `IA générale · RAG métier · Règles de qualification` |
-| **Action** | `n8n · Email · Calendrier · Paiement · Notifications` |
-| **Résultat** | `CRM · ERP · Base documentaire` |
-
-**Sous-bloc adaptatif (rappel P1, P3, P4)** affiché sous le flux :
-
-> **Toutes les étapes n'ont pas la même intensité.**
-> - Avec ou **sans CRM** — on peut connecter votre boîte mail métier en attendant.
-> - Avec ou **sans IA** — l'étape Qualification n'est étoffée par l'IA que si elle supprime une tâche, accélère une recherche, améliore une décision ou réduit une répétition.
-> - Avec ou **sans automatisation** — l'étape Action peut être minimale (juste une notification) ou complète.
-> - **Si vous avez déjà un outil, on s'y branche.** Si vous n'en avez pas, on en suggère un adapté à votre taille.
-
-**Bridges narratifs explicites (CG B7)** :
-- Sous étape **Qualification**, sous-label inline italique : *« Voir comment l'IA retrouve vos connaissances → `/rag` »*
-- Sous étape **Action**, sous-label inline italique : *« Voir les automatisations métier → `/automatisation` »*
-
-**Présentation visuelle :**
-- Conteneur blueprint unique (même grammaire que Section 4).
-- Flux horizontal de 5 step pills typographie premium, small-caps tracking-widest, liseré cyan→accent entre chaque pill.
-- Sous chaque step pill : chips métier sobre (zone fonctionnelle) + sous-label outils en `ToolBadge`.
-- Pas de step numbers (zones de valeur, pas étapes process).
-- Mobile (≤ 768 px) : bascule en stack vertical, chips métier visibles, outils en sous-label inline.
-- **1 draw one-shot `whileInView once`** sur la ligne horizontale qui relie les 5 étapes (`pathLength` 0→1). Aucune autre animation.
-
-**Phrase fermante** : *« Cinq étapes. Un seul but : que l'opportunité aille jusqu'au bout. »*
-
-**Vérification multi-cible (CG1)** :
-- **Indé / auto-entrepreneur / artisan / commerçant** comprend : *« Une demande arrive, elle est triée, je sais quoi faire, rien ne se perd. »*
-- **PME** comprend : *« Chaque opportunité suit un chemin défini ; l'IA et les outils prennent en charge ce qui peut l'être. »*
-- **ETI** comprend : *« L'architecture qualifie et route à grande échelle, en s'appuyant sur les outils déjà en place. »*
-
-**Test 3 questions UX (CG2)** :
-1. *Qu'est-ce que je viens de comprendre ?* → *« Une opportunité suit un chemin de 5 étapes — entrée, tri, action, livraison. »*
-2. *Pourquoi c'est utile pour moi ?* → *« Mon site arrête d'être une vitrine passive ; il devient le point de départ d'un flux opérationnel. »*
-3. *Quel problème cela règle ?* → *« Le risque qu'une demande arrive et se perde — quelle que soit ma taille. »*
-
-**Bridge** : *« Voir comment ce flux s'adapte à votre taille ↓ »* (vers Section 6).
+À écrire lors de la mise à jour du brief de cette section pour atteindre conformité V6.3 (extension de la liste indé/PME/ETI déjà présente à 6 lignes — auto-entrepreneur / artisan / cabinet / commerce local / PME / société de services).
 
 ---
 
-## Section 6 — Une architecture adaptée à votre taille 🔨 À CONSTRUIRE 🆕
+## ~~Section 5 V6.2 — Comment une opportunité devient un client (5 étapes)~~ ❌ SUPPRIMÉE V6.3
+
+> **Décision V6.3** : cette section est **supprimée** du brief et de la roadmap.
+> **Raison** : redondance confirmée avec le Blueprint 9 stations (S1 V6.3, ex-S4 V6.2). Les deux racontaient le même mécanisme à des granularités proches (9 vs 5 étapes). Le Blueprint est plus complet, **est déjà live**, et reste générique/universel pour les 6 audiences. Les 5 étapes ne seront pas construites.
+>
+> **Conséquences :**
+> - **Sprint S5 du brief V6.2 (`WebSystemArchitecture` + `webArchitectureData`) annulé.** Charge supprimée.
+> - Les bridges narratifs qui devaient être ancrés dans cette section (`/rag` sous Qualification, `/automatisation` sous Action) sont **relogés dans le Blueprint S1 V6.3** (cf. ci-dessus).
+> - La numérotation des sections suivantes glisse : Section 6 V6.2 → S4 V6.3, Section 7 → S5, Section 7bis → S5bis, Section 8 → S6, Section 8bis → S6bis, Section 9 → S7, Section 10 → S8, Section 11 → S9, Section 12 → S10.
+>
+> Le contenu détaillé de la S5 V6.2 (flux horizontal 5 zones, sous-bloc adaptatif P1/P3/P4, outils en sous-label, etc.) n'est plus normatif. Cette section est conservée dans l'historique du brief uniquement à titre d'archive — **ne pas la reconstruire**.
+
+---
+
+## S4 V6.3 — Une architecture adaptée à votre taille 🔨 À CONSTRUIRE (ex-S6 V6.2)
 
 **Type composant :** Architecture progressive — 4 paliers visuels en **cascade descendante** avec **step numbers 01-04** (Indépendant → TPE → PME → ETI).
 
@@ -480,7 +473,7 @@ Verdict métier : *« Vos équipes, vos données et vos processus opèrent à pa
 
 ---
 
-## Section 7 — Exemples par métier (Cockpit sectoriel) 🔨 À CONSTRUIRE — REMPLACE `WebGalaxyShowcase`
+## S5 V6.3 — Exemples par métier (Cockpit sectoriel) 🔨 À CONSTRUIRE (ex-S7 V6.2) — REMPLACE `WebGalaxyShowcase`
 
 **Type composant :** Vue sectorielle — sélecteur en pills (6 secteurs) + 1 mini-flux visible à la fois, format **workflow d'entreprise** (4 moments structurés).
 
@@ -534,7 +527,7 @@ Une simple succession de blocs (« Visiteur → Site → Formulaire → CRM → 
 
 ---
 
-## Section 7bis — Exemple concret (scénario AVANT/APRÈS) 🔨 À CONSTRUIRE 🆕
+## S5bis V6.3 — Exemple concret (scénario AVANT/APRÈS) 🔨 À CONSTRUIRE (ex-S7bis V6.2 — conservé)
 
 **Type composant :** Scénario réel — schéma simple de comparaison AVANT/APRÈS sur le parcours d'une demande, **inséré directement dans `SitesWebPage.tsx`** (pas de composant lourd dédié, simple data + render statique).
 
@@ -586,7 +579,7 @@ Aucune confusion possible entre les 4 sections opposition.
 
 ---
 
-## Section 8 — Comment nous construisons votre système 🔨 À CONSTRUIRE
+## S6 V6.3 — Comment nous construisons votre système 🔨 À CONSTRUIRE (ex-S8 V6.2)
 
 **Type composant :** Architecture métier — timeline 6 étapes (problème · action · livrable).
 
@@ -635,7 +628,7 @@ Trois mini-exemples visuels en sous-bloc (icônes + texte court) :
 
 ---
 
-## Section 8bis — Respiration éditoriale 🔨 À CONSTRUIRE 🆕
+## S6bis V6.3 — Respiration éditoriale 🔨 À CONSTRUIRE (ex-S8bis V6.2 — conservée)
 
 **Type composant :** Citation pleine largeur inline (pas de composant dédié — inséré directement dans `SitesWebPage.tsx`).
 
@@ -654,7 +647,7 @@ Trois mini-exemples visuels en sous-bloc (icônes + texte court) :
 
 ---
 
-## Section 9 — Ce qui change dans votre entreprise 🔨 À CONSTRUIRE
+## S7 V6.3 — Ce qui change dans votre entreprise 🔨 À CONSTRUIRE (ex-S9 V6.2)
 
 **Type composant :** Liste structurée — **6 paires Avant / Après** au format **inline barré** (line-through + flèche + accent), pas de 2 colonnes, pas de cards.
 
@@ -703,7 +696,7 @@ Le geste de lecture diffère radicalement des Sections 2 (sans/avec en 2 colonne
 
 ---
 
-## Section 10 — Fondations techniques 🔨 À CONSTRUIRE
+## S8 V6.3 — Fondations techniques 🔨 À CONSTRUIRE (ex-S10 V6.2 — conservée dans le flux principal)
 
 **Type composant :** Liste structurée — 8 piliers métier (technos en sous-label discret).
 
@@ -729,7 +722,7 @@ Le geste de lecture diffère radicalement des Sections 2 (sans/avec en 2 colonne
 
 ---
 
-## Section 11 — Nos engagements (✓ Ce que nous garantissons + ✗ Ce que nous ne promettons pas) 🔨 À CONSTRUIRE — FUSION S11+S12 (V6.1)
+## S9 V6.3 — Nos engagements (✓ Ce que nous garantissons + ✗ Ce que nous ne promettons pas — reformulé V6.3) 🔨 À CONSTRUIRE (ex-S11 V6.2 — FUSION S11+S12 V6.1)
 
 **Type composant unique :** `WebEngagements` — section bipartite en un seul composant : grille ✓ garanties + glow-line + manifeste ✗ non-promesses.
 
@@ -758,38 +751,37 @@ Grille 4×2 (mobile : 2×4). Chaque carré : ✓ cyan + libellé en gras + déta
 
 `glow-line` token existant + `mt-16 mb-12` (respiration visuelle entre les 2 blocs).
 
-### Bloc 2 — Ce que nous ne promettons pas (typographie pure)
+### Bloc 2 — Ce que nous ne promettons pas (typographie pure — **reformulé V6.3 en ton cabinet**)
 
-**Format** : pas de grille, pas de cards. Typographie pure pleine largeur — intitulé `text-2xl font-semibold`, justification `text-base text-text-secondary`, ✗ Unicode sobre cyan désaturé en début de ligne.
+**Format** : pas de grille, pas de cards. Typographie pure pleine largeur — intitulé `text-2xl font-semibold`, justification `text-base text-text-secondary`, tiret cadratin `—` sobre cyan désaturé en début de ligne. Plus de symbole ✗ Unicode (trop confrontatif).
+
+**Phrase chapeau** : *« Nous restons clairs sur trois points : »*
 
 ```
-✗ Nous ne vendons pas de site à 500 €.
-  Un système connecté demande de l'audit, du design, du développement
-  et des intégrations. Cela a un coût juste.
+— Pas de résultats instantanés.
+  Le référencement, la notoriété et les processus se construisent
+  dans le temps.
 
-✗ Nous ne promettons pas ×10 de chiffre d'affaires.
-  Le SEO est une discipline continue, pas une livraison. Aucune
-  position garantie sur Google.
+— Pas de solutions standardisées sans analyse préalable.
+  Chaque activité a ses contraintes, ses outils et ses objectifs.
 
-✗ Nous ne livrons pas de template générique.
-  Chaque système est conçu pour votre activité — pas une vitrine
-  déclinée d'un thème.
-
-✗ Nous ne lançons pas sans cadrage.
-  Pas de devis serré sans comprendre votre activité. Si l'audit
-  ne se justifie pas, on vous le dit.
-
-✗ Nous n'ajoutons pas d'IA partout.
-  L'IA n'est intégrée que lorsqu'elle supprime une tâche, accélère
-  une recherche, améliore une décision ou réduit une répétition.
-  Sinon, elle n'est pas dans le système. Pas d'IA gadget.
+— Pas d'IA sans utilité réelle.
+  Chaque composant doit répondre à un besoin concret.
 ```
 
-**Pourquoi cette posture honnête** : elle désamorce le doute (« vont-ils sur-vendre ? »). C'est ce qui transforme un visiteur sceptique en lead qualifié, juste avant le CTA.
+**Ce qui est supprimé V6.3 (ne pas reconstruire)** :
+- ❌ Toute mention de prix (« pas de site à 500 € »).
+- ❌ Tout multiplicateur (« pas de ×10 de chiffre d'affaires »).
+- ❌ Toute formulation type « pas de template générique », « pas de lancement sans cadrage ».
+- ❌ Le symbole ✗ Unicode en début de ligne (remplacé par tiret cadratin `—`).
+
+**Pourquoi cette reformulation V6.3** : le ton cabinet calme et factuel **renforce la crédibilité** de Solutions2IA sans donner l'impression de critiquer le marché. Le visiteur doit penser *« ils semblent sérieux et raisonnables »*, pas *« ils se différencient en critiquant les autres »*. La posture honnête est conservée (désamorçage du doute, transformation du sceptique en lead qualifié), mais elle s'exprime dans un registre **consultant haut de gamme**, pas dans un registre défensif ou anti-concurrent.
+
+**Position dans la section** : juste après le bloc ✓ garanties et le séparateur `glow-line` (inchangés V6.3), avant le CTA final S10 V6.3.
 
 ---
 
-## Section 12 — CTA final 🔨 À CONSTRUIRE
+## S10 V6.3 — CTA final 🔨 À CONSTRUIRE (ex-S12 V6.2)
 
 **Type composant :** CTABand (copy révisée — pas de réutilisation aveugle).
 
@@ -811,22 +803,27 @@ Votre activité  →  Site connecté  →  Outils  →  Automatisations  →  IA
 
 ---
 
-# SPRINTS
+# SPRINTS (mis à jour V6.3 — patch ciblé, roadmap V6.2 conservée)
 
-| Sprint | Sections | Composants à créer |
+> **V6.3 ne crée pas de nouveau sprint.** On reste sur la suite S4.5 → S12 du brief V6.2, avec **annulation du sprint S5** (absorbé par le Blueprint live) et **renumérotation interne** des libellés de section dans les sprints S6 → S12.
+> Le **patch documentaire V6.3 sur `docs/pages/sites-web.md`** est appliqué hors sprint (action de cadrage, équivalent S4.6 V6.2).
+
+| Sprint | Sections (V6.3) | Composants à créer / actions |
 |---|---|---|
-| **S4.5** | Nettoyage immédiat | Supprimer `PremiumFlowPanel "Qualité web"` · toutes les `TransformationCard` Avant/Après · metric-tiles (`×2`, `+89%`, `<1s`) · mockups chrome décoratifs · stack chips standalone (sera absorbée S10). Conserver `WebGalaxyShowcase` jusqu'à S7. |
-| **S4.6** 🆕 | Mise à niveau brief V6 → V6.1 | Édition `docs/pages/sites-web.md` : CG1 (multi-cible §1bis), CG2 (3 questions UX §7), CG3 (flux de valeur S5), CG4 (workflow 4 moments S7), fusion S11+S12, accordion mobile S6, motion Option B, réécritures copy. Aucun code. |
-| **S5** | Section 5 — Comment une opportunité devient un client (5 étapes) | `WebSystemArchitecture` + `webArchitectureData` (flux Visiteur → Demande → Qualification → Action → Résultat, outils en sous-label, bridges /rag /automatisation) |
-| **S6** | Section 6 — Architecture par taille (accordion mobile) | `WebArchitectureBySize` + `webSizeData` (4 paliers, cascade descendante, step numbers 01-04, accordion PME-ouvert mobile) |
-| **S7** | Section 7 — Cockpit sectoriel (workflow 4 moments) + S7bis scénario | `WebSectorFlows` + `webSectorFlowsData` (6 secteurs × 4 moments entrée/décision/action/résultat, selector, bridges /automatisation/<secteur>) + scénario AVANT/APRÈS inline (Section 7bis, 2 flux verticaux statiques, pas de composant dédié) — **remplace** `WebGalaxyShowcase` (suppression complète à ce sprint) |
-| **S8** | Section 8 — Comment on construit + respiration éditoriale | `WebBuildProcess` + `webBuildProcessData` (avec bloc « Nous partons de l'existant » en en-tête) + citation pleine largeur inline (Section 8bis) |
-| **S9** | Section 9 — Ce qui change (6 paires inline barré) | `WebChangePairs` + `webChangePairsData` (format inline line-through + flèche + accent, 6 paires) |
-| **S10** | Section 10 — Fondations techniques | `WebFoundations` + `webFoundationsData` (8 piliers, grille 4×2, sous-labels ToolBadge) |
-| **S11** | Sections 11 + 12 — Engagements fusionnés + CTA | `WebEngagements` (✓ 8 garanties grille 4×2 + glow-line + ✗ 5 non-promesses typo pure) + révision `CTABand` copy + mini-schéma horizontal statique |
-| **S12** | Audit final | Perf · a11y · grep jargon · grep chiffres · responsive iPhone · vérifs CG1 multi-cible + CG2 3 questions UX · `pnpm build` |
+| **S4.5** | Nettoyage immédiat | Supprimer `PremiumFlowPanel "Qualité web"` · toutes les `TransformationCard` Avant/Après · metric-tiles (`×2`, `+89%`, `<1s`) · mockups chrome décoratifs · stack chips standalone (sera absorbée par S8 V6.3 Fondations). Conserver `WebGalaxyShowcase` jusqu'au sprint cockpit. **Ajouter V6.3** : nettoyage des chiffres dans `WebGalaxyShowcase` (`+38%`, `×3`, `+52%`, etc.) et du `CTABand` (« tripler votre taux de conversion »), réécriture de la section inline « Expertise » (Lighthouse 95+, code splitté, pixel-perfect). Déplacement de `WebOpportunityFlow` (live) en S1 (juste après le hero) dans `SitesWebPage.tsx`. Mise à jour du H1 hero V6.3. |
+| **S4.6** 🆕 | Mise à niveau brief V6.2 → V6.3 | Édition `docs/pages/sites-web.md` : V6.3 patch ciblé (réordre Blueprint S1, suppression S5 V6.2, reformulation bloc ✗ ton cabinet, H1 ajusté, CG1 étendu à 6 audiences). **Aucun code.** |
+| ~~**S5**~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ **ANNULÉ V6.3** — section absorbée par S1 Blueprint live. `WebSystemArchitecture` + `webArchitectureData` non construits. Charge supprimée. |
+| **S6** → **(sprint ex-S6 V6.2)** | **S4 V6.3** — Architecture par taille (accordion mobile) | `WebArchitectureBySize` + `webSizeData` (4 paliers, cascade descendante, step numbers 01-04, accordion PME-ouvert mobile) |
+| **S7** → **(sprint ex-S7 V6.2)** | **S5 V6.3** — Cockpit sectoriel + **S5bis V6.3** scénario | `WebSectorFlows` + `webSectorFlowsData` (6 secteurs × 4 moments entrée/décision/action/résultat, selector, bridges /automatisation/<secteur>) + scénario AVANT/APRÈS inline (S5bis V6.3, 2 flux verticaux statiques, pas de composant dédié) — **remplace** `WebGalaxyShowcase` (suppression complète à ce sprint) |
+| **S8** → **(sprint ex-S8 V6.2)** | **S6 V6.3** — Comment on construit + **S6bis V6.3** respiration | `WebBuildProcess` + `webBuildProcessData` (avec bloc « Nous partons de l'existant » en en-tête) + citation pleine largeur inline (S6bis V6.3) |
+| **S9** → **(sprint ex-S9 V6.2)** | **S7 V6.3** — Ce qui change (6 paires inline barré) | `WebChangePairs` + `webChangePairsData` (format inline line-through + flèche + accent, 6 paires) |
+| **S10** → **(sprint ex-S10 V6.2)** | **S8 V6.3** — Fondations techniques | `WebFoundations` + `webFoundationsData` (8 piliers, grille 4×2, sous-labels ToolBadge) |
+| **S11** → **(sprint ex-S11 V6.2)** | **S9 V6.3** Engagements + **S10 V6.3** CTA | `WebEngagements` (✓ 8 garanties grille 4×2 + glow-line + **bloc ✗ reformulé V6.3 en 3 lignes ton cabinet** — pas 5 lignes confrontatives) + révision `CTABand` copy + mini-schéma horizontal statique |
+| **S12** | Audit final | Perf · a11y · grep jargon · grep chiffres · responsive iPhone · vérifs **CG1 6 audiences V6.3** + CG2 3 questions UX · `pnpm build` |
 
 **Règle inviolable :** aucun sprint ne se lance sans validation utilisateur explicite. Aucun sprint ne se termine sans screenshot rendu validé.
+
+**Note V6.3 sur les numéros de sprint** : on conserve les libellés de sprint historiques (S4.5, S4.6, S6, S7, S8, S9, S10, S11, S12) pour ne pas casser la traçabilité des commits et des PR existants. Les **sections livrées par chaque sprint** sont en revanche renumérotées selon V6.3 (colonne « Sections (V6.3) » ci-dessus).
 
 ---
 
@@ -854,31 +851,37 @@ Votre activité  →  Site connecté  →  Outils  →  Automatisations  →  IA
 
 ---
 
-# DEFINITION OF DONE (page complète)
+# DEFINITION OF DONE (page complète — V6.3)
 
-- [ ] Brief V6.2 déposé dans `docs/pages/sites-web.md`.
-- [ ] S4.5 nettoyage : `PremiumFlowPanel`, `TransformationCard`, metric-tiles, mockups chrome, faux dashboards → **supprimés**.
-- [ ] S4.6 mise à niveau brief V6 → V6.1 effectuée (CG1, CG2, CG3, CG4, fusion S11+S12, accordion S6, motion Option B, copy révisé).
-- [ ] S5 Comment une opportunité devient un client (5 étapes Visiteur → Demande → Qualification → Action → Résultat, outils en sous-label) + sous-bloc adaptatif + bridges /rag /automatisation livrée.
-- [ ] S6 Architecture par taille (4 paliers, cascade descendante avec step numbers 01-04, **accordion mobile PME-ouvert**) livrée 🆕.
-- [ ] S7 Cockpit sectoriel (6 secteurs × 4 moments entrée/décision/action/résultat, selector + bridges /automatisation/<secteur>) + S7bis scénario AVANT/APRÈS pédagogique livrés · `WebGalaxyShowcase` supprimé.
-- [ ] S8 Comment on construit (6 étapes + en-tête « Nous partons de l'existant ») livré + S8bis respiration éditoriale citation pleine largeur insérée.
-- [ ] S9 Ce qui change (**6 paires inline barré**, pas 8, pas de 2-col, pas de cards) livré.
-- [ ] S10 Fondations (8 piliers) livrée.
-- [ ] S11 `WebEngagements` (8 ✓ garanties grille + glow-line + 5 ✗ non-promesses typo pure) + CTA final révisé livrés.
+- [ ] Brief V6.3 déposé dans `docs/pages/sites-web.md` (patch ciblé V6.2 → V6.3 appliqué).
+- [ ] **V6.3 — H1 hero ajusté** : `« Votre site n'est pas un site. C'est le moteur de vos prochains clients. »` (à la place de l'ancien `« point de départ de vos opportunités »`).
+- [ ] **V6.3 — Blueprint repositionné en S1**, juste après le hero (déplacement dans `SitesWebPage.tsx`, composant `WebOpportunityFlow` inchangé).
+- [ ] **V6.3 — Bridges narratifs `/rag` et `/automatisation` relogés** dans le Blueprint S1 (sous-labels italiques sous stations « Qualification », « Notification » / « Suivi »).
+- [ ] **V6.3 — S5 V6.2 supprimée** (5 étapes opportunité → client) · sprint S5 annulé · `WebSystemArchitecture` non construit.
+- [ ] **V6.3 — Bloc ✗ S9 V6.3 (ex-S11 V6.2) reformulé en 3 lignes ton cabinet**, suppression complète des mentions de prix (« pas de site à 500 € ») et multiplicateurs (« ×10 de CA ») et formulations « pas de template » / « pas de lancement sans cadrage ».
+- [ ] **V6.3 — CG1 étendu à 6 audiences** (auto-entrepreneurs · artisans · cabinets · commerces locaux · PME · sociétés de services) — Solutions2IA ne cible pas les particuliers (mention explicite).
+- [ ] S4.5 nettoyage : `PremiumFlowPanel`, `TransformationCard`, metric-tiles, mockups chrome, faux dashboards → **supprimés**. **V6.3 ajoute** : chiffres `WebGalaxyShowcase` (+38%, ×3, +52%…), `CTABand` (« tripler votre taux de conversion »), section « Expertise » jargon → supprimés.
+- [ ] S4.6 mise à niveau brief V6.2 → V6.3 effectuée (patch ciblé : réordre Blueprint S1, suppression S5, reformulation bloc ✗, H1 ajusté, CG1 6 audiences).
+- [ ] Sprint ex-S6 V6.2 → **S4 V6.3** Architecture par taille (4 paliers, cascade descendante avec step numbers 01-04, **accordion mobile PME-ouvert**) livrée 🆕.
+- [ ] Sprint ex-S7 V6.2 → **S5 V6.3** Cockpit sectoriel (6 secteurs × 4 moments entrée/décision/action/résultat, selector + bridges /automatisation/<secteur>) + **S5bis V6.3** scénario AVANT/APRÈS pédagogique livrés · `WebGalaxyShowcase` supprimé.
+- [ ] Sprint ex-S8 V6.2 → **S6 V6.3** Comment on construit (6 étapes + en-tête « Nous partons de l'existant ») livré + **S6bis V6.3** respiration éditoriale citation pleine largeur insérée.
+- [ ] Sprint ex-S9 V6.2 → **S7 V6.3** Ce qui change (**6 paires inline barré**, pas 8, pas de 2-col, pas de cards) livré.
+- [ ] Sprint ex-S10 V6.2 → **S8 V6.3** Fondations (8 piliers) livrée — **conservée dans le flux principal**, pas reclassée en accordion footer.
+- [ ] Sprint ex-S11 V6.2 → **S9 V6.3** `WebEngagements` (8 ✓ garanties grille + glow-line + **3 lignes ton cabinet** — pas 5) + **S10 V6.3** CTA final révisé livrés.
 - [ ] **Grep anti-jargon** = 0 occurrence (« optimisation », « IA intelligente », « code splitté », « pixel-perfect », « code propre », etc.).
-- [ ] **Grep anti-chiffres** = 0 occurrence (`×2`, `+89%`, `<1s`, `98/100`, etc.).
+- [ ] **Grep anti-chiffres** = 0 occurrence (`×2`, `+89%`, `<1s`, `98/100`, `×10`, etc.).
 - [ ] **Grep anti-composants interdits** = 0 (`TransformationCard`, `AutomationPipeline` hors page concernée).
-- [ ] **Vérification P1** : la phrase « Nous partons toujours de l'existant » figure bien en en-tête de Section 8.
-- [ ] **Vérification P3** : la règle IA figure dans la Section 5 (sous-bloc adaptatif) ET dans la Section 11 bloc ✗ (non-promesses).
-- [ ] **Vérification CG1 multi-cible** : chaque section S5-S9 a passé la lecture indé/PME/ETI sans effet « trop gros / trop petit pour moi ».
-- [ ] **Vérification CG2 3 questions UX** : chaque section S5-S9 répond en moins de 5 secondes aux questions *Qu'est-ce que j'ai compris ? Pourquoi c'est utile pour moi ? Quel problème ça règle ?*
+- [ ] **Vérification P1** : la phrase « Nous partons toujours de l'existant » figure bien en en-tête de S6 V6.3 (ex-S8 V6.2).
+- [ ] **Vérification P3** : la règle IA figure dans **S4 V6.3 palier 03 PME** (texte « IA ciblée sur les répétitions ») ET dans le **bloc ✗ S9 V6.3 reformulé** (ligne 3 : *« Pas d'IA sans utilité réelle. »*).
+- [ ] **Vérification CG1 6 audiences V6.3** : chaque section structurante (S1 Blueprint, S4 Paliers, S5 Cockpit, S6 Méthode, S7 Ce qui change) a passé la lecture **6 audiences** (auto-entrepreneur / artisan / cabinet / commerce local / PME / société de services) sans effet « trop gros / trop petit / pas pour mon activité ».
+- [ ] **Vérification CG2 3 questions UX** : chaque section structurante répond en moins de 5 secondes aux questions *Qu'est-ce que j'ai compris ? Pourquoi c'est utile pour moi ? Quel problème ça règle ?*
+- [ ] **Vérification universalité Blueprint S1 V6.3** : le Blueprint reste générique — aucune variante par audience, aucune mention sectorielle, aucun outil nommé dans les stations principales.
 - [ ] Perf : Lighthouse mobile vert · 0 boucle anim continue · reduced-motion statique (tous SVG à `pathLength: 1`).
-- [ ] A11y : WCAG 2.2 AA · clavier · lecteurs d'écran testés · accordion S6 ARIA valide · selector S7 ARIA valide.
+- [ ] A11y : WCAG 2.2 AA · clavier · lecteurs d'écran testés · accordion S4 V6.3 ARIA valide · selector S5 V6.3 ARIA valide.
 - [ ] Responsive : 320 px → 4K · iPhone 13 mini OK.
 - [ ] `pnpm build` clean · 0 erreur TS · 0 warning lint.
 - [ ] Screenshots de chaque section validés par l'utilisateur avant merge.
 
 ---
 
-**Mantra final** : *Le site est la première brique. Le système est le produit.*
+**Mantra final V6.3** : *Le site est la première brique. Le système est le produit.* *(inchangé V6.2)*
