@@ -155,3 +155,79 @@ Les éléments suivants sont une signature de marque ASSUMÉE et INTENTIONNELLE,
 - SpotlightCard (spotlight + tilt + bordure conique) et cartes premium
 
 Registre = "brand" (site vitrine premium), pas "product". Un outil anti-slop doit distinguer le slop NON-INTENTIONNEL (doublons de particules, sections lourdes redondantes, incohérences de tokens) — ça, on corrige — de cette signature voulue — ça, on garde.
+## Agents Claude Code (`.claude/agents/`)
+
+Sept agents principaux + trois en bonus, calibrés sur l'archi Solutions 2IA.
+
+### Read-only (audit, perf, a11y, tokens) — Haiku
+| Agent | Quand l'utiliser |
+|---|---|
+| `site-auditor` | Début de session ou avant gros refactor. Scan archi, presets, drift. |
+| `tokens-guardian` | Avant chaque PR. Détecte couleurs/spacings hard-codés hors `@theme`. |
+| `performance-auditor` | Avant chaque PR ou après changement lourd. Lighthouse + bundle + grep anti-patterns. |
+| `a11y-reviewer` | Avant chaque PR. Vérifie reduced-motion, ARIA, alt, hiérarchie h1-h3. |
+
+### Création / refactor — Sonnet
+| Agent | Quand l'utiliser |
+|---|---|
+| `section-designer` | Créer ou refondre une section. Propose 2-3 variantes avant de coder. |
+| `motion-specialist` | Toute interaction, scroll storytelling, mouse parallax, GSAP timeline. |
+| `r3f-3d-specialist` | Nouvelle scène Three.js / R3F. Respecte le preset du domaine. |
+| `component-splitter` | Refactor d'un fichier > 250 LOC en sous-modules sans régression. |
+| `copy-writer-fr` | Hero, CTAs, descriptions, SEO metadata en français premium. |
+
+### Assets — Haiku + MCP
+| Agent | Quand l'utiliser |
+|---|---|
+| `visual-asset-generator` | Hero vidéos, backgrounds, portraits via Higgsfield. Toujours estim. credits + confirmation. |
+
+## Slash commands (`.claude/commands/`)
+- `/refonte-page <route>` — pipeline complet (audit → propositions → impl → assets → QA)
+- `/audit-pr` — 4 auditeurs en parallèle sur les fichiers modifiés
+- `/split-composant <path>` — découpe un composant lourd
+
+## MCPs configurés (`.mcp.json`)
+| MCP | Usage |
+|---|---|
+| `context7` | Doc à jour Next 15 / React 19 / Tailwind v4 / motion v12. **Ajouter `use context7`** sur toute lib externe. |
+| `higgsfield` | Génération image/vidéo on-brand. |
+| `magic` (21st.dev) | `/ui` pour générer 3 variantes d'un composant. |
+| `magicui` | 150+ composants animés MIT compatibles motion. |
+| `shadcn` | Composants radix-based. |
+| `chrome-devtools` + `playwright` | QA visuel + Lighthouse. |
+| `firecrawl` | Scrape sites d'inspiration pour `section-designer`. |
+
+## Workflows recommandés
+
+### Refonte d'une page complète
+```
+/refonte-page /agents-ia
+```
+
+### Création d'une nouvelle section
+```
+Use section-designer to propose 3 lighter variants of a "comparaison avant/après" section for /automatisation, leveraging SpotlightCard and our tokens. Ne code pas.
+```
+
+### Animation à fixer
+```
+Use motion-specialist to refactor the animate={{ width }} found in components/sections/X.tsx into a scaleX-based equivalent.
+```
+
+### Avant PR
+```
+/audit-pr
+```
+
+## Modèles et coûts
+- **Haiku** sur les agents read-only → audits rapides et peu chers
+- **Sonnet** sur les agents de création
+- **Opus** uniquement quand on lance `/model opusplan` pour architecturer une refonte multi-pages
+
+## Variables d'environnement à exporter (avant `claude`)
+```bash
+export CONTEXT7_API_KEY="..."
+export HIGGSFIELD_API_KEY="..."
+export TWENTY_FIRST_API_KEY="..."
+export FIRECRAWL_API_KEY="..."   # facultatif
+```

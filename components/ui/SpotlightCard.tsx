@@ -36,6 +36,7 @@ export function SpotlightCard({
   const borderBg = useMotionTemplate`radial-gradient(220px circle at ${mouseX}% ${mouseY}%, rgba(${glow},0.55), transparent 60%)`;
 
   function onMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (e.pointerType === "touch") return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
