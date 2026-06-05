@@ -1,7 +1,7 @@
-# /sites-web — Brief V6.3 (patch ciblé V6.2)
+# /sites-web — Brief V6.4 (patch éditorial V6.3)
 
 > À déposer dans `docs/pages/sites-web.md`. Réf : `PLAYBOOK.md` + `docs/pages/rag.md` + `docs/pages/automatisation.md`.
-> Page MAJEURE — carrefour d'acquisition. Point d'entrée vers `/automatisation` et `/rag`.
+> Page MAJEURE — carrefour d'acquisition. Point d'entrée vers `/automatisation`, `/rag` et `/agents-ia`.
 > Chantier : `section-designer` + `motion-specialist` + `copy-writer-fr` + `/audit-pr`.
 >
 > **V6.1 (mise à jour)** : multi-cible explicite (CG1), test des 3 questions UX (CG2), flux de valeur en S5 (CG3), workflow 4 moments en S7 (CG4), fusion S11+S12, accordion mobile S6, motion Option B clarifiée, copy révisé.
@@ -9,6 +9,8 @@
 > **V6.2 (mise à jour)** : renommage S5 « Comment une opportunité devient un client » (au lieu de « Flux de valeur ») pour lisibilité multi-cible · ajout S7bis « Exemple concret » scénario AVANT/APRÈS pédagogique entre S7 et S8 · CTA final « Croissance » → « Résultat » (factualité au lieu de promesse marketing).
 >
 > **V6.3 (patch ciblé)** : réordre — le Blueprint 9 stations passe **juste après le hero** (V6.2 S4 → V6.3 S1) · **suppression de S5 V6.2** (5 étapes opportunité → client) absorbée par le Blueprint, renumérotation S6→S4, S7→S5, S7bis→S5bis, S8→S6, S8bis→S6bis, S9→S7, S10→S8, S11→S9, S12→S10 · **reformulation du bloc ✗ S9 V6.3 (ex-S11 V6.2)** en 3 lignes ton cabinet (suppression des mentions de prix et multiplicateurs) · **ajustement H1** : `« C'est le point de départ de vos opportunités. »` → `« C'est le moteur de vos prochains clients. »` · **CG1 étendu à 6 audiences explicites** (auto-entrepreneurs, artisans, cabinets conseil/libéraux, commerces locaux, PME, sociétés de services — Solutions2IA ne cible pas les particuliers). Sprint S5 V6.2 annulé. Roadmap S4.5 → S12 V6.2 maintenue (renumérotée en interne).
+>
+> **V6.4 (patch éditorial)** : **5 ajustements stratégiques** — (1) Nouvelle couche amont **VISIBILITÉ** (anciennement « Acquisition », renommée terme dirigeant) formalisée comme première couche du système · (2) **Nouvelle section S1 V6.4 « Sources d'opportunités »** insérée entre Hero et Blueprint, fan-in 9 canaux (Google Search, GMB+avis, GEO IA, Réseaux sociaux, Publicité, Recommandation, Partenaires, Salons/événements, QR codes/supports physiques) — glissement +1 sur toutes les sections suivantes (S1→S2, S2→S3, …, S10→S11) · (3) **Architecture 4 couches** `VISIBILITÉ → CIRCULATION → INTELLIGENCE → PILOTAGE` formalisée en section 2bis comme grille de lecture interne · (4) **Ponts explicites vers la gamme** : bridge `/agents-ia` 🆕 ajouté au Blueprint S2 sous station 07 (en complément de `/rag` et `/automatisation` déjà présents) + phrase éditoriale *« Cette étape peut être renforcée par nos solutions IA »* déclinée dans S2, S5, S6, S7 (vente naturelle sans effet catalogue) · (5) **Règle V6.4 « 1 section = 1 question »** : chaque section structurante répond à une seule question dirigeant, table des 11 questions S1→S11 ajoutée en section 1ter. **Enrichissements connexes** : 7ᵉ secteur « Commerce local » au Cockpit S6 · grille S9 Fondations élargie de 8 à 11 piliers (SEO étendu, GEO, GMB, Pilotage avec colonne « Couche 4-couches ») · bloc ✗ S10 Engagements enrichi d'une 4ᵉ ligne SEO/GEO non garantis · S5 Paliers correctif mobile (4 en-têtes 01–04 toujours visibles, plus d'accordéon PME-ouvert par défaut) · S7 Méthode étape 06 enrichie (suivi mensuel + revue trimestrielle pour matérialiser la couche PILOTAGE) · interdictions absolues étendues (anti-jargon SEO/GEO). Nouveau sprint `S4.6.5 V6.4 — Visibilité & Ponts gamme` intercalé. Roadmap S4.5 → S12 conservée.
 
 ---
 
@@ -82,6 +84,32 @@ L'effet à éviter : *« c'est intéressant mais c'est trop gros pour moi »* �
 
 ---
 
+## 1ter. Règle V6.4 — « 1 section = 1 question »
+
+Chaque section structurante de la page répond à **une seule** question d'un dirigeant TPE/PME. Si une section en couvre plusieurs, elle doit être **simplifiée** (réduire les éléments, raccourcir le verdict métier, déplacer la matière surnuméraire dans la section qui répond à cette question).
+
+| Section V6.4 | Question unique répondue |
+|---|---|
+| **S1** Sources d'opportunités | *D'où viennent les opportunités ?* |
+| **S2** Blueprint 9 stations | *Comment circulent-elles ?* |
+| **S3** Pain « Sans / Avec » | *Que perd-on sans système ?* |
+| **S4** vs Agence web classique | *Pourquoi Solutions 2IA ?* |
+| **S5** Architecture par taille | *Quelle architecture me correspond ?* |
+| **S6** Cockpit sectoriel | *Comment cela fonctionne dans mon métier ?* |
+| **S7** Comment nous construisons | *Comment construisez-vous ?* |
+| **S8** Ce qui change | *Qu'est-ce qui change ?* |
+| **S9** Fondations techniques | *Sur quoi repose le système ?* |
+| **S10** Nos engagements | *Quels engagements prenez-vous ?* |
+| **S11** CTA final | *Quelle est la prochaine étape ?* |
+
+Sub-sections (S6bis Scénario, S7bis Respiration) n'entrent pas dans la règle — ce sont des appuis pédagogiques de la section principale qui les héberge.
+
+**Critère de conformité V6.4** : à la relecture, si une question apparaît dans plus d'une section, on **simplifie la section qui ne porte pas la question principale** — la réponse reste dans son foyer naturel.
+
+Cette règle s'ajoute aux CG1 (multi-cible 6 audiences) et CG2 (3 questions UX par section).
+
+---
+
 ## 2. Positionnement
 
 Une agence web classique vend :
@@ -122,6 +150,55 @@ Sinon, elle n'est pas ajoutée. Pas d'IA gadget. Pas d'IA pour l'IA.
 
 **P4 — Outils remplaçables, pas de lock-in.**
 Vous restez propriétaire. Vous pouvez à tout moment remplacer un outil par un autre. Le système ne vous tient pas en otage.
+
+---
+
+## 2bis. Architecture 4 couches V6.4 — `VISIBILITÉ → CIRCULATION → INTELLIGENCE → PILOTAGE`
+
+Grille de lecture interne. Verticale qui se lit comme un parcours métier, pas comme un mapping technique. Vocabulaire dirigeant : la couche amont s'appelle **« Visibilité »** (et non « Acquisition », terme marketing).
+
+```
+┌─ VISIBILITÉ ──────────────────────────┐
+│  Être trouvable. Être reconnu.        │
+│  Site · SEO · GEO · GMB               │
+│  Réseaux · Publicité · Recommandation │
+│  Partenaires · Événements · QR codes  │
+└──────────────────┬────────────────────┘
+                   ↓
+┌─ CIRCULATION ─────────────────────────┐
+│  Recevoir une opportunité.            │
+│  Formulaire · CRM ·                   │
+│  Automatisations · Notifications      │
+└──────────────────┬────────────────────┘
+                   ↓
+┌─ INTELLIGENCE ────────────────────────┐
+│  Traiter intelligemment.              │
+│  RAG · IA documentaire · Agents IA    │
+└──────────────────┬────────────────────┘
+                   ↓
+┌─ PILOTAGE ────────────────────────────┐
+│  Piloter et améliorer.                │
+│  Reporting · Dashboards               │
+│  Process métier · Amélioration continue│
+└───────────────────────────────────────┘
+```
+
+**Lecture dirigeant immédiate** :
+> *« être visible → recevoir une opportunité → traiter intelligemment → piloter »*
+
+### Couverture des 4 couches par section V6.4
+
+| Section V6.4 page | Couche(s) couverte(s) |
+|---|---|
+| S1 Sources d'opportunités | **VISIBILITÉ** (totalité) |
+| S2 Blueprint 9 stations | **CIRCULATION** (cœur) + **INTELLIGENCE** (station 04 Qualification via bridge `/rag`, station 07 via bridge `/agents-ia`) |
+| S5 Paliers | **CIRCULATION** + introduction graduelle de **INTELLIGENCE** au palier 03/04 |
+| S6 Cockpit sectoriel | **VISIBILITÉ** (point d'entrée du flux par secteur) + **CIRCULATION** |
+| S7 Méthode | méta — couvre les 4 couches (audit · architecture · construction · suivi) |
+| S9 Fondations techniques | **VISIBILITÉ** (SEO/GEO/GMB) + **PILOTAGE** (pilier dédié) |
+| Autres sections | servent toutes les couches sans dépendance spécifique |
+
+**Règle d'écriture V6.4** : chaque section doit pouvoir être située dans une ou plusieurs des 4 couches. Une section qui ne rattache à aucune couche est suspecte et doit être ré-examinée.
 
 ---
 
@@ -194,6 +271,18 @@ La page ne doit pas ressembler à :
 - « bas de gamme », « médiocre », « obsolète » (pas de dénigrement direct)
 - « solution clé en main universelle » (contredit P2 architecture progressive)
 
+**Anti-jargon SEO / GEO V6.4 (étendu)** — termes interdits dans le corps de page (acceptables uniquement dans cette liste d'interdictions) :
+
+- ❌ « backlinks », « link building », « referring domains », « domain authority »
+- ❌ « SERP », « keyword stuffing », « black hat », « grey hat »
+- ❌ « position garantie », « première position garantie », « top 3 Google »
+- ❌ « apparition garantie dans ChatGPT / Claude / Perplexity / Gemini »
+- ❌ « +50 % de trafic », « +N% de visites organiques », « ×N de visibilité »
+- ❌ « référencement express », « SEO en 30 jours », « visibilité immédiate »
+- ❌ « nous vous positionnons », « nous vous mettons dans ChatGPT »
+
+**Verbes pivots V6.4 autorisés** : *« apparaître »*, *« être trouvable »*, *« vous voyez »*, *« le contenu travaille »*, *« la fiche établissement remonte »*. Tonalité cabinet — jamais d'expertise SEO survendeuse.
+
 ---
 
 ## 6. Composants autorisés
@@ -242,30 +331,31 @@ Si une réponse aux questions **6/7/8** ne vient pas en moins de 5 secondes de r
 
 ---
 
-# ARCHITECTURE FINALE V6.3 — 10 SECTIONS PRINCIPALES + S5bis + S6bis
+# ARCHITECTURE FINALE V6.4 — 11 SECTIONS PRINCIPALES + S6bis + S7bis
 
-> **Réordre V6.3** : le Blueprint 9 stations (V6.2 S4 → V6.3 S1) passe juste après le hero — *montrer d'abord, contextualiser ensuite, convaincre à la fin*.
-> **Suppression V6.3** : S5 V6.2 (5 étapes opportunité → client) absorbée par le Blueprint (redondance confirmée).
-> **Renumérotation V6.3** : S6 V6.2 → S4 V6.3 · S7 → S5 · S7bis → S5bis · S8 → S6 · S8bis → S6bis · S9 → S7 · S10 → S8 · S11 → S9 · S12 → S10.
+> **Insertion V6.4** : nouvelle section S1 « Sources d'opportunités » (fan-in 9 canaux) entre le hero et le Blueprint — couvre la couche **VISIBILITÉ**.
+> **Glissement +1 V6.4** : S1 V6.3 → S2 V6.4 (Blueprint) · S2 → S3 (Pain) · S3 → S4 (vs Agence) · S4 → S5 (Paliers) · S5 → S6 (Cockpit) · S5bis → S6bis (Scénario) · S6 → S7 (Méthode) · S6bis → S7bis (Respiration) · S7 → S8 (Ce qui change) · S8 → S9 (Fondations) · S9 → S10 (Engagements) · S10 → S11 (CTA).
+> **Enrichissements V6.4** : S2 Blueprint 3 bridges (`/rag`, `/automatisation`, `/agents-ia` 🆕) + phrase éditoriale · S5 Paliers correctif mobile + phrase IA palier 03/04 · S6 Cockpit 7ᵉ secteur Commerce local + phrase IA · S7 Méthode étape 06 enrichie + phrase IA étape 05 · S9 Fondations grille 11 piliers (SEO étendu, GEO, GMB, Pilotage) · S10 Engagements bloc ✗ 4ᵉ ligne.
 
-| V6.3 | V6.2 | Section | Statut | Type |
-|---|---|---|---|---|
-| **S0** | S1 | Hero (H1 ajusté V6.3) | ✅ Live | PageHero |
-| **S1** | S4 | Blueprint « De votre visiteur à votre prochain client » (9 stations) — **déplacé V6.3** | ✅ Live | Flux vertical 9 stations |
-| **S2** | S2 | Pain « Sans / Avec site connecté » | ✅ Live | Comparaison 2-col |
-| **S3** | S3 | Pourquoi nous ne sommes pas une agence web classique | ✅ Live | Comparaison 2-col |
-| ~~—~~ | ~~S5~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ **Supprimée V6.3** | (absorbée par S1 Blueprint) |
-| **S4** | S6 | Architecture par taille (4 paliers, accordion mobile) | 🔨 sprint ex-S6 V6.2 | Cascade descendante |
-| **S5** | S7 | Cockpit sectoriel (workflow 4 moments) | 🔨 sprint ex-S7 V6.2 | Selector + mini-flux |
-| **S5bis** | S7bis | Exemple concret (scénario AVANT/APRÈS) | 🔨 sprint ex-S7 V6.2 | Scénario flux comparé |
-| **S6** | S8 | Comment nous construisons | 🔨 sprint ex-S8 V6.2 | Timeline 6 étapes |
-| **S6bis** | S8bis | Respiration éditoriale | 🔨 sprint ex-S8 V6.2 | Citation pleine largeur |
-| **S7** | S9 | Ce qui change (6 paires inline barré) | 🔨 sprint ex-S9 V6.2 | Liste inline |
-| **S8** | S10 | Fondations techniques | 🔨 sprint ex-S10 V6.2 | Grille 4×2 |
-| **S9** | S11 | Nos engagements (✓ + ✗ **reformulé V6.3 ton cabinet**) | 🔨 sprint ex-S11 V6.2 | Bipartite |
-| **S10** | S12 | CTA final | 🔨 sprint ex-S11 V6.2 | CTABand révisé |
+| V6.4 | V6.3 | V6.2 | Section | Statut | Type | Question unique répondue | Couche 4-couches |
+|---|---|---|---|---|---|---|---|
+| **S0** | S0 | S1 | Hero (H1 cible V6.4 « moteur de vos prochains clients ») | ✅ Live | PageHero | — | — |
+| **S1** 🆕 | — | — | **Sources d'opportunités (9 canaux fan-in)** | 🔨 sprint S4.6.5 V6.4 | Fan-in 9 → 1 | *D'où viennent les opportunités ?* | **VISIBILITÉ** |
+| **S2** | S1 | S4 | Blueprint « De votre visiteur à votre prochain client » (9 stations) + 3 bridges gamme + phrase éditoriale V6.4 | ✅ Live (composant) — 🔨 bridges/phrase V6.4 | Flux vertical 9 stations | *Comment circulent-elles ?* | **CIRCULATION** + **INTELLIGENCE** (bridges) |
+| **S3** | S2 | S2 | Pain « Sans / Avec site connecté » | ✅ Live | Comparaison 2-col | *Que perd-on sans système ?* | CIRCULATION |
+| **S4** | S3 | S3 | Pourquoi nous ne sommes pas une agence web classique | ✅ Live | Comparaison 2-col | *Pourquoi Solutions 2IA ?* | — (méta) |
+| ~~—~~ | ~~—~~ | ~~S5~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ Supprimée V6.3 | (absorbée par Blueprint S2) | — | — |
+| **S5** | S4 | S6 | Architecture par taille (4 paliers, **mobile 4 en-têtes visibles V6.4**) + phrase IA palier 03/04 | 🔨 sprint ex-S6 V6.2 enrichi V6.4 | Cascade descendante | *Quelle architecture me correspond ?* | CIRCULATION + INTELLIGENCE (paliers 03/04) |
+| **S6** | S5 | S7 | Cockpit sectoriel (workflow 4 moments × **7 secteurs V6.4** dont Commerce local) + phrase IA | 🔨 sprint ex-S7 V6.2 enrichi V6.4 | Selector + mini-flux | *Comment cela fonctionne dans mon métier ?* | VISIBILITÉ + CIRCULATION |
+| **S6bis** | S5bis | S7bis | Exemple concret (scénario AVANT/APRÈS) | 🔨 sprint ex-S7 V6.2 | Scénario flux comparé | — (appui S6) | — |
+| **S7** | S6 | S8 | Comment nous construisons + **étape 06 enrichie V6.4** (suivi mensuel + revue trimestrielle) + phrase IA étape 05 | 🔨 sprint ex-S8 V6.2 enrichi V6.4 | Timeline 6 étapes | *Comment construisez-vous ?* | méta (4 couches) |
+| **S7bis** | S6bis | S8bis | Respiration éditoriale | 🔨 sprint ex-S8 V6.2 | Citation pleine largeur | — (appui S7) | — |
+| **S8** | S7 | S9 | Ce qui change (6 paires inline barré) | 🔨 sprint ex-S9 V6.2 | Liste inline | *Qu'est-ce qui change ?* | CIRCULATION |
+| **S9** | S8 | S10 | Fondations techniques (**grille 11 piliers V6.4** : SEO étendu, GEO, GMB, Pilotage) | 🔨 sprint ex-S10 V6.2 enrichi V6.4 | Grille 4×3 | *Sur quoi repose le système ?* | VISIBILITÉ + PILOTAGE |
+| **S10** | S9 | S11 | Nos engagements (✓ + ✗ **bloc ✗ enrichi V6.4 — 4 lignes**) | 🔨 sprint ex-S11 V6.2 enrichi V6.4 | Bipartite | *Quels engagements prenez-vous ?* | — (méta) |
+| **S11** | S10 | S12 | CTA final | 🔨 sprint ex-S11 V6.2 | CTABand révisé | *Quelle est la prochaine étape ?* | — |
 
-## S0 V6.3 — Hero ✅ LIVE (H1 ajusté V6.3)
+## S0 V6.4 — Hero ✅ LIVE (H1 V6.3 toujours à appliquer dans le code — différé au sprint dev S4.6.5 V6.4 étape 2)
 
 **Type composant :** PageHero refondu (positionnement « système »).
 
@@ -286,7 +376,9 @@ Pill micro-label sous le hero (déjà live) : `Site web · Automatisation · IA 
 
 ---
 
-## Section 2 — Pain « Sans / Avec site connecté » ✅ LIVE
+## S3 V6.4 — Pain « Sans / Avec site connecté » ✅ LIVE (ex-S2 V6.3, renuméroté V6.4)
+
+**Question unique répondue (règle V6.4)** : *Que perd-on sans système ?*
 
 **Type composant :** Comparaison de fonctionnement 2-col (douleurs à gauche, bascule à droite).
 
@@ -302,7 +394,9 @@ Cette section porte déjà le contraste **sans/avec**. Ne pas dupliquer ailleurs
 
 ---
 
-## Section 3 — Pourquoi nous ne sommes pas une agence web classique ✅ LIVE
+## S4 V6.4 — Pourquoi nous ne sommes pas une agence web classique ✅ LIVE (ex-S3 V6.3, renuméroté V6.4)
+
+**Question unique répondue (règle V6.4)** : *Pourquoi Solutions 2IA ?*
 
 **Type composant :** Comparaison de fonctionnement 2-col (7 paires d'opposition).
 
@@ -317,7 +411,122 @@ Ton **factuel sans dénigrement**.
 
 ---
 
-## S1 V6.3 — Blueprint « De votre visiteur à votre prochain client » ✅ LIVE (déplacé V6.3)
+## S1 V6.4 — Sources d'opportunités 🆕 NOUVELLE V6.4 — 🔨 À CONSTRUIRE (sprint S4.6.5 V6.4)
+
+**Type composant :** Schéma système — topologie fan-in **9 canaux → 1 visiteur** (pas dashboard, pas grille marketing).
+
+**Question unique répondue (règle V6.4)** : *D'où viennent les opportunités ?*
+
+**Couche 4-couches couverte** : **VISIBILITÉ** (totalité)
+
+### Pourquoi cette section
+
+Le Blueprint S2 démarre à `01 Visiteur`. Mais un visiteur ne vient pas par hasard — il provient d'un **canal de visibilité** précis. Sans cette représentation amont, le système connecté commence au milieu de l'histoire et le positionnement *« pas une agence web »* perd une partie de sa preuve visuelle. La S1 V6.4 montre que le site **centralise toutes les sources** en un seul flux.
+
+### Titre H2 et phrase d'introduction
+
+- **H2** : *« D'où viennent vos prochains clients ? »*
+- **Phrase d'introduction** : *« Vos prochains clients ne viennent pas par hasard. Ils arrivent par 9 canaux possibles. Solutions 2IA branche ceux qui comptent pour vous. »*
+
+### 9 canaux fan-in (avec sous-labels ToolBadge discrets)
+
+| # | Canal | Sous-label discret (ToolBadge) |
+|---|---|---|
+| 1 | **Google Search** | référencement organique · contenu structuré |
+| 2 | **Google Business Profile** | recherche locale · **avis Google** · fiche établissement |
+| 3 | **GEO — Visibilité IA** | ChatGPT · Claude · Perplexity · Gemini |
+| 4 | **Réseaux sociaux** | LinkedIn · Instagram · TikTok · YouTube (selon métier) |
+| 5 | **Publicité** | Google Ads · Meta Ads · LinkedIn Ads · landing pages |
+| 6 | **Recommandation / bouche-à-oreille** | referrals clients · ambassadeurs |
+| 7 | **Partenaires** 🆕 V6.4 | apporteurs d'affaires · réseaux pro · syndicats métier |
+| 8 | **Salons et événements** 🆕 V6.4 | conférences · foires · webinars |
+| 9 | **QR codes / supports physiques** 🆕 V6.4 | flyers · cartes · vitrines · packaging |
+
+### Topologie visuelle (schéma système)
+
+```
+   Google Search ────────┐
+   GMB (+ avis) ─────────┤
+   GEO IA ───────────────┤
+   Réseaux sociaux ──────┤
+   Publicité ────────────┼──→  VISITEUR  ──→  (S2 Blueprint 9 stations)
+   Recommandation ───────┤        │
+   Partenaires ──────────┤        │
+   Salons / événements ──┤        │
+   QR codes / physique ──┘        │
+                                  │
+   Tous les chemins centralisés ──┘
+```
+
+Le **VISITEUR** au centre reprend exactement la pill `01 Visiteur` du Blueprint S2 — **suture visuelle** intentionnelle entre S1 et S2.
+
+### Sous-bloc adaptatif sous le schéma (rappel P2)
+
+> **Tous les canaux n'ont pas le même poids pour vous.**
+> Un artisan vit du Google Business Profile et du bouche-à-oreille.
+> Un cabinet de conseil vit du SEO, de LinkedIn et des partenaires.
+> Un commerce local vit de la recherche locale, des avis et des QR codes en boutique.
+> Une PME services vit d'un mix orchestré.
+> *Solutions 2IA branche les canaux qui comptent pour vous — et désactive les autres.*
+
+### Phrase fermante et bridge vers S2
+
+- **Phrase fermante** : *« Neuf canaux. Un seul système qui les centralise et les transforme en clients. »*
+- **Bridge italique sous nœud VISITEUR** : *« Une fois sur votre site, voici comment l'opportunité circule ↓ »*
+
+### Présentation visuelle
+
+- Conteneur blueprint unique (grammaire S2 héritée).
+- Fan-in convergent **9 → 1**. Labels small-caps tracking-widest pour chaque canal.
+- Sous chaque canal : sous-label outils en `ToolBadge`.
+- Connecteurs SVG fins cyan→accent.
+- Nœud central `VISITEUR` en pill cyan saturé (reprend exactement le style de la station `01` du Blueprint S2).
+- **1 draw one-shot `whileInView once`** sur les 9 connecteurs convergents (`pathLength` 0→1). Aucune autre animation.
+
+### Distinction visuelle (CG B1)
+
+- **vs fan-in `/rag`** : pas de glow central pulsant, pas de ligne traçante remontant à une source citée — uniquement convergence sobre vers le `VISITEUR`.
+- **vs `AutomationPipeline` `/automatisation`** : pas de token animé qui voyage, pas d'état changeant (pending → active → done).
+- Format unique sur la page V6.4 — aucune autre section n'utilise une topologie fan-in convergente.
+
+### Mobile (320 → 768 px)
+
+Stack vertical des 9 canaux groupés en **3 paquets de 3** pour lisibilité :
+- Paquet « Numérique » : Google Search · GMB · GEO IA
+- Paquet « Diffusion » : Réseaux sociaux · Publicité · Recommandation
+- Paquet « Terrain » : Partenaires · Salons/événements · QR codes/supports physiques
+
+Une flèche unique sous le 3ᵉ paquet pointe vers le nœud `VISITEUR` final. Aucun fan-in graphique sur mobile.
+
+### Reduced-motion
+
+Tous les SVG initialisés à `pathLength: 1, opacity: 1` au montage. Aucun timer.
+
+### Vérification multi-cible (CG1 — 6 audiences)
+
+- **Auto-entrepreneur** : *« Mes clients viennent du bouche-à-oreille et de LinkedIn. Ces deux canaux sont là. »*
+- **Artisan** : *« GMB + recommandation + flyer porte-à-porte. Tout y est. »*
+- **Cabinet conseil** : *« SEO, LinkedIn, partenaires, salons. C'est exactement notre mix. »*
+- **Commerce local** : *« Google local, avis, QR code sur la vitrine. Tout y est. »*
+- **PME services** : *« Mix complet. Et le site centralise. »*
+- **Société de services** : *« Partenaires, salons, contenu LinkedIn, ads ciblées. Reconnaissable. »*
+
+### Test 3 questions UX (CG2)
+
+1. *Qu'est-ce que je viens de comprendre ?* → *« Mes prochains clients viennent de 9 canaux possibles, qui convergent vers mon site. »*
+2. *Pourquoi c'est utile pour moi ?* → *« Solutions 2IA branche les canaux qui comptent pour mon activité, en un système. »*
+3. *Quel problème cela règle ?* → *« Aujourd'hui, chaque canal vit séparément. Le site les unifie en un seul flux. »*
+
+### Garde-fous copy
+
+- ❌ **Aucune promesse** de position Google ou d'apparition garantie dans ChatGPT/Claude/Perplexity (cf. anti-jargon SEO Section 5).
+- ❌ **Aucune metric inventée** (`+N%` de trafic, `×N` de visibilité).
+- ❌ **Aucun logo** Google / OpenAI / Anthropic / Perplexity en bandeau (pas d'effet « prestataire affilié »).
+- ✅ Verbes pivots : *« apparaître »*, *« être trouvable »*, *« le contenu travaille »*, *« la fiche établissement remonte »*.
+
+---
+
+## S2 V6.4 — Blueprint « De votre visiteur à votre prochain client » ✅ LIVE (composant, ex-S1 V6.3, renuméroté V6.4)
 
 **Type composant :** Diagramme de flux vertical 9 stations (style blueprint / control room).
 
@@ -333,22 +542,33 @@ Ton **factuel sans dénigrement**.
 - 8 connecteurs SVG fins · **1 anim cœur** draw one-shot
 - Phrase fermante : *« Le site déclenche le flux. Chaque étape transmet le contexte. Personne n'a à y penser — et personne ne tombe entre les mailles. »*
 
-### Bridges narratifs V6.3 (relogés depuis S5 V6.2 supprimée)
+### Bridges narratifs V6.4 (3 ponts gamme)
 
-Les bridges narratifs vers `/rag` et `/automatisation` qui étaient ancrés dans S5 V6.2 (supprimée en V6.3) sont **relogés ici dans le Blueprint** :
+Le Blueprint S2 est le **carrefour gamme** : trois sous-labels italiques discrets sont logés sous les stations correspondantes, pour orienter le visiteur intéressé par une dimension précise (sans rompre la lecture du flux).
 
-- Sous la station **Qualification**, sous-label italique discret : *« Voir comment l'IA retrouve vos connaissances → `/rag` »*
-- Sous la station **Notification** (ou regroupé avec **Suivi**), sous-label italique discret : *« Voir les automatisations métier → `/automatisation` »*
+- Sous la station **04 Qualification**, sous-label italique discret : *« Quand l'IA doit consulter votre mémoire métier → `/rag` »*
+- Sous la station **06 Notification**, sous-label italique discret : *« Quand l'action se déclenche dans vos outils → `/automatisation` »*
+- Sous la station **07 Collaborateur** 🆕 V6.4, sous-label italique discret : *« Quand une tâche peut s'exécuter sans humain → `/agents-ia` »*
 
-Ces bridges respectent la règle existante du Blueprint : sous-label discret, pas de modification visuelle majeure du composant, pas d'animation supplémentaire. Ils servent la cohérence de gamme (cf. Section 3 du brief).
+Ces 3 bridges respectent la règle existante du Blueprint : sous-label discret, pas de modification visuelle majeure du composant, pas d'animation supplémentaire. Ils servent la cohérence de gamme (cf. Section 3 du brief). **Évolution V6.3 → V6.4** : le bridge `/agents-ia` est ajouté pour couvrir la couche **INTELLIGENCE** au-delà de RAG (cf. architecture 4 couches en section 2bis).
 
-### Universalité Blueprint V6.3 (règle inviolable)
+### Phrase éditoriale V6.4 (vente naturelle sans catalogue)
 
-**Le Blueprint 9 stations doit rester générique et universel.** Aucune variante par audience, aucune mention sectorielle, aucun outil nommé dans les stations principales. Les 9 stations servent **les 6 audiences simultanément** (auto-entrepreneur, artisan, cabinet, commerce local, PME, société de services). L'adaptation par maturité (paliers) est traitée en S4 V6.3 ; l'adaptation par métier (cockpits) est traitée en S5 V6.3.
+À insérer **sous le Blueprint**, juste avant la phrase fermante existante, en italique discret :
 
-### Vérification multi-cible étendue V6.3 (CG1 — 6 lectures)
+> *« Chacune des 9 étapes peut être renforcée par nos solutions IA — automatisation, mémoire métier ou agent autonome — selon ce que votre activité réclame. »*
 
-À écrire lors de la mise à jour du brief de cette section pour atteindre conformité V6.3 (extension de la liste indé/PME/ETI déjà présente à 6 lignes — auto-entrepreneur / artisan / cabinet / commerce local / PME / société de services).
+Cette phrase remplace toute énumération de produits. Le visiteur sent que `/automatisation`, `/rag`, `/agents-ia` sont **des options du système**, pas des prestations à la carte d'un catalogue. Le même registre éditorial est décliné — sans répétition mot-pour-mot — dans S5 (sous palier 03 PME et palier 04 ETI), S6 (sous le mini-flux 4 moments du cockpit affiché) et S7 (sous étape 05 Connexions).
+
+**Garde-fou** : la phrase n'apparaît jamais comme une publicité (*« découvrez nos solutions ! »*). Elle s'inscrit toujours **dans la logique métier** de la section concernée. Aucun lien direct vers `/automatisation`, `/rag`, `/agents-ia` depuis S5/S6/S7 — les liens vivent uniquement dans le Blueprint S2 (3 bridges ci-dessus) et dans le Cockpit S6 secteur-par-secteur (bridges `/automatisation/<secteur>`).
+
+### Universalité Blueprint V6.4 (règle inviolable)
+
+**Le Blueprint 9 stations doit rester générique et universel.** Aucune variante par audience, aucune mention sectorielle, aucun outil nommé dans les stations principales. Les 9 stations servent **les 6 audiences simultanément** (auto-entrepreneur, artisan, cabinet, commerce local, PME, société de services). L'adaptation par maturité (paliers) est traitée en S5 V6.4 ; l'adaptation par métier (cockpits) est traitée en S6 V6.4 ; l'adaptation par canal de visibilité amont est traitée en S1 V6.4.
+
+### Vérification multi-cible étendue V6.4 (CG1 — 6 lectures)
+
+À écrire lors de la mise à jour du brief de cette section pour atteindre conformité V6.4 (extension de la liste indé/PME/ETI déjà présente à 6 lignes — auto-entrepreneur / artisan / cabinet / commerce local / PME / société de services).
 
 ---
 
@@ -366,7 +586,11 @@ Ces bridges respectent la règle existante du Blueprint : sous-label discret, pa
 
 ---
 
-## S4 V6.3 — Une architecture adaptée à votre taille 🔨 À CONSTRUIRE (ex-S6 V6.2)
+## S5 V6.4 — Une architecture adaptée à votre taille 🔨 À CONSTRUIRE (ex-S4 V6.3 / ex-S6 V6.2, renuméroté V6.4 — correctif mobile + phrase IA)
+
+**Question unique répondue (règle V6.4)** : *Quelle architecture me correspond ?*
+
+**Couche 4-couches couverte** : **CIRCULATION** (cœur) + **INTELLIGENCE** progressive aux paliers 03/04 (cf. phrase éditoriale V6.4 ci-dessous)
 
 **Type composant :** Architecture progressive — 4 paliers visuels en **cascade descendante** avec **step numbers 01-04** (Indépendant → TPE → PME → ETI).
 
@@ -453,18 +677,29 @@ Verdict métier : *« Vos équipes, vos données et vos processus opèrent à pa
 
 **Présentation visuelle :**
 - **Desktop ≥ 1024 px** : grille 2×2 (01 + 02 en haut, 03 + 04 en bas), step numbers visibles, liserés progressifs cyan→accent.
-- **Mobile / tablette (< 1024 px)** : **accordion** — Palier 03 (PME) ouvert par défaut, Indé / TPE / ETI en teaser (label + sous-titre visibles, contenu replié, expand au tap). Pas de stack vertical complet sur mobile.
+- **Mobile / tablette (< 1024 px) — correctif V6.4** : **stack vertical avec les 4 en-têtes 01–04 visibles** (label de taille + sous-titre), contenu replié par défaut sur **tous** les paliers. L'utilisateur déplie son palier au tap. ❌ **Plus d'accordéon PME-ouvert par défaut** (qui éjectait l'auto-entrepreneur en lui faisant croire que le palier 03 est la norme).
 - Chaque palier : step number 01-04 + label de taille en small-caps tracking-widest + mini-flux cascade descendante + sous-titre + chips outils sobres + verdict métier en italique.
 - Liserés cyan→accent progressifs (token CSS par palier, pas animation) — 01 cyan saturé / 02 cyan-accent mix / 03 accent-light / 04 accent-light + glow.
-- Aucune anim continue. Sur desktop : stagger d'entrée séquentielle (opacity 0→1, max 80ms par palier, pas de translateY). Sur mobile : tous les paliers visibles immédiatement quand ouverts.
+- Aucune anim continue. Sur desktop : stagger d'entrée séquentielle (opacity 0→1, max 80ms par palier, pas de translateY). Sur mobile : tous les en-têtes visibles immédiatement, contenu déplié au tap.
+
+### Phrase éditoriale V6.4 (sous palier 03 PME et palier 04 ETI)
+
+À insérer en italique discret sous le verdict métier des paliers 03 et 04 :
+
+> *« À ce palier, l'IA documentaire (RAG) et les agents IA viennent renforcer les étapes les plus répétitives. »*
+
+Cette phrase matérialise la couche **INTELLIGENCE** sur les paliers où elle commence à apporter de la valeur, **sans lien direct** vers `/rag` ou `/agents-ia` (les liens vivent uniquement dans le Blueprint S2). Reste dans la logique métier du palier (P3 : l'IA est ajoutée uniquement quand elle change le quotidien).
 
 **Phrase fermante** :
 *« Nous démarrons toujours là où vous en êtes. Le reste s'ajoute quand le besoin apparaît. »*
 
 **Vérification multi-cible (CG1)** :
-- **Indé / auto-entrepreneur** comprend : *« Mon palier existe (01 Indépendant). Je peux démarrer sans CRM ni IA. »*
+- **Auto-entrepreneur** comprend : *« Mon palier existe (01 Indépendant). Je le vois directement sur mobile sans devoir chercher. Je peux démarrer sans CRM ni IA. »*
+- **Artisan** comprend : *« Mon palier (02 TPE) ajoute juste un CRM léger et de la relance auto. »*
+- **Cabinet conseil** comprend : *« Mon palier (03 PME) est l'architecture complète avec RAG sur mes documents. »*
+- **Commerce local** comprend : *« Mon palier (02 TPE) ou (03 PME) selon ma taille. Visible dès l'arrivée sur la section. »*
 - **PME** comprend : *« Mon palier (03 PME) est l'architecture complète : flux, outils, IA ciblée. »*
-- **ETI** comprend : *« Mon palier (04 ETI) ajoute RAG métier et agents — sans tout refondre. »*
+- **Société de services** comprend : *« Mon palier (03 PME ou 04 ETI) couvre mes multi-équipes. Mon palier (04 ETI) ajoute RAG métier et agents — sans tout refondre. »*
 
 **Test 3 questions UX (CG2)** :
 1. *Qu'est-ce que je viens de comprendre ?* → *« Il y a 4 niveaux de système, je suis quelque part dedans. »*
@@ -473,7 +708,11 @@ Verdict métier : *« Vos équipes, vos données et vos processus opèrent à pa
 
 ---
 
-## S5 V6.3 — Exemples par métier (Cockpit sectoriel) 🔨 À CONSTRUIRE (ex-S7 V6.2) — REMPLACE `WebGalaxyShowcase`
+## S6 V6.4 — Exemples par métier (Cockpit sectoriel) 🔨 À CONSTRUIRE (ex-S5 V6.3 / ex-S7 V6.2, renuméroté V6.4 — 7ᵉ secteur Commerce local + phrase IA) — REMPLACE `WebGalaxyShowcase`
+
+**Question unique répondue (règle V6.4)** : *Comment cela fonctionne dans mon métier ?*
+
+**Couche 4-couches couverte** : **VISIBILITÉ** (point d'entrée du flux par secteur) + **CIRCULATION**
 
 **Type composant :** Vue sectorielle — sélecteur en pills (6 secteurs) + 1 mini-flux visible à la fois, format **workflow d'entreprise** (4 moments structurés).
 
@@ -490,7 +729,7 @@ Chaque mini-flux sectoriel doit raconter **comment l'entreprise travaille** au t
 
 Une simple succession de blocs (« Visiteur → Site → Formulaire → CRM → Suite ») est **rejetée**. On doit comprendre comment l'entreprise travaille à travers ces 4 moments, pas suivre 5 stations neutres.
 
-### 6 secteurs canoniques (révisés selon CG4)
+### 7 secteurs canoniques V6.4 (révisés selon CG4 + ajout Commerce local V6.4)
 
 | Secteur | Entrée | Décision | Action | Résultat |
 |---|---|---|---|---|
@@ -500,12 +739,21 @@ Une simple succession de blocs (« Visiteur → Site → Formulaire → CRM → 
 | **Cabinet conseil** | Demande d'audit | Qualification du besoin | Affectation au consultant | Premier RDV confirmé |
 | **Médical** | Prise de RDV en ligne | Vérification du créneau | Confirmation patient + rappel SMS | Cabinet prêt à l'arrivée |
 | **E-commerce** | Commande passée | Paiement et stock validés | Préparation + transporteur | Client livré et notifié |
+| **Commerce local / Boutique** 🆕 V6.4 | Recherche locale Google + fiche GMB | Disponibilité produit / créneau | Confirmation client + notification équipe boutique | Client servi en boutique ou produit prêt pour retrait |
+
+### Phrase éditoriale V6.4 (sous le mini-flux 4 moments affiché)
+
+À insérer en italique discret sous le mini-flux affiché, avant les CTAs :
+
+> *« Selon votre métier, certaines étapes gagnent à être renforcées par l'IA. Discutons-en. »*
+
+Aucun lien direct vers `/rag`, `/automatisation` ou `/agents-ia` depuis cette phrase (les liens vivent uniquement dans le Blueprint S2). Cette phrase reste dans la logique métier du cockpit affiché et invite à un échange.
 
 ### Présentation visuelle
 
-- Sélecteur horizontal en pills (6 secteurs) en haut de section, 1 mini-flux visible à la fois.
+- Sélecteur horizontal en pills (**7 secteurs V6.4**) en haut de section, 1 mini-flux visible à la fois.
 - Chaque mini-flux affiché : 4 step pills horizontales (entrée / décision / action / résultat), liseré cyan→accent entre les pills, labels small-caps tracking-widest.
-- Sous le mini-flux affiché : **1 phrase contextualisante** (factuelle, 1 ligne, sans jargon) + CTA *« Voir le flux complet → `/automatisation/<secteur>` »* (si secteur couvert) ou *« Discutons de votre cas → `/contact` »* (sinon).
+- Sous le mini-flux affiché : **1 phrase contextualisante** (factuelle, 1 ligne, sans jargon) + **phrase éditoriale V6.4** + CTA *« Voir le flux complet → `/automatisation/<secteur>` »* (si secteur couvert) ou *« Discutons de votre cas → `/contact` »* (sinon).
 - 1 draw one-shot `whileInView once` sur le mini-flux visible (re-déclenché au changement de secteur via `key` React).
 - Aucune anim continue.
 
@@ -527,7 +775,7 @@ Une simple succession de blocs (« Visiteur → Site → Formulaire → CRM → 
 
 ---
 
-## S5bis V6.3 — Exemple concret (scénario AVANT/APRÈS) 🔨 À CONSTRUIRE (ex-S7bis V6.2 — conservé)
+## S6bis V6.4 — Exemple concret (scénario AVANT/APRÈS) 🔨 À CONSTRUIRE (ex-S5bis V6.3 / ex-S7bis V6.2, renuméroté V6.4 — appui pédagogique de S6 Cockpit)
 
 **Type composant :** Scénario réel — schéma simple de comparaison AVANT/APRÈS sur le parcours d'une demande, **inséré directement dans `SitesWebPage.tsx`** (pas de composant lourd dédié, simple data + render statique).
 
@@ -579,7 +827,11 @@ Aucune confusion possible entre les 4 sections opposition.
 
 ---
 
-## S6 V6.3 — Comment nous construisons votre système 🔨 À CONSTRUIRE (ex-S8 V6.2)
+## S7 V6.4 — Comment nous construisons votre système 🔨 À CONSTRUIRE (ex-S6 V6.3 / ex-S8 V6.2, renuméroté V6.4 — étape 06 enrichie + phrase IA étape 05)
+
+**Question unique répondue (règle V6.4)** : *Comment construisez-vous ?*
+
+**Couche 4-couches couverte** : méta — couvre les 4 couches (audit · architecture · construction · suivi)
 
 **Type composant :** Architecture métier — timeline 6 étapes (problème · action · livrable).
 
@@ -606,7 +858,19 @@ Trois mini-exemples visuels en sous-bloc (icônes + texte court) :
 | 03 | **Design** | Le design doit refléter le niveau de l'entreprise. | Direction artistique premium · maquettes orientées action. | Maquettes validées au détail. |
 | 04 | **Développement** | Un site qui n'évolue pas est un site qui meurt. | TypeScript strict · modulaire · testé. | Site fonctionnel en staging. |
 | 05 | **Connexions** | Sans connexion, le site reste isolé. | Branchements CRM · calendrier · email · n8n · IA (si justifiée). | Système câblé et testé. |
-| 06 | **Mise en production** | Un bug en prod = une opportunité perdue. | QA cross-device · monitoring · documentation · formation. | Système stable, documenté, équipes formées. |
+| 06 | **Mise en production** (enrichie V6.4) | Un bug en prod = une opportunité perdue. Et après la prod : un système qui n'évolue plus s'éteint. | QA cross-device · monitoring · documentation · formation · **suivi mensuel** · **revue trimestrielle**. | Système stable, documenté, équipes formées. **Suivi mensuel** (santé technique + santé business). **Revue trimestrielle** (ajustements automatisations + opportunités d'évolution). |
+
+### Phrase éditoriale V6.4 (sous étape 05 Connexions)
+
+À insérer en italique discret sous le tableau de l'étape 05 :
+
+> *« Quand l'IA est justifiée (P3), elle est branchée à cette étape. Sinon, elle ne l'est pas. »*
+
+Cette phrase matérialise la couche **INTELLIGENCE** dans la méthode de construction (et non comme une couche à part vendue séparément). Reste dans la logique métier de l'étape Connexions. Aucun lien direct vers `/rag`, `/automatisation` ou `/agents-ia`.
+
+### Justification de l'enrichissement étape 06 (V6.4)
+
+L'enrichissement *« Suivi mensuel · Revue trimestrielle »* matérialise la couche **PILOTAGE** sans créer de section dédiée. Vérifie *« ce n'est pas une livraison, c'est une relation continue »* sans tomber dans le discours « contrat de maintenance ». La revue trimestrielle s'appuie sur le pilier 11 « Pilotage » de la section S9 Fondations.
 
 **Présentation visuelle :**
 - En-tête « Nous partons de l'existant » bien visible (carte cyan désaturée, texte sobre).
@@ -628,7 +892,7 @@ Trois mini-exemples visuels en sous-bloc (icônes + texte court) :
 
 ---
 
-## S6bis V6.3 — Respiration éditoriale 🔨 À CONSTRUIRE (ex-S8bis V6.2 — conservée)
+## S7bis V6.4 — Respiration éditoriale 🔨 À CONSTRUIRE (ex-S6bis V6.3 / ex-S8bis V6.2, renuméroté V6.4 — appui pédagogique de S7 Méthode)
 
 **Type composant :** Citation pleine largeur inline (pas de composant dédié — inséré directement dans `SitesWebPage.tsx`).
 
@@ -647,7 +911,11 @@ Trois mini-exemples visuels en sous-bloc (icônes + texte court) :
 
 ---
 
-## S7 V6.3 — Ce qui change dans votre entreprise 🔨 À CONSTRUIRE (ex-S9 V6.2)
+## S8 V6.4 — Ce qui change dans votre entreprise 🔨 À CONSTRUIRE (ex-S7 V6.3 / ex-S9 V6.2, renuméroté V6.4)
+
+**Question unique répondue (règle V6.4)** : *Qu'est-ce qui change ?*
+
+**Couche 4-couches couverte** : **CIRCULATION** (impacts opérationnels du système connecté)
 
 **Type composant :** Liste structurée — **6 paires Avant / Après** au format **inline barré** (line-through + flèche + accent), pas de 2 colonnes, pas de cards.
 
@@ -696,33 +964,51 @@ Le geste de lecture diffère radicalement des Sections 2 (sans/avec en 2 colonne
 
 ---
 
-## S8 V6.3 — Fondations techniques 🔨 À CONSTRUIRE (ex-S10 V6.2 — conservée dans le flux principal)
+## S9 V6.4 — Fondations techniques 🔨 À CONSTRUIRE (ex-S8 V6.3 / ex-S10 V6.2, renuméroté V6.4 — grille élargie de 8 à 11 piliers, conservée dans le flux principal)
 
-**Type composant :** Liste structurée — 8 piliers métier (technos en sous-label discret).
+**Question unique répondue (règle V6.4)** : *Sur quoi repose le système ?*
+
+**Couches 4-couches couvertes** : **VISIBILITÉ** (piliers 03–05 : SEO étendu, GEO, GMB) + **PILOTAGE** (piliers 10–11 : Analytics, Pilotage)
+
+**Type composant :** Liste structurée — **11 piliers V6.4** (vs 8 en V6.3) avec colonne « Couche 4-couches » et technos en sous-label discret.
 
 **Pas une liste de logos.** Chaque pilier = un **bénéfice business**, la techno arrive en sous-label.
 
-| Pilier | Sous-label techno |
-|---|---|
-| **Performance** | `Next.js · build optim · lazy loading` |
-| **Accessibilité** | `WCAG 2.2 · clavier · lecteurs d'écran · contrastes` |
-| **SEO technique** | `metadata · sitemap · structure sémantique · Core Web Vitals` |
-| **Responsive** | `mobile-first · 320 → 4K` |
-| **Sécurité** | `HTTPS · CSP · audit dépendances` |
-| **Maintenabilité** | `code propre · TypeScript · tests` |
-| **Évolutivité** | `architecture modulaire · APIs claires` |
-| **Suivi analytics** | `Plausible · Posthog · GA4 (au choix)` |
+### Grille 11 piliers V6.4 (avec colonne Couche)
+
+| # | Pilier | Couche 4-couches | Bénéfice business (1 ligne) | Sous-label techno |
+|---|---|---|---|---|
+| 01 | **Performance** | — | Votre site répond vite, partout. | `Next.js · build optim · lazy loading` |
+| 02 | **Accessibilité** | — | Votre site reste utilisable par tous. | `WCAG 2.2 · clavier · lecteurs d'écran · contrastes` |
+| 03 | **SEO** 🆕 enrichi V6.4 | **VISIBILITÉ** | Vous apparaissez quand vos clients cherchent. | `pages structurées · maillage interne · schema.org · Core Web Vitals` |
+| 04 | **GEO** 🆕 V6.4 | **VISIBILITÉ** | Vous apparaissez dans les réponses IA. | `contenus extractibles · expertise structurée · FAQ métier · llms.txt` |
+| 05 | **Présence locale GMB** 🆕 V6.4 | **VISIBILITÉ** | Vous êtes trouvable autour de vous. | `Google Business Profile · avis Google · NAP cohérent · catégories métier` |
+| 06 | **Responsive** | — | Vous êtes lisible sur chaque écran. | `mobile-first · 320 → 4K` |
+| 07 | **Sécurité** | — | Vos données et celles de vos clients sont protégées. | `HTTPS · CSP · audit dépendances` |
+| 08 | **Maintenabilité** | — | Votre site reste maintenable dans la durée. | `TypeScript · tests · documentation` |
+| 09 | **Évolutivité** | — | Vous ajoutez sans tout refaire. | `architecture modulaire · APIs claires` |
+| 10 | **Analytics** | **PILOTAGE** | Vous mesurez sans tracking invasif. | `Plausible · Posthog · GA4 (au choix)` |
+| 11 | **Pilotage** 🆕 V6.4 | **PILOTAGE** | Vous voyez ce qui marche, et vous ajustez. | `suivi des demandes · KPI métier · revue trimestrielle` |
+
+### Garde-fous copy V6.4 (renforcés)
+
+- ❌ **Aucune promesse de position Google** ni d'apparition garantie dans ChatGPT/Claude/Perplexity (cf. anti-jargon SEO Section 5 + bloc ✗ S10 V6.4).
+- ❌ **Aucun chiffre de performance promis** (`Lighthouse 95+`, `<1s`, `+N%`).
+- ❌ **Aucun jargon SEO/GEO survendeur** (`backlinks`, `link building`, `SERP`, `domain authority`).
+- ✅ **Verbes pivots V6.4** : *« vous apparaissez »*, *« vous êtes trouvable »*, *« vous voyez »*, *« vous ajustez »* — pas *« nous vous positionnons »*, pas *« nous vous mettons dans ChatGPT »*.
 
 **Présentation visuelle :**
-- Grille 4×2 ou 2×4 selon largeur.
-- Chaque pilier : icône discrète + nom (typo premium) + 1 ligne de bénéfice + sous-label techno chips sobres.
+- Grille **4×3** ou 3×4 selon largeur (vs 4×2 V6.3) ; sur mobile 2×6 ou 1×11 selon largeur.
+- Chaque pilier : icône discrète + nom (typo premium) + label « Couche » en small-caps tracking-widest (seulement pour les piliers SEO/GEO/GMB/Analytics/Pilotage qui ont une couche assignée) + 1 ligne de bénéfice + sous-label techno chips sobres.
 - Aucun chiffre de performance promis.
 
-**Phrase fermante** : *« Les fondations ne se voient pas. Elles expliquent pourquoi le système tient. »*
+**Phrase fermante** : *« Les fondations ne se voient pas. Elles expliquent pourquoi le système tient — pour être trouvé, pour circuler, pour évoluer. »*
 
 ---
 
-## S9 V6.3 — Nos engagements (✓ Ce que nous garantissons + ✗ Ce que nous ne promettons pas — reformulé V6.3) 🔨 À CONSTRUIRE (ex-S11 V6.2 — FUSION S11+S12 V6.1)
+## S10 V6.4 — Nos engagements (✓ Ce que nous garantissons + ✗ Ce que nous ne promettons pas — 4 lignes ton cabinet V6.4) 🔨 À CONSTRUIRE (ex-S9 V6.3 / ex-S11 V6.2, renuméroté V6.4 — bloc ✗ enrichi 4 lignes — FUSION S11+S12 V6.1)
+
+**Question unique répondue (règle V6.4)** : *Quels engagements prenez-vous ?*
 
 **Type composant unique :** `WebEngagements` — section bipartite en un seul composant : grille ✓ garanties + glow-line + manifeste ✗ non-promesses.
 
@@ -755,7 +1041,7 @@ Grille 4×2 (mobile : 2×4). Chaque carré : ✓ cyan + libellé en gras + déta
 
 **Format** : pas de grille, pas de cards. Typographie pure pleine largeur — intitulé `text-2xl font-semibold`, justification `text-base text-text-secondary`, tiret cadratin `—` sobre cyan désaturé en début de ligne. Plus de symbole ✗ Unicode (trop confrontatif).
 
-**Phrase chapeau** : *« Nous restons clairs sur trois points : »*
+**Phrase chapeau V6.4** : *« Nous restons clairs sur quatre points : »*  *(V6.3 : trois points · V6.4 : ajout d'une 4ᵉ ligne SEO/GEO non garantis)*
 
 ```
 — Pas de résultats instantanés.
@@ -767,6 +1053,10 @@ Grille 4×2 (mobile : 2×4). Chaque carré : ✓ cyan + libellé en gras + déta
 
 — Pas d'IA sans utilité réelle.
   Chaque composant doit répondre à un besoin concret.
+
+— Pas de position Google garantie ni d'apparition garantie dans les   🆕 V6.4
+  réponses IA. La visibilité organique se construit par la qualité
+  du contenu, de la structure et de la confiance dans la durée.
 ```
 
 **Ce qui est supprimé V6.3 (ne pas reconstruire)** :
@@ -775,13 +1065,17 @@ Grille 4×2 (mobile : 2×4). Chaque carré : ✓ cyan + libellé en gras + déta
 - ❌ Toute formulation type « pas de template générique », « pas de lancement sans cadrage ».
 - ❌ Le symbole ✗ Unicode en début de ligne (remplacé par tiret cadratin `—`).
 
-**Pourquoi cette reformulation V6.3** : le ton cabinet calme et factuel **renforce la crédibilité** de Solutions2IA sans donner l'impression de critiquer le marché. Le visiteur doit penser *« ils semblent sérieux et raisonnables »*, pas *« ils se différencient en critiquant les autres »*. La posture honnête est conservée (désamorçage du doute, transformation du sceptique en lead qualifié), mais elle s'exprime dans un registre **consultant haut de gamme**, pas dans un registre défensif ou anti-concurrent.
+**Justification V6.4 — pourquoi la 4ᵉ ligne** : V6.4 introduit SEO/GEO/GMB explicitement (S1 Sources d'opportunités + S9 Fondations piliers 03–05). Le bloc ✗ doit explicitement répondre à la promesse implicite que le visiteur pourrait entendre (*« je vais être premier sur Google »* ou *« je vais apparaître dans ChatGPT »*). La 4ᵉ ligne désamorce cette attente et maintient la posture honnête du cabinet.
 
-**Position dans la section** : juste après le bloc ✓ garanties et le séparateur `glow-line` (inchangés V6.3), avant le CTA final S10 V6.3.
+**Pourquoi cette reformulation V6.3 → V6.4** : le ton cabinet calme et factuel **renforce la crédibilité** de Solutions2IA sans donner l'impression de critiquer le marché. Le visiteur doit penser *« ils semblent sérieux et raisonnables »*, pas *« ils se différencient en critiquant les autres »*. La posture honnête est conservée (désamorçage du doute, transformation du sceptique en lead qualifié), mais elle s'exprime dans un registre **consultant haut de gamme**, pas dans un registre défensif ou anti-concurrent.
+
+**Position dans la section** : juste après le bloc ✓ garanties et le séparateur `glow-line` (inchangés V6.3/V6.4), avant le CTA final S11 V6.4.
 
 ---
 
-## S10 V6.3 — CTA final 🔨 À CONSTRUIRE (ex-S12 V6.2)
+## S11 V6.4 — CTA final 🔨 À CONSTRUIRE (ex-S10 V6.3 / ex-S12 V6.2, renuméroté V6.4)
+
+**Question unique répondue (règle V6.4)** : *Quelle est la prochaine étape ?*
 
 **Type composant :** CTABand (copy révisée — pas de réutilisation aveugle).
 
@@ -803,27 +1097,28 @@ Votre activité  →  Site connecté  →  Outils  →  Automatisations  →  IA
 
 ---
 
-# SPRINTS (mis à jour V6.3 — patch ciblé, roadmap V6.2 conservée)
+# SPRINTS (mis à jour V6.4 — patch éditorial, roadmap V6.3 conservée)
 
-> **V6.3 ne crée pas de nouveau sprint.** On reste sur la suite S4.5 → S12 du brief V6.2, avec **annulation du sprint S5** (absorbé par le Blueprint live) et **renumérotation interne** des libellés de section dans les sprints S6 → S12.
-> Le **patch documentaire V6.3 sur `docs/pages/sites-web.md`** est appliqué hors sprint (action de cadrage, équivalent S4.6 V6.2).
+> **V6.4 ajoute un nouveau sprint `S4.6.5`** dédié à la couche **VISIBILITÉ** + ponts gamme. Le reste de la suite S4.5 → S12 du brief V6.3 est conservé, avec **enrichissements V6.4** intégrés dans chaque sprint déjà planifié (S6, S7, S8, S10, S11).
+> Le **patch documentaire V6.3 → V6.4 sur `docs/pages/sites-web.md`** est appliqué hors sprint (action de cadrage, équivalent S4.6.5 étape 1 markdown).
 
-| Sprint | Sections (V6.3) | Composants à créer / actions |
+| Sprint | Sections (V6.4) | Composants à créer / actions |
 |---|---|---|
-| **S4.5** | Nettoyage immédiat | Supprimer `PremiumFlowPanel "Qualité web"` · toutes les `TransformationCard` Avant/Après · metric-tiles (`×2`, `+89%`, `<1s`) · mockups chrome décoratifs · stack chips standalone (sera absorbée par S8 V6.3 Fondations). Conserver `WebGalaxyShowcase` jusqu'au sprint cockpit. **Ajouter V6.3** : nettoyage des chiffres dans `WebGalaxyShowcase` (`+38%`, `×3`, `+52%`, etc.) et du `CTABand` (« tripler votre taux de conversion »), réécriture de la section inline « Expertise » (Lighthouse 95+, code splitté, pixel-perfect). Déplacement de `WebOpportunityFlow` (live) en S1 (juste après le hero) dans `SitesWebPage.tsx`. Mise à jour du H1 hero V6.3. |
-| **S4.6** 🆕 | Mise à niveau brief V6.2 → V6.3 | Édition `docs/pages/sites-web.md` : V6.3 patch ciblé (réordre Blueprint S1, suppression S5 V6.2, reformulation bloc ✗ ton cabinet, H1 ajusté, CG1 étendu à 6 audiences). **Aucun code.** |
-| ~~**S5**~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ **ANNULÉ V6.3** — section absorbée par S1 Blueprint live. `WebSystemArchitecture` + `webArchitectureData` non construits. Charge supprimée. |
-| **S6** → **(sprint ex-S6 V6.2)** | **S4 V6.3** — Architecture par taille (accordion mobile) | `WebArchitectureBySize` + `webSizeData` (4 paliers, cascade descendante, step numbers 01-04, accordion PME-ouvert mobile) |
-| **S7** → **(sprint ex-S7 V6.2)** | **S5 V6.3** — Cockpit sectoriel + **S5bis V6.3** scénario | `WebSectorFlows` + `webSectorFlowsData` (6 secteurs × 4 moments entrée/décision/action/résultat, selector, bridges /automatisation/<secteur>) + scénario AVANT/APRÈS inline (S5bis V6.3, 2 flux verticaux statiques, pas de composant dédié) — **remplace** `WebGalaxyShowcase` (suppression complète à ce sprint) |
-| **S8** → **(sprint ex-S8 V6.2)** | **S6 V6.3** — Comment on construit + **S6bis V6.3** respiration | `WebBuildProcess` + `webBuildProcessData` (avec bloc « Nous partons de l'existant » en en-tête) + citation pleine largeur inline (S6bis V6.3) |
-| **S9** → **(sprint ex-S9 V6.2)** | **S7 V6.3** — Ce qui change (6 paires inline barré) | `WebChangePairs` + `webChangePairsData` (format inline line-through + flèche + accent, 6 paires) |
-| **S10** → **(sprint ex-S10 V6.2)** | **S8 V6.3** — Fondations techniques | `WebFoundations` + `webFoundationsData` (8 piliers, grille 4×2, sous-labels ToolBadge) |
-| **S11** → **(sprint ex-S11 V6.2)** | **S9 V6.3** Engagements + **S10 V6.3** CTA | `WebEngagements` (✓ 8 garanties grille 4×2 + glow-line + **bloc ✗ reformulé V6.3 en 3 lignes ton cabinet** — pas 5 lignes confrontatives) + révision `CTABand` copy + mini-schéma horizontal statique |
-| **S12** | Audit final | Perf · a11y · grep jargon · grep chiffres · responsive iPhone · vérifs **CG1 6 audiences V6.3** + CG2 3 questions UX · `pnpm build` |
+| **S4.5 V2** ✅ | Nettoyage immédiat ✅ TERMINÉ | Suppression `WebGalaxyShowcase` (instance + import) · 3 widgets décoratifs `WebScene` (browser mockup, Lighthouse, Responsive) · section Features 6 cards · section Livrables/Processus · réordre Blueprint en S1 (LIVE) · neutralisation copy `CTABand` (« Discutons de votre système numérique »). |
+| **S4.6** ✅ | Mise à niveau brief V6.2 → V6.3 ✅ TERMINÉ | Édition `docs/pages/sites-web.md` : V6.3 patch ciblé (réordre Blueprint S1, suppression S5 V6.2, reformulation bloc ✗ ton cabinet, H1 ajusté, CG1 étendu à 6 audiences). |
+| **S4.6.5 V6.4** 🆕 | Mise à niveau brief V6.3 → V6.4 + sprint dev Visibilité | **Étape 1 (markdown)** : patch documentaire V6.3 → V6.4 (architecture 4 couches en section 2bis, règle « 1 = 1 » en section 1ter, nouvelle S1 V6.4 Sources d'opportunités, glissement +1 sur les sections, bridges S2 Blueprint, anti-jargon SEO, renumérotation, DoD étendue). **Étape 2 (code)** : création composant `WebOpportunitySources` + data `webOpportunitySourcesData` (9 canaux fan-in, sous-bloc adaptatif) · insertion dans `SitesWebPage.tsx` juste après le micro-label, avant `<WebOpportunityFlow />` · modification mineure de `WebOpportunityFlow` (3ᵉ bridge `/agents-ia` sous station 07 + phrase éditoriale V6.4 sous le flux) · application du H1 V6.3 enfin (« moteur de vos prochains clients »). |
+| ~~**S5**~~ | ~~Comment une opportunité devient un client (5 étapes)~~ | ❌ **ANNULÉ V6.3** — section absorbée par S2 Blueprint live. `WebSystemArchitecture` + `webArchitectureData` non construits. Charge supprimée. |
+| **S6** → **(sprint ex-S6 V6.2)** | **S5 V6.4** — Architecture par taille (correctif mobile V6.4 + phrase IA palier 03/04) | `WebArchitectureBySize` + `webSizeData` (4 paliers, cascade descendante, step numbers 01-04, **stack vertical mobile avec 4 en-têtes visibles V6.4** — plus d'accordéon PME-ouvert) + phrase éditoriale V6.4 sous paliers 03 et 04 |
+| **S7** → **(sprint ex-S7 V6.2)** | **S6 V6.4** — Cockpit sectoriel (7 secteurs V6.4) + **S6bis V6.4** scénario | `WebSectorFlows` + `webSectorFlowsData` (**7 secteurs V6.4 avec ajout Commerce local** × 4 moments entrée/décision/action/résultat, selector, bridges /automatisation/<secteur>) + phrase éditoriale V6.4 sous mini-flux + scénario AVANT/APRÈS inline (S6bis V6.4, 2 flux verticaux statiques) — **remplace** `WebGalaxyShowcase` |
+| **S8** → **(sprint ex-S8 V6.2)** | **S7 V6.4** — Comment on construit (étape 06 enrichie V6.4) + **S7bis V6.4** respiration | `WebBuildProcess` + `webBuildProcessData` (avec bloc « Nous partons de l'existant » en en-tête + **étape 06 enrichie V6.4** : suivi mensuel + revue trimestrielle + phrase éditoriale V6.4 sous étape 05 Connexions) + citation pleine largeur inline (S7bis V6.4) |
+| **S9** → **(sprint ex-S9 V6.2)** | **S8 V6.4** — Ce qui change (6 paires inline barré) | `WebChangePairs` + `webChangePairsData` (format inline line-through + flèche + accent, 6 paires) |
+| **S10** → **(sprint ex-S10 V6.2)** | **S9 V6.4** — Fondations techniques (grille 11 piliers V6.4) | `WebFoundations` + `webFoundationsData` (**11 piliers V6.4 avec SEO étendu, GEO, GMB, Pilotage** + colonne « Couche 4-couches », grille 4×3, sous-labels ToolBadge) |
+| **S11** → **(sprint ex-S11 V6.2)** | **S10 V6.4** Engagements (bloc ✗ 4 lignes V6.4) + **S11 V6.4** CTA | `WebEngagements` (✓ 8 garanties grille 4×2 + glow-line + **bloc ✗ V6.4 en 4 lignes ton cabinet** — ajout 4ᵉ ligne SEO/GEO non garantis) + révision `CTABand` copy + mini-schéma horizontal statique |
+| **S12** | Audit final V6.4 | Perf · a11y · grep jargon · grep chiffres · **grep anti-jargon SEO** (`backlinks`, `link building`, `SERP`, `domain authority`, `referring domains`) · responsive iPhone · vérifs **CG1 6 audiences V6.3** + CG2 3 questions UX + **règle V6.4 « 1 section = 1 question »** · `pnpm build` |
 
 **Règle inviolable :** aucun sprint ne se lance sans validation utilisateur explicite. Aucun sprint ne se termine sans screenshot rendu validé.
 
-**Note V6.3 sur les numéros de sprint** : on conserve les libellés de sprint historiques (S4.5, S4.6, S6, S7, S8, S9, S10, S11, S12) pour ne pas casser la traçabilité des commits et des PR existants. Les **sections livrées par chaque sprint** sont en revanche renumérotées selon V6.3 (colonne « Sections (V6.3) » ci-dessus).
+**Note V6.4 sur les numéros de sprint** : on conserve les libellés de sprint historiques (S4.5, S4.6, **S4.6.5 V6.4 🆕**, S6, S7, S8, S9, S10, S11, S12) pour ne pas casser la traçabilité des commits et des PR existants. Les **sections livrées par chaque sprint** sont en revanche renumérotées selon V6.4 (colonne « Sections (V6.4) » ci-dessus).
 
 ---
 
@@ -851,7 +1146,27 @@ Votre activité  →  Site connecté  →  Outils  →  Automatisations  →  IA
 
 ---
 
-# DEFINITION OF DONE (page complète — V6.3)
+# DEFINITION OF DONE (page complète — V6.4)
+
+### Critères V6.4 spécifiques 🆕
+
+- [ ] Brief V6.4 déposé dans `docs/pages/sites-web.md` (patch éditorial V6.3 → V6.4 appliqué).
+- [ ] **V6.4 — Architecture 4 couches** `VISIBILITÉ → CIRCULATION → INTELLIGENCE → PILOTAGE` formalisée en section 2bis du brief et appliquée comme grille interne (chaque section S1–S11 rattachée à 0/1/N couches).
+- [ ] **V6.4 — Règle « 1 section = 1 question »** formalisée en section 1ter avec table des 11 questions S1 → S11, et vérifiée section par section (aucune section ne couvre plusieurs questions sans simplification).
+- [ ] **V6.4 — S1 V6.4 Sources d'opportunités** spécifiée intégralement dans le brief (9 canaux fan-in, sous-bloc adaptatif, phrase fermante, bridge vers S2). Composant `WebOpportunitySources` créé et inséré en S1 dans `SitesWebPage.tsx` (sprint dev S4.6.5 V6.4 étape 2).
+- [ ] **V6.4 — S2 Blueprint** : 3 bridges (`/rag` station 04, `/automatisation` station 06, `/agents-ia` station 07 🆕) + phrase éditoriale V6.4 *« Chacune des 9 étapes peut être renforcée par nos solutions IA »* tous présents dans le composant `WebOpportunityFlow`.
+- [ ] **V6.4 — Phrase éditoriale** déclinée dans 4 sections sans répétition mot-pour-mot : S2 (Blueprint), S5 (Paliers 03/04), S6 (Cockpit sous mini-flux), S7 (Méthode étape 05).
+- [ ] **V6.4 — S5 Paliers correctif mobile** : stack vertical avec 4 en-têtes 01–04 visibles, contenu replié par défaut sur tous. Plus d'accordéon PME-ouvert.
+- [ ] **V6.4 — S6 Cockpit 7ᵉ secteur** Commerce local livré (Entrée recherche locale Google + GMB · Décision disponibilité produit/créneau · Action confirmation client + notification équipe · Résultat client servi en boutique).
+- [ ] **V6.4 — S7 Méthode étape 06 enrichie** : livrable inclut **« Suivi mensuel (santé technique + santé business). Revue trimestrielle (ajustements + opportunités d'évolution). »** + phrase éditoriale V6.4 sous étape 05 Connexions.
+- [ ] **V6.4 — S9 Fondations grille 11 piliers** (vs 8 en V6.3) avec colonne « Couche 4-couches » : SEO étendu (VISIBILITÉ), GEO (VISIBILITÉ), Présence locale GMB (VISIBILITÉ), Analytics (PILOTAGE), Pilotage (PILOTAGE).
+- [ ] **V6.4 — S10 Engagements bloc ✗** : 4 lignes (vs 3 en V6.3), ajout 4ᵉ ligne *« Pas de position Google garantie ni d'apparition garantie dans les réponses IA »* + phrase chapeau « Nous restons clairs sur **quatre** points ».
+- [ ] **V6.4 — Section 5 Interdictions** : anti-jargon SEO ajouté (`backlinks`, `link building`, `SERP`, `domain authority`, `referring domains`, `position garantie`, `apparition garantie dans ChatGPT/Claude/Perplexity`).
+- [ ] **V6.4 — Grep anti-jargon SEO** sur `app/sites-web/`, `components/sections/sites-web/`, `components/scenes/web/` = **0 occurrence** des termes interdits ci-dessus.
+- [ ] **V6.4 — Bridges gamme complète** : `/rag` + `/automatisation` + `/agents-ia` tous accessibles depuis le Blueprint S2 (couverture totale de la gamme depuis `/sites-web`).
+- [ ] **V6.4 — Note stratégique** marquée ✅ « Réalisée en V6.4 » avec encart de statut en haut.
+
+### Critères V6.3 hérités (maintenus)
 
 - [ ] Brief V6.3 déposé dans `docs/pages/sites-web.md` (patch ciblé V6.2 → V6.3 appliqué).
 - [ ] **V6.3 — H1 hero ajusté** : `« Votre site n'est pas un site. C'est le moteur de vos prochains clients. »` (à la place de l'ancien `« point de départ de vos opportunités »`).
@@ -884,4 +1199,110 @@ Votre activité  →  Site connecté  →  Outils  →  Automatisations  →  IA
 
 ---
 
-**Mantra final V6.3** : *Le site est la première brique. Le système est le produit.* *(inchangé V6.2)*
+# NOTE STRATÉGIQUE — RÉFLEXIONS FUTURES ✅ RÉALISÉE EN V6.4 (archive historique)
+
+> **Statut V6.4** : ✅ **Note transcrite intégralement dans le corps du brief V6.4**. La transcription couvre :
+> - L'**architecture 4 couches** (note → section 2bis V6.4 `VISIBILITÉ → CIRCULATION → INTELLIGENCE → PILOTAGE`)
+> - La **section S1 Sources d'opportunités** (note → section S1 V6.4 spécifiée intégralement avec 9 canaux fan-in, vs 6 dans la note brouillon — ajout V6.4 : Partenaires, Salons/événements, QR codes/supports physiques)
+> - L'**enrichissement S9 Fondations** (note → grille 11 piliers V6.4 avec colonne couche)
+> - La **ligne ✗ SEO/GEO** (note → bloc ✗ S10 V6.4 4ᵉ ligne)
+>
+> Cette note est **conservée en archive** pour traçabilité historique du raisonnement stratégique mais **n'est plus la référence opérationnelle**. La référence est désormais le corps du brief V6.4 (sections 1ter, 2bis, S1, S2 enrichi, S5 corrigé, S6 enrichi, S7 enrichi, S9 enrichi, S10 enrichi).
+>
+> _Statut historique V6.3 (date d'origine de la note, conservé pour mémoire) :_ réflexion stratégique uniquement · hors périmètre V6.3 · non implémentée · sans impact sur les sprints S4.5 → S12 en cours · à formaliser éventuellement dans une version brief ultérieure (V6.4+ ou V7.x). Cette note ne créait **aucune** section V6.4, **aucun** sprint, **aucun** composant, **aucune** modification de l'ordre des sections V6.3 — au moment de son écriture.
+
+## Constat
+
+Le Blueprint actuel (S1 V6.3, ex-S4 V6.2) démarre à `01 Visiteur` :
+
+```
+01 Visiteur
+   ↓
+02 Site web
+   ↓
+03 Formulaire intelligent
+   ↓
+04 Qualification
+   ↓
+05 CRM
+   ↓
+…
+   ↓
+09 Client
+```
+
+Mais il ne montre pas **d'où vient le visiteur**. Pour un dirigeant TPE/PME :
+
+- un visiteur ne vient jamais de nulle part
+- il provient d'un **canal d'acquisition** précis
+- ce canal **fait partie du système Solutions 2IA** (au même titre que le CRM ou les automatisations)
+
+Sans représentation de cet amont, le système connecté commence au milieu de l'histoire et le positionnement « pas une agence web » perd une partie de sa preuve visuelle.
+
+## Intention à conserver
+
+Une future évolution du Blueprint pourrait intégrer un **palier amont** « Sources d'opportunités » intercalé avant les 9 stations actuelles (ou immédiatement après, en regard) :
+
+```
+┌─ Sources d'opportunités ──────────┐
+│  Google Search                    │
+│  Google Business Profile          │
+│  GEO (ChatGPT · Claude · Perplexity)
+│  Publicité                        │
+│  Réseaux sociaux                  │
+│  Réseau / bouche-à-oreille        │
+└────────────────┬──────────────────┘
+                 ↓
+        01 Visiteur → … → 09 Client       (Blueprint actuel, intact)
+```
+
+Canaux d'acquisition potentiels à représenter dans cette future section :
+
+- **Google Search** — référencement organique
+- **Google Business Profile** — recherche locale, fiche établissement
+- **GEO (Generative Engine Optimization)** — visibilité dans les réponses IA : ChatGPT, Claude, Perplexity
+- **Publicité** — Google Ads, Meta Ads, LinkedIn Ads, landing pages
+- **Réseaux sociaux** — LinkedIn, Instagram, TikTok, YouTube selon métier
+- **Réseau / bouche-à-oreille** — referrals, recommandations clients, partenaires
+
+## Architecture à mémoriser (grille de lecture du système Solutions 2IA)
+
+Quatre couches qui justifient le positionnement « système connecté » vs. « agence web ». À utiliser comme **grille interne** de lecture (positionnement, copywriting, structuration de futures sections) — **pas comme section à coder telle quelle** dans un sprint.
+
+**1. Fondations** (présence et visibilité)
+- Site web premium
+- SEO
+- GEO
+- Google Business Profile
+
+**2. Circulation** (capture et routage de l'opportunité)
+- Formulaires intelligents
+- CRM
+- Automatisations (n8n, Make)
+- Notifications
+
+**3. Intelligence** (mémoire et autonomie)
+- RAG
+- IA documentaire
+- Agents IA
+
+**4. Pilotage** (mesure et amélioration continue)
+- Reporting
+- Dashboards
+- Process métier
+
+Le Blueprint V6.3 actuel couvre principalement la couche **Circulation** (stations 03–08) et touche à **Fondations** (stations 01–02) et **Intelligence** (station 04 Qualification). Les couches **Fondations amont** (SEO/GEO/GMB) et **Pilotage** ne sont pas représentées visuellement aujourd'hui.
+
+## Cadrage strict de la note
+
+- ❌ **Aucune** section V6.4 créée à partir de cette note
+- ❌ **Aucun** sprint déclenché (la roadmap S4.5 → S12 V6.2 reste seule en vigueur)
+- ❌ **Aucun** composant prévu, planifié, ou nommé
+- ❌ **Aucune** modification de l'ordre des sections V6.3
+- ❌ **Aucune** modification de l'architecture 10 sections V6.3 (S0 → S10 + S5bis + S6bis)
+- ✅ Cette note **vit dans le brief** pour ne pas perdre l'intention stratégique identifiée pendant l'audit S4.5 V2
+- ✅ Formalisation ultérieure possible — décision à prendre dans une version brief V6.4+ ou V7.x dédiée, à un moment choisi par le client
+
+---
+
+**Mantra final V6.4** : *Le site est la première brique. Le système est le produit.* *(inchangé V6.2/V6.3 — texte du mantra préservé intact à travers toutes les versions)*
