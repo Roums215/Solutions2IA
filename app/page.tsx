@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
 import { TransformationCard } from "@/components/shared/TransformationCard";
+import { WebTransformShowcase } from "@/components/sections/WebTransformShowcase";
 import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
@@ -134,16 +135,25 @@ export default function Home() {
             description="La vraie valeur d'une transformation digitale ne se mesure pas en lignes de code, mais en impact sur votre activité."
           />
           <div className="space-y-6 lg:space-y-8">
-            {transformations.map((t, i) => (
-              <TransformationCard
-                key={t.metric}
-                variant="general"
-                before={t.before}
-                after={t.after}
-                metric={t.metric}
-                index={i}
-              />
-            ))}
+            {transformations.map((t, i) =>
+              i === 0 ? (
+                <WebTransformShowcase
+                  key={t.metric}
+                  before={t.before}
+                  after={t.after}
+                  metric={t.metric}
+                />
+              ) : (
+                <TransformationCard
+                  key={t.metric}
+                  variant="general"
+                  before={t.before}
+                  after={t.after}
+                  metric={t.metric}
+                  index={i}
+                />
+              ),
+            )}
           </div>
         </div>
       </section>

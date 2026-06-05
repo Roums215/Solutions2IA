@@ -13,6 +13,7 @@ export const mainNav: NavItem[] = [
       { label: "Applications", href: "/applications" },
       { label: "Agents IA", href: "/agents-ia" },
       { label: "Automatisation", href: "/automatisation" },
+      { label: "RAG · Mémoire métier", href: "/rag" },
       { label: "Studio visuel", href: "/studio-visuel" },
     ],
   },
@@ -32,6 +33,7 @@ export const footerNav = {
     { label: "Applications", href: "/applications" },
     { label: "Agents IA", href: "/agents-ia" },
     { label: "Automatisation", href: "/automatisation" },
+    { label: "RAG · Mémoire métier", href: "/rag" },
     { label: "Studio visuel", href: "/studio-visuel" },
   ],
   legal: [

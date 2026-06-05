@@ -29,7 +29,7 @@ export function useLoadingState() {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
   const [hideHeaderLogo, setHideHeaderLogo] = useState(true);
   const [logoPosition, setLogoPosition] = useState<{ top: number; left: number } | null>(null);
   const logoRefElement = useRef<HTMLDivElement | null>(null);

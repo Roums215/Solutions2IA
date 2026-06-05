@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { AppShell } from "@/components/shared/AppShell";
 import "./globals.css";
 import { Geist } from "next/font/google";
@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
