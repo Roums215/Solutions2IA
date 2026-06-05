@@ -11,6 +11,14 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
+  {
+    rules: {
+      // Désactive la règle introduite par eslint-plugin-react-hooks@7.1.1
+      // (faux positifs sur les patterns SSR hydration `setMounted(true)` dans
+      // useEffect avec deps vide — pattern intentionnel Next.js).
+      "react-hooks/set-state-in-effect": "off",
+    },
+  },
 ];
 
 export default eslintConfig;
