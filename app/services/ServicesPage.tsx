@@ -50,6 +50,15 @@ const services = [
     icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" /><circle cx="12" cy="12" r="3" /></svg>,
   },
   {
+    title: "RAG · Mémoire métier",
+    description: "L'IA répond avec vos documents — pas avec de l'improvisation. Un cerveau documentaire privé qui cite la source précise pour chaque réponse.",
+    href: "/rag",
+    gradient: "from-accent-light to-accent-primary",
+    includes: ["Activation de votre mémoire", "Connexion sources (Drive · Notion · SharePoint · PDF)", "Recherche hybride + citations", "Sécurité & souveraineté UE", "Mises à jour automatiques"],
+    result: "Mémoire documentaire connectée",
+    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 6c2-1 5-1 7 0v13c-2-1-5-1-7 0V6z" /><path d="M21 6c-2-1-5-1-7 0v13c2-1 5-1 7 0V6z" /><path d="M10 19c0-1.5 1-2 2-2s2 0.5 2 2" /></svg>,
+  },
+  {
     title: "Studio visuel",
     description: "Motion design, 2D/3D, Remotion, animations avancées et interfaces immersives qui marquent les esprits.",
     href: "/studio-visuel",
@@ -123,7 +132,7 @@ export function ServicesPage() {
             className="space-y-8"
           >
             {services.map((service, idx) => {
-              const glows = ["99,102,241", "34,211,238", "129,140,248", "14,165,233", "168,85,247"];
+              const glows = ["99,102,241", "34,211,238", "129,140,248", "14,165,233", "147,197,253", "168,85,247"];
               return (
               <motion.div key={service.href} variants={fadeInUp}>
                 <Link href={service.href} className="group block">
