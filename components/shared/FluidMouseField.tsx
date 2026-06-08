@@ -561,7 +561,7 @@ interface FluidMouseFieldProps {
 export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldProps) {
   const cfg = PRESETS[preset];
   const finalIntensity = intensity ?? cfg.intensity;
-  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, shouldDegrade } = usePerformanceMode();
 
   const [enabled, setEnabled] = useState(false);
   const [size, setSize] = useState({ w: 1, h: 1 });
@@ -627,7 +627,7 @@ export function FluidMouseField({ preset = "home", intensity }: FluidMouseFieldP
     };
   }, [mx, my, shouldReduceMotion]);
 
-  if (!enabled || shouldReduceMotion) return null;
+  if (!enabled || shouldReduceMotion || shouldDegrade) return null;
 
   const shapes = shapesFor(cfg);
   const renderScan = cfg.scan && !isMobile;

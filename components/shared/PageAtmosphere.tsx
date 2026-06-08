@@ -48,7 +48,16 @@ function FloatingLine({ x1, y1, x2, y2, color, delay = 0 }: {
 }
 
 export function PageAtmosphere({ preset }: PageAtmosphereProps) {
-  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, shouldDegrade } = usePerformanceMode();
+
+  // Low-end / save-data : fond statique minimal, aucune animation, aucun orb.
+  if (shouldDegrade) {
+    return (
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
+        <div className="absolute inset-0 bg-radial-top opacity-60" />
+      </div>
+    );
+  }
 
   if (isMobile || shouldReduceMotion) {
     const animate = shouldReduceMotion ? undefined : { opacity: [0.55, 0.8, 0.55], scale: [1, 1.04, 1] };

@@ -1,13 +1,21 @@
 "use client";
 
 import { useState, useEffect, createContext, useContext, useRef, useCallback } from "react";
+import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/shared/PageTransition";
 import { LoadingScreen } from "@/components/shared/LoadingScreen";
-import { MouseParticles } from "@/components/shared/MouseParticles";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+
+// MouseParticles chargé uniquement côté client + uniquement si shouldDegrade=false.
+// Évite le téléchargement du bundle sur low-end / reduced-motion / save-data.
+const MouseParticles = dynamic(
+  () => import("@/components/shared/MouseParticles").then((m) => m.MouseParticles),
+  { ssr: false },
+);
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -67,12 +75,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setHideHeaderLogo(false);
   }, []);
 
+  const { mounted, shouldDegrade } = usePerformanceMode();
+  const decor = mounted && !shouldDegrade;
+
   return (
     <LoadingContext.Provider value={{ isLoading, hideHeaderLogo, logoPosition, registerLogoRef }}>
       <TooltipProvider>
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
         <div className={showContent ? "app-content-visible" : "app-content-hidden"}>
-          <MouseParticles />
+          {decor && <MouseParticles />}
           <Header />
           <main className="min-h-screen">
             <PageTransition>{children}</PageTransition>
