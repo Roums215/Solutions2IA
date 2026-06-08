@@ -5,19 +5,21 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   // Remotion vit dans /remotion (compositions + studio) — exclu du build Next.
-  // Three.js / Pixi / Lottie ne sont chargés que via dynamic(import, { ssr: false }).
-  transpilePackages: ["three", "@react-three/fiber", "@react-three/drei"],
   images: {
     formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+  compiler: {
+    removeConsole: { exclude: ["error", "warn"] },
   },
   experimental: {
     optimizePackageImports: [
       "motion",
-      "@react-three/drei",
-      "@tsparticles/react",
-      "@tsparticles/slim",
-      "chroma-js",
-      "culori",
+      "lucide-react",
+      "radix-ui",
+      "@vercel/analytics",
+      "@vercel/speed-insights",
     ],
   },
   async headers() {

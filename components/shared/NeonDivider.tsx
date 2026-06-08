@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useId } from "react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 type NeonPreset = "glow" | "circuit" | "wave" | "neural" | "electric";
 
@@ -196,8 +197,9 @@ export function NeonDivider({ preset = "glow", bg = "primary", className = "" }:
   const bgColor = bgRgb[bg];
   const ref = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, "");
+  const { shouldDegrade } = usePerformanceMode();
 
-  // Scroll-reactive intensity
+  // Hooks invoqués sans conditionnel (rules-of-hooks).
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -205,6 +207,19 @@ export function NeonDivider({ preset = "glow", bg = "primary", className = "" }:
   const beamOpacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.16, 0.46, 0.46, 0.16]);
   const beamScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.02, 0.9]);
   const parallaxY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
+
+  // Low-end : remplace par un simple divider statique gradient.
+  if (shouldDegrade) {
+    return (
+      <div
+        className={`relative w-full h-px ${className}`}
+        style={{
+          background: `linear-gradient(90deg, transparent, rgb(${config.primary} / 0.35), transparent)`,
+        }}
+        aria-hidden
+      />
+    );
+  }
 
   const path = generatePath(preset);
   const gradientId = `nd-grad-${uid}`;

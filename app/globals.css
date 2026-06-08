@@ -665,3 +665,45 @@ body {
     @apply font-sans;
   }
 }
+
+/* ─── Mode dégradé pour low-end devices ─────────────────────────────────────
+ * Activé via <html data-perf="low"> par usePerformanceMode.
+ * Désactive backdrop-filter, animations infinies, et les couches décoratives
+ * marquées par data-decor="*". Préserve le contenu informationnel.
+ */
+html[data-perf="low"] .backdrop-blur,
+html[data-perf="low"] .backdrop-blur-sm,
+html[data-perf="low"] .backdrop-blur-md,
+html[data-perf="low"] .backdrop-blur-lg,
+html[data-perf="low"] .backdrop-blur-xl,
+html[data-perf="low"] .backdrop-blur-2xl,
+html[data-perf="low"] .backdrop-blur-3xl,
+html[data-perf="low"] [class*="backdrop-blur"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-perf="low"] *,
+html[data-perf="low"] *::before,
+html[data-perf="low"] *::after {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.15s !important;
+}
+
+html[data-perf="low"] [data-decor="particles"],
+html[data-perf="low"] [data-decor="orbs"],
+html[data-perf="low"] [data-decor="grid"],
+html[data-perf="low"] [data-decor="floor"],
+html[data-perf="low"] [data-decor="float-lines"],
+html[data-perf="low"] [data-decor="halo"],
+html[data-perf="low"] [data-decor="neural"] {
+  display: none !important;
+}
+
+html[data-perf="low"] .glow-line,
+html[data-perf="low"] .glow-accent,
+html[data-perf="low"] .glow-accent-strong {
+  box-shadow: none !important;
+}

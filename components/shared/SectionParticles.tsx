@@ -27,13 +27,18 @@ export function SectionParticles({
   className,
 }: SectionParticlesProps) {
   const [mounted, setMounted] = useState(false);
-  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, shouldDegrade } = usePerformanceMode();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const effectiveCount = shouldReduceMotion ? 0 : isMobile ? Math.min(count, 6) : Math.min(count, 10);
+  // Low-end / save-data / reduced-motion : 0 particle, le composant rend null.
+  const effectiveCount = shouldDegrade || shouldReduceMotion
+    ? 0
+    : isMobile
+      ? Math.min(count, 6)
+      : Math.min(count, 10);
 
   const items = useMemo(() => {
     return Array.from({ length: effectiveCount }, (_, i) => {
@@ -52,12 +57,12 @@ export function SectionParticles({
   }, [effectiveCount]);
 
   // Don't render on server to avoid hydration mismatch
-  if (!mounted || shouldReduceMotion) {
-    return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`} />;
+  if (!mounted || shouldReduceMotion || shouldDegrade) {
+    return null;
   }
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`}>
+    <div data-decor="particles" className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`}>
       {items.map((p, i) => {
         const c = p.useSecondary ? secondaryColor : color;
 

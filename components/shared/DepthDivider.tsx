@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 type DividerPreset = "glow" | "circuit" | "wave" | "neural" | "fade";
 
@@ -79,6 +80,20 @@ export function DepthDivider({ preset = "glow", fromBg = "primary", toBg = "prim
   const config = presetConfig[preset];
   const topColor = bgColors[fromBg];
   const bottomColor = bgColors[toBg];
+  const { shouldDegrade } = usePerformanceMode();
+
+  // Low-end : un simple <hr> aux couleurs des sections, sans animations ni glow.
+  if (shouldDegrade) {
+    return (
+      <div
+        className="relative h-px w-full"
+        style={{
+          background: `linear-gradient(90deg, transparent, rgba(${topColor.r},${topColor.g},${topColor.b},0.5), transparent)`,
+        }}
+        aria-hidden
+      />
+    );
+  }
 
   return (
     <div className={`relative overflow-hidden ${config.height}`}>
