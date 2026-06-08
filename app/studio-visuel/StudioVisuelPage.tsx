@@ -90,6 +90,11 @@ export function StudioVisuelPage() {
         primaryCta={{ label: "Créer une expérience", href: "/contact" }}
         secondaryCta={{ label: "Voir tous les services", href: "/services" }}
         visual={<StudioScene />}
+        mobileSteps={[
+          { label: "Brief", hint: "cadrage créatif · références" },
+          { label: "Création", hint: "concepts validés · itérations" },
+          { label: "Livraison", hint: "assets finaux · formats prêts" },
+        ]}
       />
 
       <section className="section-shell-tight">

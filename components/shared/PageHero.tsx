@@ -7,6 +7,8 @@ import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
+export type HeroMobileStep = { label: string; hint?: string };
+
 interface PageHeroProps {
   label: string;
   title: React.ReactNode;
@@ -16,10 +18,25 @@ interface PageHeroProps {
   visual?: React.ReactNode;
   /** Accent color class for the glow (defaults to accent-primary) */
   glowColor?: string;
+  /** Mobile-only preview steps (3 items expected). Falls back to Signal/Analyse/Action if omitted. */
+  mobileSteps?: HeroMobileStep[];
 }
 
-function MobileHeroPreview({ label, reduceMotion }: { label: string; reduceMotion: boolean }) {
-  const steps = ["Signal", "Analyse", "Action"];
+const DEFAULT_MOBILE_STEPS: HeroMobileStep[] = [
+  { label: "Signal" },
+  { label: "Analyse" },
+  { label: "Action" },
+];
+
+function MobileHeroPreview({
+  label,
+  reduceMotion,
+  steps,
+}: {
+  label: string;
+  reduceMotion: boolean;
+  steps: HeroMobileStep[];
+}) {
 
   return (
     <motion.div
@@ -62,7 +79,7 @@ function MobileHeroPreview({ label, reduceMotion }: { label: string; reduceMotio
       <div className="relative mt-5 grid gap-3">
         {steps.map((step, index) => (
           <motion.div
-            key={step}
+            key={step.label}
             className="flex items-center gap-3 rounded-2xl border border-white/[0.065] bg-white/[0.035] px-3 py-3"
             animate={reduceMotion ? undefined : { y: [0, -2, 0], opacity: [0.82, 1, 0.82] }}
             transition={{ duration: 4 + index * 0.35, delay: index * 0.22, repeat: Infinity, ease: "easeInOut" }}
@@ -71,7 +88,10 @@ function MobileHeroPreview({ label, reduceMotion }: { label: string; reduceMotio
               {String(index + 1).padStart(2, "0")}
             </span>
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-semibold text-text-primary">{step}</div>
+              <div className="text-xs font-semibold text-text-primary">{step.label}</div>
+              {step.hint && (
+                <div className="mt-0.5 truncate text-[10px] text-text-tertiary">{step.hint}</div>
+              )}
               <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
                 <motion.div
                   className="h-full origin-left rounded-full bg-gradient-to-r from-accent-primary to-cyan"
@@ -96,6 +116,7 @@ export function PageHero({
   secondaryCta,
   visual,
   glowColor = "bg-accent-primary/5",
+  mobileSteps = DEFAULT_MOBILE_STEPS,
 }: PageHeroProps) {
   const { isMobile, shouldReduceMotion } = usePerformanceMode();
   const showVisual = !!visual && !isMobile && !shouldReduceMotion;
@@ -161,7 +182,13 @@ export function PageHero({
               {description}
             </motion.p>
 
-            {showMobilePreview && <MobileHeroPreview label={label} reduceMotion={shouldReduceMotion} />}
+            {showMobilePreview && (
+              <MobileHeroPreview
+                label={label}
+                reduceMotion={shouldReduceMotion}
+                steps={mobileSteps}
+              />
+            )}
 
             {(primaryCta || secondaryCta) && (
               <motion.div

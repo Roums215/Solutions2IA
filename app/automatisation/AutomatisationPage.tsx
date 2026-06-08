@@ -80,6 +80,11 @@ export function AutomatisationPage() {
         secondaryCta={{ label: "Voir tous les services", href: "/services" }}
         visual={<AutomationScene />}
         glowColor="bg-cyan/5"
+        mobileSteps={[
+          { label: "Trigger", hint: "événement source détecté" },
+          { label: "Process", hint: "n8n + IA · règles métier" },
+          { label: "Action", hint: "CRM · notify · log" },
+        ]}
       />
 
       {/* Mécanique signature : pipeline JobPhoning → n8n → Axonaut */}

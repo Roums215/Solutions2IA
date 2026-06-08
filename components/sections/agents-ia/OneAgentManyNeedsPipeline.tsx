@@ -288,11 +288,13 @@ const DESKTOP = {
 
 const MOBILE = {
   vw: 360,
-  vh: 1080,
-  src: { cx: 180, cardW: 240, cardH: 56, ys: [40, 105, 170, 235, 300, 365] },
-  app: { cx: 180, cy: 510, cardW: 260, cardH: 120 },
-  out: { cx: 180, cardW: 240, cardH: 56, ys: [690, 755, 820, 885, 950] },
+  vh: 780,
+  src: { cx: 180, cardW: 240, cardH: 52, ys: [40, 95, 150, 205, 260, 315] },
+  app: { cx: 180, cy: 430, cardW: 240, cardH: 110 },
+  out: { cx: 180, cardW: 240, cardH: 52, ys: [550, 605, 660, 715, 770] },
 };
+
+const AGENT_NODE_ID = "agent";
 
 function srcOutPoint(layout: "desktop" | "mobile", index: number) {
   const cfg = layout === "desktop" ? DESKTOP : MOBILE;
@@ -358,6 +360,8 @@ function HoverPopover({ hover, side }: { hover: HoverDetail; side: TooltipSide }
       ? "right-full top-1/2 mr-3 -translate-y-1/2"
       : "bottom-full left-1/2 mb-3 -translate-x-1/2";
 
+  const widthClass = "w-[min(230px,calc(100vw-32px))]";
+
   const enterClass =
     side === "right"
       ? "-translate-x-2 group-hover:translate-x-0 group-focus-within:translate-x-0"
@@ -369,7 +373,8 @@ function HoverPopover({ hover, side }: { hover: HoverDetail; side: TooltipSide }
     <div
       role="tooltip"
       className={[
-        "pointer-events-none absolute z-40 w-[230px] rounded-xl border border-border-subtle px-4 py-3 opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+        "pointer-events-none absolute z-40 rounded-xl border border-border-subtle px-4 py-3 opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+        widthClass,
         positionClass,
         enterClass,
       ].join(" ")}
@@ -415,6 +420,8 @@ function NodeCard({
   hover,
   tooltipSide,
   enableHover,
+  onSelect,
+  isSelected,
 }: {
   label: string;
   sublabel: string;
@@ -425,35 +432,45 @@ function NodeCard({
   hover?: HoverDetail;
   tooltipSide?: TooltipSide;
   enableHover?: boolean;
+  onSelect?: () => void;
+  isSelected?: boolean;
 }) {
   const isCentral = size === "central";
   const showTooltip = !!(enableHover && hover && tooltipSide);
+  const Tag: "button" | "div" = onSelect ? "button" : "div";
 
   return (
-    <div
-      role="group"
+    <Tag
+      {...(onSelect
+        ? { type: "button" as const, onClick: onSelect, "aria-pressed": isSelected }
+        : { role: "group" as const })}
       aria-label={ariaLabel ?? `${label} — ${sublabel}`}
       aria-current={status === "active" ? "step" : undefined}
-      tabIndex={showTooltip ? 0 : undefined}
+      tabIndex={showTooltip || onSelect ? 0 : undefined}
       className={[
         "group relative flex h-full w-full rounded-xl border transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary/60",
         isCentral
           ? "flex-col items-center justify-center gap-2 px-4 py-3 text-center"
-          : "items-center gap-2.5 px-3 py-2",
-        status === "active"
+          : "items-center gap-2.5 px-3 py-2 text-left",
+        isSelected
+          ? "border-accent-primary/70 bg-bg-card"
+          : status === "active"
           ? "border-accent-primary/55 bg-bg-card"
           : status === "done"
           ? "border-cyan/35 bg-bg-card"
           : "border-border-subtle bg-bg-card/40 opacity-60",
       ].join(" ")}
       style={{
-        boxShadow:
-          status === "active"
+        boxShadow: isSelected
+          ? isCentral
+            ? "0 0 56px rgba(139,92,246,0.55), 0 0 20px rgba(139,92,246,0.35)"
+            : "0 0 28px rgba(139,92,246,0.45)"
+          : status === "active"
             ? isCentral
               ? "0 0 52px rgba(139,92,246,0.45), 0 0 16px rgba(139,92,246,0.25)"
               : "0 0 22px rgba(139,92,246,0.35)"
             : undefined,
-        transform: status === "active" && isCentral ? "scale(1.015)" : undefined,
+        transform: (isSelected || status === "active") && isCentral ? "scale(1.015)" : undefined,
         willChange: "opacity, box-shadow, transform",
       }}
     >
@@ -518,7 +535,7 @@ function NodeCard({
       {showTooltip && hover && tooltipSide && (
         <HoverPopover hover={hover} side={tooltipSide} />
       )}
-    </div>
+    </Tag>
   );
 }
 
@@ -662,11 +679,15 @@ function NodeOverlay({
   tick,
   reduced,
   enableHover,
+  activeId,
+  onSelect,
 }: {
   layout: "desktop" | "mobile";
   tick: number;
   reduced: boolean;
   enableHover: boolean;
+  activeId: string | null;
+  onSelect: (id: string) => void;
 }) {
   const cfg = layout === "desktop" ? DESKTOP : MOBILE;
   const effectiveTick = reduced ? TOTAL_TICKS - 2 : tick;
@@ -711,6 +732,8 @@ function NodeOverlay({
             hover={n.hover}
             tooltipSide={needSide}
             enableHover={enableHover}
+            onSelect={() => onSelect(n.id)}
+            isSelected={activeId === n.id}
           />
         </div>
       ))}
@@ -732,6 +755,8 @@ function NodeOverlay({
           hover={AGENT_HOVER}
           tooltipSide={agentSide}
           enableHover={enableHover}
+          onSelect={() => onSelect(AGENT_NODE_ID)}
+          isSelected={activeId === AGENT_NODE_ID}
         />
       </div>
 
@@ -745,9 +770,86 @@ function NodeOverlay({
             hover={a.hover}
             tooltipSide={actionSide}
             enableHover={enableHover}
+            onSelect={() => onSelect(a.id)}
+            isSelected={activeId === a.id}
           />
         </div>
       ))}
+    </div>
+  );
+}
+
+// ─── Mobile detail drawer ───────────────────────────────────────────────────
+
+function lookupHover(id: string | null): HoverDetail | null {
+  if (!id) return null;
+  if (id === AGENT_NODE_ID) return AGENT_HOVER;
+  const need = NEEDS.find((n) => n.id === id);
+  if (need) return need.hover;
+  const action = ACTIONS.find((a) => a.id === id);
+  if (action) return action.hover;
+  return null;
+}
+
+function MobileDetailDrawer({
+  activeId,
+  reduced,
+}: {
+  activeId: string | null;
+  reduced: boolean;
+}) {
+  const hover = lookupHover(activeId);
+  return (
+    <div className="relative mt-4 lg:hidden" aria-live="polite">
+      <p className="mb-2 text-center text-[10px] uppercase tracking-[0.22em] text-text-tertiary">
+        Touchez un élément · détail ci-dessous
+      </p>
+      <div className="relative overflow-hidden">
+        <motion.div
+          key={activeId ?? "empty"}
+          initial={reduced ? false : { opacity: 0, y: 6 }}
+          animate={reduced ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="rounded-xl border border-accent-primary/45 px-4 py-3.5 backdrop-blur-xl"
+          style={{
+            background: "color-mix(in srgb, var(--color-bg-card) 80%, transparent)",
+            boxShadow:
+              "0 12px 40px rgba(0,0,0,0.35), 0 0 26px rgba(139,92,246,0.35), inset 0 1px 0 rgba(255,255,255,0.04)",
+            borderTop:
+              "1.5px solid color-mix(in srgb, var(--color-accent-primary) 55%, transparent)",
+          }}
+        >
+          {hover ? (
+            <>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                {hover.kicker}
+              </p>
+              <p className="mt-1.5 text-[13px] font-semibold leading-snug text-text-primary">
+                {hover.title}
+              </p>
+              <p className="mt-2 text-[12px] leading-relaxed text-text-secondary">
+                {hover.description}
+              </p>
+              {hover.tags && (
+                <ul className="mt-2.5 flex flex-wrap gap-1">
+                  {hover.tags.map((tag) => (
+                    <li
+                      key={tag}
+                      className="rounded-md border border-border-subtle bg-bg-card/70 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-light"
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </>
+          ) : (
+            <p className="text-[12px] text-text-tertiary">
+              Touchez un élément du schéma pour voir le détail.
+            </p>
+          )}
+        </motion.div>
+      </div>
     </div>
   );
 }
@@ -757,6 +859,7 @@ function NodeOverlay({
 export function OneAgentManyNeedsPipeline() {
   const { shouldReduceMotion, mounted, isCoarsePointer } = usePerformanceMode();
   const [tick, setTick] = useState(0);
+  const [activeId, setActiveId] = useState<string | null>(NEEDS[0].id);
   const inViewRef = useRef(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -823,6 +926,8 @@ export function OneAgentManyNeedsPipeline() {
                 tick={tick}
                 reduced={shouldReduceMotion}
                 enableHover={enableHover}
+                activeId={activeId}
+                onSelect={setActiveId}
               />
             </div>
 
@@ -832,7 +937,9 @@ export function OneAgentManyNeedsPipeline() {
                 layout="mobile"
                 tick={tick}
                 reduced={shouldReduceMotion}
-                enableHover={enableHover}
+                enableHover={false}
+                activeId={activeId}
+                onSelect={setActiveId}
               />
             </div>
 
@@ -844,10 +951,12 @@ export function OneAgentManyNeedsPipeline() {
                 5 actions · branchées sur vos outils
               </span>
             </div>
+
+            <MobileDetailDrawer activeId={activeId} reduced={shouldReduceMotion} />
           </div>
 
           {enableHover && (
-            <p className="mt-4 text-center text-[11px] uppercase tracking-[0.22em] text-text-tertiary">
+            <p className="mt-4 hidden text-center text-[11px] uppercase tracking-[0.22em] text-text-tertiary lg:block">
               Survolez un élément pour voir comment l&apos;agent le traite
             </p>
           )}
