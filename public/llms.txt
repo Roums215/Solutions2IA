@@ -1,0 +1,49 @@
+# Solutions 2IA
+
+> Agence digitale française premium : applications métier sur mesure, agents IA souverains (RAG + hébergement UE), sites web, automatisation et studio visuel. Audit 30 jours dérisqué, satisfait ou remboursé.
+
+## À propos
+
+Solutions 2IA accompagne les PME et ETI françaises dans leur transformation digitale avec une approche concrète : audit du terrain réel, build sur mesure, pilote 30 jours dérisqué, run avec monitoring continu. Tous les outils livrés sont hébergés en France ou en Union européenne (RGPD natif), avec garde-fous métier et humain dans la boucle.
+
+## Services principaux
+
+- [Applications métier sur mesure](https://solutions2ia.com/applications) : Six secteurs couverts (santé, retail, industrie, services pro, logistique, immobilier/BTP) avec dashboards sectoriels (TRS/OEE, OTD/ePOD, Hoguet, Ségur, Chorus Pro). Audit ou greenfield.
+- [Agents IA](https://solutions2ia.com/agents-ia) : Un agent, N besoins, votre métier. 8 cas d'usage universels (tri mails, RDV, qualif leads, notes CRM, support N1, RAG, devis, reporting). 5 garde-fous : RAG sourcé, souveraineté UE, humain dans la boucle, monitoring, pilote 30j.
+- [RAG sur vos data](https://solutions2ia.com/rag) : Mémoire métier privée connectée à Notion, Confluence, SharePoint, Drive. Citations sources affichées, refus contrôlé sous seuil de confiance. 6 secteurs couverts.
+- [Sites web premium](https://solutions2ia.com/sites-web) : Système numérique connecté qui transforme visiteurs en clients. 9 canaux de visibilité, parcours fluide, CRM connecté.
+- [Automatisation](https://solutions2ia.com/automatisation) : Fin de la ressaisie. JobPhoning → Axonaut, n8n + IA, RGPD natif, hébergement UE. 5 secteurs spécialisés : immobilier, cabinet comptable, BTP, restauration, formation.
+- [Studio visuel](https://solutions2ia.com/studio-visuel) : Motion design, 2D/3D, Remotion. Expériences premium qui marquent les esprits.
+
+## Méthode 2IA
+
+01 Audit · 02 Build · 03 Pilote 30j satisfait ou remboursé · 04 Run avec monitoring continu.
+
+## Profils utilisateurs cibles
+
+- Commercial débordé (SDR 70% temps admin CRM)
+- Dirigeant PME multi-casquettes (12-50 collaborateurs)
+- Expert métier (médecin, avocat, expert-comptable — 200h/mois admin par cabinet)
+- SAV / Support client qui crève sous le ticket
+- Marketeur solo (5 canaux à alimenter avec une paire de mains)
+- Freelance / Consultant (60-70% temps en research)
+
+## Ressources
+
+- [FAQ complète](https://solutions2ia.com/faq) : 30 questions structurées Agents IA / Applications / RAG / Sécurité / Méthode-Pricing.
+- [Articles](https://solutions2ia.com/articles) : Guides ultra-optimisés sur audit application métier, agent IA RGPD souverain, RAG vs fine-tuning, automatisation tri mails PME, facture électronique Chorus Pro 2026.
+- [À propos](https://solutions2ia.com/a-propos) : Studio digital tourné vers l'excellence.
+- [Contact](https://solutions2ia.com/contact) : Audit gratuit 45 minutes, premier échange offert.
+
+## Garanties
+
+- Hébergement souverain UE (Mistral, Claude UE, OVH, Scaleway)
+- RGPD natif, contrats DPA, isolation par client
+- Aucun entraînement sur vos données
+- Humain dans la boucle, override audité
+- Logs structurés, monitoring 24/7
+- Pilote 30 jours satisfait ou remboursé
+
+## Contact
+
+contact@solutions2ia.com · Réponse sous 24h · Premier échange offert · Sans engagement
