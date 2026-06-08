@@ -33,6 +33,11 @@ export function SitesWebPage() {
         primaryCta={{ label: "Concevoir mon système numérique", href: "/contact" }}
         secondaryCta={{ label: "Voir comment circule une opportunité", href: "#opportunity-flow" }}
         visual={<WebScene />}
+        mobileSteps={[
+          { label: "Visibilité", hint: "9 canaux qualifiés" },
+          { label: "Visiteur", hint: "parcours fluide · intention" },
+          { label: "Conversion", hint: "opportunité transmise" },
+        ]}
       />
 
       {/* Micro-label de gamme : prépare mentalement les sections suivantes */}

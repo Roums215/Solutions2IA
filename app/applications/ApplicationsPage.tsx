@@ -155,6 +155,11 @@ export function ApplicationsPage() {
         primaryCta={{ label: "Cadrer mon projet", href: "/contact" }}
         secondaryCta={{ label: "Voir la méthode", href: "#methode" }}
         visual={<AppScene />}
+        mobileSteps={[
+          { label: "Capture", hint: "sources éparses unifiées" },
+          { label: "Normalisation", hint: "règles métier appliquées" },
+          { label: "Pilotage", hint: "KPIs live · alertes" },
+        ]}
       />
 
       {/* Anatomie d'une app métier */}

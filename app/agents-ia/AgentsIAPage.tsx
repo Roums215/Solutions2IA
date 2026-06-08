@@ -132,6 +132,11 @@ export function AgentsIAPage() {
         primaryCta={{ label: "Faire un audit gratuit", href: "/contact" }}
         secondaryCta={{ label: "Voir les besoins couverts", href: "#besoins" }}
         visual={<AIBrainScene />}
+        mobileSteps={[
+          { label: "Comprend", hint: "RAG · contexte métier" },
+          { label: "Décide", hint: "LLM contraint · garde-fous" },
+          { label: "Agit", hint: "outils branchés · loggé" },
+        ]}
       />
 
       {/* Anatomie d'un agent */}

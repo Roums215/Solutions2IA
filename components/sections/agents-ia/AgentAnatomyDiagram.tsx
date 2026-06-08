@@ -97,12 +97,20 @@ const STEPS: AnatomyStep[] = [
   },
 ];
 
-function StepCard({ step, index }: { step: AnatomyStep; index: number }) {
+function StepCard({
+  step,
+  index,
+  expanded = false,
+}: {
+  step: AnatomyStep;
+  index: number;
+  expanded?: boolean;
+}) {
   return (
     <div
       role="group"
       aria-label={`${step.title} — ${step.pitch}`}
-      tabIndex={0}
+      tabIndex={expanded ? undefined : 0}
       className="group relative flex h-full w-full min-w-0 flex-col items-center rounded-2xl border border-border-subtle bg-bg-card/55 px-5 py-6 text-center backdrop-blur-xl transition-all duration-500 hover:border-accent-primary/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary/60 sm:px-6"
       style={{
         boxShadow:
@@ -137,36 +145,59 @@ function StepCard({ step, index }: { step: AnatomyStep; index: number }) {
         {step.pitch}
       </p>
 
-      {/* Hover popover */}
-      <div
-        role="tooltip"
-        className="pointer-events-none absolute left-1/2 top-full z-40 mt-3 w-[260px] -translate-x-1/2 translate-y-1 rounded-xl border border-border-subtle px-4 py-3 text-left opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
-        style={{
-          background: "color-mix(in srgb, var(--color-bg-card) 92%, transparent)",
-          boxShadow:
-            "0 22px 60px rgba(0,0,0,0.55), 0 0 28px rgba(139,92,246,0.28), inset 0 1px 0 rgba(255,255,255,0.04)",
-          borderTop: "1.5px solid color-mix(in srgb, var(--color-accent-primary) 50%, transparent)",
-        }}
-      >
-        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
-          {step.number} · {step.title}
-        </p>
-        <p className="mt-2 text-[12px] leading-relaxed text-text-secondary">
-          {step.detail}
-        </p>
-        <ul className="mt-2.5 flex flex-wrap gap-1">
-          {step.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-md border border-border-subtle bg-bg-card/70 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-light"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* Mobile expanded detail (always visible) */}
+      {expanded && (
+        <div className="mt-4 w-full border-t border-border-subtle/60 pt-3 text-left">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+            Comment c&apos;est implémenté
+          </p>
+          <p className="mt-1.5 text-[12px] leading-relaxed text-text-secondary">
+            {step.detail}
+          </p>
+          <ul className="mt-2.5 flex flex-wrap gap-1">
+            {step.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-md border border-border-subtle bg-bg-card/70 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-light"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      {/* Index decorative dot */}
+      {/* Desktop hover popover (only when not expanded) */}
+      {!expanded && (
+        <div
+          role="tooltip"
+          className="pointer-events-none absolute left-1/2 top-full z-40 mt-3 w-[min(260px,calc(100vw-32px))] -translate-x-1/2 translate-y-1 rounded-xl border border-border-subtle px-4 py-3 text-left opacity-0 backdrop-blur-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100"
+          style={{
+            background: "color-mix(in srgb, var(--color-bg-card) 92%, transparent)",
+            boxShadow:
+              "0 22px 60px rgba(0,0,0,0.55), 0 0 28px rgba(139,92,246,0.28), inset 0 1px 0 rgba(255,255,255,0.04)",
+            borderTop: "1.5px solid color-mix(in srgb, var(--color-accent-primary) 50%, transparent)",
+          }}
+        >
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+            {step.number} · {step.title}
+          </p>
+          <p className="mt-2 text-[12px] leading-relaxed text-text-secondary">
+            {step.detail}
+          </p>
+          <ul className="mt-2.5 flex flex-wrap gap-1">
+            {step.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-md border border-border-subtle bg-bg-card/70 px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-accent-light"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <span aria-hidden className="sr-only">
         Étape {index + 1} sur {STEPS.length}
       </span>
@@ -272,20 +303,20 @@ export function AgentAnatomyDiagram() {
           </div>
         </div>
 
-        {/* Mobile / tablet vertical */}
+        {/* Mobile / tablet vertical — detail toujours visible */}
         <div className="lg:hidden">
           <div className="mx-auto max-w-md">
-            <StepCard step={STEPS[0]} index={0} />
+            <StepCard step={STEPS[0]} index={0} expanded />
             <Arrow vertical reduced={shouldReduceMotion} />
-            <StepCard step={STEPS[1]} index={1} />
+            <StepCard step={STEPS[1]} index={1} expanded />
             <Arrow vertical reduced={shouldReduceMotion} />
-            <StepCard step={STEPS[2]} index={2} />
+            <StepCard step={STEPS[2]} index={2} expanded />
             <Arrow vertical reduced={shouldReduceMotion} />
-            <StepCard step={STEPS[3]} index={3} />
+            <StepCard step={STEPS[3]} index={3} expanded />
           </div>
         </div>
 
-        <p className="mx-auto mt-12 max-w-2xl text-center text-[11px] uppercase tracking-[0.22em] text-text-tertiary">
+        <p className="mx-auto mt-12 hidden max-w-2xl text-center text-[11px] uppercase tracking-[0.22em] text-text-tertiary lg:block">
           Survolez chaque étape pour voir comment elle est implémentée
         </p>
       </div>
