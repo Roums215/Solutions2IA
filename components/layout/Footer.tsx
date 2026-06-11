@@ -14,7 +14,7 @@ export function Footer() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-16 lg:py-20"
+        className="max-w-7xl mx-auto px-6 pt-16 pb-8 lg:pt-20 lg:pb-10"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           <motion.div variants={fadeInUp} className="lg:col-span-5">

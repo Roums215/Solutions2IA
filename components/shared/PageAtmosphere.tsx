@@ -48,10 +48,10 @@ function FloatingLine({ x1, y1, x2, y2, color, delay = 0 }: {
 }
 
 export function PageAtmosphere({ preset }: PageAtmosphereProps) {
-  const { isMobile, shouldReduceMotion, shouldDegrade } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, shouldHideBackgroundDecor } = usePerformanceMode();
 
-  // Low-end / save-data : fond statique minimal, aucune animation, aucun orb.
-  if (shouldDegrade) {
+  // Décor de fond caché (mobile/tactile/low-end) : fond statique minimal, aucun orb.
+  if (shouldHideBackgroundDecor) {
     return (
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
         <div className="absolute inset-0 bg-radial-top opacity-60" />

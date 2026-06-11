@@ -80,10 +80,10 @@ export function DepthDivider({ preset = "glow", fromBg = "primary", toBg = "prim
   const config = presetConfig[preset];
   const topColor = bgColors[fromBg];
   const bottomColor = bgColors[toBg];
-  const { shouldDegrade } = usePerformanceMode();
+  const { shouldHideBackgroundDecor } = usePerformanceMode();
 
-  // Low-end : un simple <hr> aux couleurs des sections, sans animations ni glow.
-  if (shouldDegrade) {
+  // Décor de fond caché : un simple <hr> aux couleurs des sections, sans glow.
+  if (shouldHideBackgroundDecor) {
     return (
       <div
         className="relative h-px w-full"
