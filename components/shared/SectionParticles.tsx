@@ -27,14 +27,14 @@ export function SectionParticles({
   className,
 }: SectionParticlesProps) {
   const [mounted, setMounted] = useState(false);
-  const { isMobile, shouldReduceMotion, shouldDegrade } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, shouldHideBackgroundDecor } = usePerformanceMode();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Low-end / save-data / reduced-motion : 0 particle, le composant rend null.
-  const effectiveCount = shouldDegrade || shouldReduceMotion
+  // Décor de fond caché sur mobile/tactile/low-end : 0 particle, le composant rend null.
+  const effectiveCount = shouldHideBackgroundDecor || shouldReduceMotion
     ? 0
     : isMobile
       ? Math.min(count, 6)
@@ -57,7 +57,7 @@ export function SectionParticles({
   }, [effectiveCount]);
 
   // Don't render on server to avoid hydration mismatch
-  if (!mounted || shouldReduceMotion || shouldDegrade) {
+  if (!mounted || shouldReduceMotion || shouldHideBackgroundDecor) {
     return null;
   }
 

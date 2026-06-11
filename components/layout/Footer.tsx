@@ -14,7 +14,7 @@ export function Footer() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="max-w-7xl mx-auto px-6 py-16 lg:py-20"
+        className="max-w-7xl mx-auto px-6 pt-14 pb-3 lg:pt-16 lg:pb-3"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
           <motion.div variants={fadeInUp} className="lg:col-span-5">
@@ -86,7 +86,7 @@ export function Footer() {
           </motion.div>
         </div>
 
-        <motion.div variants={fadeInUp} className="mt-12 border-t border-border-subtle pt-8">
+        <motion.div variants={fadeInUp} className="mt-10 border-t border-border-subtle pt-6">
           <h4 className="sr-only">Informations légales</h4>
           <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:justify-start">
             {footerNav.legal.map((link) => (
@@ -99,7 +99,7 @@ export function Footer() {
           </ul>
         </motion.div>
 
-        <motion.div variants={fadeInUp} className="mt-8 pt-8 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div variants={fadeInUp} className="mt-5 pt-5 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-text-tertiary">&copy; {new Date().getFullYear()} Solutions 2IA. Tous droits réservés.</p>
           <p className="text-xs text-text-tertiary">
             Conçu et développé avec exigence par <span className="text-text-secondary">Solutions 2IA</span>

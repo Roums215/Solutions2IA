@@ -28,7 +28,7 @@ const processSteps = [
 ];
 
 const faq = [
-  { q: "Combien coûte un projet ?", a: "Chaque projet est différent. Un site vitrine premium commence à partir de 3 000€, une application à partir de 8 000€, un agent IA à partir de 2 000€. Nous proposons toujours un devis transparent après l'échange découverte." },
+  { q: "Combien coûte un projet ?", a: "Tranches indicatives : site vitrine simple à partir de 500€, site vitrine premium 2 000-3 000€, site avec système (CMS, blog, espace client…) 1 000-5 000€. Application métier 1 500-15 000€ selon modules. Agent IA 800-8 000€ build + 300-2 000€/mois run. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations à prévoir. Chaque devis inclut design soigné, code propre, accessibilité, SEO/perf optimisés et 30 jours de garantie post-livraison. Audit gratuit puis devis transparent après l'échange découverte." },
   { q: "Quels sont vos délais ?", a: "Un site web premium : 4-8 semaines. Une application : 8-16 semaines. Un agent IA : 2-6 semaines. Les délais dépendent de la complexité, mais nous respectons toujours nos engagements." },
   { q: "Travaillez-vous avec des clients internationaux ?", a: "Oui. Nous travaillons en français et en anglais, avec des clients en France, en Europe et au-delà. Le travail se fait en remote avec des points réguliers." },
   { q: "Proposez-vous de la maintenance ?", a: "Oui. Chaque livraison peut s'accompagner d'un contrat de maintenance et d'optimisation continue. Vos solutions restent performantes dans la durée." },
@@ -133,14 +133,15 @@ export function ContactPage() {
                   <input type="text" placeholder="Nom de votre entreprise" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-text-primary block mb-2.5">Budget estimé <span className="text-text-tertiary font-normal">(optionnel)</span></label>
+                  <label className="text-sm font-medium text-text-primary block mb-2.5">Budget estimé <span className="text-text-tertiary font-normal">(optionnel — indicatif)</span></label>
                   <select className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-secondary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
                     <option>Sélectionner une fourchette</option>
-                    <option>Moins de 3 000€</option>
+                    <option>Moins de 1 000€</option>
+                    <option>1 000€ — 3 000€</option>
                     <option>3 000€ — 8 000€</option>
                     <option>8 000€ — 20 000€</option>
-                    <option>20 000€ — 50 000€</option>
-                    <option>Plus de 50 000€</option>
+                    <option>Plus de 20 000€</option>
+                    <option>À définir avec vous</option>
                   </select>
                 </div>
               </div>

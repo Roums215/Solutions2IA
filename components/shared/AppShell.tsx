@@ -75,17 +75,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setHideHeaderLogo(false);
   }, []);
 
-  const { mounted, shouldDegrade } = usePerformanceMode();
-  const decor = mounted && !shouldDegrade;
+  const { mounted, shouldHideBackgroundDecor } = usePerformanceMode();
+  const decor = mounted && !shouldHideBackgroundDecor;
 
   return (
     <LoadingContext.Provider value={{ isLoading, hideHeaderLogo, logoPosition, registerLogoRef }}>
       <TooltipProvider>
         {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
-        <div className={showContent ? "app-content-visible" : "app-content-hidden"}>
+        <div
+          className={`${showContent ? "app-content-visible" : "app-content-hidden"} flex min-h-screen flex-col`}
+        >
           {decor && <MouseParticles />}
           <Header />
-          <main className="min-h-screen">
+          <main className="flex-1">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />

@@ -10,14 +10,26 @@ interface PerformanceMode {
   isLowPowerDevice: boolean;
   saveData: boolean;
   slowConnection: boolean;
-  /** Reduit/désactive les animations pour respecter le réglage utilisateur. */
+  /**
+   * Reduit/désactive les animations pour respecter le réglage utilisateur
+   * `prefers-reduced-motion` uniquement. N'inclut PAS le low-end : on veut garder
+   * les animations de cartes et sections (motion JS = à la demande, gentil) même
+   * sur PC modeste ou iPhone, seul le décor de fond se coupe.
+   */
   shouldReduceMotion: boolean;
   /**
-   * Mode dégradé global : désactive les effets coûteux (3D, particles, blur, scènes
-   * animées) sur les low-end devices, save-data et réseaux lents. Aussi propagé via
+   * Mode dégradé global : désactive les effets coûteux (backdrop-blur, animations
+   * CSS infinies, glow) sur low-end devices et reduced-motion. Propagé via
    * `<html data-perf="low">` pour des règles CSS globales.
    */
   shouldDegrade: boolean;
+  /**
+   * Cache les couches purement décoratives de fond (particles, orbs animés,
+   * FluidMouseField, MouseParticles, dividers néons). Activé sur mobile, tactile,
+   * low-end ou save-data — partout où le décor de fond est superflu et coûteux.
+   * Les animations de contenu (cards, sections, scenes) ne sont PAS impactées.
+   */
+  shouldHideBackgroundDecor: boolean;
 }
 
 type Nav = Navigator & {
@@ -42,6 +54,7 @@ export function usePerformanceMode(): PerformanceMode {
     slowConnection: false,
     shouldReduceMotion: false,
     shouldDegrade: false,
+    shouldHideBackgroundDecor: false,
   });
 
   useEffect(() => {
@@ -70,11 +83,17 @@ export function usePerformanceMode(): PerformanceMode {
         slowConnection;
 
       const prefersReducedMotion = motionQuery.matches;
+      // shouldReduceMotion honore uniquement le réglage utilisateur — pas le low-end.
+      // Permet aux animations cards/sections (motion JS à la demande) de tourner
+      // même sur low-end / mobile, où seul le décor de fond se coupe.
+      const shouldReduceMotion = prefersReducedMotion;
+      // shouldDegrade : low-end ou reduced-motion → propage via data-perf CSS pour
+      // couper backdrop-blur + animations CSS infinies (orb-breathe, etc.).
       const shouldDegrade = isLowPowerDevice || prefersReducedMotion;
-      // En low-end, on coupe aussi les animations motion (boost FPS direct).
-      // Les composants qui honorent déjà shouldReduceMotion (scènes,
-      // FluidMouseField, etc.) bénéficient automatiquement de la dégradation.
-      const shouldReduceMotion = prefersReducedMotion || isLowPowerDevice;
+      // shouldHideBackgroundDecor : large — vise tous les cas où le décor de fond
+      // est coûteux ou superflu. Mobile/tactile inclus pour iPhone (FPS).
+      const shouldHideBackgroundDecor =
+        isMobile || isCoarsePointer || isLowPowerDevice || saveData || slowConnection || prefersReducedMotion;
 
       // Propage le mode dégradé via data-attribute global (CSS peut s'y conformer
       // sans nécessiter d'imports React).
@@ -94,6 +113,7 @@ export function usePerformanceMode(): PerformanceMode {
         slowConnection,
         shouldReduceMotion,
         shouldDegrade,
+        shouldHideBackgroundDecor,
       });
     };
 

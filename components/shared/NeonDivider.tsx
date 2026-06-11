@@ -197,7 +197,7 @@ export function NeonDivider({ preset = "glow", bg = "primary", className = "" }:
   const bgColor = bgRgb[bg];
   const ref = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, "");
-  const { shouldDegrade } = usePerformanceMode();
+  const { shouldHideBackgroundDecor } = usePerformanceMode();
 
   // Hooks invoqués sans conditionnel (rules-of-hooks).
   const { scrollYProgress } = useScroll({
@@ -208,8 +208,8 @@ export function NeonDivider({ preset = "glow", bg = "primary", className = "" }:
   const beamScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1.02, 0.9]);
   const parallaxY = useTransform(scrollYProgress, [0, 1], [-8, 8]);
 
-  // Low-end : remplace par un simple divider statique gradient.
-  if (shouldDegrade) {
+  // Décor de fond caché : remplace par un simple divider statique gradient.
+  if (shouldHideBackgroundDecor) {
     return (
       <div
         className={`relative w-full h-px ${className}`}
