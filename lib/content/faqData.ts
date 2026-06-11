@@ -203,13 +203,13 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "methode-pricing",
     question: "Combien coûte un agent IA sur mesure ?",
     answer:
-      "Trois tranches indicatives. Starter (1-2 workflows ciblés, intégrations standards, 1 outil) : 3 500-8 000 € build + 1 500-2 500 €/mois run. Growth (3-6 workflows, dashboards, QA approfondi, 2-4 outils) : 8 000-25 000 € build + 2 500-5 000 €/mois run. Ops overhaul (6-15 workflows, intégrations complexes, gouvernance, audit) : 25 000-60 000 € build + 5 000-10 000 €/mois run. Chiffrage précis après audit gratuit de 45 minutes.",
+      "Trois tranches indicatives. Starter (1-2 workflows ciblés, intégrations standards, 1 outil) : 800-2 500 € build + 300-800 €/mois run. Growth (3-6 workflows, dashboards, QA approfondi, 2-4 outils) : 2 500-8 000 € build + 800-2 000 €/mois run. Ops complet (6-15 workflows, intégrations complexes, gouvernance, audit) : 8 000-20 000 € build + 2 000-4 500 €/mois run. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations à prévoir. Inclus dans tous les forfaits : hébergement souverain UE, monitoring 24/7, hotfix sous 24 h, garantie 30 jours avec sortie sans frais si KPIs non atteints. Chiffrage précis après audit gratuit de 45 minutes.",
   },
   {
     category: "methode-pricing",
     question: "Combien coûte une application métier sur mesure ?",
     answer:
-      "Selon la complexité : MVP fonctionnel (1-3 modules, 5-10 écrans, 1 intégration) typiquement 15 000-35 000 €. Application complète (8-15 modules, dashboards, mobile responsive, multi-utilisateurs, intégrations CRM/ERP) : 35 000-90 000 €. Plateforme métier complexe (multi-tenant, workflows métier avancés, BI embarqué, audit RGPD/HDS) : 90 000-250 000 €+. Run mensuel pour maintenance, monitoring et évolutions : 1 500-8 000 €/mois selon volume.",
+      "Tranches indicatives selon la complexité. MVP fonctionnel (1-3 modules, 5-10 écrans, 1 intégration) : 1 500-5 000 €. Application complète (8-15 modules, dashboards, mobile responsive, multi-utilisateurs, intégrations CRM/ERP) : 5 000-15 000 €. Plateforme métier avancée (multi-tenant, workflows complexes, BI embarqué, audit RGPD/HDS) : 15 000-40 000 €+. Run mensuel pour maintenance, monitoring et évolutions : 200-1 500 €/mois selon volume. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations à prévoir. Inclus : design soigné, code testé, accessibilité, perf Lighthouse 95+, garantie 30 jours. Devis détaillé après audit gratuit.",
   },
   {
     category: "methode-pricing",
@@ -227,6 +227,6 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "methode-pricing",
     question: "Comment se passe le support après mise en production ?",
     answer:
-      "Run mensuel inclus selon votre forfait : monitoring 24/7 de l'infrastructure, alertes proactives Slack/email, hotfix bugs critiques sous 24 h, ajout de nouveaux cas d'usage à la demande (chiffrage transparent), update mensuel des prompts/règles métier, A/B testing pour optimisation continue. Slack dédié pour vos équipes pendant les heures ouvrables (9h-19h Paris). Astreinte premium possible (24/7, 999 €/mois supplémentaires).",
+      "Run mensuel inclus selon votre forfait : monitoring 24/7 de l'infrastructure, alertes proactives Slack/email, hotfix bugs critiques sous 24 h, ajout de nouveaux cas d'usage à la demande (chiffrage transparent), update mensuel des prompts/règles métier, A/B testing pour optimisation continue. Slack dédié pour vos équipes pendant les heures ouvrables (9h-19h Paris). Astreinte premium possible (24/7, à partir de 199 €/mois selon SLA et périmètre).",
   },
 ];

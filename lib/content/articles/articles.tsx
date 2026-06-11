@@ -70,7 +70,7 @@ const auditApplicationMetier: Article = {
       anchor: "cout-audit",
       content: (
         <p>
-          Selon le périmètre et l&apos;ancienneté du code, comptez entre 5 000 € (audit léger 1-2 modules) et 25 000 € (audit complet d&apos;une plateforme métier de 50+ écrans avec dette technique chiffrée et trajectoire de migration documentée). Ce coût est récupéré sur le premier trimestre si la décision optimale fait gagner 3 mois sur une refonte mal cadrée. La règle empirique : 5-10 % du budget de refonte cible.
+          Selon le périmètre et l&apos;ancienneté du code, comptez entre 1 000 € (audit léger 1-2 modules) et 5 000 € (audit complet d&apos;une plateforme métier 50+ écrans avec dette technique chiffrée et trajectoire de migration documentée). Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, le nombre de modules à analyser et les intégrations à cartographier. Ce coût se rentabilise dès le premier trimestre si la décision optimale évite 3 mois de refonte mal cadrée. Règle empirique : 5-10 % du budget de refonte cible. Audit gratuit de cadrage offert avant tout engagement.
         </p>
       ),
     },
@@ -89,7 +89,7 @@ const auditApplicationMetier: Article = {
     columns: ["Critère", "Refonte ciblée", "Reconstruction"],
     rows: [
       { label: "Durée typique", values: ["3-9 mois", "9-18 mois"] },
-      { label: "Coût moyen", values: ["40-120 k€", "120-400 k€"] },
+      { label: "Coût indicatif", values: ["8-25 k€ selon périmètre", "25-80 k€ selon périmètre"] },
       { label: "Risque rupture service", values: ["Faible (modules cohabitent)", "Modéré (bascule complète)"] },
       { label: "Pertinent si", values: ["60 %+ du code reste OK", "Modèle métier changé"] },
       { label: "Conduite du changement", values: ["Progressive", "Rupture"] },
@@ -193,7 +193,7 @@ const agentIaRgpdSouverain: Article = {
       anchor: "cout-souverain",
       content: (
         <p>
-          Surcoût typique de 15-25 % par rapport à un agent OpenAI standard côté inference. Exemple : 1 000 conversations/mois sur Mistral Large EU ≈ 180-220 €/mois contre 140-180 € sur GPT-4o standard. Ce delta est neutralisé par : (a) l&apos;absence de surcoût juridique pour la conformité (pas d&apos;audit transfert hors UE), (b) la possibilité de candidater à des marchés publics ou secteurs réglementés normalement fermés. Le ROI souverain dépasse souvent le surcoût technique.
+          Surcoût typique de 15-25 % côté inférence par rapport à un agent OpenAI standard. Exemple : 1 000 conversations/mois sur Mistral Large EU ≈ 180-220 €/mois contre 140-180 € sur GPT-4o standard. Le coût exact varie selon le volume traité, le modèle choisi, l&apos;hébergement retenu et la complexité des workflows. Ce delta est neutralisé par : (a) l&apos;absence de surcoût juridique de conformité (pas d&apos;audit transfert hors UE), (b) la possibilité de candidater à des marchés publics et secteurs réglementés normalement fermés aux solutions non-souveraines, (c) un risque RGPD réduit en cas de contrôle CNIL. Le ROI souverain dépasse souvent le surcoût technique.
         </p>
       ),
     },
@@ -246,7 +246,7 @@ const ragVsFineTuning: Article = {
   description:
     "RAG vs fine-tuning : différences techniques, coûts, cas d'usage, ROI. Pourquoi 95 % des projets entreprise choisissent RAG en 2026, et les 5 % où le fine-tuning gagne.",
   tldr:
-    "RAG dans 95 % des cas d'usage entreprise : la base de connaissances change tous les jours, RAG permet la mise à jour temps réel et la traçabilité des sources. Fine-tuning pertinent dans les cas niche (génération code propriétaire, ton de marque très spécifique, contraintes latence extrêmes). Coût RAG typique : 200-2 000 €/mois. Coût fine-tuning : 5 000-50 000 € par cycle.",
+    "RAG dans 95 % des cas d'usage entreprise : la base de connaissances change tous les jours, RAG permet la mise à jour temps réel et la traçabilité des sources. Fine-tuning pertinent dans les cas niche (génération code propriétaire, ton de marque très spécifique, contraintes latence extrêmes). Coût RAG typique : 100-1 000 €/mois selon volume et corpus. Coût fine-tuning : 2 000-15 000 € par cycle selon la qualité du dataset. Prix indicatifs qui peuvent varier selon la complexité du projet et les fonctionnalités demandées.",
   category: "RAG",
   publishedAt: "2026-06-08",
   keywords: [
@@ -299,7 +299,7 @@ const ragVsFineTuning: Article = {
       anchor: "cout-compare",
       content: (
         <p>
-          <strong>RAG :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; embeddings d&apos;indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inference LLM ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 200-2 000 €/mois. <strong>Fine-tuning :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 5 000-30 000 €), GPU rental 500-3 000 € par cycle, infrastructure hosting modèle fine-tuné 200-2 000 €/mois. Total typique : 5 000-50 000 € par cycle + run mensuel.
+          <strong>RAG :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; embeddings d&apos;indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inference LLM ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 100-1 000 €/mois selon volume et fréquence d&apos;usage. <strong>Fine-tuning :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 2 000-10 000 €), GPU rental 300-1 500 € par cycle, infrastructure hosting modèle fine-tuné 100-1 000 €/mois. Total typique : 2 000-15 000 € par cycle + run mensuel — à reconduire dès que la connaissance évolue. Ces prix peuvent varier selon la complexité du projet, les fonctionnalités demandées et les intégrations. Notre audit gratuit chiffre les deux scénarios sur votre cas réel.
         </p>
       ),
     },
@@ -318,8 +318,8 @@ const ragVsFineTuning: Article = {
     columns: ["Critère", "RAG", "Fine-tuning"],
     rows: [
       { label: "Mise à jour des connaissances", values: ["Temps réel (minutes)", "Réentraînement complet"] },
-      { label: "Coût initial", values: ["200-2 000 €", "5 000-50 000 €"] },
-      { label: "Coût run mensuel", values: ["200-2 000 €/mois", "+200-2 000 €/mois (hosting)"] },
+      { label: "Coût initial", values: ["100-1 000 €", "2 000-15 000 €"] },
+      { label: "Coût run mensuel", values: ["100-1 000 €/mois", "+100-1 000 €/mois (hosting)"] },
       { label: "Traçabilité sources", values: ["✓ Citations affichées", "✗ Boîte noire"] },
       { label: "Hallucinations", values: ["Contrôlables (refus seuil)", "Plus fréquentes"] },
       { label: "Idéal pour", values: ["Connaissance qui change", "Ton/style figé"] },
@@ -361,7 +361,7 @@ const automatiserTriMails: Article = {
   description:
     "Tri automatique des mails pour PME : agent IA Gmail/Outlook qui range par urgence, répond aux FAQ, escalade au bon humain. Gains, coûts, intégrations.",
   tldr:
-    "Un agent IA bien configuré trie l'inbox d'une PME et répond aux courants en quelques secondes, libérant 8h/semaine pour un dirigeant et jusqu'à 200h/mois pour un cabinet. Intégrations Gmail/Outlook/Front, escalade contextuelle au bon humain, seuil de confiance configurable, ton de marque préservé. Coût : 200-1 500 €/mois selon volume.",
+    "Un agent IA bien configuré trie l'inbox d'une PME et répond aux courants en quelques secondes, libérant 8h/semaine pour un dirigeant et jusqu'à 200h/mois pour un cabinet. Intégrations Gmail/Outlook/Front, escalade contextuelle au bon humain, seuil de confiance configurable, ton de marque préservé. Coût indicatif : 100-800 €/mois selon volume traité, nombre de boîtes connectées et niveau d'automatisation. Prix variables — à la hausse ou à la baisse — selon la complexité et les fonctionnalités demandées.",
   category: "Automatisation",
   publishedAt: "2026-06-08",
   keywords: [
@@ -427,7 +427,7 @@ const automatiserTriMails: Article = {
       anchor: "cout",
       content: (
         <p>
-          <strong>Setup initial</strong> (audit, configuration, fine-tuning des classifications) : 3 500-8 000 €. <strong>Run mensuel :</strong> 200-1 500 € selon le volume de mails traités (inclus modèles LLM, hébergement EU, monitoring). À comparer aux 8 h/sem × 4 sem × coût horaire chargé d&apos;un dirigeant (≈ 80-150 €/h) = 2 500-5 000 €/mois de temps libéré. ROI typique : 3-5× le premier semestre.
+          <strong>Setup initial</strong> (audit, configuration, fine-tuning des classifications, intégrations) : 800-3 000 € selon le nombre de boîtes connectées et la complexité du tri. <strong>Run mensuel :</strong> 100-800 € selon le volume de mails traités (inclus modèles LLM, hébergement EU, monitoring 24/7). Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations. À comparer aux 8 h/sem × 4 sem × coût horaire chargé d&apos;un dirigeant (≈ 80-150 €/h) = 2 500-5 000 €/mois de temps libéré. ROI typique : 3-5× sur le premier semestre. Audit gratuit pour chiffrer précisément votre cas.
         </p>
       ),
     },
@@ -439,7 +439,7 @@ const automatiserTriMails: Article = {
       { label: "Temps moyen / mail", values: ["3-7 minutes", "5-15 secondes"] },
       { label: "Disponibilité", values: ["Heures bureau", "24/7"] },
       { label: "Cohérence ton de marque", values: ["Variable selon collab.", "100 % stable"] },
-      { label: "Coût mensuel équivalent", values: ["2 500-5 000 €", "200-1 500 €"] },
+      { label: "Coût mensuel équivalent", values: ["2 500-5 000 €", "100-800 €"] },
       { label: "Risque erreur sur cas sensible", values: ["Modéré (fatigue)", "Très faible (escalade)"] },
     ],
   },
@@ -575,7 +575,7 @@ const factureElectroniqueChorusPro: Article = {
     {
       question: "Combien coûte la mise en conformité ?",
       answer:
-        "Setup initial typique : 1 500-5 000 € (intégration PDP, paramétrage, formation). Coût récurrent : 5-50 €/mois pour une PDP selon volume. Le ROI vient de l'économie de manipulation (3-5 min/facture × volume × coût horaire). Pour une PME émettant 100 factures/mois, ROI typique sous 6 mois.",
+        "Setup initial typique : 500-2 000 € (intégration PDP, paramétrage, formation des équipes) selon votre stack et le volume de factures. Coût récurrent : 5-50 €/mois pour l'abonnement PDP selon volume. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet et les fonctionnalités demandées. Le ROI vient de l'économie de manipulation (3-5 min/facture × volume × coût horaire). Pour une PME émettant 100 factures/mois, retour sur investissement typique sous 6 mois. Audit gratuit pour choisir la bonne PDP et chiffrer votre intégration.",
     },
   ],
   relatedLinks: [
