@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils/cn";
 import { DAILY_MOMENTS } from "./ragDailyMomentsData";
 
 export function RagDailyUsage() {
-  const { mounted, isMobile, shouldReduceMotion, isCoarsePointer } =
+  const { mounted, isMobile, shouldReduceMotion, isCoarsePointer, disableContentMotion } =
     usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const staticRender = !mounted || disableContentMotion || isMobile;
   const allow3D =
     mounted && !isMobile && !isCoarsePointer && !shouldReduceMotion;
 

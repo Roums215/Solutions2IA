@@ -28,8 +28,8 @@ const ACCENT = "var(--color-accent-primary)";
  * 1 animation cœur : draw one-shot whileInView des connecteurs.
  */
 export function WebOpportunityFlow() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}

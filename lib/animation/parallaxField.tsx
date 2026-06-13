@@ -56,8 +56,11 @@ export function ParallaxField({
   const mx = useSpring(rawX, { stiffness: 70, damping: 18, mass: 0.8 });
   const my = useSpring(rawY, { stiffness: 70, damping: 18, mass: 0.8 });
 
-  const { mounted, isCoarsePointer, prefersReducedMotion } = usePerformanceMode();
-  const enabled = mounted && !disabled && !isCoarsePointer && !prefersReducedMotion;
+  const { mounted, isCoarsePointer, prefersReducedMotion, tier } = usePerformanceMode();
+  // Parallax = full uniquement : sur reduced/minimal (low-end, FPS guard),
+  // les springs souris sont coupés d'un coup pour HeroVisual + scènes.
+  const enabled =
+    mounted && !disabled && !isCoarsePointer && !prefersReducedMotion && tier === "full";
 
   useEffect(() => {
     if (!enabled) return;

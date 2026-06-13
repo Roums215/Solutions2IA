@@ -1,12 +1,18 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { PauseOffscreen, useInViewPause } from "@/lib/animation/inViewPause";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function AppScene() {
+function AppSceneInner() {
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = mounted && tier !== "full";
+  const paused = useInViewPause();
+
   return (
-    <div className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+    <div className="relative w-full h-full">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-accent-primary/6 rounded-full blur-[140px]" />
       <div className="absolute top-[30%] right-[25%] w-48 h-48 bg-cyan/6 rounded-full blur-[100px]" />
 
@@ -19,7 +25,7 @@ export function AppScene() {
       <motion.div
         className="absolute top-6 left-1/2 -translate-x-1/2 z-20"
         initial={{ opacity: 0, y: 30, scale: 0.9 }}
-        animate={{ opacity: 1, y: [0, -8, 0], scale: 1 }}
+        animate={{ opacity: 1, y: staticMode || paused ? 0 : [0, -8, 0], scale: 1 }}
         transition={{ opacity: { duration: 0.8, delay: 0.3 }, y: { duration: 6.5, repeat: Infinity }, scale: { duration: 0.8, delay: 0.3, ease } }}
       >
         <div
@@ -120,7 +126,7 @@ export function AppScene() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.7, duration: 0.8, ease }}
       >
-        <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={staticMode || paused ? undefined : { y: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/85 backdrop-blur-xl p-4 shadow-2xl card-shine">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
@@ -168,7 +174,7 @@ export function AppScene() {
           <motion.div
             key={t}
             className="px-3 py-1.5 rounded-lg border border-border-subtle bg-bg-card/80 backdrop-blur text-[8px] text-text-tertiary font-mono"
-            animate={{ y: [0, -3, 0] }}
+            animate={staticMode || paused ? undefined : { y: [0, -3, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, delay: i * 0.25 }}
           >
             {t}
@@ -185,11 +191,20 @@ export function AppScene() {
             left: `${8 + i * 9}%`, top: `${10 + (i * 8) % 80}%`,
             width: 2 + i % 2, height: 2 + i % 2,
             background: i % 2 === 0 ? "rgba(129,140,248,0.25)" : "rgba(34,211,238,0.2)",
+            opacity: staticMode || paused ? 0.25 : undefined,
           }}
-          animate={{ y: [0, -(5 + i % 3 * 2), 0], opacity: [0.15, 0.45, 0.15] }}
+          animate={staticMode || paused ? undefined : { y: [0, -(5 + i % 3 * 2), 0], opacity: [0.15, 0.45, 0.15] }}
           transition={{ duration: 4 + i % 3, repeat: Infinity, delay: i * 0.3 }}
         />
       ))}
     </div>
+  );
+}
+
+export function AppScene() {
+  return (
+    <PauseOffscreen className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+      <AppSceneInner />
+    </PauseOffscreen>
   );
 }

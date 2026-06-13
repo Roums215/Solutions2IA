@@ -9,8 +9,8 @@ import { INSTALL_STEPS, INSTALL_AVG } from "./ragInstallStepsData";
 const PREMIUM_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function RagInstallSteps() {
-  const { mounted, isMobile, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const { mounted, isMobile, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion || isMobile;
 
   const parentProps = staticRender
     ? {}

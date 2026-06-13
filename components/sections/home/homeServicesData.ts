@@ -40,22 +40,15 @@ export const HOME_SERVICES: HomeService[] = [
     key: "automatisation",
     href: "/automatisation",
     title: "Automatisation",
-    benefice: "Workflows métier qui tournent seuls.",
+    benefice: "Les tâches répétitives se font seules.",
     icon: "automation",
   },
   {
     key: "rag",
     href: "/rag",
-    title: "RAG · Mémoire métier",
+    title: "Mémoire d'entreprise",
     benefice: "L'IA répond avec vos documents.",
     icon: "rag",
-  },
-  {
-    key: "studio",
-    href: "/studio-visuel",
-    title: "Studio visuel",
-    benefice: "Motion design, 2D/3D, premium.",
-    icon: "studio",
   },
 ];
 

@@ -1,10 +1,17 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
 import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
-import { WebScene } from "@/components/scenes/web/WebScene";
+
+// Scène hero lazy : le chunk n'est jamais téléchargé sur mobile/minimal
+// (PageHero ne monte pas `visual` dans ces cas).
+const WebScene = dynamic(
+  () => import("@/components/scenes/web/WebScene").then((m) => m.WebScene),
+  { ssr: false, loading: () => <div aria-hidden className="h-[540px] sm:h-[600px] lg:h-[640px]" /> },
+);
 import { WebOpportunitySources } from "@/components/sections/sites-web/WebOpportunitySources";
 import { WebPainBusiness } from "@/components/sections/sites-web/WebPainBusiness";
 import { WebVsAgency } from "@/components/sections/sites-web/WebVsAgency";

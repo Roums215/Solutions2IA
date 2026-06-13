@@ -25,8 +25,8 @@ const PREMIUM_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
  * centrale puis stagger des nœuds APRÈS. Reduced-motion → tout statique.
  */
 export function HomeTransformationFlows() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}

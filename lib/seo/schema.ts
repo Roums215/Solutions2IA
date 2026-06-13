@@ -76,7 +76,6 @@ export function buildProfessionalServiceSchema(): JsonLdObject {
       "RAG entreprise",
       "Automatisation",
       "Site web premium",
-      "Studio visuel",
     ],
   };
 }

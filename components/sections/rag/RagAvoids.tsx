@@ -39,8 +39,8 @@ const RISKS: Risk[] = [
 ];
 
 export function RagAvoids() {
-  const { mounted, isMobile, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const { mounted, isMobile, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion || isMobile;
 
   const parentProps = staticRender
     ? {}

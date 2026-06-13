@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils/cn";
 import { RAG_SECTORS } from "./ragSectorsData";
 
 export function RagSectorTabs() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const [activeKey, setActiveKey] = useState(RAG_SECTORS[0].key);
   const active =

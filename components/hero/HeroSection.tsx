@@ -1,15 +1,21 @@
 "use client";
 
 import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { HeroVisual } from "./HeroVisual";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+
+// Composition hero lazy : chunk jamais téléchargé sur mobile/minimal.
+const HeroVisual = dynamic(
+  () => import("./HeroVisual").then((m) => m.HeroVisual),
+  { ssr: false, loading: () => <div aria-hidden className="h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]" /> },
+);
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
 export function HeroSection() {
-  const { isMobile, shouldReduceMotion } = usePerformanceMode();
+  const { isMobile, shouldReduceMotion, tier } = usePerformanceMode();
 
   return (
     <section className="relative flex items-center overflow-hidden">
@@ -65,7 +71,7 @@ export function HeroSection() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
               </span>
               <span className="text-xs text-text-secondary font-medium tracking-wide">
-                Studio digital & intelligence artificielle
+                Développeur indépendant · web & IA
               </span>
             </motion.div>
 
@@ -76,10 +82,9 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.12, ease: premiumEase }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
             >
-              Des expériences
+              Des outils qui travaillent
               <br />
-              digitales{" "}
-              <span className="text-gradient-strong">intelligentes</span>
+              <span className="text-gradient-strong">pour vous</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -89,9 +94,9 @@ export function HeroSection() {
               transition={{ duration: 0.8, delay: 0.24, ease: premiumEase }}
               className="mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty"
             >
-              Sites web premium, applications performantes, agents IA et
-              automatisation sur mesure. Nous concevons les solutions digitales qui
-              transforment votre activité.
+              Je conçois des sites web, des applications et des automatisations
+              sur mesure. Vous m&apos;expliquez ce qui vous prend du temps —
+              je construis l&apos;outil qui s&apos;en charge.
             </motion.p>
 
             {/* CTAs */}
@@ -102,11 +107,11 @@ export function HeroSection() {
               className="mt-10 flex flex-wrap gap-4"
             >
               <Button variant="primary" size="lg" href="/contact">
-                Démarrer un projet
+                Premier échange gratuit
                 <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-0.5" />
               </Button>
               <Button variant="secondary" size="lg" href="/services">
-                Découvrir nos services
+                Voir ce que je fais
               </Button>
             </motion.div>
 
@@ -159,8 +164,9 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Visual composition */}
-          {!isMobile && !shouldReduceMotion && (
+          {/* Visual composition — full/reduced desktop (HeroVisual se statifie
+              lui-même en reduced) ; minimal : hero texte seul. */}
+          {!isMobile && !shouldReduceMotion && tier !== "minimal" && (
             <div className="relative lg:pl-4">
               <HeroVisual />
             </div>

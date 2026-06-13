@@ -95,6 +95,14 @@ export const viewport: Viewport = {
   colorScheme: "dark",
 };
 
+/**
+ * Anti-flash perf : pose <html data-perf> AVANT le premier paint, en miroir du
+ * calcul statique du store (usePerformanceMode) + tier FPS persisté en session.
+ * Sans risque d'hydration mismatch : React ne diffe pas data-perf sur <html>.
+ * ⚠️ Garder les seuils synchronisés avec lib/animation/usePerformanceMode.ts.
+ */
+const PERF_TIER_INLINE_SCRIPT = `try{var f=sessionStorage.getItem("s2ia-fps-tier");var n=navigator,c=n.connection||{};var rm=matchMedia("(prefers-reduced-motion: reduce)").matches;var sl=/^(slow-2g|2g|3g)$/.test(c.effectiveType||"");var lo=(n.deviceMemory&&n.deviceMemory<=4)||(n.hardwareConcurrency&&n.hardwareConcurrency<=4);var st=(rm||c.saveData||sl)?"minimal":(lo||matchMedia("(max-width: 767px)").matches||matchMedia("(pointer: coarse)").matches)?"reduced":"full";var rk={full:0,reduced:1,minimal:2};var t=(f&&rk[f]>rk[st])?f:st;document.documentElement.setAttribute("data-perf",t)}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const graph = combineSchemas(
     buildOrganizationSchema(),
@@ -104,6 +112,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="fr" className={cn("font-sans", geist.variable)}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: PERF_TIER_INLINE_SCRIPT }} />
+      </head>
       <body className="bg-bg-primary text-text-primary antialiased" suppressHydrationWarning>
         <JsonLd schema={graph} id="ld-graph-root" />
         <AppShell>{children}</AppShell>

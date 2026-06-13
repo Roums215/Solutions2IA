@@ -7,7 +7,7 @@ export const SITE_URL = "https://solutions2ia.com";
 export const SITE_NAME = "Solutions 2IA";
 export const SITE_TAGLINE = "Applications IA, agents IA, sites web et automatisation sur mesure";
 export const SITE_DESCRIPTION =
-  "Agence digitale française : applications métier, agents IA souverains (RAG, hébergement UE), sites web, automatisation Axonaut/JobPhoning et studio visuel premium. Audit 30 j dérisqué.";
+  "Applications métier, agents IA souverains (RAG, hébergement UE), sites web premium et automatisation sur mesure. Développeur indépendant français. Premier échange gratuit.";
 
 export const SITE_LOCALE = "fr_FR";
 export const SITE_LANG = "fr";

@@ -2,8 +2,17 @@ import type { Metadata } from "next";
 import { AutomatisationPage } from "./AutomatisationPage";
 
 export const metadata: Metadata = {
-  title: "Automatisation sur mesure — pipelines JobPhoning · n8n · Axonaut | Solutions 2IA",
-  description: "Fini la ressaisie entre appels et CRM : vos leads JobPhoning deviennent des fiches Axonaut qualifiées, enrichies et notifiées automatiquement. Hébergé en UE.",
+  title: "Automatisation sur mesure — vos tâches répétitives se font toutes seules",
+  description:
+    "Je relie vos logiciels entre eux pour supprimer ressaisies, relances et transferts manuels. Exemple réel : appels de prospection → fiches clients, automatiquement. Premier échange gratuit.",
+  alternates: { canonical: "/automatisation" },
+  openGraph: {
+    title: "Automatisation — ce qui se répète peut se faire tout seul",
+    description:
+      "Je relie vos logiciels entre eux pour supprimer ressaisies et relances manuelles. Premier échange gratuit.",
+    url: "/automatisation",
+    type: "website",
+  },
 };
 
 export default function Page() {

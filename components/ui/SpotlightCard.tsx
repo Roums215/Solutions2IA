@@ -3,6 +3,7 @@
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "motion/react";
 import { useRef } from "react";
 import { cn } from "@/lib/utils/cn";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 interface SpotlightCardProps {
   children: React.ReactNode;
@@ -27,6 +28,12 @@ export function SpotlightCard({
   pulse = false,
 }: SpotlightCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const { tier } = usePerformanceMode();
+  // reduced : tilt 3D coupé (springs jamais sollicités), spotlight conservé
+  // (hover ponctuel, peu coûteux). minimal : tout statique, hover CSS only.
+  const tiltEnabled = tier === "full";
+  const spotlightEnabled = tier !== "minimal";
+
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(50);
   const rx = useSpring(0, { stiffness: 220, damping: 22 });
@@ -36,7 +43,7 @@ export function SpotlightCard({
   const borderBg = useMotionTemplate`radial-gradient(220px circle at ${mouseX}% ${mouseY}%, rgba(${glow},0.55), transparent 60%)`;
 
   function onMove(e: React.PointerEvent<HTMLDivElement>) {
-    if (e.pointerType === "touch") return;
+    if (e.pointerType === "touch" || !spotlightEnabled) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -44,8 +51,10 @@ export function SpotlightCard({
     const py = (e.clientY - rect.top) / rect.height;
     mouseX.set(px * 100);
     mouseY.set(py * 100);
-    ry.set((px - 0.5) * tilt);
-    rx.set(-(py - 0.5) * tilt);
+    if (tiltEnabled) {
+      ry.set((px - 0.5) * tilt);
+      rx.set(-(py - 0.5) * tilt);
+    }
   }
 
   function onLeave() {
@@ -65,26 +74,28 @@ export function SpotlightCard({
         className
       )}
     >
-      {/* Bordure conique réactive */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background: borderBg,
-          WebkitMask:
-            "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-          padding: 1,
-        }}
-      />
-
-      {/* Spotlight intérieur */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background }}
-      />
+      {/* Bordure conique réactive + spotlight — non montés en minimal */}
+      {spotlightEnabled && (
+        <>
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{
+              background: borderBg,
+              WebkitMask:
+                "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
+              WebkitMaskComposite: "xor",
+              maskComposite: "exclude",
+              padding: 1,
+            }}
+          />
+          <motion.div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style={{ background }}
+          />
+        </>
+      )}
 
       {/* Halo statique pulsant (optionnel) */}
       {pulse && (

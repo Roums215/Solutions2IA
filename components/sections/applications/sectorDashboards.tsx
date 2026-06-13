@@ -824,7 +824,8 @@ function LogistiqueDashboard({ reduced }: { reduced: boolean }) {
                           r={1.2}
                           fill={color}
                           opacity={0.35}
-                          animate={{ r: [1.2, 2.4, 1.2], opacity: [0.35, 0, 0.35] }}
+                          style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                          animate={{ scale: [1, 2, 1], opacity: [0.35, 0, 0.35] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.08 }}
                         />
                       )}
