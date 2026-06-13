@@ -91,7 +91,7 @@ export function RagDecisionWizard() {
                 <div className="sticky top-24">
                   <div className="rounded-2xl border border-cyan/40 bg-bg-card p-5 shadow-[0_0_36px_var(--color-cyan-glow)] sm:p-6">
                     <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan/80">
-                      {completed ? "Notre recommandation" : "Recommandation par défaut"}
+                      {completed ? "Ma recommandation" : "Recommandation par défaut"}
                     </div>
 
                     <AnimatePresence mode="wait">

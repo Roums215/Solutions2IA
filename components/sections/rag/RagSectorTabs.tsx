@@ -27,7 +27,7 @@ export function RagSectorTabs() {
               <span className="text-gradient-strong">adaptée à chaque métier</span>.
             </>
           }
-          description="Le moteur est le même partout, le corpus change. Pour chaque secteur : documents connectés, vraie question métier, type de réponse, et le risque que la mémoire évite."
+          description="Le moteur est le même partout, les documents connectés changent. Pour chaque secteur : documents connectés, vraie question métier, type de réponse, et le risque que la mémoire évite."
         />
 
         <div className="mx-auto max-w-[1080px]">

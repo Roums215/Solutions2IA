@@ -7,7 +7,7 @@ export type InstallStep = {
 export const INSTALL_STEPS: InstallStep[] = [
   {
     n: 1,
-    label: "Audit corpus",
+    label: "Inventaire de vos documents",
     deliverable:
       "Inventaire des documents, sources prioritaires, droits d'accès — sortie : la carte de votre savoir interne.",
   },
@@ -27,7 +27,7 @@ export const INSTALL_STEPS: InstallStep[] = [
     n: 4,
     label: "Validation 20 questions",
     deliverable:
-      "Vos équipes testent les cas d'usage prioritaires, nous ajustons la recherche et les sources.",
+      "Vos équipes testent les cas d'usage prioritaires, j'ajuste la recherche et les sources.",
   },
   {
     n: 5,

@@ -24,7 +24,7 @@ const LIMITS: Limit[] = [
   {
     title: "Elle dépend de la qualité de vos documents.",
     detail:
-      "Si une procédure n'est plus à jour, la réponse non plus. Le tri et la mise à jour du corpus restent votre décision.",
+      "Si une procédure n'est plus à jour, la réponse non plus. Le tri et la mise à jour de vos documents restent votre décision.",
   },
 ];
 
@@ -54,7 +54,7 @@ export function RagHonestLimits() {
               <span className="text-gradient-strong">ne fait pas</span>.
             </>
           }
-          description="Trois limites que nous préférons poser avant l'engagement. La mémoire métier est puissante — pas magique."
+          description="Trois limites que je préfère poser avant l'engagement. La mémoire métier est efficace — pas magique."
         />
 
         <motion.div

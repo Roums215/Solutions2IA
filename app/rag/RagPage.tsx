@@ -27,17 +27,17 @@ export function RagPage() {
       <FluidMouseField preset="automation" />
 
       <PageHero
-        label="RAG · Mémoire métier privée"
+        label="La mémoire de votre entreprise"
         title={
           <>
             Une IA qui répond avec{" "}
-            <span className="text-gradient-strong">vos documents</span>, pas
-            avec de l&apos;improvisation.
+            <span className="text-gradient-strong">vos documents</span> — pas
+            avec du vent.
           </>
         }
-        description="Connectez vos procédures, contrats, PDF ou bases internes. Votre IA retrouve les passages utiles dans votre savoir interne et cite ses sources — vos équipes accèdent à l'information immédiatement, sans dépendre d'une seule personne."
+        description="Vos procédures, contrats et dossiers contiennent déjà les réponses. Je connecte une IA à ces documents : vos équipes posent une question, elles obtiennent la bonne réponse en citant le document exact. Plus besoin de déranger la personne qui sait."
         primaryCta={{
-          label: "Créer ma mémoire métier",
+          label: "Premier échange gratuit",
           href: "/contact",
         }}
         secondaryCta={{ label: "Tous les services", href: "/services" }}
@@ -63,12 +63,12 @@ export function RagPage() {
       <CTABand
         title={
           <>
-            Démarrer votre{" "}
-            <span className="text-gradient-strong">mémoire métier</span>.
+            Donnez une{" "}
+            <span className="text-gradient-strong">mémoire</span> à votre entreprise.
           </>
         }
-        description="On part d'un de vos process réels, on branche les sources et on cale les réponses. Hébergé en UE, vous gardez la main."
-        primaryLabel="Auditer mon corpus"
+        description="On part de vos vrais documents, je connecte l'IA, et on vérifie ensemble que les réponses sont justes. Vos données restent en Europe, vous gardez la main."
+        primaryLabel="Premier échange gratuit"
         primaryHref="/contact"
       />
     </>

@@ -38,14 +38,14 @@ export const RAG_REAL_EXAMPLES: RagRealExample[] = [
     sector: "Juridique",
     question: "« Existe-t-il une jurisprudence similaire ? »",
     response:
-      "Jurisprudence récente disponible dans le corpus connecté, classée par autorité et date. À vérifier avec le juriste avant utilisation.",
+      "Jurisprudence récente disponible dans vos documents, classée par autorité et date. À vérifier avec le juriste avant utilisation.",
     source: "Veille_Jurisprudence_2024.pdf — §1.2",
   },
   {
     sector: "Direction",
     question: "« Quels engagements clients ont été pris ce trimestre ? »",
     response:
-      "Engagements clients récents extraits des notes de comité connectées, regroupés par compte client.",
+      "Engagements clients récents extraits des notes de comité, regroupés par compte client.",
     source: "Notes_Comité_Direction_Q2.pdf — Annexe A",
   },
 ];
