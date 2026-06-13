@@ -92,7 +92,7 @@ export function RagContrastClassicVsRag() {
           >
             <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent" />
             <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan">
-              Mémoire d'entreprise
+              Mémoire d&apos;entreprise
             </div>
             <h3 className="mt-2 text-lg font-semibold text-text-primary sm:text-xl">
               Répond avec vos documents. Cite ses sources.

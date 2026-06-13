@@ -30,11 +30,11 @@ const ICON = {
 const GUARDRAILS: Guardrail[] = [
   {
     id: "rag",
-    title: "RAG sur vos data",
-    objection: "« Et si ça hallucine ? »",
-    pitch: "L'agent ne sait que ce qui est dans vos documents. S'il ne sait pas, il le dit.",
+    title: "Ancré dans vos documents",
+    objection: "« Et si ça invente des réponses ? »",
+    pitch: "L'assistant ne sait que ce qui est dans vos documents. S'il ne sait pas, il le dit.",
     detail:
-      "Indexation Notion · Confluence · SharePoint · Drive. Citations sources affichées. Refus contrôlé sous seuil de confiance.",
+      "Vos fichiers Notion · Confluence · SharePoint · Drive indexés. Sources affichées pour chaque réponse. Refus explicite si la donnée est absente.",
     icon: (
       <svg {...ICON} aria-hidden>
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -75,11 +75,11 @@ const GUARDRAILS: Guardrail[] = [
   },
   {
     id: "monitoring",
-    title: "Monitoring & traçabilité",
+    title: "Tableau de bord & traçabilité",
     objection: "« C'est une boîte noire. »",
-    pitch: "Chaque décision est journalisée et explicable. Vous voyez ce que l'agent fait, en temps réel.",
+    pitch: "Chaque décision est enregistrée et explicable. Vous voyez ce que l'assistant fait, en temps réel.",
     detail:
-      "Logs structurés, dashboard d'adoption, taux de confiance par décision, prompts versionnés, audit RGPD complet.",
+      "Logs structurés, tableau de bord d'adoption, niveau de confiance par décision, consignes versionnées, audit RGPD complet.",
     icon: (
       <svg {...ICON} aria-hidden>
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -89,11 +89,11 @@ const GUARDRAILS: Guardrail[] = [
   },
   {
     id: "pilote",
-    title: "Pilote 30 j dérisqué",
-    objection: "« ROI flou — 95 % des pilots échouent. »",
+    title: "Pilote 30 j sans engagement",
+    objection: "« Et si ça ne convient pas à mon équipe ? »",
     pitch: "30 jours satisfait ou remboursé. Vous arrêtez quand vous voulez.",
     detail:
-      "Audit + setup + 1 mois d'usage. Métriques d'adoption garanties par écrit. Sortie sans frais, données rendues.",
+      "Audit + mise en place + 1 mois d'usage. Indicateurs d'adoption documentés. Sortie sans frais, données restituées.",
     icon: (
       <svg {...ICON} aria-hidden>
         <circle cx="12" cy="12" r="9" />
@@ -111,11 +111,11 @@ export function TrustGuardrails() {
           label="Garde-fous"
           title={
             <>
-              Un agent qui ne casse rien — et que vos équipes{" "}
+              Un assistant qui ne casse rien — et que vos équipes{" "}
               <span className="text-gradient-strong">acceptent vraiment</span>.
             </>
           }
-          description="Les vraies questions qu'on nous pose en premier rendez-vous. Et nos réponses concrètes."
+          description="Les vraies questions qu'on me pose en premier rendez-vous. Et mes réponses concrètes."
         />
 
         <motion.div
@@ -159,7 +159,7 @@ export function TrustGuardrails() {
                 </p>
                 <div className="mt-4 border-t border-border-subtle/60 pt-3">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-text-tertiary">
-                    Comment ça marche
+                    En pratique
                   </p>
                   <p className="mt-1.5 text-[11px] leading-relaxed text-text-tertiary">
                     {g.detail}

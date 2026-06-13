@@ -34,10 +34,10 @@ const STEPS: AnatomyStep[] = [
     number: "01",
     letter: "K",
     title: "Connaissance",
-    pitch: "Ce que l'agent sait sur votre métier.",
+    pitch: "Ce que l'assistant sait sur votre métier.",
     detail:
-      "Indexation vectorielle de vos documents, mémoire conversationnelle, accès lecture seule à vos systèmes. Sources citées, jamais inventées.",
-    tags: ["RAG", "Embeddings", "Mémoire"],
+      "Vos documents indexés, mémoire conversationnelle, accès lecture seule à vos systèmes. Sources citées, jamais inventées.",
+    tags: ["Vos documents", "Mémoire", "Sources"],
     icon: (
       <svg {...ICON} aria-hidden>
         <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
@@ -53,8 +53,8 @@ const STEPS: AnatomyStep[] = [
     title: "Raisonnement",
     pitch: "Comment il prend ses décisions.",
     detail:
-      "LLM contraint par chaîne de pensée explicite, validation par règles métier, fallback humain si confiance sous seuil. Modèles : Claude, GPT, Mistral selon criticité.",
-    tags: ["LLM", "Chain of thought", "Validation"],
+      "L'IA raisonne étape par étape, valide selon vos règles métier, et demande confirmation humaine si elle n'est pas sûre. Modèles au choix selon la criticité.",
+    tags: ["Règles métier", "Validation", "Transparence"],
     icon: (
       <svg {...ICON} aria-hidden>
         <circle cx="12" cy="12" r="3" />
@@ -70,8 +70,8 @@ const STEPS: AnatomyStep[] = [
     title: "Actions",
     pitch: "Ce qu'il peut déclencher.",
     detail:
-      "Outils branchés : email, CRM, Calendar, Slack, Notion, ERP, APIs internes. Function calling typé, idempotence, journalisation de chaque appel.",
-    tags: ["Function call", "API", "Idempotent"],
+      "Connecté à vos outils : email, CRM, Calendar, Slack, Notion, ERP. Chaque action est typée et journalisée pour éviter les doublons.",
+    tags: ["Vos outils", "Journalisation", "Sécurité"],
     icon: (
       <svg {...ICON} aria-hidden>
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
@@ -82,11 +82,11 @@ const STEPS: AnatomyStep[] = [
     id: "monitoring",
     number: "04",
     letter: "M",
-    title: "Monitoring",
+    title: "Supervision",
     pitch: "Comment vous gardez la main.",
     detail:
-      "Logs structurés, dashboards d'adoption, taux de confiance par décision, alertes Slack ou e-mail, A/B testing de prompts versionnés.",
-    tags: ["Observabilité", "Versioning", "Alertes"],
+      "Logs structurés, tableau de bord d'adoption, niveau de confiance par décision, alertes Slack ou e-mail, consignes versionnées.",
+    tags: ["Tableau de bord", "Traçabilité", "Alertes"],
     icon: (
       <svg {...ICON} aria-hidden>
         <rect x="3" y="4" width="18" height="14" rx="2" />
@@ -149,7 +149,7 @@ function StepCard({
       {expanded && (
         <div className="mt-4 w-full border-t border-border-subtle/60 pt-3 text-left">
           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
-            Comment c&apos;est implémenté
+            Comment ça fonctionne
           </p>
           <p className="mt-1.5 text-[12px] leading-relaxed text-text-secondary">
             {step.detail}
@@ -280,11 +280,11 @@ export function AgentAnatomyDiagram() {
     <section className="section-shell">
       <div className="section-container">
         <SectionHeading
-          label="Anatomie d'un agent"
+          label="Comment ça fonctionne"
           title={
             <>
-              Un agent IA fiable n&apos;est pas un chatbot, c&apos;est une{" "}
-              <span className="text-gradient-strong">chaîne d&apos;exécution contrôlée</span>.
+              Un assistant numérique fiable, ce n&apos;est pas un simple robot —{" "}
+              <span className="text-gradient-strong">c&apos;est un système structuré et contrôlé</span>.
             </>
           }
           description="Quatre couches qui se renforcent : ce qu'il sait, comment il décide, ce qu'il fait, comment vous le supervisez."
