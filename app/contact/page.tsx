@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { ContactPage } from "./ContactPage";
 
 export const metadata: Metadata = {
-  title: "Contact Solutions 2IA : audit gratuit 45 min · réponse sous 24h",
+  title: "Me contacter — réponse sous 24 h, premier échange gratuit",
   description:
-    "Démarrez votre projet IA, application métier ou automatisation : 45 minutes pour cadrer votre besoin, identifier les premiers gains et choisir la voie. Premier échange offert.",
+    "Dites-moi ce qui vous prend du temps. Je reviens vers vous sous 24 h avec une première idée, gratuitement et sans engagement. Site web, application, automatisation ou assistant IA.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact — Audit gratuit 45 minutes",
+    title: "Me contacter — réponse sous 24 h, premier échange gratuit",
     description:
-      "Premier échange offert, réponse sous 24h. Cadrons votre projet IA, app métier ou automatisation.",
+      "Décrivez votre situation avec vos mots. Réponse sous 24 h, gratuit, sans engagement.",
     url: "/contact",
     type: "website",
   },

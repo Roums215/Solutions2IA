@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { ServicesPage } from "./ServicesPage";
 
 export const metadata: Metadata = {
-  title: "Services digitaux premium : sites web, apps métier, agents IA, automatisation",
+  title: "Mes services — sites web, applications, automatisations, assistant IA",
   description:
-    "Six services pour transformer votre activité : sites web, applications métier sur mesure, agents IA souverains, RAG, automatisation Axonaut, studio visuel.",
+    "Cinq façons de vous faire gagner du temps : sites web (dès 500 €), applications sur mesure, automatisations entre vos outils, assistant intelligent et mémoire d'entreprise. Prix clairs, premier échange gratuit.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services — Six expertises digitales premium",
+    title: "Mes services — sites, applications, automatisations, assistant IA",
     description:
-      "Sites web, apps métier, agents IA, RAG, automatisation, studio visuel. Solutions 2IA.",
+      "Cinq services pour remplacer ce qui vous prend du temps par un outil qui le fait à votre place. Prix affichés, premier échange gratuit.",
     url: "/services",
     type: "website",
   },
