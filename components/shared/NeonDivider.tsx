@@ -136,7 +136,8 @@ function SideGlyph({
             <motion.circle
               cx="36" cy="10" r="2"
               fill={`rgb(${color})`}
-              animate={{ opacity: [0.3, 1, 0.3], r: [1.6, 2.2, 1.6] }}
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+              animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.1, 0.8] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
           </>

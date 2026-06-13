@@ -9,6 +9,7 @@ import { LoadingScreen } from "@/components/shared/LoadingScreen";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { startFpsGuard } from "@/lib/animation/fpsGuard";
 
 // MouseParticles chargé uniquement côté client + uniquement si shouldDegrade=false.
 // Évite le téléchargement du bundle sur low-end / reduced-motion / save-data.
@@ -77,6 +78,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const { mounted, shouldHideBackgroundDecor } = usePerformanceMode();
   const decor = mounted && !shouldHideBackgroundDecor;
+
+  // Garde FPS : démarre une fois le LoadingScreen terminé (warm-up interne
+  // de 2,5 s en plus). Idempotent — ratchet via sessionStorage.
+  useEffect(() => {
+    if (!isLoading) startFpsGuard();
+  }, [isLoading]);
 
   return (
     <LoadingContext.Provider value={{ isLoading, hideHeaderLogo, logoPosition, registerLogoRef }}>

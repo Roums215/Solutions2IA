@@ -9,8 +9,8 @@ import { RAG_USAGES, type RagUsageKey } from "./ragUsagesData";
 import { RagUsageSchema } from "./RagUsageSchema";
 
 export function RagUsagesTabs() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const [active, setActive] = useState<RagUsageKey>("simple");
   const activeUsage = RAG_USAGES.find((u) => u.key === active) ?? RAG_USAGES[0];

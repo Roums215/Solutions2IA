@@ -360,13 +360,15 @@ function FloatingShape({
               transition={{ duration: 2.5, delay: delay + i * 0.3, repeat: Infinity }}
             />
           ))}
-          {/* Centre */}
+          {/* Centre — pulse via scale (animer l'attribut r déclenche un
+              warning React « r: undefined » ; scale est GPU et équivalent). */}
           <motion.circle
             cx="50" cy="50" r="8"
             fill={`rgba(${color},0.35)`}
             stroke={`rgba(${color},0.85)`}
             strokeWidth="1.2"
-            animate={{ r: [7, 9, 7] }}
+            style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            animate={{ scale: [0.875, 1.125, 0.875] }}
             transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.circle
@@ -426,11 +428,12 @@ function FloatingShape({
             strokeWidth="0.8"
             fill="none"
           />
-          {/* Pulse central */}
+          {/* Pulse central — scale plutôt que r (cf. note ci-dessus). */}
           <motion.circle
             cx="50" cy="50" r="3.5"
             fill={`rgb(${color})`}
-            animate={{ opacity: [0.4, 1, 0.4], r: [3, 4.5, 3] }}
+            style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            animate={{ opacity: [0.4, 1, 0.4], scale: [0.857, 1.286, 0.857] }}
             transition={{ duration: 1.8, delay, repeat: Infinity }}
           />
         </motion.svg>

@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
 type Style = "dots" | "grid-dots" | "crosses" | "hexagons" | "sparks" | "bubbles" | "code-rain" | "circuit-nodes";
@@ -27,18 +27,27 @@ export function SectionParticles({
   className,
 }: SectionParticlesProps) {
   const [mounted, setMounted] = useState(false);
-  const { isMobile, shouldReduceMotion, shouldHideBackgroundDecor } = usePerformanceMode();
+  const { isMobile, tier, disableContentMotion } = usePerformanceMode();
+  const rootRef = useRef<HTMLDivElement>(null);
+  // Pause hors écran : boucles infinies gelées quand la section sort du viewport.
+  const inView = useInView(rootRef, { margin: "240px", amount: 0 });
+  const paused = !inView;
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Décor de fond caché sur mobile/tactile/low-end : 0 particle, le composant rend null.
-  const effectiveCount = shouldHideBackgroundDecor || shouldReduceMotion
+  // tier full : caps actuels · reduced : 4 dots légers max · minimal : null.
+  const effectiveCount = disableContentMotion
     ? 0
-    : isMobile
-      ? Math.min(count, 6)
-      : Math.min(count, 10);
+    : tier === "reduced"
+      ? Math.min(count, 4)
+      : isMobile
+        ? Math.min(count, 6)
+        : Math.min(count, 10);
+
+  // En reduced : style le moins cher (pas de box-shadow type sparks).
+  const effectiveStyle: Style = tier === "reduced" ? "dots" : style;
 
   const items = useMemo(() => {
     return Array.from({ length: effectiveCount }, (_, i) => {
@@ -57,12 +66,12 @@ export function SectionParticles({
   }, [effectiveCount]);
 
   // Don't render on server to avoid hydration mismatch
-  if (!mounted || shouldReduceMotion || shouldHideBackgroundDecor) {
+  if (!mounted || effectiveCount === 0) {
     return null;
   }
 
   return (
-    <div data-decor="particles" className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`}>
+    <div ref={rootRef} data-decor="particles" className={`absolute inset-0 overflow-hidden pointer-events-none ${className ?? ""}`}>
       {items.map((p, i) => {
         const c = p.useSecondary ? secondaryColor : color;
 
@@ -79,19 +88,19 @@ export function SectionParticles({
                 background: c,
                 opacity: 0.18,
               }}
-              animate={{ y: [0, p.drift * 0.5, 0], opacity: [0.12, 0.26, 0.12] }}
+              animate={paused ? undefined : { y: [0, p.drift * 0.5, 0], opacity: [0.12, 0.26, 0.12] }}
               transition={{ duration: Math.max(5, p.duration), delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
             />
           );
         }
 
-        if (style === "crosses") {
+        if (effectiveStyle === "crosses") {
           return (
             <motion.div
               key={i}
               className="absolute"
               style={{ left: `${p.x}%`, top: `${p.y}%` }}
-              animate={{ opacity: [0.1, 0.4, 0.1], rotate: [p.rotation, p.rotation + 90, p.rotation] }}
+              animate={paused ? undefined : { opacity: [0.1, 0.4, 0.1], rotate: [p.rotation, p.rotation + 90, p.rotation] }}
               transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
             >
               <svg width={p.size * 2} height={p.size * 2} viewBox="0 0 12 12">
@@ -102,14 +111,14 @@ export function SectionParticles({
           );
         }
 
-        if (style === "hexagons") {
+        if (effectiveStyle === "hexagons") {
           const s = p.size * 1.5;
           return (
             <motion.div
               key={i}
               className="absolute"
               style={{ left: `${p.x}%`, top: `${p.y}%` }}
-              animate={{ opacity: [0.05, 0.2, 0.05], scale: [0.9, 1.1, 0.9] }}
+              animate={paused ? undefined : { opacity: [0.05, 0.2, 0.05], scale: [0.9, 1.1, 0.9] }}
               transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
             >
               <svg width={s * 2} height={s * 2} viewBox="0 0 24 24">
@@ -119,7 +128,7 @@ export function SectionParticles({
           );
         }
 
-        if (style === "sparks") {
+        if (effectiveStyle === "sparks") {
           return (
             <motion.div
               key={i}
@@ -132,7 +141,7 @@ export function SectionParticles({
                 background: c,
                 boxShadow: `0 0 ${p.size * 2}px ${c}`,
               }}
-              animate={{
+              animate={paused ? undefined : {
                 y: [0, p.drift * 2, 0],
                 x: [0, -p.drift, 0],
                 opacity: [0, 0.8, 0],
@@ -143,7 +152,7 @@ export function SectionParticles({
           );
         }
 
-        if (style === "bubbles") {
+        if (effectiveStyle === "bubbles") {
           return (
             <motion.div
               key={i}
@@ -155,13 +164,13 @@ export function SectionParticles({
                 height: p.size * 2,
                 borderColor: c,
               }}
-              animate={{ y: [0, -20 - p.drift, 0], opacity: [0.05, 0.25, 0.05], scale: [0.8, 1.2, 0.8] }}
+              animate={paused ? undefined : { y: [0, -20 - p.drift, 0], opacity: [0.05, 0.25, 0.05], scale: [0.8, 1.2, 0.8] }}
               transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
             />
           );
         }
 
-        if (style === "code-rain") {
+        if (effectiveStyle === "code-rain") {
           const chars = ["0", "1", "{", "}", "<", ">", "/", "=", ";", "→"];
           const ch = chars[Math.floor(seeded(i * 33) * chars.length)];
           return (
@@ -169,7 +178,7 @@ export function SectionParticles({
               key={i}
               className="absolute font-mono select-none"
               style={{ left: `${p.x}%`, top: `${p.y}%`, fontSize: 8 + p.size, color: c }}
-              animate={{ y: [0, 30], opacity: [0, 0.35, 0] }}
+              animate={paused ? undefined : { y: [0, 30], opacity: [0, 0.35, 0] }}
               transition={{ duration: p.duration * 0.5, delay: p.delay, repeat: Infinity, ease: "easeIn" }}
             >
               {ch}
@@ -177,13 +186,13 @@ export function SectionParticles({
           );
         }
 
-        if (style === "circuit-nodes") {
+        if (effectiveStyle === "circuit-nodes") {
           return (
             <motion.div
               key={i}
               className="absolute"
               style={{ left: `${p.x}%`, top: `${p.y}%` }}
-              animate={{ opacity: [0.05, 0.3, 0.05] }}
+              animate={paused ? undefined : { opacity: [0.05, 0.3, 0.05] }}
               transition={{ duration: p.duration, delay: p.delay, repeat: Infinity }}
             >
               <svg width={p.size * 3} height={p.size * 3} viewBox="0 0 16 16">
@@ -197,13 +206,13 @@ export function SectionParticles({
           );
         }
 
-        if (style === "grid-dots") {
+        if (effectiveStyle === "grid-dots") {
           return (
             <motion.div
               key={i}
               className="absolute rounded-full"
               style={{ left: `${p.x}%`, top: `${p.y}%`, width: 3, height: 3, background: c }}
-              animate={{ opacity: [0.08, 0.3, 0.08] }}
+              animate={paused ? undefined : { opacity: [0.08, 0.3, 0.08] }}
               transition={{ duration: p.duration, delay: p.delay, repeat: Infinity }}
             />
           );
@@ -221,7 +230,7 @@ export function SectionParticles({
               height: p.size,
               background: c,
             }}
-            animate={{ y: [0, p.drift, 0], opacity: [0.1, 0.4, 0.1] }}
+            animate={paused ? undefined : { y: [0, p.drift, 0], opacity: [0.1, 0.4, 0.1] }}
             transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
           />
         );

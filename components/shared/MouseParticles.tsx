@@ -5,12 +5,17 @@ import { useEffect, useRef, useState } from "react";
 
 interface OrbitParticle {
   id: number;
-  angle: number;
+  angle: number; // angle initial (rad) — l'orbite est ensuite 100 % compositor
   radius: number;
   size: number;
-  speed: number;
+  speed: number; // rad/frame historique → converti en durée de révolution
   color: string;
   opacity: number;
+}
+
+/** Durée d'une révolution complète (s) pour une vitesse historique rad/frame. */
+function orbitDuration(speed: number) {
+  return (Math.PI * 2) / (speed * 60);
 }
 
 function canEnableEffects() {
@@ -30,7 +35,6 @@ export function MouseParticles() {
   const [particles, setParticles] = useState<OrbitParticle[]>([]);
   const visibleRef = useRef(false);
   const particleIdRef = useRef(0);
-  const animationFrameRef = useRef<number>(0);
   const lastSpawnRef = useRef(0);
   const velocityRef = useRef({ x: 0, y: 0 });
   const lastPosRef = useRef({ x: 0, y: 0 });
@@ -89,10 +93,11 @@ export function MouseParticles() {
         setVisible(true);
       }
 
-      // Spawn trail particles when moving fast
+      // Spawn trail particles when moving fast (throttle 80 ms, cap 12 trails —
+      // chaque spawn coûte un render, l'orbite elle-même est compositor-only)
       const now = performance.now();
       const speed = Math.hypot(vx, vy);
-      if (speed > 8 && now - lastSpawnRef.current > 50) {
+      if (speed > 8 && now - lastSpawnRef.current > 80) {
         lastSpawnRef.current = now;
         const newParticle: OrbitParticle = {
           id: particleIdRef.current++,
@@ -104,7 +109,7 @@ export function MouseParticles() {
           opacity: 0.7,
         };
 
-        setParticles(prev => [...prev.slice(-20), newParticle]);
+        setParticles(prev => [...prev.slice(-(12 + 11)), newParticle]);
 
         // Remove after animation
         setTimeout(() => {
@@ -121,18 +126,9 @@ export function MouseParticles() {
       velocityMagnitude.set(0);
     }
 
-    // Animate orbiting particles
-    function animateParticles() {
-      setParticles(prev => prev.map(p => ({
-        ...p,
-        angle: p.angle + p.speed,
-        // Slowly spiral inward
-        radius: p.radius > 15 ? p.radius - 0.02 : p.radius,
-      })));
-      animationFrameRef.current = requestAnimationFrame(animateParticles);
-    }
-
-    animationFrameRef.current = requestAnimationFrame(animateParticles);
+    // NOTE perf : plus de boucle rAF + setState par frame ici. L'orbite de
+    // chaque particule est une rotation motion infinie (compositor only,
+    // 0 re-render) — voir le rendu plus bas.
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerleave", handlePointerLeave);
@@ -142,7 +138,6 @@ export function MouseParticles() {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerleave", handlePointerLeave);
       window.removeEventListener("blur", handlePointerLeave);
-      cancelAnimationFrame(animationFrameRef.current);
     };
   }, [cursorX, cursorY, velocityMagnitude]);
 
@@ -255,34 +250,51 @@ export function MouseParticles() {
           />
         </motion.div>
 
-        {/* Orbiting particles - smaller */}
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              x: blackHoleX,
-              y: blackHoleY,
-              width: particle.size * 0.6,
-              height: particle.size * 0.6,
-              background: particle.color.replace(/[\d.]+\)$/, "0.6)"),
-              boxShadow: `0 0 ${particle.size}px ${particle.color.replace(/[\d.]+\)$/, "0.4)")}`,
-              opacity: visible ? particle.opacity * 0.7 : 0,
-              translateX: Math.cos(particle.angle) * particle.radius * 0.5 - particle.size * 0.3,
-              translateY: Math.sin(particle.angle) * particle.radius * 0.5 - particle.size * 0.3,
-            }}
-            animate={{
-              opacity: visible ? [particle.opacity * 0.5, particle.opacity * 0.3, particle.opacity * 0.5] : 0,
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 1.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: particle.id * 0.08,
-            }}
-          />
-        ))}
+        {/* Orbiting particles — orbite = rotation motion infinie (compositor
+            only, 0 re-render) : un wrapper suit le curseur, un wrapper tourne,
+            le point est décalé du rayon. */}
+        {particles.map((particle) => {
+          const initialDeg = (particle.angle * 180) / Math.PI;
+          return (
+            <motion.div
+              key={particle.id}
+              className="absolute"
+              style={{ x: blackHoleX, y: blackHoleY }}
+            >
+              <motion.div
+                style={{ rotate: initialDeg }}
+                animate={{ rotate: initialDeg + 360 }}
+                transition={{
+                  duration: orbitDuration(particle.speed),
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              >
+                <motion.div
+                  className="rounded-full"
+                  style={{
+                    width: particle.size * 0.6,
+                    height: particle.size * 0.6,
+                    background: particle.color.replace(/[\d.]+\)$/, "0.6)"),
+                    boxShadow: `0 0 ${particle.size}px ${particle.color.replace(/[\d.]+\)$/, "0.4)")}`,
+                    x: particle.radius * 0.5 - particle.size * 0.3,
+                    opacity: visible ? particle.opacity * 0.7 : 0,
+                  }}
+                  animate={{
+                    opacity: visible ? [particle.opacity * 0.5, particle.opacity * 0.3, particle.opacity * 0.5] : 0,
+                    scale: [1, 1.3, 1],
+                  }}
+                  transition={{
+                    duration: 1.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: (particle.id % 12) * 0.08,
+                  }}
+                />
+              </motion.div>
+            </motion.div>
+          );
+        })}
 
         {/* Gravitational lensing effect - smaller */}
         <motion.svg

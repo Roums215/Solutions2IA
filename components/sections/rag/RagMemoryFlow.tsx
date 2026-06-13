@@ -24,8 +24,8 @@ const TRACE_RELEASE_MS = 4300;
 const PREMIUM_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function RagMemoryFlow() {
-  const { mounted, isMobile, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const { mounted, isMobile, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion || isMobile;
 
   const [cycle, setCycle] = useState(0);
   const [proofActiveLoop, setProofActiveLoop] = useState(false);

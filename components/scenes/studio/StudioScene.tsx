@@ -1,12 +1,18 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { PauseOffscreen, useInViewPause } from "@/lib/animation/inViewPause";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function StudioScene() {
+function StudioSceneInner() {
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = mounted && tier !== "full";
+  const paused = useInViewPause();
+
   return (
-    <div className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+    <div className="relative w-full h-full">
       {/* Glow layers */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-primary/5 rounded-full blur-[160px]" />
       <div className="absolute top-[35%] right-[30%] w-64 h-64 bg-cyan/6 rounded-full blur-[100px]" />
@@ -21,7 +27,7 @@ export function StudioScene() {
       <motion.div
         className="absolute top-4 left-1/2 -translate-x-1/2 z-20 w-[340px] sm:w-[400px]"
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: [0, -5, 0], scale: 1 }}
+        animate={{ opacity: 1, y: staticMode || paused ? 0 : [0, -5, 0], scale: 1 }}
         transition={{ opacity: { duration: 0.8, delay: 0.3 }, y: { duration: 7, repeat: Infinity }, scale: { duration: 0.8, delay: 0.3 } }}
       >
         <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl shadow-2xl overflow-hidden card-shine">
@@ -48,7 +54,7 @@ export function StudioScene() {
               <motion.div
                 className="absolute top-6 left-8 w-24 h-16 rounded-lg bg-gradient-to-br from-accent-primary/20 to-accent-dark/10 border border-accent-primary/15 backdrop-blur"
                 style={{ transform: "rotateY(-15deg) rotateX(5deg) translateZ(30px)" }}
-                animate={{ y: [0, -4, 0], rotateY: [-15, -12, -15] }}
+                animate={staticMode || paused ? undefined : { y: [0, -4, 0], rotateY: [-15, -12, -15] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               >
                 <div className="p-2">
@@ -60,13 +66,13 @@ export function StudioScene() {
               <motion.div
                 className="absolute top-4 right-10 w-20 h-20 rounded-xl bg-gradient-to-br from-cyan/15 to-accent-primary/10 border border-cyan/10"
                 style={{ transform: "rotateY(12deg) rotateX(-5deg) translateZ(50px)" }}
-                animate={{ y: [0, -6, 0], rotateY: [12, 16, 12] }}
+                animate={staticMode || paused ? undefined : { y: [0, -6, 0], rotateY: [12, 16, 12] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
                 <div className="w-full h-full flex items-center justify-center">
                   <motion.div
                     className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan/30 to-accent-primary/20"
-                    animate={{ rotate: [0, 90, 180, 270, 360] }}
+                    animate={staticMode || paused ? undefined : { rotate: [0, 90, 180, 270, 360] }}
                     transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                   />
                 </div>
@@ -75,7 +81,7 @@ export function StudioScene() {
               <motion.div
                 className="absolute bottom-4 left-1/2 -translate-x-1/2 w-32 h-10 rounded-lg bg-gradient-to-r from-accent-primary/10 via-cyan/10 to-accent-primary/10 border border-border-subtle"
                 style={{ transform: "rotateX(10deg) translateZ(20px)" }}
-                animate={{ y: [0, -3, 0] }}
+                animate={staticMode || paused ? undefined : { y: [0, -3, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               >
                 <div className="flex items-center justify-center h-full gap-2">
@@ -83,7 +89,8 @@ export function StudioScene() {
                     <motion.div
                       key={i}
                       className="w-1 rounded-full bg-accent-light/30"
-                      animate={{ height: [8, 16 + i * 2, 8] }}
+                      style={{ height: staticMode || paused ? 8 + i : undefined }}
+                      animate={staticMode || paused ? undefined : { height: [8, 16 + i * 2, 8] }}
                       transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.15 }}
                     />
                   ))}
@@ -101,8 +108,9 @@ export function StudioScene() {
                     width: 2,
                     height: 2,
                     background: i % 2 === 0 ? "rgba(129,140,248,0.4)" : "rgba(34,211,238,0.3)",
+                    opacity: staticMode || paused ? 0.3 : undefined,
                   }}
-                  animate={{ y: [0, -6, 0], opacity: [0.2, 0.6, 0.2] }}
+                  animate={staticMode || paused ? undefined : { y: [0, -6, 0], opacity: [0.2, 0.6, 0.2] }}
                   transition={{ duration: 3 + i % 2, repeat: Infinity, delay: i * 0.3 }}
                 />
               ))}
@@ -117,7 +125,8 @@ export function StudioScene() {
                 <div className="h-px bg-border-subtle" />
                 <motion.div
                   className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-accent-primary shadow shadow-accent-glow/40"
-                  animate={{ left: ["5%", "90%"] }}
+                  animate={staticMode || paused ? undefined : { left: ["5%", "90%"] }}
+                  style={{ left: staticMode || paused ? "5%" : undefined }}
                   transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                 />
               </div>
@@ -156,7 +165,7 @@ export function StudioScene() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.9, duration: 0.8, ease }}
       >
-        <motion.div animate={{ y: [0, -6, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={staticMode || paused ? undefined : { y: [0, -6, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
             <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">3D Viewport</span>
             <div className="h-24 rounded-lg bg-bg-primary/40 border border-border-subtle relative overflow-hidden flex items-center justify-center" style={{ perspective: "300px" }}>
@@ -166,13 +175,13 @@ export function StudioScene() {
               <div className="relative" style={{ transformStyle: "preserve-3d" }}>
                 <motion.div
                   className="w-12 h-12 rounded-xl border border-accent-primary/30 bg-gradient-to-br from-accent-primary/15 to-transparent"
-                  animate={{ rotateY: [0, 360], rotateX: [0, 15, 0] }}
+                  animate={staticMode || paused ? undefined : { rotateY: [0, 360], rotateX: [0, 15, 0] }}
                   transition={{ rotateY: { duration: 10, repeat: Infinity, ease: "linear" }, rotateX: { duration: 4, repeat: Infinity } }}
                   style={{ transformStyle: "preserve-3d" }}
                 />
                 <motion.div
                   className="absolute inset-1 rounded-lg border border-cyan/20 bg-cyan/5"
-                  animate={{ rotateY: [0, -360] }}
+                  animate={staticMode || paused ? undefined : { rotateY: [0, -360] }}
                   transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                   style={{ transformStyle: "preserve-3d" }}
                 />
@@ -193,7 +202,7 @@ export function StudioScene() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.1, duration: 0.8, ease }}
       >
-        <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={staticMode || paused ? undefined : { y: [0, -5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
             <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2.5">Design system</span>
             {/* Color row */}
@@ -244,7 +253,8 @@ export function StudioScene() {
             <motion.div
               key={tool}
               className="px-2.5 py-1 rounded-md border border-border-subtle bg-bg-card/80 backdrop-blur text-[8px] text-text-tertiary font-mono"
-              animate={{ x: [0, 3, 0], opacity: [0.5, 0.8, 0.5] }}
+              animate={staticMode || paused ? undefined : { x: [0, 3, 0], opacity: [0.5, 0.8, 0.5] }}
+              style={{ opacity: staticMode || paused ? 0.6 : undefined }}
               transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
             >
               {tool}
@@ -264,11 +274,20 @@ export function StudioScene() {
             width: 2 + i % 2,
             height: 2 + i % 2,
             background: i % 3 === 0 ? "rgba(129,140,248,0.3)" : i % 3 === 1 ? "rgba(34,211,238,0.25)" : "rgba(74,222,128,0.2)",
+            opacity: staticMode || paused ? 0.25 : undefined,
           }}
-          animate={{ y: [0, -(6 + i % 3 * 3), 0], opacity: [0.15, 0.5, 0.15] }}
+          animate={staticMode || paused ? undefined : { y: [0, -(6 + i % 3 * 3), 0], opacity: [0.15, 0.5, 0.15] }}
           transition={{ duration: 4 + i % 3, repeat: Infinity, delay: i * 0.3, ease: "easeInOut" }}
         />
       ))}
     </div>
+  );
+}
+
+export function StudioScene() {
+  return (
+    <PauseOffscreen className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+      <StudioSceneInner />
+    </PauseOffscreen>
   );
 }

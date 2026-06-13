@@ -18,7 +18,7 @@ const services = [
     description: "Sites vitrines, landing pages et plateformes web conçus pour convertir, performer et impressionner.",
     href: "/sites-web",
     gradient: "from-accent-primary to-accent-light",
-    includes: ["Direction artistique", "UI/UX design", "Développement Next.js", "SEO technique", "Animations premium"],
+    includes: ["Direction artistique", "UI/UX design", "Développement Next.js", "SEO technique", "Animations & motion design premium"],
     result: "×3 conversion moyenne",
     icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>,
   },
@@ -57,15 +57,6 @@ const services = [
     includes: ["Activation de votre mémoire", "Connexion sources (Drive · Notion · SharePoint · PDF)", "Recherche hybride + citations", "Sécurité & souveraineté UE", "Mises à jour automatiques"],
     result: "Mémoire documentaire connectée",
     icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 6c2-1 5-1 7 0v13c-2-1-5-1-7 0V6z" /><path d="M21 6c-2-1-5-1-7 0v13c2-1 5-1 7 0V6z" /><path d="M10 19c0-1.5 1-2 2-2s2 0.5 2 2" /></svg>,
-  },
-  {
-    title: "Studio visuel",
-    description: "Motion design, 2D/3D, Remotion, animations avancées et interfaces immersives qui marquent les esprits.",
-    href: "/studio-visuel",
-    gradient: "from-accent-primary to-accent-dark",
-    includes: ["Direction artistique", "Motion design", "Animations GSAP/Rive", "Vidéo Remotion", "Compositing avancé"],
-    result: "+200% mémorabilité",
-    icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10" /></svg>,
   },
 ];
 

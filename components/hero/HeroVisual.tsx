@@ -2,6 +2,8 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { ParallaxField, useParallaxLayer } from "@/lib/animation/parallaxField";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { PauseOffscreen, useInViewPause } from "@/lib/animation/inViewPause";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -24,6 +26,7 @@ function FloatingPanel({
 }) {
   const { tx, ty, rx, ry } = useParallaxLayer(depth);
   const shouldReduceMotion = useReducedMotion();
+  const paused = useInViewPause();
 
   return (
     <motion.div
@@ -36,7 +39,7 @@ function FloatingPanel({
       <motion.div
         whileHover={shouldReduceMotion ? undefined : { scale: 1.018 }}
         animate={
-          shouldReduceMotion
+          shouldReduceMotion || paused
             ? undefined
             : {
                 y: [0, -amplitude, 0, -amplitude * 0.6, 0],
@@ -77,12 +80,18 @@ function DataBar({ width, delay, color = "accent" }: { width: string; delay: num
 }
 
 function Particle({ x, y, size, delay }: { x: string; y: string; size: number; delay: number }) {
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = mounted && tier !== "full";
+  const paused = useInViewPause();
+
+  if (staticMode) return null;
+
   return (
     <motion.div
       className="absolute rounded-full bg-accent-light/30"
       style={{ left: x, top: y, width: size, height: size }}
       initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: [0, 0.6, 0], scale: [0, 1, 0] }}
+      animate={paused ? undefined : { opacity: [0, 0.6, 0], scale: [0, 1, 0] }}
       transition={{ duration: 3, delay, repeat: Infinity, ease: "easeInOut" }}
     />
   );
@@ -91,11 +100,13 @@ function Particle({ x, y, size, delay }: { x: string; y: string; size: number; d
 function OrbitDot({ radius, duration, delay, size = 4, color = "bg-accent-light/40" }: {
   radius: number; duration: number; delay: number; size?: number; color?: string;
 }) {
+  const paused = useInViewPause();
+
   return (
     <motion.div
       className="absolute top-1/2 left-1/2"
       style={{ width: radius * 2, height: radius * 2, marginLeft: -radius, marginTop: -radius }}
-      animate={{ rotate: 360 }}
+      animate={paused ? undefined : { rotate: 360 }}
       transition={{ duration, delay, repeat: Infinity, ease: "linear" }}
     >
       <div
@@ -106,9 +117,16 @@ function OrbitDot({ radius, duration, delay, size = 4, color = "bg-accent-light/
   );
 }
 
-export function HeroVisual() {
+/* ──────────────────────────────────────────────────────────────────
+   HeroVisualContent — must live inside PauseOffscreen context
+   ────────────────────────────────────────────────────────────────── */
+function HeroVisualContent() {
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = mounted && tier !== "full";
+  const paused = useInViewPause();
+
   return (
-    <ParallaxField className="relative w-full h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]">
+    <ParallaxField className="h-full">
       {/* Layered glow system */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-primary/8 rounded-full blur-[120px]" />
       <div className="absolute top-1/3 left-1/3 w-64 h-64 bg-cyan/5 rounded-full blur-[100px]" />
@@ -130,7 +148,7 @@ export function HeroVisual() {
         style={{ transformStyle: "preserve-3d" }}
       />
 
-      {/* Ambient particles */}
+      {/* Ambient particles — hidden in staticMode (opacity 0 initial → invisible when paused) */}
       <Particle x="15%" y="20%" size={3} delay={0} />
       <Particle x="80%" y="15%" size={2} delay={0.8} />
       <Particle x="60%" y="75%" size={3} delay={1.5} />
@@ -208,17 +226,19 @@ export function HeroVisual() {
           transition={{ duration: 1.5, delay: 1.7 }}
         />
 
-        {/* Data flow particles on paths */}
-        <motion.circle
-          r="2" fill="var(--color-accent-light)"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.8, 0] }}
-          transition={{ duration: 2, delay: 2, repeat: Infinity }}
-        >
-          <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
-            <mpath xlinkHref="#flowpath1" />
-          </animateMotion>
-        </motion.circle>
+        {/* Data flow particle on path — SMIL + motion opacity loop, both gated */}
+        {!staticMode && !paused && (
+          <motion.circle
+            r="2" fill="var(--color-accent-light)"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.8, 0] }}
+            transition={{ duration: 2, delay: 2, repeat: Infinity }}
+          >
+            <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
+              <mpath xlinkHref="#flowpath1" />
+            </animateMotion>
+          </motion.circle>
+        )}
 
         <path id="flowpath1" d="M128 130 C180 200, 240 290, 300 370" fill="none" />
 
@@ -247,8 +267,9 @@ export function HeroVisual() {
               <span className="text-[10px] text-text-tertiary uppercase tracking-[0.15em] font-medium">Dashboard IA</span>
             </div>
             <motion.div
-              animate={{ opacity: [0.4, 1, 0.4] }}
+              animate={staticMode || paused ? undefined : { opacity: [0.4, 1, 0.4] }}
               transition={{ duration: 2, repeat: Infinity }}
+              style={staticMode || paused ? { opacity: 0.7 } : undefined}
               className="text-[8px] text-cyan font-mono"
             >
               LIVE
@@ -349,7 +370,7 @@ export function HeroVisual() {
           <div className="flex items-center gap-3 mb-4">
             <motion.div
               className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-primary to-accent-dark flex items-center justify-center shadow-md shadow-accent-glow/30"
-              animate={{ boxShadow: ["0 4px 12px rgba(99,102,241,0.2)", "0 4px 24px rgba(99,102,241,0.4)", "0 4px 12px rgba(99,102,241,0.2)"] }}
+              animate={staticMode || paused ? undefined : { boxShadow: ["0 4px 12px rgba(99,102,241,0.2)", "0 4px 24px rgba(99,102,241,0.4)", "0 4px 12px rgba(99,102,241,0.2)"] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -367,7 +388,7 @@ export function HeroVisual() {
               <div className="flex items-center gap-1.5">
                 <motion.div
                   className="w-1.5 h-1.5 rounded-full bg-green-400"
-                  animate={{ scale: [1, 1.3, 1] }}
+                  animate={staticMode || paused ? undefined : { scale: [1, 1.3, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 />
                 <span className="text-[10px] text-green-400 font-medium">En traitement</span>
@@ -398,7 +419,7 @@ export function HeroVisual() {
                 ) : (
                   <motion.div
                     className="w-4 h-4 rounded-full border-2 border-accent-light/40 border-t-accent-light flex-shrink-0"
-                    animate={{ rotate: 360 }}
+                    animate={staticMode || paused ? undefined : { rotate: 360 }}
                     transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                   />
                 )}
@@ -512,5 +533,19 @@ export function HeroVisual() {
         </div>
       </FloatingPanel>
     </ParallaxField>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   HeroVisual — PauseOffscreen envelope
+   ────────────────────────────────────────────────────────────────── */
+export function HeroVisual() {
+  return (
+    <PauseOffscreen
+      className="relative w-full h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]"
+      margin="240px"
+    >
+      <HeroVisualContent />
+    </PauseOffscreen>
   );
 }

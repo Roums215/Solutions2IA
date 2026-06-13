@@ -4,10 +4,21 @@ import { motion } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ParallaxField, useParallaxLayer } from "@/lib/animation/parallaxField";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { PauseOffscreen, useInViewPause } from "@/lib/animation/inViewPause";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-function NeuralPulse({ d, delay, color = "accent" }: { d: string; delay: number; color?: "accent" | "cyan" }) {
+function NeuralPulse({
+  d,
+  delay,
+  color = "accent",
+  paused = false,
+}: {
+  d: string;
+  delay: number;
+  color?: "accent" | "cyan";
+  paused?: boolean;
+}) {
   const c = color === "accent" ? "var(--color-accent-primary)" : "var(--color-cyan)";
   return (
     <>
@@ -18,10 +29,14 @@ function NeuralPulse({ d, delay, color = "accent" }: { d: string; delay: number;
         transition={{ duration: 1.5, delay }}
       />
       <motion.circle r="2.5" fill={c} opacity="0">
-        <animateMotion dur={`${2 + delay}s`} repeatCount="indefinite" begin={`${delay + 1}s`}>
-          <mpath href={`#pulse-${delay}`} />
-        </animateMotion>
-        <animate attributeName="opacity" values="0;0.8;0" dur={`${2 + delay}s`} repeatCount="indefinite" begin={`${delay + 1}s`} />
+        {!paused && (
+          <animateMotion dur={`${2 + delay}s`} repeatCount="indefinite" begin={`${delay + 1}s`}>
+            <mpath href={`#pulse-${delay}`} />
+          </animateMotion>
+        )}
+        {!paused && (
+          <animate attributeName="opacity" values="0;0.8;0" dur={`${2 + delay}s`} repeatCount="indefinite" begin={`${delay + 1}s`} />
+        )}
       </motion.circle>
       <path id={`pulse-${delay}`} d={d} fill="none" />
     </>
@@ -54,6 +69,7 @@ function FloatingPanel({
   children: React.ReactNode;
 }) {
   const { tx, ty, rx, ry } = useParallaxLayer(depth);
+  const paused = useInViewPause();
   return (
     <motion.div
       className={className}
@@ -71,7 +87,7 @@ function FloatingPanel({
       }}
     >
       <motion.div
-        animate={{ y: [0, -amplitude, 0] }}
+        animate={paused ? undefined : { y: [0, -amplitude, 0] }}
         transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
       >
         {children}
@@ -86,6 +102,7 @@ function FloatingPanel({
 type StepStatus = "pending" | "active" | "done";
 
 function StepIndicator({ status }: { status: StepStatus }) {
+  const paused = useInViewPause();
   return (
     <div className="relative w-4 h-4 mt-0.5">
       <motion.div
@@ -100,7 +117,7 @@ function StepIndicator({ status }: { status: StepStatus }) {
       >
         <motion.div
           className="w-4 h-4 rounded-full border-2 border-accent-light/40 border-t-accent-light"
-          animate={{ rotate: 360 }}
+          animate={paused ? undefined : { rotate: 360 }}
           transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
         />
       </motion.div>
@@ -129,8 +146,9 @@ const STEPS = [
 ] as const;
 
 function ChainOfThoughtCard() {
-  const { mounted, isMobile, prefersReducedMotion } = usePerformanceMode();
-  const staticMode = !mounted ? false : isMobile || prefersReducedMotion;
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = !mounted ? false : tier !== "full";
+  const paused = useInViewPause();
 
   const [active, setActive] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -171,7 +189,7 @@ function ChainOfThoughtCard() {
       <div className="flex items-center gap-2 mb-3">
         <motion.div
           className="w-6 h-6 rounded-lg bg-gradient-to-br from-accent-primary to-accent-dark flex items-center justify-center"
-          animate={{ opacity: [0.85, 1, 0.85] }}
+          animate={staticMode || paused ? undefined : { opacity: [0.85, 1, 0.85] }}
           transition={{ duration: 2.5, repeat: Infinity }}
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
@@ -316,8 +334,9 @@ const NEW_LINE_INTERVAL_MS = 4000;
 const MAX_LINES = 3;
 
 function AgentOutputCard() {
-  const { mounted, isMobile, prefersReducedMotion } = usePerformanceMode();
-  const staticMode = !mounted ? false : isMobile || prefersReducedMotion;
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = !mounted ? false : tier !== "full";
+  const paused = useInViewPause();
 
   const [lines, setLines] = useState<OutputLine[]>([]);
   const [typing, setTyping] = useState<TypingState | null>(null);
@@ -396,7 +415,7 @@ function AgentOutputCard() {
       <div className="flex items-center gap-2 mb-3">
         <motion.div
           className="w-2 h-2 rounded-full bg-green-400"
-          animate={{ scale: [1, 1.4, 1] }}
+          animate={staticMode || paused ? undefined : { scale: [1, 1.4, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
         <span className="text-[10px] text-green-400 font-semibold">Sortie agent — Confiance : 97.4%</span>
@@ -412,7 +431,7 @@ function AgentOutputCard() {
             <span className={COLOR_CLASS[typing.color]}>{">"}</span> {typing.shown}
             <motion.span
               className="inline-block w-[5px] h-[10px] align-middle bg-accent-light/80 ml-[2px]"
-              animate={{ opacity: [1, 0, 1] }}
+              animate={paused ? undefined : { opacity: [1, 0, 1] }}
               transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
             />
           </div>
@@ -423,11 +442,13 @@ function AgentOutputCard() {
 }
 
 /* ──────────────────────────────────────────────────────────────────
-   AIBrainScene
+   AIBrainSceneContent — must live inside PauseOffscreen context
    ────────────────────────────────────────────────────────────────── */
-export function AIBrainScene() {
+function AIBrainSceneContent() {
+  const paused = useInViewPause();
+
   return (
-    <ParallaxField className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+    <ParallaxField className="relative w-full h-full">
       {/* Deep layered glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-primary/6 rounded-full blur-[160px]" />
       <div className="absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent-light/8 rounded-full blur-[120px]" />
@@ -464,7 +485,7 @@ export function AIBrainScene() {
         >
           <motion.div
             className="absolute inset-0"
-            animate={{ rotate: 360 }}
+            animate={paused ? undefined : { rotate: 360 }}
             transition={{ duration: ring.speed, repeat: Infinity, ease: "linear" }}
           >
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -503,12 +524,12 @@ export function AIBrainScene() {
         <div className="relative">
           <motion.div
             className="absolute -inset-4 rounded-3xl bg-accent-primary/10"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.25, 0.1] }}
+            animate={paused ? undefined : { scale: [1, 1.2, 1], opacity: [0.1, 0.25, 0.1] }}
             transition={{ duration: 3, repeat: Infinity }}
           />
           <motion.div
             className="absolute -inset-8 rounded-3xl border border-accent-primary/10"
-            animate={{ scale: [1, 1.08, 1], opacity: [0.2, 0.4, 0.2] }}
+            animate={paused ? undefined : { scale: [1, 1.08, 1], opacity: [0.2, 0.4, 0.2] }}
             transition={{ duration: 4, repeat: Infinity }}
           />
 
@@ -555,12 +576,14 @@ export function AIBrainScene() {
               />
               <motion.circle
                 cx="18" cy="22" r="4" fill="rgba(129,140,248,0.3)"
-                animate={{ r: [4, 6, 4], opacity: [0.3, 0.6, 0.3] }}
+                style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                animate={paused ? undefined : { scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
               <motion.circle
                 cx="30" cy="22" r="4" fill="rgba(34,211,238,0.3)"
-                animate={{ r: [4, 6, 4], opacity: [0.3, 0.6, 0.3] }}
+                style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                animate={paused ? undefined : { scale: [1, 1.5, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
               />
               <motion.path
@@ -583,14 +606,14 @@ export function AIBrainScene() {
             <stop offset="100%" stopColor="var(--color-accent-light)" stopOpacity="0" />
           </radialGradient>
         </defs>
-        <NeuralPulse d="M350 320 C300 280 200 250 120 200" delay={0} color="accent" />
-        <NeuralPulse d="M350 320 C400 280 500 250 580 200" delay={0.3} color="cyan" />
-        <NeuralPulse d="M350 320 C300 360 200 400 100 450" delay={0.6} color="accent" />
-        <NeuralPulse d="M350 320 C400 360 500 400 600 450" delay={0.9} color="cyan" />
-        <NeuralPulse d="M350 320 C350 250 340 180 350 100" delay={1.2} color="accent" />
-        <NeuralPulse d="M350 320 C350 390 360 460 350 540" delay={1.5} color="cyan" />
-        <NeuralPulse d="M350 320 C280 310 180 300 80 320" delay={0.4} color="accent" />
-        <NeuralPulse d="M350 320 C420 310 520 300 620 320" delay={0.7} color="cyan" />
+        <NeuralPulse d="M350 320 C300 280 200 250 120 200" delay={0} color="accent" paused={paused} />
+        <NeuralPulse d="M350 320 C400 280 500 250 580 200" delay={0.3} color="cyan" paused={paused} />
+        <NeuralPulse d="M350 320 C300 360 200 400 100 450" delay={0.6} color="accent" paused={paused} />
+        <NeuralPulse d="M350 320 C400 360 500 400 600 450" delay={0.9} color="cyan" paused={paused} />
+        <NeuralPulse d="M350 320 C350 250 340 180 350 100" delay={1.2} color="accent" paused={paused} />
+        <NeuralPulse d="M350 320 C350 390 360 460 350 540" delay={1.5} color="cyan" paused={paused} />
+        <NeuralPulse d="M350 320 C280 310 180 300 80 320" delay={0.4} color="accent" paused={paused} />
+        <NeuralPulse d="M350 320 C420 310 520 300 620 320" delay={0.7} color="cyan" paused={paused} />
 
         {[
           { cx: 120, cy: 200 }, { cx: 580, cy: 200 },
@@ -660,7 +683,7 @@ export function AIBrainScene() {
               height: size,
               background: i % 2 === 0 ? "rgba(129,140,248,0.3)" : "rgba(34,211,238,0.25)",
             }}
-            animate={{
+            animate={paused ? undefined : {
               y: [0, -(10 + (i % 5) * 3), 0],
               x: [0, i % 2 === 0 ? 5 : -4, 0],
               opacity: [0.2, 0.6, 0.2],
@@ -670,5 +693,16 @@ export function AIBrainScene() {
         );
       })}
     </ParallaxField>
+  );
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   AIBrainScene — PauseOffscreen envelope
+   ────────────────────────────────────────────────────────────────── */
+export function AIBrainScene() {
+  return (
+    <PauseOffscreen className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]" margin="240px">
+      <AIBrainSceneContent />
+    </PauseOffscreen>
   );
 }

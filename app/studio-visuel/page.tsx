@@ -1,20 +1,11 @@
-import type { Metadata } from "next";
-import { StudioVisuelPage } from "./StudioVisuelPage";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Studio visuel premium : motion design, 2D/3D, Remotion, expériences immersives",
-  description:
-    "Studio visuel pour marques exigeantes : motion design, animations 2D/3D, vidéos Remotion programmatiques, interfaces immersives. Univers visuels premium.",
-  alternates: { canonical: "/studio-visuel" },
-  openGraph: {
-    title: "Studio visuel — Motion design, 2D/3D, Remotion premium",
-    description:
-      "Univers visuels qui marquent : motion design, 2D/3D, Remotion, interfaces immersives.",
-    url: "/studio-visuel",
-    type: "website",
-  },
-};
-
+/**
+ * Page supprimée (décision 2026-06-12) — le redirect 308 principal vit dans
+ * next.config.ts (redirects()). Ce fallback couvre tout chemin résiduel.
+ * Le savoir-faire visuel/motion est raconté dans /services et /sites-web.
+ * TODO (quand le shell sera disponible) : `git rm -r app/studio-visuel`.
+ */
 export default function Page() {
-  return <StudioVisuelPage />;
+  permanentRedirect("/services");
 }

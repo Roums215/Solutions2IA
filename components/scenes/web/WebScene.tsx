@@ -1,12 +1,18 @@
 "use client";
 
 import { motion } from "motion/react";
+import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { PauseOffscreen, useInViewPause } from "@/lib/animation/inViewPause";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function WebScene() {
+function WebSceneInner() {
+  const { mounted, tier } = usePerformanceMode();
+  const staticMode = mounted && tier !== "full";
+  const paused = useInViewPause();
+
   return (
-    <div className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+    <div className="relative w-full h-full">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-accent-primary/6 rounded-full blur-[140px]" />
       <div className="absolute top-[35%] right-[30%] w-56 h-56 bg-cyan/5 rounded-full blur-[100px]" />
 
@@ -19,7 +25,7 @@ export function WebScene() {
       <motion.div
         className="absolute top-6 left-1/2 -translate-x-1/2 z-20 w-[320px] sm:w-[380px]"
         initial={{ opacity: 0, y: 30, scale: 0.9, rotateX: 5 }}
-        animate={{ opacity: 1, y: [0, -6, 0], scale: 1, rotateX: 0 }}
+        animate={{ opacity: 1, y: staticMode || paused ? 0 : [0, -6, 0], scale: 1, rotateX: 0 }}
         transition={{ opacity: { duration: 1, delay: 0.3 }, y: { duration: 7, repeat: Infinity }, scale: { duration: 1, delay: 0.3, ease } }}
         style={{ perspective: "800px" }}
       >
@@ -90,7 +96,7 @@ export function WebScene() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.0, duration: 0.8, ease }}
       >
-        <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={staticMode || paused ? undefined : { y: [0, -5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
             <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Performance</span>
             <div className="flex items-center gap-3">
@@ -140,18 +146,18 @@ export function WebScene() {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 1.2, duration: 0.8, ease }}
       >
-        <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+        <motion.div animate={staticMode || paused ? undefined : { y: [0, -4, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
             <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Responsive</span>
             <div className="flex items-end gap-2 h-14">
               {/* Watch */}
-              <motion.div className="w-5 h-7 rounded-sm border border-accent-light/20 bg-accent-glow/20" animate={{ opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity }} />
+              <motion.div className="w-5 h-7 rounded-sm border border-accent-light/20 bg-accent-glow/20" animate={staticMode || paused ? undefined : { opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity }} />
               {/* Phone */}
-              <motion.div className="w-6 h-10 rounded-md border border-accent-light/30 bg-accent-glow/25" animate={{ opacity: [0.5, 0.9, 0.5] }} transition={{ duration: 3, repeat: Infinity, delay: 0.3 }} />
+              <motion.div className="w-6 h-10 rounded-md border border-accent-light/30 bg-accent-glow/25" animate={staticMode || paused ? undefined : { opacity: [0.5, 0.9, 0.5] }} transition={{ duration: 3, repeat: Infinity, delay: 0.3 }} />
               {/* Tablet */}
-              <motion.div className="w-9 h-12 rounded-md border border-accent-light/35 bg-accent-glow/30" animate={{ opacity: [0.5, 0.9, 0.5] }} transition={{ duration: 3, repeat: Infinity, delay: 0.6 }} />
+              <motion.div className="w-9 h-12 rounded-md border border-accent-light/35 bg-accent-glow/30" animate={staticMode || paused ? undefined : { opacity: [0.5, 0.9, 0.5] }} transition={{ duration: 3, repeat: Infinity, delay: 0.6 }} />
               {/* Desktop */}
-              <motion.div className="w-14 h-10 rounded-md border border-accent-light/40 bg-accent-glow/35 relative" animate={{ opacity: [0.6, 1, 0.6] }} transition={{ duration: 3, repeat: Infinity, delay: 0.9 }}>
+              <motion.div className="w-14 h-10 rounded-md border border-accent-light/40 bg-accent-glow/35 relative" animate={staticMode || paused ? undefined : { opacity: [0.6, 1, 0.6] }} transition={{ duration: 3, repeat: Infinity, delay: 0.9 }}>
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-2 bg-accent-light/10 rounded-b" />
               </motion.div>
             </div>
@@ -170,11 +176,20 @@ export function WebScene() {
             width: 2 + i % 2,
             height: 2 + i % 2,
             background: i % 2 === 0 ? "rgba(129,140,248,0.25)" : "rgba(34,211,238,0.2)",
+            opacity: staticMode || paused ? 0.25 : undefined,
           }}
-          animate={{ y: [0, -(6 + i % 3 * 2), 0], opacity: [0.15, 0.5, 0.15] }}
+          animate={staticMode || paused ? undefined : { y: [0, -(6 + i % 3 * 2), 0], opacity: [0.15, 0.5, 0.15] }}
           transition={{ duration: 4 + i % 3, repeat: Infinity, delay: i * 0.3 }}
         />
       ))}
     </div>
+  );
+}
+
+export function WebScene() {
+  return (
+    <PauseOffscreen className="relative w-full h-[540px] sm:h-[600px] lg:h-[640px]">
+      <WebSceneInner />
+    </PauseOffscreen>
   );
 }

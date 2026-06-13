@@ -33,8 +33,8 @@ const ACCENT = "var(--color-accent-primary)";
  * stagger cards. prefers-reduced-motion → tout statique au mount.
  */
 export function HomeServicesConstellation() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}
@@ -132,16 +132,14 @@ function DesktopConstellation({
   itemVariants: typeof fadeInUp | undefined;
   lineVariants: Variants | undefined;
 }) {
-  // Positions hexagone (en pourcentage du conteneur).
-  // 6 nœuds : top, top-right, bottom-right, bottom, bottom-left, top-left
-  // Centre : 50% / 50%
+  // Positions pentagone (en pourcentage du conteneur) — 5 services depuis la
+  // suppression de /studio-visuel (2026-06-12). Centre : 50% / 50%.
   const positions = [
-    { x: 50, y: 10 },  // top — Sites web (service 0)
-    { x: 85, y: 30 },  // top-right — Applications (service 1)
-    { x: 85, y: 70 },  // bottom-right — Agents IA (service 2)
-    { x: 50, y: 90 },  // bottom — Automatisation (service 3)
-    { x: 15, y: 70 },  // bottom-left — RAG (service 4)
-    { x: 15, y: 30 },  // top-left — Studio (service 5)
+    { x: 50, y: 8 },   // top — Sites web (service 0)
+    { x: 88, y: 38 },  // top-right — Applications (service 1)
+    { x: 73, y: 88 },  // bottom-right — Agents IA (service 2)
+    { x: 27, y: 88 },  // bottom-left — Automatisation (service 3)
+    { x: 12, y: 38 },  // top-left — RAG (service 4)
   ];
 
   return (

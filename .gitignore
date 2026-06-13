@@ -40,3 +40,12 @@ test-results/
 
 # Misc
 *.log
+
+# TS incremental build info
+*.tsbuildinfo
+
+# Backups & tool scratch dirs
+*.bak
+.claude.bak*/
+.agents/
+.codex/

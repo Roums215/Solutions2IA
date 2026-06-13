@@ -44,7 +44,7 @@ export function CTABand({
               </svg>
             </Button>
             <Button variant="secondary" size="lg" href="/services">
-              Nos services
+              Voir les services
             </Button>
           </motion.div>
           <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-text-tertiary">

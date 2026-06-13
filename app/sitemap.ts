@@ -32,7 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/agents-ia",
     "/sites-web",
     "/automatisation",
-    "/studio-visuel",
     "/rag",
   ].map((path) => ({
     url: `${SITE_URL}${path}`,

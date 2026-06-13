@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils/cn";
 import { WEB_PAINS, WEB_PAIN_TURNAROUND } from "./webPainData";
 
 export function WebPainBusiness() {
-  const { mounted, isMobile, shouldReduceMotion, isCoarsePointer } =
+  const { mounted, isMobile, shouldReduceMotion, isCoarsePointer, disableContentMotion } =
     usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const staticRender = !mounted || disableContentMotion || isMobile;
   const allow3D = mounted && !isMobile && !isCoarsePointer && !shouldReduceMotion;
 
   const parentProps = staticRender

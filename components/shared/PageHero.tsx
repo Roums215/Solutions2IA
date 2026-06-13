@@ -118,8 +118,10 @@ export function PageHero({
   glowColor = "bg-accent-primary/5",
   mobileSteps = DEFAULT_MOBILE_STEPS,
 }: PageHeroProps) {
-  const { isMobile, shouldReduceMotion } = usePerformanceMode();
-  const showVisual = !!visual && !isMobile && !shouldReduceMotion;
+  const { isMobile, shouldReduceMotion, tier, disableContentMotion } = usePerformanceMode();
+  // full/reduced desktop : scène montée (elle se statifie elle-même en reduced).
+  // minimal : pas de visuel — hero texte centré, calme et instantané.
+  const showVisual = !!visual && !isMobile && tier !== "minimal" && !shouldReduceMotion;
   const showMobilePreview = !!visual && isMobile;
   const hasVisual = showVisual;
 
@@ -185,7 +187,7 @@ export function PageHero({
             {showMobilePreview && (
               <MobileHeroPreview
                 label={label}
-                reduceMotion={shouldReduceMotion}
+                reduceMotion={disableContentMotion}
                 steps={mobileSteps}
               />
             )}

@@ -22,6 +22,17 @@ const nextConfig: NextConfig = {
       "@vercel/speed-insights",
     ],
   },
+  async redirects() {
+    return [
+      // Page supprimée (décision 2026-06-12) — son savoir-faire visuel est
+      // raconté dans /services et /sites-web.
+      {
+        source: "/studio-visuel",
+        destination: "/services",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

@@ -37,8 +37,8 @@ const GROUPS: SourceGroup[] = ["numerique", "diffusion", "terrain"];
  * convergents. Mobile : stack 3 paquets de 3 canaux + flèche unique.
  */
 export function WebOpportunitySources() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}

@@ -25,8 +25,8 @@ import {
  * Aucune boucle. prefers-reduced-motion → tout statique.
  */
 export function HomeProfileMatrix() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}

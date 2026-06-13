@@ -8,8 +8,14 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
-import { AppScene } from "@/components/scenes/mobile/AppScene";
+import dynamic from "next/dynamic";
 import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
+
+// Scène hero lazy : chunk jamais téléchargé sur mobile/minimal.
+const AppScene = dynamic(
+  () => import("@/components/scenes/mobile/AppScene").then((m) => m.AppScene),
+  { ssr: false, loading: () => <div aria-hidden className="h-[540px] sm:h-[600px] lg:h-[640px]" /> },
+);
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import { SectorsCoverage } from "@/components/sections/applications/SectorsCoverage";
 import { AppDigitizationPipeline } from "@/components/sections/applications/AppDigitizationPipeline";

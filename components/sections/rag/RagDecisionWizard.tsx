@@ -19,8 +19,8 @@ type Answers = {
 };
 
 export function RagDecisionWizard() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const [answers, setAnswers] = useState<Answers>({});
 

@@ -48,10 +48,10 @@ function FloatingLine({ x1, y1, x2, y2, color, delay = 0 }: {
 }
 
 export function PageAtmosphere({ preset }: PageAtmosphereProps) {
-  const { isMobile, shouldReduceMotion, shouldHideBackgroundDecor } = usePerformanceMode();
+  const { tier, disableContentMotion } = usePerformanceMode();
 
-  // Décor de fond caché (mobile/tactile/low-end) : fond statique minimal, aucun orb.
-  if (shouldHideBackgroundDecor) {
+  // minimal : fond statique seul, aucun orb, zéro animation.
+  if (tier === "minimal") {
     return (
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden>
         <div className="absolute inset-0 bg-radial-top opacity-60" />
@@ -59,8 +59,10 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
     );
   }
 
-  if (isMobile || shouldReduceMotion) {
-    const animate = shouldReduceMotion ? undefined : { opacity: [0.55, 0.8, 0.55], scale: [1, 1.04, 1] };
+  // reduced (mobile / low-end / FPS guard) : ambiance allégée — 2 orbs
+  // respirants + grille statique. Pas de presets riches.
+  if (tier === "reduced") {
+    const animate = disableContentMotion ? undefined : { opacity: [0.55, 0.8, 0.55], scale: [1, 1.04, 1] };
     const transition = { duration: 9, repeat: Infinity, ease: "easeInOut" as const };
 
     return (
@@ -73,7 +75,7 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
         />
         <motion.div
           className="absolute bottom-[-12rem] right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-cyan/[0.055] blur-[120px]"
-          animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.68, 0.45], scale: [1, 1.05, 1] }}
+          animate={disableContentMotion ? undefined : { opacity: [0.45, 0.68, 0.45], scale: [1, 1.05, 1] }}
           transition={{ ...transition, delay: 2.5 }}
         />
         <div className="absolute inset-0 bg-grid opacity-[0.018]" />
@@ -169,7 +171,8 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
                   key={`n${i}`}
                   cx={x} cy={y} r="3"
                   fill="var(--color-accent-light)"
-                  animate={{ opacity: [0.08, 0.25, 0.08], r: [3, 4, 3] }}
+                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
+                  animate={{ opacity: [0.08, 0.25, 0.08], scale: [1, 1.33, 1] }}
                   transition={{ duration: 4 + (i % 3), delay: i * 0.2, repeat: Infinity }}
                 />
               );

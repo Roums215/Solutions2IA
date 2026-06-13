@@ -29,8 +29,8 @@ const PREMIUM_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
  * utilisée dans S1 fan-in, S2 flux vertical, S3 Pain 2-col, S4 vs Agence.
  */
 export function WebFoundations() {
-  const { mounted, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion;
+  const { mounted, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion;
 
   const parentProps = staticRender
     ? {}

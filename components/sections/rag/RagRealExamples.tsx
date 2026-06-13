@@ -7,8 +7,8 @@ import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import { RAG_REAL_EXAMPLES } from "./ragRealExamplesData";
 
 export function RagRealExamples() {
-  const { mounted, isMobile, shouldReduceMotion } = usePerformanceMode();
-  const staticRender = !mounted || shouldReduceMotion || isMobile;
+  const { mounted, isMobile, disableContentMotion } = usePerformanceMode();
+  const staticRender = !mounted || disableContentMotion || isMobile;
 
   const parentProps = staticRender
     ? {}
