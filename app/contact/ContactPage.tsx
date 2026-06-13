@@ -11,49 +11,47 @@ import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const serviceOptions = [
-  "Site web premium",
-  "Application web / mobile",
-  "Agent IA",
-  "Automatisation",
-  "Studio visuel / Motion",
-  "Consulting / Audit",
-  "Autre",
+  "Un site web",
+  "Une application sur mesure",
+  "Automatiser des tâches",
+  "Un assistant IA",
+  "Je ne sais pas encore",
 ];
 
 const processSteps = [
-  { number: "01", title: "Vous nous écrivez", description: "Décrivez votre projet en quelques mots. Pas besoin d'un brief parfait — une idée suffit." },
-  { number: "02", title: "Réponse sous 24h", description: "Nous analysons votre demande et revenons vers vous avec des premières questions et pistes de réflexion." },
-  { number: "03", title: "Échange découverte", description: "Un appel de 30 minutes pour comprendre vos objectifs, votre contexte et vos contraintes. Gratuit, sans engagement." },
-  { number: "04", title: "Proposition sur mesure", description: "Nous vous envoyons une proposition détaillée : périmètre, approche, planning et investissement." },
+  { number: "01", title: "Vous m'écrivez", description: "Décrivez votre besoin en quelques mots. Pas besoin d'un dossier parfait — une idée suffit pour commencer." },
+  { number: "02", title: "Je réponds sous 24 h", description: "Je lis votre message et je reviens vers vous avec quelques questions et une première idée de ce qui vous aiderait." },
+  { number: "03", title: "On échange, gratuitement", description: "Un appel d'une trentaine de minutes pour bien comprendre votre situation. Gratuit, sans engagement." },
+  { number: "04", title: "Je vous propose une solution", description: "Vous recevez une proposition claire : ce que je construis, ce que ça change, le prix et le délai." },
 ];
 
 const faq = [
-  { q: "Combien coûte un projet ?", a: "Tranches indicatives : site vitrine simple à partir de 500€, site vitrine premium 2 000-3 000€, site avec système (CMS, blog, espace client…) 1 000-5 000€. Application métier 1 500-15 000€ selon modules. Agent IA 800-8 000€ build + 300-2 000€/mois run. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations à prévoir. Chaque devis inclut design soigné, code propre, accessibilité, SEO/perf optimisés et 30 jours de garantie post-livraison. Audit gratuit puis devis transparent après l'échange découverte." },
-  { q: "Quels sont vos délais ?", a: "Un site web premium : 4-8 semaines. Une application : 8-16 semaines. Un agent IA : 2-6 semaines. Les délais dépendent de la complexité, mais nous respectons toujours nos engagements." },
-  { q: "Travaillez-vous avec des clients internationaux ?", a: "Oui. Nous travaillons en français et en anglais, avec des clients en France, en Europe et au-delà. Le travail se fait en remote avec des points réguliers." },
-  { q: "Proposez-vous de la maintenance ?", a: "Oui. Chaque livraison peut s'accompagner d'un contrat de maintenance et d'optimisation continue. Vos solutions restent performantes dans la durée." },
+  { q: "Combien ça coûte ?", a: "Pour vous situer : un site vitrine simple démarre autour de 500 €, un site vitrine premium entre 1 000 et 2 500 €, un site relié à vos outils (réservation, espace client, paiement…) entre 2 500 et 5 000 €, et une application sur mesure entre 1 500 et 15 000 € selon le nombre de fonctions. Pour les automatisations et les assistants IA, le prix dépend trop du projet pour une fourchette honnête — on en parle lors du premier échange, qui est gratuit. Dans tous les cas, le prix est fixé ensemble avant de démarrer : pas de mauvaise surprise." },
+  { q: "En combien de temps ?", a: "Un site simple : quelques jours à deux semaines. Un site premium : deux à six semaines. Une application : selon la taille, de quelques semaines à quelques mois. Je vous donne un délai clair dans la proposition, et je m'y tiens." },
+  { q: "Je ne suis pas du tout technique, c'est un problème ?", a: "Au contraire, c'est mon métier de traduire. Je vous explique tout avec des mots simples, sans jargon. Vous n'avez jamais besoin de comprendre la technique — juste de me dire ce qui vous prend du temps." },
+  { q: "Et après la mise en ligne ?", a: "Je reste joignable. Je prends le temps de vous montrer comment ça marche, et je suis là pour ajuster ou faire évoluer l'outil quand votre besoin change. On peut aussi convenir d'un suivi régulier si vous le souhaitez." },
 ];
 
 const briefFlow = [
   {
-    meta: "Objectif",
-    title: "Ce que vous voulez améliorer",
-    description: "Conversion, image, outil interne, automatisation, IA, productivité ou lancement d'un nouveau produit.",
+    meta: "Votre objectif",
+    title: "Ce que vous aimeriez améliorer",
+    description: "Être plus visible, gagner du temps, arrêter de tout retaper à la main, lancer un nouveau service… dites-le avec vos mots.",
   },
   {
-    meta: "Contexte",
-    title: "Votre situation actuelle",
-    description: "Site existant, outils utilisés, équipe, contraintes, données disponibles et ce qui bloque aujourd'hui.",
+    meta: "Votre situation",
+    title: "Où vous en êtes aujourd'hui",
+    description: "Vous avez déjà un site ? Quels outils utilisez-vous ? Qu'est-ce qui vous bloque ou vous fait perdre du temps en ce moment ?",
   },
   {
-    meta: "Priorités",
-    title: "Les zones critiques",
-    description: "Délais, budget, fonctionnalités indispensables, intégrations, niveau de finition attendu et risques connus.",
+    meta: "Vos priorités",
+    title: "Ce qui compte le plus",
+    description: "Un délai à tenir, un budget en tête, une fonction indispensable… ce qui est important pour vous m'aide à viser juste.",
   },
   {
-    meta: "Décision",
-    title: "Le prochain pas concret",
-    description: "Après votre message, nous revenons avec les bonnes questions, une première lecture et une direction claire.",
+    meta: "La suite",
+    title: "Le prochain pas, concret",
+    description: "Après votre message, je reviens avec les bonnes questions, une première lecture honnête et une direction claire.",
   },
 ];
 
@@ -66,17 +64,17 @@ export function ContactPage() {
       <PageAtmosphere preset="contact" />
       <FluidMouseField preset="contact" />
       <PageHero
-        label="Contact"
-        title={<>Démarrons votre <span className="text-gradient-strong">projet</span></>}
-        description="Chaque grand projet commence par une conversation. Décrivez votre besoin, nous revenons vers vous sous 24h avec une première analyse personnalisée."
+        label="Parlons-en"
+        title={<>Dites-moi ce qui vous <span className="text-gradient-strong">prend du temps</span></>}
+        description="Pas besoin de savoir ce qu'il vous faut. Décrivez votre situation avec vos mots — je reviens vers vous sous 24 h avec une première idée, gratuitement et sans engagement."
       />
 
       <section className="section-shell-tight">
         <div className="section-container">
           <PremiumFlowPanel
-            label="Brief utile"
-            title="Un bon premier message accélère déjà la qualité de la solution."
-            description="Pas besoin d'un cahier des charges parfait : quelques informations bien choisies suffisent pour comprendre le vrai sujet et préparer un échange précis."
+            label="Pour un bon premier message"
+            title="Quelques mots bien choisis suffisent."
+            description="Pas besoin d'un dossier complet. Si vous me donnez ces quelques éléments, je comprends tout de suite le vrai sujet et notre échange est plus utile."
             steps={briefFlow}
             accent="99, 102, 241"
           />
@@ -96,14 +94,16 @@ export function ContactPage() {
           >
             {/* Service selection */}
             <motion.div variants={fadeInUp} className="mb-10">
-              <label className="text-base font-semibold text-text-primary block mb-2">Quel type de projet vous intéresse ?</label>
-              <p className="text-sm text-text-secondary/85 mb-5">Sélectionnez un ou plusieurs services pour nous aider à comprendre votre besoin.</p>
-              <div className="flex flex-wrap gap-3">
+              <span id="type-projet-label" className="text-base font-semibold text-text-primary block mb-2">Qu&apos;est-ce qui vous amène ?</span>
+              <p className="text-sm text-text-secondary/85 mb-5">Choisissez ce qui s&apos;en rapproche le plus. Si vous hésitez, ce n&apos;est pas grave — on en parle.</p>
+              <div className="flex flex-wrap gap-3" role="group" aria-labelledby="type-projet-label">
                 {serviceOptions.map((s) => (
                   <button
                     key={s}
+                    type="button"
+                    aria-pressed={selectedService === s}
                     onClick={() => setSelectedService(selectedService === s ? null : s)}
-                    className={`px-4 py-2.5 text-sm rounded-xl border transition-all duration-300 cursor-pointer ${
+                    className={`px-4 py-2.5 text-sm rounded-xl border transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-accent-light/60 focus-visible:outline-offset-2 ${
                       selectedService === s
                         ? "border-accent-primary bg-accent-glow text-accent-light shadow-sm shadow-accent-glow/20"
                         : "border-border-medium bg-bg-tertiary/45 text-text-secondary hover:border-border-accent hover:text-text-primary"
@@ -116,47 +116,46 @@ export function ContactPage() {
             </motion.div>
 
             {/* Form fields */}
-            <motion.div variants={fadeInUp} className="space-y-7">
+            <motion.form variants={fadeInUp} className="space-y-7" onSubmit={(e) => e.preventDefault()} noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
-                  <label className="text-sm font-medium text-text-primary block mb-2.5">Nom *</label>
-                  <input type="text" placeholder="Votre nom complet" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <label htmlFor="contact-nom" className="text-sm font-medium text-text-primary block mb-2.5">Votre nom <span className="text-accent-light">*</span></label>
+                  <input id="contact-nom" name="nom" type="text" required aria-required="true" autoComplete="name" placeholder="Comment vous appelez-vous ?" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-text-primary block mb-2.5">Email *</label>
-                  <input type="email" placeholder="votre@email.com" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <label htmlFor="contact-email" className="text-sm font-medium text-text-primary block mb-2.5">Votre email <span className="text-accent-light">*</span></label>
+                  <input id="contact-email" name="email" type="email" required aria-required="true" autoComplete="email" placeholder="Pour que je puisse vous répondre" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
-                  <label className="text-sm font-medium text-text-primary block mb-2.5">Entreprise <span className="text-text-tertiary font-normal">(optionnel)</span></label>
-                  <input type="text" placeholder="Nom de votre entreprise" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
+                  <label htmlFor="contact-entreprise" className="text-sm font-medium text-text-primary block mb-2.5">Votre entreprise <span className="text-text-tertiary font-normal">(facultatif)</span></label>
+                  <input id="contact-entreprise" name="entreprise" type="text" autoComplete="organization" placeholder="Le nom de votre activité" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-text-primary block mb-2.5">Budget estimé <span className="text-text-tertiary font-normal">(optionnel — indicatif)</span></label>
-                  <select className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-secondary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
-                    <option>Sélectionner une fourchette</option>
-                    <option>Moins de 1 000€</option>
-                    <option>1 000€ — 3 000€</option>
-                    <option>3 000€ — 8 000€</option>
-                    <option>8 000€ — 20 000€</option>
-                    <option>Plus de 20 000€</option>
-                    <option>À définir avec vous</option>
+                  <label htmlFor="contact-budget" className="text-sm font-medium text-text-primary block mb-2.5">Votre budget <span className="text-text-tertiary font-normal">(facultatif, juste une idée)</span></label>
+                  <select id="contact-budget" name="budget" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-secondary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
+                    <option>Je préfère en parler</option>
+                    <option>Moins de 1 000 €</option>
+                    <option>1 000 € — 3 000 €</option>
+                    <option>3 000 € — 8 000 €</option>
+                    <option>8 000 € — 20 000 €</option>
+                    <option>Plus de 20 000 €</option>
                   </select>
                 </div>
               </div>
               <div>
-                <label className="text-sm font-medium text-text-primary block mb-2.5">Décrivez votre projet *</label>
-                <textarea rows={6} placeholder="Parlez-nous de votre projet : objectifs, contexte, contraintes, timeline souhaitée..." className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all resize-none" />
+                <label htmlFor="contact-message" className="text-sm font-medium text-text-primary block mb-2.5">Ce qui vous amène <span className="text-accent-light">*</span></label>
+                <textarea id="contact-message" name="message" rows={6} required aria-required="true" placeholder="Dites-moi avec vos mots ce qui vous prend du temps, ou ce que vous aimeriez. Pas besoin d'être précis." className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all resize-none" />
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-3">
                 <Button variant="primary" size="lg" type="submit">
-                  Envoyer ma demande
+                  Envoyer
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </Button>
-                <p className="text-xs text-text-tertiary">Réponse personnalisée sous 24h — Sans engagement</p>
+                <p className="text-xs text-text-tertiary">Réponse sous 24 h — gratuit, sans engagement</p>
               </div>
-            </motion.div>
+            </motion.form>
           </motion.div>
         </div>
       </section>
@@ -169,7 +168,7 @@ export function ContactPage() {
           <SectionParticles style="dots" count={6} color="rgba(129,140,248,0.06)" />
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Comment ça se passe</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">De votre message à notre proposition</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">De votre message à ma proposition</h2>
           </div>
           <motion.div
             variants={staggerContainer}
@@ -197,7 +196,7 @@ export function ContactPage() {
         <div className="section-container-narrow max-w-3xl">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-3 block">Questions fréquentes</span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Tout ce que vous devez savoir</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Les questions qu&apos;on me pose souvent</h2>
           </div>
           <div className="space-y-4">
             {faq.map((item, i) => (
@@ -210,8 +209,12 @@ export function ContactPage() {
                 transition={{ delay: i * 0.1 }}
               >
                 <button
+                  type="button"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full text-left px-7 py-5 flex items-center justify-between cursor-pointer"
+                  aria-expanded={openFaq === i}
+                  aria-controls={`faq-panel-${i}`}
+                  id={`faq-trigger-${i}`}
+                  className="w-full text-left px-7 py-5 flex items-center justify-between cursor-pointer focus-visible:outline-2 focus-visible:outline-accent-light/60 focus-visible:outline-offset-[-2px]"
                 >
                   <span className="text-sm font-semibold text-text-primary pr-4">{item.q}</span>
                   <motion.svg
@@ -219,11 +222,15 @@ export function ContactPage() {
                     className="text-text-tertiary flex-shrink-0"
                     animate={{ rotate: openFaq === i ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
+                    aria-hidden
                   >
                     <polyline points="6 9 12 15 18 9" />
                   </motion.svg>
                 </button>
                 <motion.div
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-trigger-${i}`}
                   initial={false}
                   animate={{ height: openFaq === i ? "auto" : 0, opacity: openFaq === i ? 1 : 0 }}
                   transition={{ duration: 0.3 }}
