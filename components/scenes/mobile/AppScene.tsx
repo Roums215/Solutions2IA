@@ -57,8 +57,8 @@ function AppSceneInner() {
             {/* Stats cards */}
             <div className="grid grid-cols-2 gap-1.5">
               {[
-                { value: "+73%", label: "Efficacité", color: "text-accent-light" },
-                { value: "24/7", label: "Actif", color: "text-cyan" },
+                { value: "18", label: "Aujourd'hui", color: "text-accent-light" },
+                { value: "À jour", label: "Synchro", color: "text-cyan" },
               ].map((stat) => (
                 <motion.div
                   key={stat.label}
@@ -151,12 +151,12 @@ function AppSceneInner() {
             </div>
             <div className="grid grid-cols-2 gap-2 text-center">
               <div>
-                <span className="text-xs font-bold text-accent-light font-mono block">12,847</span>
-                <span className="text-[7px] text-text-tertiary">Utilisateurs</span>
+                <span className="text-xs font-bold text-accent-light font-mono block">142</span>
+                <span className="text-[7px] text-text-tertiary">Rapports</span>
               </div>
               <div>
-                <span className="text-xs font-bold text-cyan font-mono block">€47.2K</span>
-                <span className="text-[7px] text-text-tertiary">Revenus</span>
+                <span className="text-xs font-bold text-cyan font-mono block">8</span>
+                <span className="text-[7px] text-text-tertiary">Techniciens</span>
               </div>
             </div>
           </div>
@@ -170,7 +170,7 @@ function AppSceneInner() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6, duration: 0.6 }}
       >
-        {["React Native", "Swift", "Kotlin", "REST API", "WebSocket"].map((t, i) => (
+        {["Ordinateur", "Téléphone", "Hors-ligne", "Sécurisé", "Sauvegardé"].map((t, i) => (
           <motion.div
             key={t}
             className="px-3 py-1.5 rounded-lg border border-border-subtle bg-bg-card/80 backdrop-blur text-[8px] text-text-tertiary font-mono"

@@ -24,20 +24,9 @@ import { PerformanceTracking } from "@/components/sections/applications/Performa
 
 const capabilities = [
   {
-    title: "Applications web",
+    title: "Accessible partout",
     description:
-      "Dashboards, SaaS, plateformes métier — des applications web robustes avec une UX qui fait la différence au quotidien.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-  },
-  {
-    title: "Applications mobiles",
-    description:
-      "iOS et Android, natif ou cross-platform. Des apps fluides, rapides et qui exploitent pleinement chaque plateforme.",
+      "Sur ordinateur au bureau comme sur téléphone en déplacement. Vos équipes travaillent depuis le terrain, sans rien réinstaller.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
         <rect x="5" y="2" width="14" height="20" rx="2" />
@@ -46,9 +35,40 @@ const capabilities = [
     ),
   },
   {
-    title: "Architecture évolutive",
+    title: "Mise à jour en direct",
     description:
-      "Code modulaire, API solide, base de données optimisée. Votre app grandit avec votre entreprise sans refonte.",
+      "Quand quelqu'un saisit une information, tout le monde la voit aussitôt. Plus de fichiers en double, plus de versions qui se contredisent.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
+      </svg>
+    ),
+  },
+  {
+    title: "Fonctionne sans réseau",
+    description:
+      "Sur un chantier ou en sous-sol, l'application continue de marcher. Tout se synchronise dès que la connexion revient.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
+        <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55" />
+        <path d="M12 20h.01" />
+      </svg>
+    ),
+  },
+  {
+    title: "Vos données protégées",
+    description:
+      "Chaque personne ne voit que ce qui la concerne. Connexion sécurisée, données hébergées en Europe, sauvegardes automatiques.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+  },
+  {
+    title: "Qui grandit avec vous",
+    description:
+      "On démarre par l'essentiel. Quand votre besoin évolue, on ajoute des fonctions — sans tout refaire à zéro.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -58,33 +78,13 @@ const capabilities = [
     ),
   },
   {
-    title: "Temps réel",
+    title: "Reliée à vos outils",
     description:
-      "WebSockets, synchronisation instantanée, notifications push. Vos utilisateurs voient les changements en direct.",
+      "L'application parle à vos logiciels existants (fichier clients, facturation, agenda). L'information n'est saisie qu'une seule fois.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
-      </svg>
-    ),
-  },
-  {
-    title: "Offline-first",
-    description:
-      "Vos apps fonctionnent même sans connexion. Les données se synchronisent automatiquement dès le retour du réseau.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-        <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55" />
-        <path d="M12 20h.01" />
-      </svg>
-    ),
-  },
-  {
-    title: "Sécurité native",
-    description:
-      "Authentification, chiffrement end-to-end, validation serveur. La sécurité est intégrée dès la première ligne de code.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12h6M9 8h6M9 16h4" />
+        <rect x="3" y="3" width="18" height="18" rx="2" />
       </svg>
     ),
   },
@@ -92,55 +92,55 @@ const capabilities = [
 
 const productFlow = [
   {
-    meta: "Modèle",
-    title: "Structurer la donnée métier",
+    meta: "Vos infos",
+    title: "On range votre information clairement",
     description:
-      "Nous clarifions les entités, rôles, permissions et états pour éviter les fondations fragiles.",
+      "Qui fait quoi, qui voit quoi, dans quel ordre. Une base nette dès le départ évite les problèmes plus tard.",
   },
   {
-    meta: "Parcours",
-    title: "Fluidifier les tâches clés",
+    meta: "Vos écrans",
+    title: "Des écrans calés sur votre vrai travail",
     description:
-      "Les écrans sont organisés autour des actions réelles : créer, suivre, valider, corriger, décider.",
+      "L'application suit vos gestes : créer, suivre, valider, corriger, décider. Pas un outil de plus à subir.",
   },
   {
-    meta: "Système",
-    title: "Connecter API et automatisations",
+    meta: "Vos outils",
+    title: "Reliée à ce que vous utilisez déjà",
     description:
-      "L'application dialogue avec vos outils, déclenche les bons workflows et garde les données cohérentes.",
+      "L'application parle à vos autres logiciels et déclenche les bonnes actions toute seule. L'info reste cohérente partout.",
   },
   {
-    meta: "Pilotage",
-    title: "Mesurer usage et stabilité",
+    meta: "Votre suivi",
+    title: "Un tableau de bord qui montre l'essentiel",
     description:
-      "Monitoring, analytics, erreurs et performance deviennent visibles pour améliorer le produit continuellement.",
+      "Activité, chiffres, alertes : vous voyez d'un coup d'œil ce qui compte, et l'outil s'améliore avec le temps.",
   },
 ];
 
 const methodFlow = [
   {
-    meta: "01 · Découverte",
-    title: "Comprendre le terrain réel",
+    meta: "01 · On observe",
+    title: "Je viens voir comment vous travaillez",
     description:
-      "On va voir le geste métier, on lit les fichiers, on parle aux utilisateurs. Pas de PowerPoint, pas d'hypothèse.",
+      "Je regarde le terrain, je lis vos fichiers, je parle aux personnes qui s'en serviront. Pas de présentation, du concret.",
   },
   {
-    meta: "02 · Cadrage",
-    title: "Périmètre + maquette validés avant code",
+    meta: "02 · On cadre",
+    title: "Maquette et périmètre validés avant le code",
     description:
-      "Backlog priorisé sur la valeur, prototype cliquable, décisions UX faites à plat. Le V1 est défini en chiffres.",
+      "On se met d'accord sur ce qui compte le plus, vous voyez une maquette cliquable, et le prix est clair avant de démarrer.",
   },
   {
-    meta: "03 · Build",
-    title: "Sprints courts, démo réelle toutes les 2 semaines",
+    meta: "03 · Je construis",
+    title: "Vous voyez avancer, étape par étape",
     description:
-      "Code production-ready dès le sprint 1, tests automatisés, design system stable, intégrations validées.",
+      "Je vous montre l'application qui prend forme régulièrement. Vous ajustez en cours de route, rien n'est figé jusqu'au bout.",
   },
   {
-    meta: "04 · Run",
-    title: "Monitoring, support, itérations",
+    meta: "04 · Ça tourne",
+    title: "Mise en ligne, prise en main, et je reste là",
     description:
-      "Mise en ligne progressive, accompagnement des équipes, mesure de l'adoption et amélioration continue.",
+      "On déploie en douceur, j'accompagne vos équipes, et je reste disponible pour faire évoluer l'outil.",
   },
 ];
 
@@ -151,30 +151,87 @@ export function ApplicationsPage() {
       <FluidMouseField preset="apps" />
 
       <PageHero
-        label="Applications métier sur mesure"
+        label="Applications sur mesure"
         title={
           <>
-            Une application <span className="text-gradient-strong">par métier</span>, pas une app générique de plus.
+            Un outil fait pour <span className="text-gradient-strong">votre métier</span>, pas un logiciel de plus à subir.
           </>
         }
-        description="Santé, retail, industrie, services pro, logistique, immobilier — nous concevons des applications web et mobiles qui dématérialisent vos opérations, unifient vos données dispersées et pilotent votre performance en temps réel. Sur mesure dès la première ligne, ou en refonte d'un existant après audit."
-        primaryCta={{ label: "Cadrer mon projet", href: "/contact" }}
-        secondaryCta={{ label: "Voir la méthode", href: "#methode" }}
+        description="Vous jonglez avec des fichiers Excel, du papier, des outils qui ne se parlent pas ? Je construis l'application qui remplace tout ça : une seule, simple, pensée pour votre façon de travailler."
+        primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
+        secondaryCta={{ label: "Comment je travaille", href: "#methode" }}
         visual={<AppScene />}
         mobileSteps={[
-          { label: "Capture", hint: "sources éparses unifiées" },
-          { label: "Normalisation", hint: "règles métier appliquées" },
-          { label: "Pilotage", hint: "KPIs live · alertes" },
+          { label: "On range l'info", hint: "fini les fichiers éparpillés" },
+          { label: "Des écrans simples", hint: "calés sur votre travail" },
+          { label: "Un tableau de bord", hint: "l'essentiel d'un coup d'œil" },
         ]}
       />
 
-      {/* Anatomie d'une app métier */}
+      {/* Exemple star — fil rouge : plateforme rapports d'intervention (DFT télécoms) */}
+      <section className="section-shell-tight" aria-label="Exemple concret : plateforme de rapports">
+        <div className="section-container">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="mx-auto max-w-4xl"
+          >
+            <motion.div variants={fadeInUp} className="mb-8 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-green-400/25 bg-green-400/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-green-300">
+                Un projet réel · utilisé tous les jours
+              </span>
+              <h2 className="mt-5 text-2xl sm:text-3xl lg:text-[2.4rem] font-bold tracking-tight leading-[1.12]">
+                Des rapports papier à une <span className="text-gradient-strong">plateforme web</span>
+              </h2>
+              <p className="mt-4 text-base text-text-secondary leading-relaxed">
+                Une entreprise de télécoms : ses techniciens remplissaient leurs
+                rapports d&apos;intervention à la main, sur le terrain. Je leur ai
+                construit l&apos;outil qui a tout changé.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-5">
+              {[
+                {
+                  step: "Le problème",
+                  title: "Tout sur papier",
+                  desc: "Rapports remplis à la main, ressaisis au bureau, parfois perdus. Le client attendait son compte-rendu plusieurs jours.",
+                },
+                {
+                  step: "Ce que j'ai construit",
+                  title: "Deux espaces, un seul outil",
+                  desc: "Un espace technicien pour remplir le rapport depuis le téléphone, un espace responsable pour tout suivre et visualiser d'un coup d'œil.",
+                },
+                {
+                  step: "Le résultat",
+                  title: "Le rapport part tout seul",
+                  desc: "Dès qu'un rapport est validé, le client le reçoit par mail. Plus de papier, plus de ressaisie, plus d'attente.",
+                },
+              ].map((m, i) => (
+                <motion.div
+                  key={m.step}
+                  variants={fadeInUp}
+                  className="rounded-xl border border-border-subtle bg-bg-card/60 p-6 card-shine transition-all duration-300 hover:border-border-accent"
+                >
+                  <span className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${i === 2 ? "text-green-300" : "text-accent-light"}`}>{m.step}</span>
+                  <h3 className="mt-3 text-base font-semibold">{m.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-secondary">{m.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Anatomie d'une app métier — schéma 4 couches (conservé, re-légendé simple) */}
       <section className="section-shell-tight">
         <div className="section-container">
           <PremiumFlowPanel
-            label="Anatomie d'une app métier"
-            title="Une application qui s'inscrit dans votre métier — pas un outil qu'on subit."
-            description="Quatre couches qui se renforcent : la donnée propre, les parcours qui collent au geste réel, les connexions aux systèmes existants, et le pilotage qui prouve la valeur."
+            label="Comment c'est fait"
+            title="Une bonne application tient sur quatre choses simples."
+            description="Vos infos bien rangées, des écrans calés sur votre travail, des liens vers vos autres outils, et un tableau de bord qui montre l'essentiel."
             steps={productFlow}
             accent="14, 165, 233"
           />
@@ -195,13 +252,13 @@ export function ApplicationsPage() {
         <SectionParticles style="grid-dots" count={18} color="rgba(129,140,248,0.04)" />
         <div className="section-container">
           <SectionHeading
-            label="Capacités produit"
+            label="Ce que ça vous apporte"
             title={
               <>
-                De l&apos;idée à l&apos;app qui <span className="text-gradient-strong">tient la charge</span>
+                Six choses concrètes que <span className="text-gradient-strong">vous gagnez</span>
               </>
             }
-            description="Chaque application est architecturée pour durer, évoluer et offrir une expérience irréprochable, du premier utilisateur au dix-millième."
+            description="Pas de promesses techniques. Juste ce que vos équipes constatent au quotidien une fois l'outil en place."
           />
           <motion.div
             variants={staggerContainer}
@@ -241,13 +298,13 @@ export function ApplicationsPage() {
       {/* Performance & suivi */}
       <PerformanceTracking />
 
-      {/* Méthode 2IA */}
+      {/* Méthode */}
       <section id="methode" className="section-shell-tight scroll-mt-24">
         <div className="section-container">
           <PremiumFlowPanel
-            label="Méthode 2IA"
-            title="Quatre temps, une seule cohérence : la valeur arrive vite et reste."
-            description="Que vous partiez d'une page blanche ou d'un existant, on déroule la même rigueur — adaptée à votre point de départ."
+            label="Comment je travaille"
+            title="De votre quotidien à l'outil qui tourne, en quatre étapes."
+            description="Que vous partiez de zéro ou d'un outil existant à reprendre, je suis la même méthode — adaptée à votre point de départ."
             steps={methodFlow}
             accent="125, 211, 252"
           />
@@ -257,11 +314,11 @@ export function ApplicationsPage() {
       <CTABand
         title={
           <>
-            Votre métier mérite une app qui colle au <span className="text-gradient-strong">geste réel</span>.
+            Parlez-moi de ce qui vous prend du <span className="text-gradient-strong">temps</span>.
           </>
         }
-        description="Cadrage offert : 45 minutes pour qualifier votre projet, identifier les premiers gains et choisir la voie — sur mesure ou audit."
-        primaryLabel="Réserver mon cadrage"
+        description="Premier échange gratuit, sans engagement. Je vous dis franchement si une application peut vous aider — et si oui, ce que ça implique, simplement."
+        primaryLabel="Premier échange gratuit"
       />
     </>
   );

@@ -729,8 +729,8 @@ function NodeOverlay({
 
       <div className="pointer-events-auto absolute" style={appStyle}>
         <NodeCard
-          label="App métier sur mesure"
-          sublabel="Web + mobile · règles · API · offline-first"
+          label="Votre application sur mesure"
+          sublabel="ordinateur + téléphone · accessible partout"
           icon={
             <svg {...ICON_BASE} className="text-cyan">
               <rect x="5" y="2" width="14" height="20" rx="2.5" />
@@ -883,14 +883,14 @@ export function AppDigitizationPipeline() {
     <section className="section-shell">
       <div className="section-container">
         <SectionHeading
-          label="Dématerialisation"
+          label="Le principe, en image"
           title={
             <>
-              De vos <span className="text-gradient-strong">données dispersées</span> à
-              une seule application qui pilote.
+              De vos <span className="text-gradient-strong">fichiers éparpillés</span> à
+              un seul outil clair.
             </>
           }
-          description="Papier, Excel, mails, outils déconnectés : ce sont les symptômes. Une app métier réunit ces flux, automatise le bon geste et restitue la performance là où elle se décide."
+          description="Papier, Excel, mails, logiciels qui ne se parlent pas : c'est le quotidien de beaucoup d'entreprises. Une application sur mesure réunit tout ça, fait le travail répétitif à votre place, et vous montre l'essentiel."
         />
 
         <div ref={containerRef} className="relative">
