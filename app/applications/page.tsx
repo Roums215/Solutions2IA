@@ -2,9 +2,17 @@ import type { Metadata } from "next";
 import { ApplicationsPage } from "./ApplicationsPage";
 
 export const metadata: Metadata = {
-  title: "Applications métier sur mesure — Santé, Retail, Industrie, Services pro, Logistique, Immobilier",
+  title: "Applications métier sur mesure — un outil simple, fait pour votre travail",
   description:
-    "Applications web et mobiles sur mesure pour tous secteurs — santé, retail, industrie, services pro, logistique, immobilier. Construction custom ou refonte après audit. Dématerialisation, schémas clairs, suivi de performance et pilotage temps réel.",
+    "Je construis l'application web et mobile qui remplace vos fichiers Excel et votre papier : une seule, simple, pensée pour votre métier. Exemple réel : une plateforme de rapports d'intervention. Premier échange gratuit.",
+  alternates: { canonical: "/applications" },
+  openGraph: {
+    title: "Applications sur mesure — un outil fait pour votre métier",
+    description:
+      "Je remplace vos fichiers éparpillés par une application simple, accessible partout, reliée à vos outils. Premier échange gratuit.",
+    url: "/applications",
+    type: "website",
+  },
 };
 
 export default function Page() {

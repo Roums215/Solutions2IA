@@ -46,7 +46,7 @@ const TRUTH_TABLE: Record<string, Reco> = {
     usage: "simple",
     label: "Répondre",
     rationale:
-      "Question précise + corpus concentré + docs stables : la mémoire la plus directe vous suffit.",
+      "Question précise + documents concentrés + docs stables : la mémoire la plus directe vous suffit.",
   },
   aab: {
     usage: "auto-enrichi",
@@ -58,7 +58,7 @@ const TRUTH_TABLE: Record<string, Reco> = {
     usage: "multi-source",
     label: "Croiser",
     rationale:
-      "Vos sources sont dispersées : la mémoire doit savoir interroger plusieurs corpus simultanément.",
+      "Vos sources sont dispersées : la mémoire doit savoir interroger plusieurs outils en même temps.",
   },
   abb: {
     usage: "multi-source",
@@ -88,7 +88,7 @@ const TRUTH_TABLE: Record<string, Reco> = {
     usage: "conversationnel",
     label: "Orchestration sur mesure",
     rationale:
-      "Exploration + dispersion + changements fréquents : tous les usages combinés, à concevoir avec nous.",
+      "Exploration + dispersion + changements fréquents : tous les usages combinés, à concevoir ensemble.",
   },
 };
 

@@ -85,7 +85,7 @@ function KpiGain({ value, label }: { value: string; label: string }) {
   return (
     <div className="rounded-lg border border-green-400/25 bg-green-400/[0.04] px-4 py-3">
       <div className="flex items-baseline justify-between gap-2">
-        <SectionLabel>Avec agent · gain</SectionLabel>
+        <SectionLabel>Avec assistant · gain</SectionLabel>
         <span className="text-[10px] text-green-400">✓</span>
       </div>
       <p className="mt-2 font-mono text-[20px] font-semibold text-gradient-strong">{value}</p>
@@ -175,11 +175,11 @@ function CommercialProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="70 %"
           label="du temps en admin / CRM"
-          detail="2,5 h/jour passées à logger des notes au lieu de vendre. Source : Sybill 2025."
+          detail="2,5 h/jour passées à saisir des notes plutôt qu'à vendre — source : Sybill 2025."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
-          <SectionLabel>Pipeline · notes auto-loggées (24 h)</SectionLabel>
+          <SectionLabel>Pipeline · notes enregistrées automatiquement (24 h)</SectionLabel>
           <ul className="mt-2.5 space-y-1.5">
             {leads.map((l, i) => (
               <motion.li
@@ -205,15 +205,15 @@ function CommercialProfile({ reduced }: { reduced: boolean }) {
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
-            "Transcrit l'appel et pousse la note dans le CRM (HubSpot · Salesforce)",
-            "Génère le follow-up email personnalisé en 30 s",
-            "Score le lead selon votre ICP, signale les comptes chauds",
+            "Transcrit l'appel et enregistre la note dans le CRM (HubSpot · Salesforce)",
+            "Rédige l'email de suivi personnalisé",
+            "Évalue le prospect selon vos critères, signale les comptes prioritaires",
           ]}
         />
 
-        <KpiGain value="+8 h / sem facturables" label="Plus de temps en RDV, moins de saisie." />
+        <KpiGain value="+8 h / sem" label="Plus de temps en RDV, moins de saisie — source : Sybill 2025." />
 
         <ToolBadges tools={["HubSpot", "Salesforce", "Gmail", "Aircall"]} />
       </div>
@@ -241,8 +241,8 @@ function DirigeantProfile({ reduced }: { reduced: boolean }) {
       <div className="space-y-4 px-5 pt-4 pb-5">
         <PainBlock
           stat="73 %"
-          label="des CEO stressés sur leur stratégie IA"
-          detail="Trop de casquettes, peu de bande passante stratégique. Source : WRITER 2026."
+          label="des dirigeants débordés par l'opérationnel"
+          detail="Trop de casquettes, peu de temps pour la stratégie — source : WRITER 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -273,10 +273,10 @@ function DirigeantProfile({ reduced }: { reduced: boolean }) {
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
-            "Compile le reporting hebdo + flag les anomalies",
-            "Trie l'inbox, répond aux courants, escalade le reste",
+            "Prépare le reporting hebdo et signale les anomalies",
+            "Trie l'inbox, répond aux messages courants, escalade le reste",
             "Prépare les briefs marketing et les notes de direction",
           ]}
         />
@@ -319,7 +319,7 @@ function ExpertProfile({ reduced }: { reduced: boolean }) {
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
-          <SectionLabel>Dossiers en attente · RAG cabinet</SectionLabel>
+          <SectionLabel>Dossiers en attente · recherche dans vos fichiers</SectionLabel>
           <ul className="mt-2.5 space-y-1.5">
             {dossiers.map((d, i) => (
               <motion.li
@@ -342,20 +342,20 @@ function ExpertProfile({ reduced }: { reduced: boolean }) {
             ))}
           </ul>
           <p className="mt-2 text-[10px] italic leading-relaxed text-text-tertiary">
-            ◆ Recherche jurisprudence sourcée · 0 hallucination
+            ◆ Réponses sourcées dans vos documents · refus explicite si absent
           </p>
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
             "Prise de RDV vocale et confirmation SMS",
-            "Dictée client → compte-rendu structuré (DPI / dossier)",
-            "Recherche documentaire interne avec citations",
+            "Dictée → compte-rendu structuré (DPI / dossier)",
+            "Recherche dans vos documents internes avec citations",
           ]}
         />
 
-        <KpiGain value="−50 % admin" label="+30 % de temps consacré au cœur de métier." />
+        <KpiGain value="−50 % admin" label="Plus de temps pour le cœur de votre métier." />
 
         <ToolBadges tools={["Doctolib", "Whisper", "MSSanté", "RGPD"]} />
       </div>
@@ -388,8 +388,8 @@ function SavProfile({ reduced }: { reduced: boolean }) {
       <div className="space-y-4 px-5 pt-4 pb-5">
         <PainBlock
           stat="22 %"
-          label="des PME ont un voice agent · 31 % prévu sous 2 ans"
-          detail="Volume omnicanal en hausse, équipes saturées. Source : Vstorm 2026."
+          label="des PME ont un assistant vocal · 31 % dans les 2 ans"
+          detail="Volume de tickets en hausse, équipes saturées — source : Vstorm 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -431,15 +431,15 @@ function SavProfile({ reduced }: { reduced: boolean }) {
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
-            "Réponse FAQ niveau 1 (commandes, factures, retours)",
-            "Suivi commande + remboursement automatisé",
-            "Escalade contextualisée au bon agent humain",
+            "Réponses aux questions fréquentes (commandes, factures, retours)",
+            "Suivi commande et remboursement automatisé",
+            "Transfert à la bonne personne avec tout le contexte",
           ]}
         />
 
-        <KpiGain value="CSAT +18 pts" label="Réponse 24/7 avec ton de marque, escalade au bon moment." />
+        <KpiGain value="CSAT amélioré" label="Réponse 24/7 avec votre ton, escalade au bon moment." />
 
         <ToolBadges tools={["Zendesk", "Intercom", "Stripe", "Shopify"]} />
       </div>
@@ -474,7 +474,7 @@ function MarketeurProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="5 canaux"
           label="à alimenter (blog + LinkedIn + IG + email + ads)"
-          detail="Output ×2 avec un agent, temps ÷2. Source : retours Indie Hackers."
+          detail="Un calendrier éditorial à tenir seul est épuisant — l'assistant allège la charge de production."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -510,15 +510,15 @@ function MarketeurProfile({ reduced }: { reduced: boolean }) {
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
-            "Repurpose podcast / vidéo → carrousels, captions, posts blog",
-            "Génère 5 idées du jour aligned tone of voice",
-            "Programme la diffusion multi-canal automatiquement",
+            "Transforme un podcast ou une vidéo en carrousels, captions et articles",
+            "Propose des idées de contenu dans votre ton",
+            "Programme la diffusion sur plusieurs canaux",
           ]}
         />
 
-        <KpiGain value="× 2 output, ÷ 2 temps" label="Plus de calendrier vide. Plus de rush de fin de mois." />
+        <KpiGain value="Plus de contenu, moins de rush" label="Plus de calendrier vide. Plus de fin de mois à la dernière minute." />
 
         <ToolBadges tools={["LinkedIn", "Instagram", "Substack", "Buffer"]} />
       </div>
@@ -551,8 +551,8 @@ function FreelanceProfile({ reduced }: { reduced: boolean }) {
       <div className="space-y-4 px-5 pt-4 pb-5">
         <PainBlock
           stat="60-70 %"
-          label="du temps en research, pas en stratégie"
-          detail="Le temps consultant facturable s'érode. Source : MindStudio 2026."
+          label="du temps en recherche, pas en conseil"
+          detail="Le temps facturable s'érode dans la préparation — source : MindStudio 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -578,15 +578,15 @@ function FreelanceProfile({ reduced }: { reduced: boolean }) {
         </div>
 
         <TasksList
-          title="Ce que l'agent prend en charge"
+          title="Ce que l'assistant prend en charge"
           tasks={[
-            "Audit / research client + génération de slides",
-            "Génération de propositions personnalisées",
-            "Facturation, relances, suivi mission",
+            "Recherche client et génération des supports de présentation",
+            "Rédaction de propositions personnalisées",
+            "Facturation, relances, suivi de mission",
           ]}
         />
 
-        <KpiGain value="−70 % sur research" label="Plus de temps en delivery client, moins en prep." />
+        <KpiGain value="Moins de recherche, plus de conseil" label="Plus de temps à livrer, moins de temps à préparer." />
 
         <ToolBadges tools={["Notion", "Slides", "Stripe", "Calendly"]} />
       </div>

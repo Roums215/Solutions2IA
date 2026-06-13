@@ -57,7 +57,7 @@ export const RAG_CITATION = {
 };
 
 export const RAG_MEMORY_META = {
-  passagesLabel: "Votre corpus indexé",
+  passagesLabel: "Vos documents indexés",
   sourcesLabel: "4 sources connectées",
 };
 

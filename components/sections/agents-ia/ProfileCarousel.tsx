@@ -54,11 +54,11 @@ export function ProfileCarousel() {
           label="Pour qui ?"
           title={
             <>
-              Pas un agent générique —{" "}
-              <span className="text-gradient-strong">un collègue numérique pour votre rôle</span>.
+              Pas un outil universel —{" "}
+              <span className="text-gradient-strong">un assistant conçu pour votre rôle</span>.
             </>
           }
-          description="Choisissez votre profil. Vous verrez ce qu'un agent IA prend vraiment en charge — et ce qu'il vous rend."
+          description="Choisissez votre profil. Vous verrez ce qu'un assistant numérique prend vraiment en charge — et ce qu'il vous rend."
         />
 
         <div

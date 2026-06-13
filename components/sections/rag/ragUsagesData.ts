@@ -45,7 +45,7 @@ export const RAG_USAGES: RagUsage[] = [
     key: "multi-source",
     label: "Croiser",
     one_liner:
-      "Plusieurs corpus interrogés en parallèle (Drive, CRM, base SQL). Une réponse, des citations groupées.",
+      "Plusieurs outils interrogés en même temps (Drive, CRM, base SQL). Une réponse, des citations groupées.",
     best_when:
       "Données réparties entre outils. Besoin de croiser un document avec une donnée structurée.",
     sector_example: {

@@ -18,14 +18,14 @@ export function SectorsCoverage() {
       />
       <div className="section-container relative z-10">
         <SectionHeading
-          label="Tous secteurs"
+          label="Quelques secteurs"
           title={
             <>
-              Six secteurs, une même promesse :{" "}
-              <span className="text-gradient-strong">simplifier le terrain</span>.
+              Chaque métier a ses contraintes.{" "}
+              <span className="text-gradient-strong">L&apos;outil s&apos;y adapte</span>.
             </>
           }
-          description="Chaque métier a ses contraintes, ses outils éparpillés et ses indicateurs. Voici ce que nous y remettons à plat — avec des modules conçus pour vos vrais gestes du quotidien."
+          description="Voici des exemples de ce qu'une application sur mesure peut simplifier, selon votre activité. La vôtre n'est pas là ? La démarche reste la même — on en parle."
         />
 
         <motion.div

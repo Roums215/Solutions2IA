@@ -39,11 +39,11 @@ export function RagContrastClassicVsRag() {
           label="La différence"
           title={
             <>
-              Une IA classique vs un{" "}
-              <span className="text-gradient-strong">RAG métier</span>.
+              IA généraliste vs une IA{" "}
+              <span className="text-gradient-strong">branchée sur vos documents</span>.
             </>
           }
-          description="Même question, deux postures opposées. Le RAG métier répond avec vos documents, pas avec des suppositions."
+          description="Même question, deux postures opposées. L'IA branchée sur vos documents répond avec vos sources, pas avec des suppositions."
         />
 
         <motion.div
@@ -92,7 +92,7 @@ export function RagContrastClassicVsRag() {
           >
             <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan/40 to-transparent" />
             <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan">
-              RAG métier
+              Mémoire d&apos;entreprise
             </div>
             <h3 className="mt-2 text-lg font-semibold text-text-primary sm:text-xl">
               Répond avec vos documents. Cite ses sources.

@@ -33,7 +33,7 @@ export function RagUsagesTabs() {
           {/* Tabs bar */}
           <div
             role="tablist"
-            aria-label="Usages du RAG"
+            aria-label="Usages de la mémoire d'entreprise"
             className="-mx-4 mb-6 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0"
           >
             {RAG_USAGES.map((u) => {

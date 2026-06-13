@@ -11,41 +11,43 @@ import { SECTOR_DASHBOARDS } from "./sectorDashboards";
 
 type KPI = { value: string; label: string; detail: string };
 
+// Indicateurs qu'un tableau de bord peut suivre — décrits en clair, sans
+// chiffre de résultat inventé (le « value » est l'unité/le type, pas une promesse).
 const KPIS: KPI[] = [
   {
-    value: "> 85 %",
-    label: "Adoption utilisateur",
-    detail: "Part d'équipe qui utilise l'app au quotidien, vs ceux qui retournent au fichier Excel.",
+    value: "Adoption",
+    label: "Qui s'en sert vraiment",
+    detail: "Combien de votre équipe utilise l'outil au quotidien — pas juste qui s'est connecté une fois.",
   },
   {
-    value: "-40 à -70 %",
-    label: "Temps gagné / opération",
-    detail: "Réduction mesurée du temps unitaire sur les gestes métier les plus fréquents.",
+    value: "Temps",
+    label: "Le temps récupéré",
+    detail: "Combien de temps prend une tâche maintenant, comparé à avant l'application.",
   },
   {
-    value: "99,9 %",
-    label: "Disponibilité (SLA)",
-    detail: "Uptime contractuel avec monitoring 24/7, alertes proactives et plan de continuité.",
+    value: "Activité",
+    label: "Ce qui se passe en direct",
+    detail: "Interventions, dossiers, commandes… le volume de votre activité, mis à jour en continu.",
   },
   {
-    value: "< 250 ms",
-    label: "Temps de réponse",
-    detail: "P95 sur les requêtes critiques, mesuré côté serveur et côté client.",
+    value: "Alertes",
+    label: "Ce qui demande votre attention",
+    detail: "Retards, anomalies, seuils dépassés : vous êtes prévenu au bon moment, pas après coup.",
   },
   {
-    value: "< 0,5 %",
-    label: "Taux d'erreur métier",
-    detail: "Erreurs fonctionnelles bloquantes captées par instrumentation, hors crashs techniques.",
+    value: "Fiabilité",
+    label: "L'outil tient le coup",
+    detail: "Je surveille l'application en continu pour qu'elle reste disponible et rapide.",
   },
   {
-    value: "< 5 jours",
-    label: "Délai feature → prod",
-    detail: "Lead time entre validation produit et mise en ligne (CI/CD + design system).",
+    value: "Évolutions",
+    label: "Ce qui s'améliore",
+    detail: "Les nouvelles fonctions arrivent vite, sans tout casser, au fil de vos besoins.",
   },
 ];
 
 const ROTATION_MS = 6500;
-const CHIPS = ["Monitoring 24/7", "Alertes Slack / Email", "Reporting auto hebdo"];
+const CHIPS = ["Surveillance en continu", "Alerte mail / message", "Bilan automatique"];
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
@@ -54,14 +56,14 @@ export function PerformanceTracking() {
     <section className="section-shell">
       <div className="section-container">
         <SectionHeading
-          label="Performance & suivi"
+          label="Votre tableau de bord"
           title={
             <>
-              L&apos;app n&apos;est pas la fin. Le{" "}
-              <span className="text-gradient-strong">pilotage</span> commence.
+              Un outil, c&apos;est bien. Un outil qui vous{" "}
+              <span className="text-gradient-strong">montre l&apos;essentiel</span>, c&apos;est mieux.
             </>
           }
-          description="Une application métier livrée sans pilotage n'est qu'un outil. Avec pilotage, c'est un avantage compétitif. Voici ce que nous instrumentons par défaut — et à quoi un cockpit ressemble vraiment, métier par métier."
+          description="Chaque application que je construis vient avec un tableau de bord clair : vous voyez d'un coup d'œil ce qui compte pour vous. Voici des exemples de ce qu'il peut suivre, métier par métier."
         />
 
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-12">

@@ -48,9 +48,9 @@ const NEEDS: NodeDef[] = [
     ),
     hover: {
       kicker: "Triage entrant",
-      title: "Inbox lue et rangée par urgence",
+      title: "Boîte mail lue et rangée par urgence",
       description:
-        "Range par urgence, répond aux FAQ, escalade au humain si confiance < 85 %. Connecteurs : Gmail · Outlook · Front.",
+        "Range par urgence, répond aux questions courantes, escalade à vous si l'assistant n'est pas sûr. Compatible Gmail · Outlook · Front.",
       tags: ["Gmail", "Outlook", "Front"],
     },
   },
@@ -66,16 +66,16 @@ const NEEDS: NodeDef[] = [
     ),
     hover: {
       kicker: "Voix → structuré",
-      title: "Appel transcrit, structuré, loggé",
+      title: "Appel transcrit, structuré, enregistré",
       description:
-        "Transcription Whisper, extraction client/montant/next-step, push vers le CRM. Idempotent et traçable.",
-      tags: ["Whisper", "NLP", "CRM"],
+        "Transcription automatique, extraction du nom/montant/prochaine étape, envoi vers votre CRM. Traçable à tout moment.",
+      tags: ["Transcription", "CRM", "Traçabilité"],
     },
   },
   {
     id: "rag",
     label: "Recherche doc",
-    sublabel: "RAG sur vos data",
+    sublabel: "Vos documents, interrogés",
     icon: (
       <svg {...ICON_BASE}>
         <circle cx="11" cy="11" r="6" />
@@ -83,11 +83,11 @@ const NEEDS: NodeDef[] = [
       </svg>
     ),
     hover: {
-      kicker: "RAG métier",
+      kicker: "Vos documents",
       title: "Réponse sourcée sur vos documents",
       description:
-        "Index vectoriel Notion / Confluence / SharePoint. Citations affichées, refus contrôlé si la donnée n'est pas dans vos docs.",
-      tags: ["Vector store", "Citations", "Refus contrôlé"],
+        "Interroge vos fichiers Notion / Confluence / SharePoint. Citations affichées, refus explicite si la réponse n'est pas dans vos docs.",
+      tags: ["Vos fichiers", "Citations", "Refus explicite"],
     },
   },
   {
@@ -102,11 +102,11 @@ const NEEDS: NodeDef[] = [
       </svg>
     ),
     hover: {
-      kicker: "Lead intelligence",
-      title: "Recherche + scoring + outreach",
+      kicker: "Qualification",
+      title: "Prospect enrichi, email personnalisé",
       description:
-        "Enrichit le prospect (SIREN, taille, signaux), score selon votre ICP, génère l'email personnalisé.",
-      tags: ["Enrichissement", "Scoring", "Outreach"],
+        "Enrichit le prospect (SIREN, taille, signaux), évalue son profil selon vos critères, génère l'email de prise de contact.",
+      tags: ["Enrichissement", "Scoring", "Email"],
     },
   },
   {
@@ -138,11 +138,11 @@ const NEEDS: NodeDef[] = [
       </svg>
     ),
     hover: {
-      kicker: "Pilotage auto",
-      title: "Synthèse hebdo livrée le vendredi 17h",
+      kicker: "Pilotage",
+      title: "Synthèse hebdo livrée automatiquement",
       description:
-        "Compile vos KPIs, flag les anomalies, propose 2-3 actions. Diffusion email + Slack + canal direction.",
-      tags: ["Anomalies", "Insights", "Diffusion"],
+        "Compile vos indicateurs, signale les anomalies, propose quelques actions. Envoi par email + Slack + canal direction.",
+      tags: ["Anomalies", "Synthèse", "Diffusion"],
     },
   },
 ];
@@ -161,10 +161,10 @@ const ACTIONS: NodeDef[] = [
     ),
     hover: {
       kicker: "Sortie email",
-      title: "Réponses contextualisées envoyées",
+      title: "Réponses rédigées et envoyées",
       description:
-        "Rédige avec le ton de marque, joint les pièces pertinentes, log la conversation. Mode draft ou auto selon la criticité.",
-      tags: ["Tone of voice", "Auto / draft", "Threading"],
+        "Rédige avec votre ton, joint les pièces pertinentes, enregistre la conversation. Mode brouillon ou envoi direct selon la criticité.",
+      tags: ["Votre ton", "Brouillon / auto", "Historique"],
     },
   },
   {
@@ -181,9 +181,9 @@ const ACTIONS: NodeDef[] = [
     ),
     hover: {
       kicker: "Sortie CRM",
-      title: "Données poussées sans double saisie",
+      title: "Données mises à jour sans double saisie",
       description:
-        "Crée/MAJ contact + opportunité + activity log dans HubSpot · Salesforce · Axonaut · Pipedrive. Idempotent, traçable.",
+        "Crée ou met à jour contact + opportunité + historique dans HubSpot · Salesforce · Axonaut · Pipedrive. Traçable à tout moment.",
       tags: ["HubSpot", "Salesforce", "Axonaut"],
     },
   },
@@ -246,10 +246,10 @@ const ACTIONS: NodeDef[] = [
 
 const AGENT_HOVER: HoverDetail = {
   kicker: "Cœur du dispositif",
-  title: "Agent IA sur mesure de votre métier",
+  title: "Votre assistant numérique, sur mesure",
   description:
-    "Un seul agent, multi-tâches : il route les besoins entrants, applique vos règles, déclenche les bonnes actions. Versions et garde-fous sous votre contrôle.",
-  tags: ["Multi-tâches", "Garde-fous", "Versionné"],
+    "Un seul assistant, plusieurs tâches : il analyse les demandes entrantes, applique vos règles, déclenche les bonnes actions. Garde-fous et historique sous votre contrôle.",
+  tags: ["Multi-tâches", "Garde-fous", "Traçabilité"],
 };
 
 const TOTAL_TICKS = 14; // 6 sources + 1 app + 5 outputs + 2 dwell
@@ -565,7 +565,7 @@ function PipelineTrack({
       viewBox={`0 0 ${cfg.vw} ${cfg.vh}`}
       className="w-full h-auto"
       role="img"
-      aria-label="Schéma de modularité agent IA : 6 besoins (tri mails, notes, recherche doc, qualification leads, génération devis, reporting) convergent vers un agent IA central qui produit 5 actions (email, CRM, Slack, document, calendrier)."
+      aria-label="Schéma : 6 besoins (tri mails, notes d'appel, recherche dans vos documents, qualification de prospects, génération de devis, reporting) convergent vers un assistant numérique central qui déclenche 5 actions (email, CRM, Slack, document, calendrier)."
     >
       <defs>
         <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
@@ -740,8 +740,8 @@ function NodeOverlay({
 
       <div className="pointer-events-auto absolute" style={appStyle}>
         <NodeCard
-          label="1 agent · multi-tâches"
-          sublabel="Routing · règles · garde-fous · logs"
+          label="1 assistant · multi-tâches"
+          sublabel="Analyse · règles · garde-fous · logs"
           icon={
             <svg {...ICON_BASE} className="text-accent-primary">
               <circle cx="12" cy="12" r="3" />
@@ -751,7 +751,7 @@ function NodeOverlay({
           }
           status={getAgentStatus(effectiveTick)}
           size="central"
-          ariaLabel="Agent IA — cœur du dispositif, route les besoins entrants vers les bonnes actions."
+          ariaLabel="Assistant numérique — cœur du dispositif, analyse les demandes entrantes et déclenche les bonnes actions."
           hover={AGENT_HOVER}
           tooltipSide={agentSide}
           enableHover={enableHover}
@@ -896,11 +896,11 @@ export function OneAgentManyNeedsPipeline() {
           label="Modularité"
           title={
             <>
-              Un seul agent peut prendre en charge{" "}
+              Un seul assistant peut prendre en charge{" "}
               <span className="text-gradient-strong">plusieurs besoins à la fois</span>.
             </>
           }
-          description="Vous n'achetez pas un outil par tâche. Vous installez un collaborateur numérique qui orchestre tout ce qui peut l'être."
+          description="Vous n'achetez pas un outil par tâche. Je configure un assistant numérique qui gère tout ce qui peut l'être — en cohérence avec votre façon de travailler."
         />
 
         <div ref={containerRef} className="relative">
@@ -915,7 +915,7 @@ export function OneAgentManyNeedsPipeline() {
                 Besoins entrants
               </span>
               <span className="hidden text-[9px] font-medium uppercase tracking-[0.28em] text-text-tertiary sm:inline">
-                6 besoins métier · capture multicanale
+                6 besoins métier · multi-sources
               </span>
             </div>
 
@@ -1002,25 +1002,25 @@ export function OneAgentManyNeedsPipeline() {
                     "color-mix(in srgb, var(--color-accent-primary) 70%, var(--color-accent-light) 30%)",
                 }}
               >
-                Comment l&apos;agent route et exécute
+                Comment l&apos;assistant analyse et agit
               </h3>
               <ul className="grid grid-cols-1 gap-x-8 gap-y-5 text-sm text-text-secondary sm:grid-cols-2">
                 {[
                   {
-                    label: "Routing intelligent",
-                    text: "Détecte l'intention, choisit le bon outil, demande validation si la confiance est sous seuil.",
+                    label: "Analyse de l'intention",
+                    text: "Comprend la demande, choisit la bonne action, demande votre validation si la situation est ambiguë.",
                   },
                   {
-                    label: "Outils branchés",
-                    text: "Function calling typé sur vos outils : Gmail, CRM, Calendar, Notion, Slack, ERP, APIs internes.",
+                    label: "Connexion à vos outils",
+                    text: "Branché sur vos outils existants : Gmail, CRM, Agenda, Notion, Slack, ERP — sans changer vos habitudes.",
                   },
                   {
                     label: "Garde-fous métier",
-                    text: "Règles que vous définissez : seuils, périmètre, validation humaine sur les actions sensibles.",
+                    text: "Règles que vous définissez : périmètre, seuils de confiance, validation humaine sur les actions sensibles.",
                   },
                   {
-                    label: "Logs & traçabilité",
-                    text: "Chaque action est journalisée, explicable, versionnée — auditable à tout moment.",
+                    label: "Historique & traçabilité",
+                    text: "Chaque action est enregistrée, explicable, versionnable — vérifiable à tout moment.",
                   },
                 ].map((item) => (
                   <li key={item.label} className="flex gap-3">

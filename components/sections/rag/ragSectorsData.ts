@@ -72,7 +72,7 @@ export const RAG_SECTORS: RagSector[] = [
     question:
       "« Existe-t-il une jurisprudence sur les clauses de non-concurrence dans notre domaine ? »",
     response_type:
-      "Jurisprudence récente disponible dans le corpus connecté, classée par autorité avec extraits et liens vers les documents source.",
+      "Jurisprudence récente disponible dans vos documents, classée par autorité avec extraits et liens vers les documents source.",
     citation_chip: "Veille_Jurisprudence_2024.pdf — §1.2",
     recommended_usage: { key: "conversationnel", label: "Explorer" },
     risk_avoided:

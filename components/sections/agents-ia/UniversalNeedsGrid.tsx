@@ -31,7 +31,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "inbox",
     title: "Tri & réponse emails",
-    pain: "200 h/mois d'inbox perdues pour un cabinet, -8 h/sem pour un dirigeant — l'agent trie, range et répond aux courants.",
+    pain: "Des heures chaque semaine absorbées par la boîte mail — l'assistant trie, range et répond aux messages courants.",
     tags: ["Tous métiers", "Dirigeants", "Support"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -44,7 +44,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "voice-rdv",
     title: "Accueil téléphonique + RDV",
-    pain: "60 % des appels d'un cabinet sont des RDV routiniers — l'équivalent d'un ETP de secrétariat.",
+    pain: "Une large part des appels d'un cabinet sont des prises de RDV routinières — un temps précieux que l'assistant peut absorber.",
     tags: ["Santé", "Juridique", "Artisans"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -54,8 +54,8 @@ const NEEDS: UniversalNeed[] = [
   },
   {
     id: "leads",
-    title: "Qualification de leads + outreach",
-    pain: "7,1 h/sem gagnées par SDR : researcher, écrire l'email personnalisé, logger le suivi.",
+    title: "Qualification de prospects + prise de contact",
+    pain: "Rechercher, écrire l'email personnalisé, enregistrer le suivi — l'assistant s'en charge pour que vous vous concentriez sur la relation.",
     tags: ["Sales B2B", "Agences", "SaaS"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -68,7 +68,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "notes",
     title: "Notes appel → CRM",
-    pain: "70 % du temps commercial perdu en saisie. Gain mesuré : 8-12 h/sem.",
+    pain: "Trop de temps commercial absorbé par la saisie manuelle après chaque appel — l'assistant transcrit et enregistre tout automatiquement.",
     tags: ["Sales", "Consultants", "Recruteurs"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -80,7 +80,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "support",
     title: "Support client niveau 1",
-    pain: "Gartner : 80 % des tickets de routine seront autonomes d'ici 2029. Aujourd'hui : 55-70 % atteignables.",
+    pain: "Les tickets répétitifs (commandes, factures, retours) mobilisent votre équipe sur des réponses identiques — l'assistant les traite en autonomie.",
     tags: ["E-com", "SaaS", "Services"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -90,8 +90,8 @@ const NEEDS: UniversalNeed[] = [
   },
   {
     id: "rag",
-    title: "Recherche documentaire (RAG)",
-    pain: "70 % des initiatives GenAI 2026 reposent sur RAG — casser les silos Notion / Confluence / SharePoint.",
+    title: "Recherche dans vos documents",
+    pain: "Vos informations sont éparpillées entre Notion, Confluence et SharePoint — l'assistant les interroge en une seule question et cite ses sources.",
     tags: ["Juridique", "Conseil", "Finance", "RH"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -105,7 +105,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "devis",
     title: "Génération devis & propositions",
-    pain: "Extraire le besoin, raisonner, générer la propal, vérifier — orchestré en minutes, pas en jours.",
+    pain: "Extraire le besoin, rédiger la proposition, vérifier les tarifs — l'assistant gère tout ça en quelques minutes pour que vous validiez avant l'envoi.",
     tags: ["BTP", "Artisans", "Agences", "Freelances"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -119,7 +119,7 @@ const NEEDS: UniversalNeed[] = [
   {
     id: "reporting",
     title: "Reporting hebdo automatique",
-    pain: "Le vendredi après-midi à compiler les KPIs — l'agent synthétise et flag les anomalies à votre place.",
+    pain: "Le vendredi après-midi à compiler des chiffres — l'assistant prépare la synthèse et signale les anomalies à votre place.",
     tags: ["Dirigeants", "Marketing", "Ops"],
     icon: (
       <svg {...ICON} aria-hidden>
@@ -140,14 +140,14 @@ export function UniversalNeedsGrid() {
       />
       <div className="section-container relative z-10">
         <SectionHeading
-          label="Ce qu'un agent IA fait vraiment"
+          label="Ce qu'un assistant numérique fait vraiment"
           title={
             <>
-              Huit besoins universels que{" "}
+              Huit tâches répétitives que{" "}
               <span className="text-gradient-strong">vos équipes vivent au quotidien</span>.
             </>
           }
-          description="Pas de buzzword. Des gestes répétitifs qu'un agent prend en charge — pour libérer votre vraie valeur ajoutée."
+          description="Pas de jargon. Des gestes concrets qu'un assistant prend en charge — pour que vous vous concentriez sur l'essentiel."
         />
 
         <motion.div
