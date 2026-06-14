@@ -4,6 +4,8 @@ import { LegalPage } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Mentions légales",
   description: "Mentions légales de Solutions 2IA : éditeur, hébergeur, propriété intellectuelle, responsabilité et contact.",
+  alternates: { canonical: "/mentions-legales" },
+  robots: { index: true, follow: true },
 };
 
 export default function Page() {
