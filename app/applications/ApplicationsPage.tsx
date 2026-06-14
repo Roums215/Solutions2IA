@@ -16,6 +16,7 @@ const AppScene = dynamic(
   () => import("@/components/scenes/mobile/AppScene").then((m) => m.AppScene),
   { ssr: false, loading: () => <div aria-hidden className="h-[540px] sm:h-[600px] lg:h-[640px]" /> },
 );
+import { RelatedServices } from "@/components/shared/RelatedServices";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import { SectorsCoverage } from "@/components/sections/applications/SectorsCoverage";
 import { AppDigitizationPipeline } from "@/components/sections/applications/AppDigitizationPipeline";
@@ -310,6 +311,8 @@ export function ApplicationsPage() {
           />
         </div>
       </section>
+
+      <RelatedServices current="applications" />
 
       <CTABand
         title={

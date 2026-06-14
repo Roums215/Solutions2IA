@@ -17,6 +17,7 @@ import { WebPainBusiness } from "@/components/sections/sites-web/WebPainBusiness
 import { WebVsAgency } from "@/components/sections/sites-web/WebVsAgency";
 import { WebOpportunityFlow } from "@/components/sections/sites-web/WebOpportunityFlow";
 import { WebFoundations } from "@/components/sections/sites-web/WebFoundations";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 export function SitesWebPage() {
   return (
@@ -78,6 +79,8 @@ export function SitesWebPage() {
 
       {/* S10 V6.4.3 — Fondations du système (stack 4 couches + 8 piliers business) */}
       <WebFoundations />
+
+      <RelatedServices current="sites-web" />
 
       <CTABand
         title={<>Parlons de votre <span className="text-gradient-strong">site</span></>}
