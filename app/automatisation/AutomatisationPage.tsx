@@ -18,6 +18,7 @@ const AutomationScene = dynamic(
 );
 import { SectorGrid } from "@/components/sections/automation/SectorGrid";
 import { IntegrationsConnect } from "@/components/sections/automation/IntegrationsConnect";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 /* 1 cas vécu (mon flux réel) + 3 scénarios types présentés comme tels —
@@ -152,6 +153,8 @@ export function AutomatisationPage() {
 
       {/* Outils connectés — hub animé + logos de marques + barre défilante */}
       <IntegrationsConnect />
+
+      <RelatedServices current="automatisation" />
 
       <CTABand
         title={<>Quelle tâche refaites-vous <span className="text-gradient-strong">chaque semaine</span> ?</>}

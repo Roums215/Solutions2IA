@@ -19,6 +19,7 @@ import { RagDailyUsage } from "@/components/sections/rag/RagDailyUsage";
 import { RagEnrichmentStatic } from "@/components/sections/rag/RagEnrichmentStatic";
 import { RagDataControl } from "@/components/sections/rag/RagDataControl";
 import { RagHonestLimits } from "@/components/sections/rag/RagHonestLimits";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 export function RagPage() {
   return (
@@ -59,6 +60,8 @@ export function RagPage() {
       <RagEnrichmentStatic />
       <RagDataControl />
       <RagHonestLimits />
+
+      <RelatedServices current="rag" />
 
       <CTABand
         title={

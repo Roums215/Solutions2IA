@@ -22,6 +22,7 @@ import { UniversalNeedsGrid } from "@/components/sections/agents-ia/UniversalNee
 import { OneAgentManyNeedsPipeline } from "@/components/sections/agents-ia/OneAgentManyNeedsPipeline";
 import { ProfileCarousel } from "@/components/sections/agents-ia/ProfileCarousel";
 import { TrustGuardrails } from "@/components/sections/agents-ia/TrustGuardrails";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 
 const capabilities = [
   {
@@ -215,6 +216,8 @@ export function AgentsIAPage() {
           />
         </div>
       </section>
+
+      <RelatedServices current="agents-ia" />
 
       <CTABand
         title={
