@@ -11,9 +11,9 @@ const auditApplicationMetier: Article = {
   slug: "audit-application-metier-par-ou-commencer",
   title: "Audit d'application métier : par où commencer ? Méthode 2026",
   description:
-    "Audit d'application métier : 5 étapes méthodiques pour cartographier l'existant, chiffrer la dette technique et décider entre refonte ciblée et reconstruction.",
+    "Audit d'application métier : 5 étapes pour cartographier l'existant, chiffrer la dette technique et décider entre refonte ciblée et reconstruction.",
   tldr:
-    "Un audit d'application métier en 5 étapes : (1) cartographie du code et des données, (2) parcours utilisateurs réels, (3) friction et dette technique chiffrée, (4) arbitrage refonte ciblée vs reconstruction, (5) trajectoire de migration sans coupure. Méthode dérisquée par sprints courts, pilote 30 jours satisfait ou remboursé.",
+    "Un audit d'application métier en 5 étapes : (1) cartographie du code et des données, (2) parcours utilisateurs réels, (3) friction et dette technique chiffrée, (4) arbitrage refonte ciblée vs reconstruction, (5) trajectoire de migration sans coupure. Méthode par sprints courts, premier échange gratuit.",
   category: "Applications",
   publishedAt: "2026-06-08",
   keywords: [
@@ -47,8 +47,7 @@ const auditApplicationMetier: Article = {
       anchor: "quand-auditer",
       content: (
         <p>
-          Trois signaux convergents : (1) chaque nouvelle fonctionnalité prend trois fois plus de temps qu&apos;avant, (2) les équipes contournent l&apos;application via Excel ou Notion pour leurs vrais gestes, (3) la documentation est obsolète et la connaissance repose sur deux personnes. Selon{" "}
-          <a href="https://www.seekr.com/" target="_blank" rel="noopener noreferrer" className="text-cyan underline-offset-4 hover:underline">Seekr 2025</a>, 95 % des pilots IA enterprise n&apos;ont délivré aucun ROI mesurable — souvent parce que les données et processus sous-jacents n&apos;ont jamais été audités. Avant d&apos;ajouter de l&apos;IA ou de migrer, audit.
+          Trois signaux convergents : (1) chaque nouvelle fonctionnalité prend trois fois plus de temps qu&apos;avant, (2) les équipes contournent l&apos;application via Excel ou Notion pour leurs vrais gestes, (3) la documentation est obsolète et la connaissance repose sur deux personnes. Beaucoup de projets IA échouent parce que les données et processus sous-jacents n&apos;ont jamais été audités. Avant d&apos;ajouter de l&apos;IA ou de migrer, audit.
         </p>
       ),
     },
@@ -61,7 +60,7 @@ const auditApplicationMetier: Article = {
           <li><strong>Parcours utilisateurs réels :</strong> shadowing terrain de 5-10 utilisateurs, capture des contournements (Excel, post-it, mails). Sortie : carte des gestes vs interface.</li>
           <li><strong>Friction et dette chiffrée :</strong> chaque parcours friction = X minutes/utilisateur/jour × N utilisateurs = ETP perdu/mois. Dette technique = jours-homme de remédiation par module.</li>
           <li><strong>Arbitrage refonte ciblée vs reconstruction :</strong> matrice coût/valeur. Refonte ciblée si 60 %+ du code reste pertinent ; reconstruction si dette dépasse la valeur résiduelle.</li>
-          <li><strong>Trajectoire :</strong> plan de migration sans coupure (modules réécrits un à un), pilote 30 jours sur le module à plus fort levier, métriques d&apos;adoption garanties.</li>
+          <li><strong>Trajectoire :</strong> plan de migration sans coupure (modules réécrits un à un), démarrage sur le module à plus fort levier, métriques d&apos;adoption définies ensemble avant le départ.</li>
         </ol>
       ),
     },
@@ -79,7 +78,7 @@ const auditApplicationMetier: Article = {
       anchor: "refondre-reconstruire",
       content: (
         <p>
-          Refondre quand : (a) le métier n&apos;a pas radicalement changé, (b) 60 %+ des entités de données restent valides, (c) la dette technique est concentrée sur 2-3 modules identifiables. Reconstruire quand : (a) le modèle métier a évolué (passage B2C → B2B par ex.), (b) les bibliothèques/frameworks sont en fin de vie sans chemin de migration, (c) plus de 80 % du code doit être réécrit. Dans 65 % de nos audits, la refonte ciblée gagne — moins risquée, valeur livrée plus vite.
+          Refondre quand : (a) le métier n&apos;a pas radicalement changé, (b) 60 %+ des entités de données restent valides, (c) la dette technique est concentrée sur 2-3 modules identifiables. Reconstruire quand : (a) le modèle métier a évolué (passage B2C → B2B par ex.), (b) les bibliothèques/frameworks sont en fin de vie sans chemin de migration, (c) plus de 80 % du code doit être réécrit. Dans la plupart des cas rencontrés, la refonte ciblée gagne — moins risquée, valeur livrée plus vite.
         </p>
       ),
     },
@@ -96,7 +95,7 @@ const auditApplicationMetier: Article = {
     ],
   },
   sources: [
-    { label: "Seekr 2025 — 95 % des pilots IA sans ROI", url: "https://www.seekr.com/" },
+    { label: "Seekr — Hallucination tax field guide", url: "https://www.seekr.com/" },
     { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
     { label: "BPI France — Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
   ],
@@ -131,7 +130,7 @@ const agentIaRgpdSouverain: Article = {
   description:
     "Agent IA RGPD compatible et hébergé en France ou UE : panorama Mistral vs Claude EU, garanties DPA, isolation par client, audit possible. Guide PME 2026.",
   tldr:
-    "Un agent IA souverain combine modèle hébergé en France ou UE (Mistral à Paris, Claude EU), infrastructure RGPD compatible (OVH, Scaleway), contrats DPA signés et garanties de non-entraînement sur vos données. 53 % des entreprises citent la data residency comme blocage n°1 — l'architecture européenne lève ce frein.",
+    "Un agent IA souverain combine modèle hébergé en France ou UE (Mistral à Paris, Claude EU), infrastructure RGPD compatible (OVH, Scaleway), contrats DPA signés et garanties de non-entraînement sur vos données. La localisation des données est souvent le premier frein à l'adoption d'IA — l'architecture européenne lève ce frein.",
   category: "Agents IA",
   publishedAt: "2026-06-08",
   keywords: [
@@ -165,8 +164,7 @@ const agentIaRgpdSouverain: Article = {
       anchor: "souverain-definition",
       content: (
         <p>
-          Un agent IA souverain garantit trois propriétés cumulées : (1) le modèle LLM tourne sur de l&apos;infrastructure physiquement en UE (Mistral Large à Paris, Claude EU dans la région européenne d&apos;Anthropic, Azure OpenAI région France), (2) la donnée applicative (RAG, logs, conversations) est stockée chez un hébergeur EU (OVH, Scaleway, Supabase Francfort), (3) le contrat exclut explicitement l&apos;entraînement sur les prompts/réponses clients. Selon{" "}
-          <a href="https://www.insideprivacy.com/" target="_blank" rel="noopener noreferrer" className="text-cyan underline-offset-4 hover:underline">Inside Privacy</a>, 53 % des entreprises citent la data residency comme blocage n°1 à l&apos;adoption d&apos;IA.
+          Un agent IA souverain garantit trois propriétés cumulées : (1) le modèle IA tourne sur de l&apos;infrastructure physiquement en UE (Mistral Large à Paris, Claude EU dans la région européenne d&apos;Anthropic, Azure OpenAI région France), (2) la donnée applicative (mémoire d&apos;entreprise, logs, conversations) est stockée chez un hébergeur EU (OVH, Scaleway, Supabase Francfort), (3) le contrat exclut explicitement l&apos;entraînement sur les prompts/réponses clients. La localisation des données est souvent le premier frein cité à l&apos;adoption d&apos;IA dans les entreprises.
         </p>
       ),
     },
@@ -210,7 +208,7 @@ const agentIaRgpdSouverain: Article = {
     ],
   },
   sources: [
-    { label: "Inside Privacy — 53 % blocage data residency", url: "https://www.insideprivacy.com/" },
+    { label: "Inside Privacy — data residency et adoption IA", url: "https://www.insideprivacy.com/" },
     { label: "CNIL — Position agentic AI 2025", url: "https://www.cnil.fr/" },
     { label: "Mistral AI — Enterprise privacy", url: "https://mistral.ai/security" },
     { label: "Anthropic — Privacy & data usage", url: "https://www.anthropic.com/legal" },
@@ -237,16 +235,16 @@ const agentIaRgpdSouverain: Article = {
     { label: "RAG sur vos data", href: "/rag" },
     { label: "FAQ — Sécurité & RGPD", href: "/faq#securite-rgpd" },
   ],
-  pillarLink: { label: "Découvrir nos agents IA", href: "/agents-ia" },
+  pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
 };
 
 const ragVsFineTuning: Article = {
   slug: "rag-vs-fine-tuning-quoi-choisir-entreprise",
   title: "RAG vs fine-tuning : que choisir pour votre entreprise en 2026 ?",
   description:
-    "RAG vs fine-tuning : différences techniques, coûts, cas d'usage, ROI. Pourquoi 95 % des projets entreprise choisissent RAG en 2026, et les 5 % où le fine-tuning gagne.",
+    "RAG vs fine-tuning : différences techniques, coûts, cas d'usage, ROI. Quand choisir la mémoire d'entreprise (RAG), et dans quels cas niche le ré-entraînement du modèle s'impose.",
   tldr:
-    "RAG dans 95 % des cas d'usage entreprise : la base de connaissances change tous les jours, RAG permet la mise à jour temps réel et la traçabilité des sources. Fine-tuning pertinent dans les cas niche (génération code propriétaire, ton de marque très spécifique, contraintes latence extrêmes). Coût RAG typique : 100-1 000 €/mois selon volume et corpus. Coût fine-tuning : 2 000-15 000 € par cycle selon la qualité du dataset. Prix indicatifs qui peuvent varier selon la complexité du projet et les fonctionnalités demandées.",
+    "La mémoire d'entreprise (RAG) convient à la grande majorité des cas : la base de connaissances change tous les jours, RAG permet la mise à jour temps réel et la traçabilité des sources. Le ré-entraînement du modèle est pertinent dans les cas niche (génération code propriétaire, ton de marque très spécifique, contraintes latence extrêmes). Coût RAG typique : 100-1 000 €/mois selon volume et corpus. Coût ré-entraînement : 2 000-15 000 € par cycle selon la qualité du jeu de données. Prix indicatifs variables selon la complexité.",
   category: "RAG",
   publishedAt: "2026-06-08",
   keywords: [
@@ -281,7 +279,7 @@ const ragVsFineTuning: Article = {
       anchor: "rag-fonctionnement",
       content: (
         <p>
-          RAG (Retrieval-Augmented Generation) découpe vos documents en chunks (typiquement 500-1500 caractères), génère un embedding par chunk via un modèle dédié (text-embedding-3-large d&apos;OpenAI, bge-m3, Mistral Embed), stocke ces vecteurs dans une base spécialisée (pgvector intégré PostgreSQL, Pinecone, Qdrant, Weaviate), et lors d&apos;une question retrouve les chunks pertinents par similarité cosinus pour les passer au LLM comme contexte. Selon Techment, 70 % des initiatives GenAI enterprise 2026 reposent sur RAG.
+          RAG (Retrieval-Augmented Generation) découpe vos documents en fragments (typiquement 500-1500 caractères), représente chaque fragment sous forme vectorielle via un modèle dédié (text-embedding-3-large d&apos;OpenAI, bge-m3, Mistral Embed), stocke ces vecteurs dans une base spécialisée (pgvector intégré PostgreSQL, Pinecone, Qdrant, Weaviate), et lors d&apos;une question retrouve les fragments pertinents par similarité de sens pour les passer à l&apos;IA comme contexte. C&apos;est aujourd&apos;hui la méthode dominante pour les projets IA en entreprise.
         </p>
       ),
     },
@@ -290,7 +288,7 @@ const ragVsFineTuning: Article = {
       anchor: "fine-tuning-cas",
       content: (
         <p>
-          Trois cas où le fine-tuning surpasse le RAG : (1) <strong>ton de marque très spécifique</strong> (assistant éditorial pour une marque luxe avec voix unique difficilement encodable en prompt système), (2) <strong>génération de code propriétaire</strong> (DSL interne, framework non public, conventions spécifiques), (3) <strong>contraintes de latence extrêmes</strong> (chatbot grand public à 1 000 req/s où chaque ms compte). Pour 95 % des cas business B2B, le RAG suffit et coûte 10× moins cher.
+          Trois cas où le ré-entraînement surpasse la mémoire d&apos;entreprise : (1) <strong>ton de marque très spécifique</strong> (assistant éditorial pour une marque luxe avec voix unique difficilement encodable en prompt système), (2) <strong>génération de code propriétaire</strong> (DSL interne, framework non public, conventions spécifiques), (3) <strong>contraintes de latence extrêmes</strong> (chatbot grand public à 1 000 req/s où chaque ms compte). Pour la grande majorité des cas business B2B, la mémoire d&apos;entreprise suffit et coûte nettement moins cher.
         </p>
       ),
     },
@@ -299,7 +297,7 @@ const ragVsFineTuning: Article = {
       anchor: "cout-compare",
       content: (
         <p>
-          <strong>RAG :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; embeddings d&apos;indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inference LLM ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 100-1 000 €/mois selon volume et fréquence d&apos;usage. <strong>Fine-tuning :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 2 000-10 000 €), GPU rental 300-1 500 € par cycle, infrastructure hosting modèle fine-tuné 100-1 000 €/mois. Total typique : 2 000-15 000 € par cycle + run mensuel — à reconduire dès que la connaissance évolue. Ces prix peuvent varier selon la complexité du projet, les fonctionnalités demandées et les intégrations. Notre audit gratuit chiffre les deux scénarios sur votre cas réel.
+          <strong>Mémoire d&apos;entreprise (RAG) :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inférence IA ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 100-1 000 €/mois selon volume et fréquence d&apos;usage. <strong>Ré-entraînement du modèle :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 2 000-10 000 €), location GPU 300-1 500 € par cycle, hébergement du modèle ré-entraîné 100-1 000 €/mois. Total typique : 2 000-15 000 € par cycle + run mensuel — à reconduire dès que la connaissance évolue. Ces prix peuvent varier selon la complexité et les intégrations. Un premier échange gratuit chiffre les deux scénarios sur votre cas réel.
         </p>
       ),
     },
@@ -308,7 +306,7 @@ const ragVsFineTuning: Article = {
       anchor: "combinaison",
       content: (
         <p>
-          Oui, et c&apos;est l&apos;approche &quot;Pareto-optimale&quot; pour les cas avancés. Fine-tuning léger pour ajuster le ton et le vocabulaire métier (corpus de 500-2 000 exemples soigneusement choisis), RAG pour la connaissance factuelle qui change quotidiennement. Le modèle fine-tuné parle &quot;votre langue&quot; ; le RAG l&apos;informe des dernières données. Cette architecture est typique dans les cabinets juridiques de premier rang ou les services support haut de gamme.
+          Oui, et c&apos;est l&apos;approche la plus efficace pour les cas avancés. Ré-entraînement léger pour ajuster le ton et le vocabulaire métier (corpus de 500-2 000 exemples soigneusement choisis), mémoire d&apos;entreprise pour la connaissance factuelle qui change quotidiennement. Le modèle ré-entraîné parle &quot;votre langue&quot; ; la mémoire d&apos;entreprise l&apos;informe des dernières données. Cette architecture est typique dans les cabinets juridiques de premier rang ou les services support haut de gamme.
         </p>
       ),
     },
@@ -326,7 +324,7 @@ const ragVsFineTuning: Article = {
     ],
   },
   sources: [
-    { label: "Techment — 70 % des initiatives GenAI sur RAG", url: "https://www.techment.com/" },
+    { label: "Techment — RAG et projets GenAI enterprise", url: "https://www.techment.com/" },
     { label: "Seekr — Hallucination tax field guide", url: "https://www.seekr.com/" },
     { label: "Pinecone — RAG vs fine-tuning research", url: "https://www.pinecone.io/" },
   ],
@@ -344,7 +342,7 @@ const ragVsFineTuning: Article = {
     {
       question: "Le fine-tuning peut-il remplacer un agent IA complet ?",
       answer:
-        "Non. Le fine-tuning ajuste un modèle, mais un agent nécessite aussi : connexion à vos outils, garde-fous métier, monitoring, validation humaine. Fine-tuning = composant du moteur ; agent = chaîne complète K→R→A→M.",
+        "Non. Le ré-entraînement ajuste un modèle, mais un agent nécessite aussi : connexion à vos outils, garde-fous métier, monitoring, validation humaine. Ré-entraînement = composant du moteur ; agent = chaîne complète K→R→A→M.",
     },
   ],
   relatedLinks: [
@@ -352,7 +350,7 @@ const ragVsFineTuning: Article = {
     { label: "Agents IA — Anatomie K→R→A→M", href: "/agents-ia" },
     { label: "FAQ — RAG & mémoire métier", href: "/faq#rag-memoire" },
   ],
-  pillarLink: { label: "Voir notre offre RAG", href: "/rag" },
+  pillarLink: { label: "Voir l'offre mémoire d'entreprise", href: "/rag" },
 };
 
 const automatiserTriMails: Article = {
@@ -361,7 +359,7 @@ const automatiserTriMails: Article = {
   description:
     "Tri automatique des mails pour PME : agent IA Gmail/Outlook qui range par urgence, répond aux FAQ, escalade au bon humain. Gains, coûts, intégrations.",
   tldr:
-    "Un agent IA bien configuré trie l'inbox d'une PME et répond aux courants en quelques secondes, libérant 8h/semaine pour un dirigeant et jusqu'à 200h/mois pour un cabinet. Intégrations Gmail/Outlook/Front, escalade contextuelle au bon humain, seuil de confiance configurable, ton de marque préservé. Coût indicatif : 100-800 €/mois selon volume traité, nombre de boîtes connectées et niveau d'automatisation. Prix variables — à la hausse ou à la baisse — selon la complexité et les fonctionnalités demandées.",
+    "Un agent IA bien configuré trie l'inbox d'une PME et répond aux messages courants en quelques secondes, libérant plusieurs heures par semaine pour un dirigeant ou une équipe. Intégrations Gmail/Outlook/Front, escalade contextuelle au bon humain, seuil de confiance configurable, ton de marque préservé. Coût indicatif : 100-800 €/mois selon volume traité, nombre de boîtes connectées et niveau d'automatisation. Prix variables selon la complexité et les fonctionnalités demandées.",
   category: "Automatisation",
   publishedAt: "2026-06-08",
   keywords: [
@@ -395,8 +393,7 @@ const automatiserTriMails: Article = {
       anchor: "temps-perdu",
       content: (
         <p>
-          Données terrain documentées : un cabinet médical perd ≈ 200 h/mois sur l&apos;administratif inbox (RDV, confirmations, demandes courantes), un dirigeant de PME y consacre 8 h/semaine en moyenne, un commercial perd 70 % de son temps en administratif dont une bonne part en mails de suivi (source{" "}
-          <a href="https://www.sybill.ai/" target="_blank" rel="noopener noreferrer" className="text-cyan underline-offset-4 hover:underline">Sybill 2025</a>). Sur 250 jours ouvrés, ce sont 400-2 000 h/an récupérables par organisation — équivalent 0,25 à 1 ETP.
+          Le constat est régulier : les cabinets médicaux passent une part significative de leur temps admin sur l&apos;inbox (RDV, confirmations, demandes courantes) ; un dirigeant de PME y consacre souvent plusieurs heures par semaine ; un commercial perd une bonne partie de son temps sur les mails de suivi et de relance. Ramené à l&apos;année, ce sont des dizaines ou centaines d&apos;heures récupérables par organisation — selon le volume et le type de messages.
         </p>
       ),
     },
@@ -427,7 +424,7 @@ const automatiserTriMails: Article = {
       anchor: "cout",
       content: (
         <p>
-          <strong>Setup initial</strong> (audit, configuration, fine-tuning des classifications, intégrations) : 800-3 000 € selon le nombre de boîtes connectées et la complexité du tri. <strong>Run mensuel :</strong> 100-800 € selon le volume de mails traités (inclus modèles LLM, hébergement EU, monitoring 24/7). Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, les fonctionnalités demandées et les intégrations. À comparer aux 8 h/sem × 4 sem × coût horaire chargé d&apos;un dirigeant (≈ 80-150 €/h) = 2 500-5 000 €/mois de temps libéré. ROI typique : 3-5× sur le premier semestre. Audit gratuit pour chiffrer précisément votre cas.
+          <strong>Setup initial</strong> (audit, configuration, ajustement des classifications, intégrations) : 800-3 000 € selon le nombre de boîtes connectées et la complexité du tri. <strong>Run mensuel :</strong> 100-800 € selon le volume de mails traités (inclus modèles IA, hébergement EU, monitoring 24/7). Ces prix peuvent varier selon la complexité et les intégrations. À comparer au temps libéré : 8 h/sem × 4 sem × coût horaire chargé d&apos;un dirigeant (≈ 80-150 €/h) = 2 500-5 000 €/mois de temps récupéré. ROI positif typiquement dès le premier semestre. Premier échange gratuit pour chiffrer votre cas précis.
         </p>
       ),
     },
@@ -444,9 +441,8 @@ const automatiserTriMails: Article = {
     ],
   },
   sources: [
-    { label: "Sybill 2025 — 70 % temps commercial perdu admin", url: "https://www.sybill.ai/" },
-    { label: "Intentionally Inspirational — 200 h/mois admin cabinet médical", url: "https://intentionallyinspirational.com/" },
-    { label: "Gartner — 80 % tickets autonomes d'ici 2029", url: "https://www.gartner.com/" },
+    { label: "Sybill — temps commercial et mails de suivi", url: "https://www.sybill.ai/" },
+    { label: "Gartner — IA et automatisation du support", url: "https://www.gartner.com/" },
   ],
   faq: [
     {
