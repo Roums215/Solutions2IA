@@ -6,27 +6,27 @@ export type VsRow = {
 export const WEB_VS_AGENCY_ROWS: VsRow[] = [
   {
     classic: "Livre un site.",
-    s2ia: "Construit un système connecté.",
+    s2ia: "Je construis un système connecté.",
   },
   {
     classic: "S'arrête à la mise en ligne.",
-    s2ia: "Continue après la mise en ligne — support, évolution, automatisations.",
+    s2ia: "Je continue après la mise en ligne — support, évolution, automatisations.",
   },
   {
     classic: "Pas de connexion aux outils métier.",
-    s2ia: "Branche le site sur vos outils — CRM, calendrier, email, n8n, ERP.",
+    s2ia: "Je branche le site sur vos outils — agenda, messagerie, gestion, automatisation.",
   },
   {
-    classic: "Pas de circulation des leads.",
-    s2ia: "Qualifie et route chaque opportunité au bon collaborateur.",
+    classic: "Pas de circulation des demandes entrantes.",
+    s2ia: "Je qualifie et dirige chaque demande au bon endroit, au bon moment.",
   },
   {
     classic: "Pas d'automatisation des suites.",
-    s2ia: "Automatise les suites — notifications, relances, dashboards.",
+    s2ia: "J'automatise les suites — notifications, relances, tableaux de bord.",
   },
   {
     classic: "Pas d'IA métier.",
-    s2ia: "Connecte l'IA documentaire (RAG) et les automatisations.",
+    s2ia: "Je connecte l'intelligence artificielle à votre activité selon vos besoins.",
   },
   {
     classic: "Le site = produit final.",
@@ -40,7 +40,7 @@ export const WEB_VS_AGENCY_HEADERS = {
     sublabel: "Le site comme livrable",
   },
   s2ia: {
-    label: "Solutions 2IA",
+    label: "Solutions 2IA — indépendant",
     sublabel: "Le site comme point d'entrée",
   },
 };

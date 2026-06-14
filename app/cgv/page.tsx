@@ -3,7 +3,9 @@ import { LegalPage } from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
   title: "Conditions générales de vente",
-  description: "Conditions générales applicables aux prestations Solutions 2IA : sites web, applications, IA, automatisation, design et motion.",
+  description: "Conditions générales applicables aux prestations Solutions 2IA : sites web, applications, automatisations et assistants IA sur mesure.",
+  alternates: { canonical: "/cgv" },
+  robots: { index: true, follow: true },
 };
 
 export default function Page() {

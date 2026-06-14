@@ -24,41 +24,41 @@ export function SitesWebPage() {
       <PageAtmosphere preset="web" />
       <FluidMouseField preset="web" />
       <PageHero
-        label="Sites web premium · Système connecté"
+        label="Sites web"
         title={
           <>
-            Votre site n&apos;est pas un site.
+            Un site qui ne fait pas que joli.
             <br />
-            C&apos;est le{" "}
+            Il vous amène des{" "}
             <span className="text-gradient-strong">
-              moteur de vos prochains clients
+              clients
             </span>
             .
           </>
         }
-        description="Un site connecté qui travaille avec votre entreprise, pas à côté d'elle. Nous le concevons pour qu'il accueille vos visiteurs, comprenne leur besoin, les dirige au bon endroit — et transmette chaque opportunité à vos équipes, au bon moment."
-        primaryCta={{ label: "Concevoir mon système numérique", href: "/contact" }}
-        secondaryCta={{ label: "Voir comment circule une opportunité", href: "#opportunity-flow" }}
+        description="Un beau site, c'est bien. Un site qui accueille vos visiteurs, répond à leurs questions et vous transmet chaque demande au bon moment, c'est mieux. C'est celui-là que je construis."
+        primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
+        secondaryCta={{ label: "Comment un visiteur devient client", href: "#opportunity-flow" }}
         visual={<WebScene />}
         mobileSteps={[
-          { label: "Visibilité", hint: "9 canaux qualifiés" },
-          { label: "Visiteur", hint: "parcours fluide · intention" },
-          { label: "Conversion", hint: "opportunité transmise" },
+          { label: "On vous trouve", hint: "visible là où vos clients cherchent" },
+          { label: "On vous comprend", hint: "un parcours clair, sans détour" },
+          { label: "On vous contacte", hint: "la demande arrive chez vous" },
         ]}
       />
 
       {/* Micro-label de gamme : prépare mentalement les sections suivantes */}
-      <section aria-label="Ce que nous couvrons" className="-mt-8 sm:-mt-12 mb-6 sm:mb-10">
+      <section aria-label="Du simple au connecté" className="-mt-8 sm:-mt-12 mb-6 sm:mb-10">
         <div className="section-container">
           <div className="flex items-center justify-center">
             <span className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-full border border-border-subtle bg-bg-card/40 px-4 py-1.5 text-[11px] uppercase tracking-[0.22em] text-text-tertiary sm:text-xs">
-              <span>Site web</span>
+              <span>Vitrine simple</span>
               <span aria-hidden className="h-1 w-1 rounded-full bg-cyan/60" />
-              <span>Automatisation</span>
+              <span>Réservation en ligne</span>
               <span aria-hidden className="h-1 w-1 rounded-full bg-cyan/60" />
-              <span>IA documentaire</span>
+              <span>Espace client</span>
               <span aria-hidden className="h-1 w-1 rounded-full bg-cyan/60" />
-              <span>Outils métier</span>
+              <span>Relié à vos outils</span>
             </span>
           </div>
         </div>
@@ -80,9 +80,9 @@ export function SitesWebPage() {
       <WebFoundations />
 
       <CTABand
-        title="Discutons de votre système numérique"
-        description="Audit, architecture et recommandations adaptées à votre activité."
-        primaryLabel="Planifier un échange"
+        title={<>Parlons de votre <span className="text-gradient-strong">site</span></>}
+        description="Que vous partiez de zéro ou que vous ayez déjà un site à refaire, le premier échange est gratuit. Je vous dis franchement ce qui vous aiderait, et ce que ça coûterait — à partir de 500 €."
+        primaryLabel="Premier échange gratuit"
       />
     </>
   );

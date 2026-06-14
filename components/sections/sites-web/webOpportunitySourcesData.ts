@@ -98,16 +98,16 @@ export const SOURCE_GROUP_LABELS: Record<SourceGroup, string> = {
 
 export const SOURCES_ADAPTIVE_LINES = [
   "Un artisan vit du Google Business Profile et du bouche-à-oreille.",
-  "Un cabinet de conseil vit du SEO, de LinkedIn et des partenaires.",
+  "Un cabinet de conseil vit d'être bien trouvé sur Google, de LinkedIn et des partenaires.",
   "Un commerce local vit de la recherche locale, des avis et des QR codes en boutique.",
   "Une PME services vit d'un mix orchestré.",
 ];
 
 export const SOURCES_ADAPTIVE_CONCLUSION =
-  "Solutions 2IA branche les canaux qui comptent pour vous — et désactive les autres.";
+  "Je branche les canaux qui comptent pour vous — et on laisse de côté les autres.";
 
 export const SOURCES_CLOSING =
-  "Neuf canaux. Un seul système qui les centralise et les transforme en clients.";
+  "Neuf canaux. Un seul site qui les centralise et les transforme en contacts qualifiés.";
 
 export const SOURCES_BRIDGE_TO_BLUEPRINT =
   "Une fois sur votre site, voici comment l'opportunité circule";

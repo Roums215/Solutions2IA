@@ -4,6 +4,8 @@ import { LegalPage } from "@/components/legal/LegalPage";
 export const metadata: Metadata = {
   title: "Politique de confidentialité",
   description: "Politique de confidentialité de Solutions 2IA : données collectées, finalités, durées, droits RGPD et contact.",
+  alternates: { canonical: "/confidentialite" },
+  robots: { index: true, follow: true },
 };
 
 export default function Page() {

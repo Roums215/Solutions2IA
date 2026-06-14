@@ -32,14 +32,14 @@ export function WebVsAgency() {
           label="La différence cœur"
           title={
             <>
-              Pourquoi nous ne sommes pas{" "}
+              Pourquoi je ne suis pas{" "}
               <span className="text-gradient-strong">
                 une agence web classique
               </span>
               .
             </>
           }
-          description="Comparaison factuelle, sans dénigrement — juste ce que nous faisons en plus, et pourquoi ça change tout pour votre activité."
+          description="Comparaison factuelle, sans dénigrement — juste ce que je fais en plus, et pourquoi ça change tout pour votre activité."
         />
 
         <motion.div
@@ -66,7 +66,7 @@ export function WebVsAgency() {
             <div className="relative rounded-2xl border border-cyan/40 bg-bg-card px-5 py-4 shadow-[0_0_40px_var(--color-cyan-glow)] sm:px-6 sm:py-5">
               <div className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
               <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan">
-                Notre posture
+                Ma posture
               </div>
               <h3 className="mt-1.5 text-lg font-semibold leading-snug text-text-primary sm:text-xl">
                 {WEB_VS_AGENCY_HEADERS.s2ia.label}

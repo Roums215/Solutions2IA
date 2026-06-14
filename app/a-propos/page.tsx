@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { AProposPage } from "./AProposPage";
 
 export const metadata: Metadata = {
-  title: "À propos de Solutions 2IA : agence digitale française IA, web, automatisation",
+  title: "Qui je suis — Iulian, développeur indépendant derrière Solutions 2IA",
   description:
-    "Solutions 2IA : studio digital français spécialisé en agents IA souverains, applications métier sur mesure, RAG entreprise et automatisation. Notre méthode et nos valeurs.",
+    "Développeur indépendant formé en ingénierie du web, j'ai travaillé sur des projets pour DFT (télécoms) et Ramsay Santé. Je conçois sites, applications et automatisations sur mesure. Disponible, proche, prix accessibles.",
   alternates: { canonical: "/a-propos" },
   openGraph: {
-    title: "À propos — Solutions 2IA, agence digitale française",
+    title: "Qui je suis — Iulian, développeur indépendant",
     description:
-      "Studio digital français : agents IA, apps métier, RAG, automatisation. Notre méthode.",
+      "Sites, applications et automatisations sur mesure. Un seul interlocuteur : la personne qui comprend votre besoin est celle qui construit.",
     url: "/a-propos",
     type: "website",
   },

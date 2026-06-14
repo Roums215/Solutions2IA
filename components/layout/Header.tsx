@@ -40,6 +40,16 @@ export function Header() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Accessibilité : Escape ferme le menu mobile.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
   // Logo animation phase 1: hidden -> full (when loading completes)
   useEffect(() => {
     if (!hideHeaderLogo && logoPhase === "hidden") {
@@ -66,6 +76,16 @@ export function Header() {
   function handleDropdownLeave() {
     dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
   }
+
+  // Accessibilité clavier : Escape ferme le menu déroulant ouvert.
+  useEffect(() => {
+    if (!openDropdown) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenDropdown(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openDropdown]);
 
   return (
     <>
@@ -186,11 +206,20 @@ export function Header() {
                 className="relative"
                 onMouseEnter={() => item.children && handleDropdownEnter(item.label)}
                 onMouseLeave={handleDropdownLeave}
+                // Clavier : ouvre au focus entrant, ferme quand le focus quitte le groupe.
+                onFocus={() => item.children && handleDropdownEnter(item.label)}
+                onBlur={(e) => {
+                  if (item.children && !e.currentTarget.contains(e.relatedTarget as Node)) {
+                    setOpenDropdown(null);
+                  }
+                }}
               >
                 <Link
                   href={item.href}
+                  aria-haspopup={item.children ? "menu" : undefined}
+                  aria-expanded={item.children ? openDropdown === item.label : undefined}
                   className={cn(
-                    "px-4 py-2 text-sm transition-colors duration-300 rounded-lg",
+                    "px-4 py-2 text-sm transition-colors duration-300 rounded-lg inline-flex items-center focus-visible:outline-2 focus-visible:outline-accent-light/60 focus-visible:outline-offset-2",
                     pathname === item.href || pathname.startsWith(item.href + "/")
                       ? "text-text-primary bg-white/[0.04]"
                       : "text-text-secondary hover:text-text-primary hover:bg-white/[0.03]"
@@ -198,7 +227,7 @@ export function Header() {
                 >
                   {item.label}
                   {item.children && (
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="inline ml-1 opacity-40">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="inline ml-1 opacity-40" aria-hidden>
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
                   )}
@@ -245,8 +274,10 @@ export function Header() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative z-10 w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/5 transition-colors"
-            aria-label="Menu"
+            className="lg:hidden relative z-10 min-w-[44px] min-h-[44px] flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-accent-light/60 focus-visible:outline-offset-2"
+            aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
             <motion.span animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }} className="block w-5 h-px bg-text-primary" />
             <motion.span animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }} className="block w-5 h-px bg-text-primary" />
@@ -259,6 +290,7 @@ export function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
