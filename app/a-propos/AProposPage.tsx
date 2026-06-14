@@ -11,60 +11,59 @@ import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
 const values = [
-  { title: "Excellence technique", description: "Chaque ligne de code est écrite avec soin et intention. Nous ne livrons que du travail dont nous sommes fiers. Pas de raccourcis, pas de dette technique volontaire." },
-  { title: "Design obsessionnel", description: "Le détail fait la différence entre un bon produit et un produit mémorable. Typographie, spacing, couleurs, animations — chaque pixel est intentionnel." },
-  { title: "Impact business d'abord", description: "La technologie est un moyen, jamais une fin. Chaque décision technique et créative est guidée par un seul objectif : maximiser l'impact sur votre activité." },
-  { title: "Transparence absolue", description: "Pas de jargon, pas de surprises, pas de factures cachées. Vous savez exactement où en est votre projet, quelles sont les options et ce que chaque choix implique." },
-  { title: "Innovation continue", description: "IA, automatisation, motion design avancé — nous investissons constamment dans les technologies de demain pour vous donner un avantage compétitif réel." },
-  { title: "Sur mesure uniquement", description: "Pas de templates, pas de solutions pré-fabriquées. Chaque projet est unique et reçoit l'attention artisanale qu'il mérite, du premier brief à la dernière optimisation." },
+  { title: "Vous me parlez à moi, directement", description: "Pas de commercial, pas de chef de projet, pas d'intermédiaire. La personne qui comprend votre besoin est celle qui construit. Vous gagnez du temps et rien ne se perd en route." },
+  { title: "Je parle votre langue, pas la mienne", description: "Le code et l'IA, c'est mon métier, pas le vôtre. Je vous explique tout avec des mots simples. Vous comprenez toujours ce que vous payez et pourquoi." },
+  { title: "Un prix clair, dès le départ", description: "Vous savez ce que ça coûte avant de démarrer. Pas de facture surprise, pas de coûts cachés. Et comme je démarre, mes prix sont accessibles." },
+  { title: "Je suis disponible et réactif", description: "Réponse sous 24 h, et je reste joignable après la mise en ligne. Quand vous avez une question, vous n'attendez pas une semaine." },
+  { title: "Je construis pour durer", description: "Du code propre, votre site et vos données restent à vous, hébergés en Europe. Vous n'êtes prisonnier de personne, surtout pas de moi." },
+  { title: "Je dis la vérité, même quand ça m'arrange pas", description: "Si un projet n'a pas besoin de moi, je vous le dis. Si une solution plus simple existe, je vous l'indique. La confiance vaut plus qu'une vente." },
 ];
 
 const beliefs = [
-  { title: "Ce que nous croyons", items: [
-    "Le digital doit être intelligent, pas juste beau",
-    "Un bon produit résout un vrai problème business",
-    "L'IA doit augmenter l'humain, pas le remplacer",
-    "La qualité du code détermine la durée de vie du produit",
-    "Le design premium est un investissement, pas un luxe",
+  { title: "Ce en quoi je crois", items: [
+    "Un outil doit vous faire gagner du temps, pas en prendre",
+    "On doit comprendre ce qu'on achète, sans être technicien",
+    "L'IA est là pour vous aider, pas pour vous remplacer",
+    "Vos données vous appartiennent, point",
+    "Un prix juste vaut mieux qu'un prix gonflé",
   ]},
-  { title: "Ce que nous refusons", items: [
-    "Les projets où la qualité n'est pas une priorité",
-    "Les templates maquillés en solutions sur mesure",
-    "Les délais irréalistes qui compromettent l'excellence",
-    "Les technologies choisies par effet de mode",
-    "Les relations clients basées sur l'opacité",
+  { title: "Ce que je refuse de faire", items: [
+    "Vous noyer sous le jargon pour avoir l'air savant",
+    "Vous vendre quelque chose dont vous n'avez pas besoin",
+    "Promettre des délais que je ne peux pas tenir",
+    "Vous rendre dépendant pour vous garder captif",
+    "Cacher les prix ou les conditions",
   ]},
 ];
 
 const process = [
-  { number: "01", title: "Découverte", desc: "Comprendre votre activité, vos enjeux, vos utilisateurs et vos objectifs avant d'écrire une seule ligne. Nous posons les questions que personne d'autre ne pose.", duration: "1-2 semaines" },
-  { number: "02", title: "Stratégie & Architecture", desc: "Définir l'architecture technique, le positionnement créatif et la roadmap produit. Les bonnes décisions prises tôt font toute la différence en aval.", duration: "1 semaine" },
-  { number: "03", title: "Design premium", desc: "Direction artistique, UI/UX, prototypage interactif. Des interfaces mémorables, testées et validées avec vous avant le développement.", duration: "2-3 semaines" },
-  { number: "04", title: "Développement & IA", desc: "Code propre, architecture modulaire, agents intelligents et automatisations intégrés. On construit des produits robustes qui tiennent la charge.", duration: "3-6 semaines" },
-  { number: "05", title: "Tests & Lancement", desc: "Tests cross-browser, performance, accessibilité, sécurité. Déploiement optimisé sur une infrastructure fiable et scalable.", duration: "1 semaine" },
-  { number: "06", title: "Optimisation continue", desc: "Suivi des métriques, A/B testing, améliorations itératives. Votre produit reste performant et pertinent dans la durée.", duration: "Continu" },
+  { number: "01", title: "On se parle", desc: "Vous m'expliquez votre situation avec vos mots. Je pose les questions utiles pour comprendre ce qui vous prend du temps. Premier échange gratuit.", duration: "30 min, offert" },
+  { number: "02", title: "Je vous propose", desc: "Vous recevez une proposition claire : ce que je construis, ce que ça change pour vous, le prix et le délai. Vous décidez en toute connaissance de cause.", duration: "quelques jours" },
+  { number: "03", title: "Je construis", desc: "Je code moi-même, et je vous montre le projet qui prend forme régulièrement. Vous ajustez en cours de route, rien n'est figé jusqu'au bout.", duration: "selon le projet" },
+  { number: "04", title: "On met en ligne", desc: "Mise en ligne en douceur, je prends le temps de vous montrer comment ça marche, et je vérifie que tout tourne bien.", duration: "1 semaine" },
+  { number: "05", title: "Je reste là", desc: "Après la livraison, je reste joignable pour ajuster, corriger ou faire évoluer l'outil quand votre besoin change.", duration: "dans la durée" },
 ];
 
 const qualityFlow = [
   {
-    meta: "Clarté",
-    title: "Décisions visibles",
-    description: "Chaque choix de design, contenu, stack ou automatisation est justifié par l'objectif business.",
+    meta: "Je comprends",
+    title: "D'abord votre besoin réel",
+    description: "Je commence par comprendre comment vous travaillez et où le temps se perd, avant de proposer la moindre solution.",
   },
   {
-    meta: "Revue",
-    title: "Design et motion contrôlés",
-    description: "Les interfaces sont relues pour le rythme, la hiérarchie, le responsive et la cohérence avec le système visuel.",
+    meta: "Je construis",
+    title: "Proprement, pour durer",
+    description: "Code soigné, lisible sur mobile, rapide et sécurisé. Votre outil tient la route et reste facile à faire évoluer.",
   },
   {
-    meta: "Qualité",
-    title: "Code vérifié",
-    description: "Lint, build, composants réutilisables, accessibilité et performance sont traités comme des livrables.",
+    meta: "Je vérifie",
+    title: "Que ça marche vraiment",
+    description: "Je teste sur ordinateur et téléphone avant la mise en ligne. Pas de mauvaise surprise le jour J.",
   },
   {
-    meta: "Suivi",
-    title: "Lancement mesurable",
-    description: "Le produit reste observable après mise en ligne : métriques, retours, bugs, priorités et améliorations.",
+    meta: "Je reste",
+    title: "Disponible après la livraison",
+    description: "Une fois en ligne, je reste joignable pour ajuster et faire évoluer l'outil au fil de vos besoins.",
   },
 ];
 
@@ -74,44 +73,57 @@ export function AProposPage() {
       <PageAtmosphere preset="about" />
       <FluidMouseField preset="about" />
       <PageHero
-        label="À propos de Solutions 2IA"
-        title={<>Un studio digital tourné vers <span className="text-gradient-strong">l&apos;excellence</span></>}
-        description="Solutions 2IA est un studio digital indépendant spécialisé dans la création d'expériences digitales intelligentes. Nous combinons design premium, développement d'excellence et intelligence artificielle pour créer des produits qui transforment les entreprises."
-        primaryCta={{ label: "Démarrer un projet", href: "/contact" }}
-        secondaryCta={{ label: "Nos services", href: "/services" }}
+        label="Qui je suis"
+        title={<>Moi, c&apos;est <span className="text-gradient-strong">Iulian</span></>}
+        description="Je suis développeur indépendant. Je conçois et je code moi-même des sites web, des applications et des automatisations sur mesure. Mon but : remplacer ce qui vous prend du temps par un outil simple qui le fait à votre place."
+        primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
+        secondaryCta={{ label: "Voir ce que je fais", href: "/services" }}
       />
 
+      {/* Mon histoire */}
       <section className="section-shell-tight">
-        <div className="section-container">
-          <PremiumFlowPanel
-            label="Quality gates"
-            title="Notre exigence n'est pas seulement esthétique, elle est opérationnelle."
-            description="Chaque projet passe par des points de contrôle simples et stricts pour garder une qualité constante sans alourdir la collaboration."
-            steps={qualityFlow}
-            accent="99, 102, 241"
-          />
+        <div className="section-container-narrow">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mx-auto max-w-3xl"
+          >
+            <motion.span variants={fadeInUp} className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-5 block text-center">Mon parcours</motion.span>
+            <motion.div variants={fadeInUp} className="space-y-5 text-lg text-text-secondary leading-[1.85]">
+              <p>
+                Je m&apos;appelle <span className="text-text-primary font-medium">Iulian Ionita</span>. J&apos;ai été
+                formé en ingénierie du web, puis j&apos;ai travaillé sur des projets pour des
+                entreprises comme <span className="text-text-primary">DFT (Digital Factory Telecom)</span> et
+                <span className="text-text-primary"> Ramsay Santé</span> — des télécoms à la santé.
+              </p>
+              <p>
+                C&apos;est là que j&apos;ai vu la même chose partout : des équipes qui perdent un temps
+                fou sur des tâches répétitives, des fichiers Excel dans tous les sens, du papier, des
+                outils qui ne se parlent pas. Et à chaque fois, un outil bien pensé changeait tout.
+              </p>
+              <p>
+                Aujourd&apos;hui, je me lance à mon compte pour faire ça directement pour vous.{" "}
+                <span className="text-text-primary font-medium">Démarrer, c&apos;est ma force :</span> je
+                suis disponible, proche, je prends le temps, et mes prix sont accessibles. Vous
+                n&apos;êtes pas un dossier parmi cent — vous parlez à la personne qui construit.
+              </p>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Vision */}
-      <section className="section-shell">
-        <SectionParticles style="dots" count={10} color="rgba(129,140,248,0.08)" />
-        <div className="absolute inset-0" style={{ perspective: "600px" }}>
-          <div className="absolute inset-0 bg-grid opacity-[0.02]" style={{ transform: "rotateX(45deg) scale(2)", transformOrigin: "center center" }} />
-        </div>
-        <div className="section-container-narrow">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="text-center">
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-6 block">Notre vision</span>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.1] mb-8">
-              Les meilleures solutions digitales sont celles qu&apos;on ne remarque pas — parce qu&apos;elles <span className="text-gradient-strong">fonctionnent parfaitement</span>.
-            </h2>
-            <p className="text-lg text-text-secondary leading-[1.8] max-w-3xl mx-auto">
-              Nous croyons que le digital ne doit pas simplement être beau. Il doit être intelligent,
-              performant et orienté vers un seul objectif : créer de la valeur réelle pour votre entreprise.
-              Chaque projet que nous livrons est pensé pour résoudre un vrai problème — pas pour impressionner
-              dans un portfolio.
-            </p>
-          </motion.div>
+      {/* Comment je travaille — quality flow */}
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <PremiumFlowPanel
+            label="Ma façon de travailler"
+            title="Du soin à chaque étape, sans vous compliquer la vie."
+            description="Je garde quelques principes simples sur chaque projet, pour que la qualité soit constante et que vous gardiez toujours une vision claire."
+            steps={qualityFlow}
+            accent="99, 102, 241"
+          />
         </div>
       </section>
 
@@ -155,7 +167,7 @@ export function AProposPage() {
       <section className="section-shell">
         <SectionParticles style="hexagons" count={8} color="rgba(129,140,248,0.05)" />
         <div className="section-container">
-          <SectionHeading label="Valeurs" title="Ce qui guide chaque décision" description="Ces principes ne sont pas des slogans. Ils sont la raison pour laquelle nos clients reviennent et recommandent." />
+          <SectionHeading label="Mes engagements" title="Ce sur quoi vous pouvez compter" description="Ce ne sont pas des slogans. C'est la façon dont je travaille, et ce que vous êtes en droit d'attendre de moi." />
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -181,7 +193,7 @@ export function AProposPage() {
       <section className="section-shell">
         <SectionParticles style="grid-dots" count={18} color="rgba(129,140,248,0.04)" />
         <div className="section-container">
-          <SectionHeading label="Méthode" title="Un processus rigoureux, un résultat premium" description="Chaque projet suit une méthode éprouvée qui garantit qualité, transparence et résultat à la hauteur de vos ambitions." />
+          <SectionHeading label="Comment ça se passe" title="De votre premier message à l'outil qui tourne" description="La même méthode simple pour chaque projet, du petit site à l'application. Vous savez toujours où on en est." />
           <motion.div
             variants={staggerContainer}
             initial="hidden"
@@ -208,8 +220,9 @@ export function AProposPage() {
       </section>
 
       <CTABand
-        title={<>Prêt à travailler avec un studio qui <span className="text-gradient-strong">vise l&apos;excellence</span> ?</>}
-        description="Discutons de votre projet. Premier échange offert, sans engagement, sans obligation."
+        title={<>On fait <span className="text-gradient-strong">connaissance</span> ?</>}
+        description="Le meilleur moyen de voir si on peut travailler ensemble, c'est d'en parler. Premier échange gratuit, sans engagement — et vous repartez au minimum avec un regard neuf sur votre situation."
+        primaryLabel="Premier échange gratuit"
       />
     </>
   );
