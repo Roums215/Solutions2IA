@@ -98,7 +98,7 @@ function WebSceneInner() {
       >
         <motion.div animate={staticMode || paused ? undefined : { y: [0, -5, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
-            <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Performance</span>
+            <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Note du site</span>
             <div className="flex items-center gap-3">
               <div className="relative w-14 h-14">
                 <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
@@ -124,9 +124,9 @@ function WebSceneInner() {
               </div>
               <div className="space-y-1">
                 {[
-                  { label: "Perf.", score: "98", color: "text-green-400" },
-                  { label: "A11y", score: "100", color: "text-green-400" },
-                  { label: "SEO", score: "100", color: "text-green-400" },
+                  { label: "Vitesse", score: "98", color: "text-green-400" },
+                  { label: "Accès", score: "100", color: "text-green-400" },
+                  { label: "Google", score: "100", color: "text-green-400" },
                 ].map((m) => (
                   <div key={m.label} className="flex items-center gap-1.5">
                     <span className="text-[8px] text-text-tertiary w-6">{m.label}</span>
@@ -148,7 +148,7 @@ function WebSceneInner() {
       >
         <motion.div animate={staticMode || paused ? undefined : { y: [0, -4, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
-            <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Responsive</span>
+            <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2">Sur mobile</span>
             <div className="flex items-end gap-2 h-14">
               {/* Watch */}
               <motion.div className="w-5 h-7 rounded-sm border border-accent-light/20 bg-accent-glow/20" animate={staticMode || paused ? undefined : { opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity }} />

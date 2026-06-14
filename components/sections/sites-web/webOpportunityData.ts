@@ -53,8 +53,8 @@ export const OPPORTUNITY_STATIONS: OpportunityStation[] = [
   },
   {
     key: "crm",
-    label: "CRM",
-    sublabel: "qui centralise chaque opportunité, traçable",
+    label: "Suivi centralisé",
+    sublabel: "qui centralise chaque demande, traçable",
     icon: "database",
   },
   {
@@ -98,4 +98,4 @@ export const OPPORTUNITY_BRIDGE_TO_TOOLS =
   "Chaque étape repose sur un outil métier précis.";
 
 export const OPPORTUNITY_EDITORIAL_V64 =
-  "Chacune des 9 étapes peut être renforcée par nos solutions IA — automatisation, mémoire métier ou agent autonome — selon ce que votre activité réclame.";
+  "Chacune des 9 étapes peut être renforcée par une solution sur-mesure — automatisation, mémoire métier ou agent autonome — selon ce que votre activité réclame.";

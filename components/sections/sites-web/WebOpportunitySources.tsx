@@ -82,7 +82,7 @@ export function WebOpportunitySources() {
               <span className="text-gradient-strong">prochains clients</span>{" "}?
             </>
           }
-          description="Vos prochains clients ne viennent pas par hasard. Ils arrivent par neuf canaux possibles. Solutions 2IA branche ceux qui comptent pour vous."
+          description="Vos prochains clients ne viennent pas par hasard. Ils arrivent par neuf canaux possibles. Je branche ceux qui comptent pour votre activité."
         />
 
         <motion.div className="mx-auto max-w-[900px]" {...parentProps}>
