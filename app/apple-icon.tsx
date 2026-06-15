@@ -23,7 +23,6 @@ export default function AppleIcon() {
           background: "linear-gradient(135deg, #11142a 0%, #06070d 100%)",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={markSrc} width={150} height={62} alt="" />
       </div>
     ),
