@@ -26,7 +26,6 @@ export default function Icon() {
           borderRadius: 104,
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={markSrc} width={448} height={184} alt="" />
       </div>
     ),

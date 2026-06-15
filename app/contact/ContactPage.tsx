@@ -55,9 +55,50 @@ const briefFlow = [
   },
 ];
 
+type FormStatus = "idle" | "sending" | "success" | "error";
+
 export function ContactPage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (status === "sending") return;
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      nom: String(data.get("nom") ?? ""),
+      email: String(data.get("email") ?? ""),
+      entreprise: String(data.get("entreprise") ?? ""),
+      budget: String(data.get("budget") ?? ""),
+      message: String(data.get("message") ?? ""),
+      type: selectedService ?? "",
+      website: String(data.get("website") ?? ""), // honeypot
+    };
+    setStatus("sending");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({ ok: false }));
+      if (res.ok && json.ok) {
+        setStatus("success");
+        form.reset();
+        setSelectedService(null);
+      } else {
+        setStatus("error");
+        setErrorMsg(json.error || "L'envoi a échoué. Réessayez ou écrivez-moi directement par email.");
+      }
+    } catch {
+      setStatus("error");
+      setErrorMsg("Connexion impossible. Vérifiez votre réseau, ou écrivez-moi directement par email.");
+    }
+  }
 
   return (
     <>
@@ -116,7 +157,16 @@ export function ContactPage() {
             </motion.div>
 
             {/* Form fields */}
-            <motion.form variants={fadeInUp} className="space-y-7" onSubmit={(e) => e.preventDefault()} noValidate>
+            <motion.form variants={fadeInUp} className="space-y-7" onSubmit={handleSubmit}>
+              {/* Honeypot anti-spam : invisible, ne doit pas être rempli. */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute left-[-9999px] h-0 w-0 opacity-0"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                 <div>
                   <label htmlFor="contact-nom" className="text-sm font-medium text-text-primary block mb-2.5">Votre nom <span className="text-accent-light">*</span></label>
@@ -149,11 +199,29 @@ export function ContactPage() {
                 <textarea id="contact-message" name="message" rows={6} required aria-required="true" placeholder="Dites-moi avec vos mots ce qui vous prend du temps, ou ce que vous aimeriez. Pas besoin d'être précis." className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all resize-none" />
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-3">
-                <Button variant="primary" size="lg" type="submit">
-                  Envoyer
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                <Button variant="primary" size="lg" type="submit" disabled={status === "sending"}>
+                  {status === "sending" ? "Envoi…" : "Envoyer"}
+                  {status !== "sending" && (
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  )}
                 </Button>
                 <p className="text-xs text-text-tertiary">Réponse sous 24 h — gratuit, sans engagement</p>
+              </div>
+
+              {/* Retour accessible après envoi */}
+              <div aria-live="polite" className="min-h-[1.25rem]">
+                {status === "success" && (
+                  <p className="flex items-center gap-2 rounded-xl border border-green-400/25 bg-green-400/10 px-4 py-3 text-sm text-green-300">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="shrink-0"><polyline points="20 6 9 17 4 12" /></svg>
+                    Merci, votre message est bien parti ! Je reviens vers vous sous 24 h.
+                  </p>
+                )}
+                {status === "error" && (
+                  <p className="rounded-xl border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+                    {errorMsg}{" "}
+                    <a href="mailto:contact@solutions2ia.com" className="underline hover:text-red-200">contact@solutions2ia.com</a>
+                  </p>
+                )}
               </div>
             </motion.form>
           </motion.div>
