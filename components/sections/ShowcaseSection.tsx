@@ -18,7 +18,7 @@ function MockDashboard() {
           <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
         </div>
         <div className="flex-1 flex justify-center">
-          <span className="text-[10px] text-text-tertiary font-mono px-3 py-0.5 rounded bg-bg-tertiary/50">dashboard.solutions2ia.com</span>
+          <span className="text-[10px] text-text-tertiary font-mono px-3 py-0.5 rounded bg-bg-tertiary/50">dashboard.solutions2ia.fr</span>
         </div>
       </div>
 

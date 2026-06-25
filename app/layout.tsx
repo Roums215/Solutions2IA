@@ -83,7 +83,11 @@ export const metadata: Metadata = {
     },
   },
   manifest: "/manifest.webmanifest",
-  // verification: { google: "TODO_GSC_VERIFICATION_CODE" },
+  // Vérification Google Search Console : poser GOOGLE_SITE_VERIFICATION sur
+  // Vercel (le code fourni par GSC, méthode « balise HTML »).
+  ...(process.env.GOOGLE_SITE_VERIFICATION && {
+    verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
+  }),
 };
 
 export const viewport: Viewport = {

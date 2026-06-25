@@ -4,6 +4,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
 import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
+import { RelatedServices } from "@/components/shared/RelatedServices";
 import { AutomationPipeline } from "@/components/sections/automation/AutomationPipeline";
 import type { Sector } from "@/components/sections/automation/sectorsData";
 
@@ -43,6 +44,8 @@ export function SecteurPage({ sector }: SecteurPageProps) {
         }
         intro={sector.benefit}
       />
+
+      <RelatedServices current="automatisation" />
 
       <CTABand
         title={

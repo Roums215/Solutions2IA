@@ -28,7 +28,7 @@ export default function Page() {
             "SIREN/SIRET/RCS/RM : à compléter.",
             "Numéro de TVA intracommunautaire : à compléter si applicable.",
             "Directeur de la publication : à compléter.",
-            "Contact : contact@solutions2ia.com.",
+            "Contact : contact@solutions2ia.fr.",
           ],
         },
         {

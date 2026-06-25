@@ -24,6 +24,8 @@ export const footerNav = {
   navigation: [
     { label: "Accueil", href: "/" },
     { label: "Services", href: "/services" },
+    { label: "Articles", href: "/articles" },
+    { label: "FAQ", href: "/faq" },
     { label: "À propos", href: "/a-propos" },
     { label: "Contact", href: "/contact" },
   ],

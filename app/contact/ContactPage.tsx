@@ -219,7 +219,7 @@ export function ContactPage() {
                 {status === "error" && (
                   <p className="rounded-xl border border-red-400/25 bg-red-400/10 px-4 py-3 text-sm text-red-300">
                     {errorMsg}{" "}
-                    <a href="mailto:contact@solutions2ia.com" className="underline hover:text-red-200">contact@solutions2ia.com</a>
+                    <a href="mailto:contact@solutions2ia.fr" className="underline hover:text-red-200">contact@solutions2ia.fr</a>
                   </p>
                 )}
               </div>
@@ -324,9 +324,9 @@ export function ContactPage() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6"
           >
-            <motion.a variants={fadeInUp} href="mailto:contact@solutions2ia.com" className="rounded-xl border border-border-subtle bg-bg-card/50 p-7 text-center hover:border-border-accent transition-all duration-300 group card-shine">
+            <motion.a variants={fadeInUp} href="mailto:contact@solutions2ia.fr" className="rounded-xl border border-border-subtle bg-bg-card/50 p-7 text-center hover:border-border-accent transition-all duration-300 group card-shine">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light mx-auto mb-4"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M22 7l-10 7L2 7" /></svg>
-              <p className="text-sm font-medium group-hover:text-accent-light transition-colors">contact@solutions2ia.com</p>
+              <p className="text-sm font-medium group-hover:text-accent-light transition-colors">contact@solutions2ia.fr</p>
               <p className="text-xs text-text-tertiary mt-1">Email direct</p>
             </motion.a>
             <motion.div variants={fadeInUp} className="rounded-xl border border-border-subtle bg-bg-card/50 p-7 text-center card-shine">
