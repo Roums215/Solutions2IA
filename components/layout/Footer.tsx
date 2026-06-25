@@ -73,8 +73,8 @@ export function Footer() {
             <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-text-tertiary mb-5">Contact</h4>
             <ul className="space-y-3">
               <li>
-                <a href="mailto:contact@solutions2ia.com" className="text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
-                  contact@solutions2ia.com
+                <a href="mailto:contact@solutions2ia.fr" className="text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
+                  contact@solutions2ia.fr
                 </a>
               </li>
               <li>

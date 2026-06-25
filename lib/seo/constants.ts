@@ -3,7 +3,7 @@
  * Évite le drift entre metadata, schemas et OG images.
  */
 
-export const SITE_URL = "https://solutions2ia.com";
+export const SITE_URL = "https://solutions2ia.fr";
 export const SITE_NAME = "Solutions 2IA";
 export const SITE_TAGLINE = "Applications IA, agents IA, sites web et automatisation sur mesure";
 export const SITE_DESCRIPTION =
@@ -25,7 +25,7 @@ export const ORG = {
   legalName: "Solutions 2IA",
   url: SITE_URL,
   logoUrl: `${SITE_URL}/branding/logo-s2ia.png`,
-  email: "contact@solutions2ia.com",
+  email: "contact@solutions2ia.fr",
   founderName: "Iulian Ionita",
   areaServed: ["FR", "BE", "CH", "LU"],
   sameAs: [

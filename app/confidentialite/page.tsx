@@ -21,7 +21,7 @@ export default function Page() {
             "Le responsable du traitement est Solutions 2IA, éditeur du site. Les coordonnées juridiques complètes sont indiquées dans les mentions légales.",
           ],
           items: [
-            "Contact privacy/RGPD : contact@solutions2ia.com.",
+            "Contact privacy/RGPD : contact@solutions2ia.fr.",
             "Délégué à la protection des données : non désigné à ce jour, sauf obligation ultérieure ou décision volontaire.",
           ],
         },
@@ -67,7 +67,7 @@ export default function Page() {
           title: "Droits des personnes",
           body: [
             "Conformément au RGPD et à la loi Informatique et Libertés, toute personne concernée peut demander l'accès, la rectification, l'effacement, la limitation, l'opposition au traitement, ainsi que la portabilité lorsque ce droit est applicable.",
-            "Pour exercer ces droits, il suffit d'écrire à contact@solutions2ia.com. Une preuve d'identité peut être demandée en cas de doute raisonnable.",
+            "Pour exercer ces droits, il suffit d'écrire à contact@solutions2ia.fr. Une preuve d'identité peut être demandée en cas de doute raisonnable.",
           ],
         },
         {

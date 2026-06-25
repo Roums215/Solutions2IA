@@ -52,7 +52,7 @@ export function CTASection() {
           variants={fadeInUp}
           className="mt-10 flex flex-wrap justify-center gap-4"
         >
-          <Button variant="primary" size="lg" href="mailto:contact@solutions2ia.com">
+          <Button variant="primary" size="lg" href="mailto:contact@solutions2ia.fr">
             Prendre contact
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 12h14M12 5l7 7-7 7" />

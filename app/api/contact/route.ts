@@ -13,7 +13,7 @@ import { Resend } from "resend";
  *                                  Pour envoyer l'accusé de réception aux
  *                                  VISITEURS, il faut vérifier ton domaine sur
  *                                  Resend, puis mettre par ex.
- *                                  « Solutions 2IA <contact@solutions2ia.com> ».
+ *                                  « Solutions 2IA <contact@solutions2ia.fr> ».
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
