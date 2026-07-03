@@ -506,6 +506,39 @@ body {
   background: radial-gradient(circle, var(--color-cyan) 0%, transparent 70%);
 }
 
+/* Hero entrance — CSS pur : peint AVANT l'hydration JS (chemin critique LCP).
+   Même ease + staggering que l'ancien motion (premiumEase).
+   fill-mode backwards : le "from" tient pendant le delay, puis l'élément
+   reprend ses styles naturels → les hover en transform restent fonctionnels. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.hero-enter {
+  animation: hero-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+.hero-enter-fade {
+  animation: hero-fade 1s ease backwards;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+/* Reduced motion : sans delay, la règle globale (duration 0.01ms) saute
+   directement à l'état final — pas de contenu retenu invisible. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-enter,
+  .hero-enter-fade {
+    animation-delay: 0s !important;
+  }
+}
+
 /* Section vignette — darkened edges for depth */
 .section-vignette {
   position: relative;
