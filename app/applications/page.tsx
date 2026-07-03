@@ -8,7 +8,7 @@ import {
 import { ApplicationsPage } from "./ApplicationsPage";
 
 export const metadata: Metadata = {
-  title: "Application métier sur mesure — un outil simple, fait pour vous",
+  title: "Application métier sur mesure — remplacez Excel et le papier",
   description:
     "L'application web et mobile qui remplace vos fichiers Excel et votre papier : une seule, simple, pensée pour votre métier. Premier échange gratuit.",
   keywords: [

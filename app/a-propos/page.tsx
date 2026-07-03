@@ -4,7 +4,7 @@ import { AProposPage } from "./AProposPage";
 export const metadata: Metadata = {
   title: "Qui je suis — Iulian, développeur indépendant derrière Solutions 2IA",
   description:
-    "Développeur indépendant formé en ingénierie du web, j'ai travaillé sur des projets pour DFT (télécoms) et Ramsay Santé. Je conçois sites, applications et automatisations sur mesure. Disponible, proche, prix accessibles.",
+    "Développeur indépendant (projets DFT télécoms, Ramsay Santé). Sites, applications et automatisations sur mesure — France, Belgique, Suisse, Luxembourg.",
   alternates: { canonical: "/a-propos" },
   openGraph: {
     title: "Qui je suis — Iulian, développeur indépendant",

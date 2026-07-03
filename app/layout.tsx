@@ -26,7 +26,8 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    // Version courte pour la SERP (~60 car.) — la tagline complète reste sur l'OG.
+    default: `${SITE_NAME} — Sites web, applications, agents IA sur mesure`,
     template: `%s — ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
