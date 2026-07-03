@@ -9,6 +9,8 @@ const ARTICLES = [
   "rag-vs-fine-tuning-quoi-choisir-entreprise",
   "automatiser-tri-mails-pme-2026",
   "facture-electronique-chorus-pro-2026-obligation",
+  "combien-coute-agent-ia-pme-2026",
+  "agent-ia-vs-chatbot-quelle-difference",
 ] as const;
 
 const SECTORS = [
@@ -17,6 +19,15 @@ const SECTORS = [
   "btp",
   "restauration",
   "formation",
+] as const;
+
+const APP_SECTORS = [
+  "sante",
+  "retail",
+  "industrie",
+  "services-pro",
+  "logistique",
+  "immobilier",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -43,6 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const supportRoutes: MetadataRoute.Sitemap = [
     { path: "/services", priority: 0.8 },
     { path: "/faq", priority: 0.8 },
+    { path: "/glossaire", priority: 0.7 },
     { path: "/articles", priority: 0.7 },
     { path: "/a-propos", priority: 0.6 },
     { path: "/contact", priority: 0.6 },
@@ -55,6 +67,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const sectorRoutes: MetadataRoute.Sitemap = SECTORS.map((slug) => ({
     url: `${SITE_URL}/automatisation/${slug}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const appSectorRoutes: MetadataRoute.Sitemap = APP_SECTORS.map((slug) => ({
+    url: `${SITE_URL}/applications/${slug}`,
     lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -84,6 +103,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pillarRoutes,
     ...supportRoutes,
     ...sectorRoutes,
+    ...appSectorRoutes,
     ...articleRoutes,
     ...legalRoutes,
   ];

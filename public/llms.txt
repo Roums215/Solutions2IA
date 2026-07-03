@@ -1,39 +1,39 @@
 # Solutions 2IA
 
-> Agence digitale française premium : applications métier sur mesure, agents IA souverains (RAG + hébergement UE), sites web, automatisation et studio visuel. Audit 30 jours dérisqué, satisfait ou remboursé.
+> Développeur indépendant français : applications métier sur mesure, agents IA souverains (RAG + hébergement UE), sites web connectés, automatisation. Pilote 30 jours dérisqué, premier échange gratuit. Clients en France, Belgique, Suisse et Luxembourg.
 
 ## À propos
 
-Solutions 2IA accompagne les PME et ETI françaises dans leur transformation digitale avec une approche concrète : audit du terrain réel, build sur mesure, pilote 30 jours dérisqué, run avec monitoring continu. Tous les outils livrés sont hébergés en France ou en Union européenne (RGPD natif), avec garde-fous métier et humain dans la boucle.
+Solutions 2IA accompagne les PME et ETI francophones dans leur transformation digitale avec une approche concrète : audit du terrain réel, build sur mesure, pilote 30 jours dérisqué, run avec monitoring continu. Tous les outils livrés sont hébergés en France ou en Union européenne (RGPD natif), avec garde-fous métier et humain dans la boucle.
 
 ## Services principaux
 
-- [Applications métier sur mesure](https://solutions2ia.com/applications) : Six secteurs couverts (santé, retail, industrie, services pro, logistique, immobilier/BTP) avec dashboards sectoriels (TRS/OEE, OTD/ePOD, Hoguet, Ségur, Chorus Pro). Audit ou greenfield.
-- [Agents IA](https://solutions2ia.com/agents-ia) : Un agent, N besoins, votre métier. 8 cas d'usage universels (tri mails, RDV, qualif leads, notes CRM, support N1, RAG, devis, reporting). 5 garde-fous : RAG sourcé, souveraineté UE, humain dans la boucle, monitoring, pilote 30j.
-- [RAG sur vos data](https://solutions2ia.com/rag) : Mémoire métier privée connectée à Notion, Confluence, SharePoint, Drive. Citations sources affichées, refus contrôlé sous seuil de confiance. 6 secteurs couverts.
-- [Sites web premium](https://solutions2ia.com/sites-web) : Système numérique connecté qui transforme visiteurs en clients. 9 canaux de visibilité, parcours fluide, CRM connecté.
-- [Automatisation](https://solutions2ia.com/automatisation) : Fin de la ressaisie. JobPhoning → Axonaut, n8n + IA, RGPD natif, hébergement UE. 5 secteurs spécialisés : immobilier, cabinet comptable, BTP, restauration, formation.
-- [Studio visuel](https://solutions2ia.com/studio-visuel) : Motion design, 2D/3D, Remotion. Expériences premium qui marquent les esprits.
+- [Applications métier sur mesure](https://solutions2ia.fr/applications) : remplace Excel et le papier par un outil unique. Six secteurs avec cockpit dédié : santé, retail/e-commerce, industrie, services pro, logistique, immobilier/BTP. De 1 500 € (MVP) à 40 000 €+ (plateforme).
+- [Agents IA](https://solutions2ia.fr/agents-ia) : un assistant qui AGIT — tri des mails, préparation des devis, mise à jour du CRM, réponses clients. Garde-fous : RAG sourcé, souveraineté UE, humain dans la boucle, monitoring, pilote 30 j. De 800 € à 20 000 € (build) + run mensuel.
+- [Mémoire d'entreprise / RAG](https://solutions2ia.fr/rag) : une IA branchée sur vos documents (procédures, contrats, PDF) qui répond en citant ses sources. Hébergée en UE, refus contrôlé sous seuil de confiance.
+- [Sites web](https://solutions2ia.fr/sites-web) : de la vitrine au site connecté (réservation, espace client, paiement), rapides et référencés. Dès 500 €.
+- [Automatisation](https://solutions2ia.fr/automatisation) : vos logiciels reliés entre eux, fin des ressaisies et relances manuelles. n8n + IA, RGPD natif, hébergement UE. Secteurs spécialisés : immobilier, cabinet comptable, BTP, restauration, formation. Facture électronique Chorus Pro 2026 automatisée.
 
-## Méthode 2IA
+## Applications par secteur
 
-01 Audit · 02 Build · 03 Pilote 30j satisfait ou remboursé · 04 Run avec monitoring continu.
+- [Santé](https://solutions2ia.fr/applications/sante) : RDV en ligne anti no-show, DPI unifié, téléconsultation, MSSanté/INS (Ségur), hébergement HDS possible.
+- [Retail / E-commerce](https://solutions2ia.fr/applications/retail) : PIM/OMS, stock unifié multi-canal, click & collect, CRM fidélité.
+- [Industrie](https://solutions2ia.fr/applications/industrie) : suivi OF sur tablette, MES/OEE temps réel, GMAO mobile, traçabilité des lots.
+- [Services pro / Conseil](https://solutions2ia.fr/applications/services-pro) : suivi des temps, facturation automatique, GED + e-signature, Chorus Pro/PDP (facture électronique 2026).
+- [Logistique / Transport](https://solutions2ia.fr/applications/logistique) : TMS, tournées optimisées, ePOD photo + signature, tracking ETA, prêt eCMR.
+- [Immobilier / BTP](https://solutions2ia.fr/applications/immobilier) : CRM mandats loi Hoguet, pointage chantier géolocalisé, devis → facture, marge par chantier en direct.
 
-## Profils utilisateurs cibles
+## Méthode
 
-- Commercial débordé (SDR 70% temps admin CRM)
-- Dirigeant PME multi-casquettes (12-50 collaborateurs)
-- Expert métier (médecin, avocat, expert-comptable — 200h/mois admin par cabinet)
-- SAV / Support client qui crève sous le ticket
-- Marketeur solo (5 canaux à alimenter avec une paire de mains)
-- Freelance / Consultant (60-70% temps en research)
+01 Audit du terrain réel · 02 Build sur mesure · 03 Pilote 30 jours · 04 Run avec monitoring continu. Un seul interlocuteur : la personne qui comprend le besoin est celle qui construit.
 
 ## Ressources
 
-- [FAQ complète](https://solutions2ia.com/faq) : 30 questions structurées Agents IA / Applications / RAG / Sécurité / Méthode-Pricing.
-- [Articles](https://solutions2ia.com/articles) : Guides ultra-optimisés sur audit application métier, agent IA RGPD souverain, RAG vs fine-tuning, automatisation tri mails PME, facture électronique Chorus Pro 2026.
-- [À propos](https://solutions2ia.com/a-propos) : Studio digital tourné vers l'excellence.
-- [Contact](https://solutions2ia.com/contact) : Audit gratuit 45 minutes, premier échange offert.
+- [FAQ complète](https://solutions2ia.fr/faq) : 30 questions structurées et chiffrées — agents IA, applications, RAG, sécurité RGPD, méthode et prix.
+- [Glossaire](https://solutions2ia.fr/glossaire) : agent IA, RAG, workflow, API, RGPD, hébergement souverain — définitions en français simple avec exemples PME.
+- [Articles](https://solutions2ia.fr/articles) : guides sur l'audit d'application métier, l'agent IA RGPD souverain, RAG vs fine-tuning, l'automatisation du tri des mails, la facture électronique Chorus Pro 2026, le coût d'un agent IA pour une PME, agent IA vs chatbot.
+- [À propos](https://solutions2ia.fr/a-propos) : Iulian Ionita, développeur indépendant (projets DFT télécoms, Ramsay Santé).
+- [Contact](https://solutions2ia.fr/contact) : premier échange gratuit de 45 minutes, sans engagement.
 
 ## Garanties
 
@@ -42,8 +42,8 @@ Solutions 2IA accompagne les PME et ETI françaises dans leur transformation dig
 - Aucun entraînement sur vos données
 - Humain dans la boucle, override audité
 - Logs structurés, monitoring 24/7
-- Pilote 30 jours satisfait ou remboursé
+- Pilote 30 jours
 
 ## Contact
 
-contact@solutions2ia.com · Réponse sous 24h · Premier échange offert · Sans engagement
+contact@solutions2ia.fr · Réponse sous 24 h · Premier échange gratuit · Sans engagement

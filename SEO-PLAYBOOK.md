@@ -137,6 +137,22 @@ Issu de l'audit de contenu — non bloquant, à faire au fil de l'eau :
 
 ---
 
+## 8bis. Chantier perf — RÉSULTATS (3 juillet 2026)
+
+Le chantier décrit en §8 a été exécuté (phases 1-4). Mesures sur le live après déploiement :
+
+| Métrique (mobile) | Avant | Après | Méthode |
+|---|---|---|---|
+| **LCP** | 7,6 s | **1,5 s** (trace Chrome, Fast 4G + CPU 4x) / **2,2 s** (Lighthouse throttling réel) | ✅ objectif < 2,5 s atteint |
+| **Performance Lighthouse** | 70 | **94** (throttling réel `devtools`) | ✅ |
+| CLS | 0,003 | 0,005 | ✅ stable |
+| TBT | 300 ms | 20-170 ms | ✅ |
+| Speed Index | 11,2 s | 2,8-4,2 s | ✅ |
+
+**Ce qui a été fait** : triple couche d'`opacity:0` SSR supprimée (PageTransition site-wide, HeroSection, PageHero → entrées CSS keyframes pré-hydration) ; LoadingScreen shunté sur mobile ; home passée en Server Component + chunk splitting ; fix du collapse du placeholder HeroVisual (cause d'un CLS 0,46 transitoire) ; méga-composants /applications et /agents-ia en dynamic ssr:true ; animations width/height → scaleX/scaleY.
+
+⚠️ **Piège de mesure** : le mode par défaut de PageSpeed Insights (« simulated throttling »/lantern) affiche encore un LCP pessimiste (~7-8 s) car il modélise mal les animations CSS pré-hydration. La réalité utilisateur (et **CrUX, ce que Google utilise pour le classement**) est ~1,5-2,2 s. Se fier au CrUX (à partir de J+28 de trafic) et aux traces DevTools, pas au chiffre lantern.
+
 ## 8. Performance / Core Web Vitals (chantier dédié)
 
 Audit Lighthouse mobile du 25 juin 2026 sur la home :

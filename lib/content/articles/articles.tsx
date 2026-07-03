@@ -582,12 +582,259 @@ const factureElectroniqueChorusPro: Article = {
   pillarLink: { label: "Découvrir l'automatisation", href: "/automatisation" },
 };
 
+const combienCouteAgentIaPme: Article = {
+  slug: "combien-coute-agent-ia-pme-2026",
+  title: "Combien coûte un agent IA pour une PME en 2026 ?",
+  description:
+    "Agent IA PME 2026 : 3 niveaux de prix chiffrés (800-20 000 € build), coûts cachés à anticiper, sur-mesure vs SaaS comparé. Premier échange gratuit 45 min.",
+  tldr:
+    "Trois niveaux indicatifs en 2026 : Démarrage 800-2 500 € build + 300-800 €/mois run ; Intermédiaire 2 500-8 000 € + 800-2 000 €/mois ; Complet 8 000-20 000 € + 2 000-4 500 €/mois. Hébergement souverain UE, monitoring 24/7 et hotfix sous 24 h inclus dans chaque niveau. Ces fourchettes varient selon la complexité réelle. Chiffrage précis après un premier échange gratuit de 45 minutes.",
+  category: "Agents IA",
+  publishedAt: "2026-07-03",
+  keywords: [
+    "prix agent IA",
+    "coût agent IA PME",
+    "tarif assistant IA sur mesure",
+    "budget agent IA 2026",
+    "combien coûte un agent IA",
+  ],
+  wordCount: 1450,
+  glossary: [
+    {
+      term: "Build",
+      definition:
+        "Phase de construction de l'agent : audit, configuration, développement des workflows, intégrations et recette. Coût one-shot, facturation au projet.",
+    },
+    {
+      term: "Run",
+      definition:
+        "Abonnement mensuel post-livraison couvrant l'hébergement souverain UE, les modèles IA, le monitoring 24/7, les mises à jour de prompts et le support.",
+    },
+    {
+      term: "Workflow",
+      definition:
+        "Chaîne d'actions automatisées qu'exécute l'agent — exemple : lire un mail → qualifier l'intention → rédiger une réponse → mettre à jour le CRM.",
+    },
+  ],
+  sections: [
+    {
+      heading: "Qu'est-ce qui fait vraiment varier le prix d'un agent IA ?",
+      anchor: "facteurs-prix",
+      content: (
+        <p>
+          Trois leviers déterminent l&apos;essentiel du budget. <strong>Le nombre de workflows :</strong> chaque enchaînement d&apos;actions (trier les mails, qualifier un lead, préparer un devis) représente un bloc à concevoir, tester et valider. Un agent Démarrage couvre 1-2 workflows ; un agent Complet en orchestre 6 à 15. <strong>Les intégrations :</strong> brancher Gmail ou Notion prend 2-5 jours ; connecter un ERP propriétaire ou un outil sans API publique multiplie le temps d&apos;intégration par 3 à 5. <strong>La gouvernance :</strong> logs d&apos;audit structurés, permissions par rôle (RBAC), pipeline de validation humaine sur les actions sensibles — indispensable en environnement réglementé, optionnel pour un premier déploiement interne. Ces trois paramètres expliquent pourquoi deux PME avec des besoins similaires peuvent recevoir des devis très différents : ce sont les détails du terrain réel qui font la différence.
+        </p>
+      ),
+    },
+    {
+      heading: "Quels coûts cachés faut-il anticiper ?",
+      anchor: "couts-caches",
+      content: (
+        <ol className="ml-5 list-decimal space-y-2">
+          <li><strong>Tokens API LLM :</strong> chaque conversation traitée consomme des tokens facturés par le fournisseur LLM. 500 conversations/mois sur Claude EU ou Mistral représentent typiquement 30-150 € de tokens selon la longueur des échanges — inclus dans le run mensuel, pas de surprise en fin de mois.</li>
+          <li><strong>Maintenance des prompts :</strong> votre métier évolue — nouvelles procédures, nouveaux produits, changements réglementaires. Compter 1-4 h/mois de mise à jour des règles métier en régime de croisière (inclus dans le run).</li>
+          <li><strong>Évolutions fonctionnelles :</strong> ajouter un workflow après la livraison initiale est facturé séparément, typiquement 500-3 000 € selon la complexité. Définir le bon périmètre dès le premier échange évite ces surcoûts.</li>
+          <li><strong>Accompagnement au démarrage :</strong> 2-4 h de formation sont nécessaires pour ancrer les nouveaux gestes dans votre équipe. Ce poste est souvent sous-estimé — c&apos;est pourtant lui qui conditionne l&apos;adoption réelle au-delà des 30 premiers jours.</li>
+        </ol>
+      ),
+    },
+    {
+      heading: "Comment démarrer avec un budget maîtrisé ?",
+      anchor: "demarrer-budget",
+      content: (
+        <p>
+          La règle est simple : commencer par 1 ou 2 workflows à fort levier, mesurer le gain réel sur 30 jours, puis élargir. Un agent Démarrage (800-2 500 € build) sur le cas d&apos;usage le plus chronophage de votre équipe — triage inbox, qualification leads, notes de réunion automatisées — livre des résultats mesurables avant d&apos;engager un budget plus conséquent. Cette approche par étapes courtes réduit le risque : si le premier workflow ne tient pas ses promesses (rare, mais possible), on ajuste avant d&apos;aller plus loin. Elle évite aussi l&apos;erreur classique : acheter trop de fonctionnalités d&apos;un coup, sans avoir validé les cas d&apos;usage de base avec vos vraies données et vos vrais utilisateurs. Les projets IA qui échouent le font presque toujours parce que le terrain réel n&apos;a jamais été audité en amont — c&apos;est précisément ce que l&apos;audit initial (45 min, gratuit) permet d&apos;éviter.
+        </p>
+      ),
+    },
+    {
+      heading: "Pourquoi le sur-mesure l'emporte sur le SaaS à moyen terme ?",
+      anchor: "surmesure-vs-saas",
+      content: (
+        <p>
+          Les solutions SaaS d&apos;agent IA (Intercom, Drift, Monday AI, Zapier AI) démarrent souvent entre 50 et 500 €/mois pour des workflows prédéfinis. Avantage apparent : pas de phase de build. Limites réelles : (1) vous adaptez vos processus à l&apos;outil, pas l&apos;inverse ; (2) les intégrations sont standardisées — si votre CRM est Axonaut ou votre ERP est propriétaire, les connecteurs natifs sont rares ; (3) la gouvernance reste celle de l&apos;éditeur — hébergement EU, conformité RGPD, audit ne sont pas toujours garantis. À 18-24 mois, une PME qui a payé 300-500 €/mois de SaaS (soit 5 000-12 000 € dépensés) n&apos;est toujours pas autonome sur ses cas d&apos;usage spécifiques. Un agent sur mesure au niveau Intermédiaire (2 500-8 000 € build + 800-2 000 €/mois run) livre la même couverture fonctionnelle sur votre terrain réel, hébergé en UE, avec vos règles métier — et peut évoluer sans changer d&apos;outil.
+        </p>
+      ),
+    },
+  ],
+  comparison: {
+    title: "3 niveaux de tarification pour un agent IA PME",
+    columns: ["Niveau", "Build (one-shot)", "Run mensuel", "Périmètre"],
+    rows: [
+      { label: "Démarrage", values: ["800-2 500 €", "300-800 €/mois", "1-2 workflows, 1 outil intégré"] },
+      { label: "Intermédiaire", values: ["2 500-8 000 €", "800-2 000 €/mois", "3-6 workflows, 2-4 outils, dashboards"] },
+      { label: "Complet", values: ["8 000-20 000 €", "2 000-4 500 €/mois", "6-15 workflows, gouvernance, audit RGPD"] },
+    ],
+  },
+  sources: [
+    { label: "BPI France — Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
+    { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
+    { label: "Gartner — IA, automatisation et PME", url: "https://www.gartner.com/" },
+  ],
+  faq: [
+    {
+      question: "Peut-on démarrer un agent IA avec moins de 1 000 € ?",
+      answer:
+        "Oui. Le niveau Démarrage commence à 800 € build pour 1-2 workflows ciblés avec 1 intégration standard (Gmail, Notion, HubSpot). À ce stade, l'agent prend en charge votre cas d'usage à plus fort levier — et le run mensuel (300-800 €) est souvent couvert par le temps libéré si vous valorisez votre heure à 80 €+.",
+    },
+    {
+      question: "Le run mensuel inclut-il les coûts d'API LLM ?",
+      answer:
+        "Oui. Le run mensuel inclut les coûts de modèles IA (tokens LLM), l'hébergement souverain UE, le monitoring 24/7 et les hotfixes sous 24 h. Le forfait est calibré sur votre usage estimé — pas de surprises en fin de mois selon le volume traité.",
+    },
+    {
+      question: "Quel ROI peut-on attendre d'un agent IA PME ?",
+      answer:
+        "Le ROI se mesure en temps libéré et en erreurs évitées. Un agent qui trie l'inbox de 3 commerciaux et met à jour le CRM automatiquement économise 5-10 h/semaine par collaborateur. À 60-100 €/h chargé, le ROI positif est atteint en 2-4 mois pour un niveau Démarrage. Les projets qui tiennent leurs promesses ont systématiquement un cas d'usage audité et des métriques définies avant le départ.",
+    },
+    {
+      question: "Comment se passe le chiffrage lors du premier échange ?",
+      answer:
+        "Le premier échange (45 min, gratuit) se déroule en 3 temps : (1) audit rapide du terrain réel — quels outils, quels gestes chronophages, quelles données disponibles ; (2) identification des 1-3 cas d'usage à plus fort levier ; (3) fourchette de build et run personnalisée. Un devis indicatif est transmis sous 48 h, sans engagement.",
+    },
+  ],
+  relatedLinks: [
+    { label: "Agents IA — présentation complète", href: "/agents-ia" },
+    { label: "Automatisation — workflows et pipelines", href: "/automatisation" },
+    { label: "FAQ — Méthode & pricing", href: "/faq#methode-pricing" },
+  ],
+  pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
+};
+
+const agentIaVsChatbot: Article = {
+  slug: "agent-ia-vs-chatbot-quelle-difference",
+  title: "Agent IA vs chatbot : quelle différence, lequel choisir ?",
+  description:
+    "Agent IA vs chatbot : différences concrètes, tableau comparatif, quand le chatbot suffit et quand l'agent s'impose. Guide décision PME 2026, exemple inclus.",
+  tldr:
+    "Un chatbot répond à des questions selon des scripts prédéfinis — utile pour la FAQ et la qualification entrante. Un agent IA agit : il trie les mails, met à jour le CRM, prépare les devis, enchaîne des actions entre vos outils. Si votre besoin est informatif et stable, un chatbot suffit. Si vous avez besoin d'actions automatisées entre outils, il vous faut un agent.",
+  category: "Agents IA",
+  publishedAt: "2026-07-03",
+  keywords: [
+    "agent IA vs chatbot",
+    "différence agent IA chatbot",
+    "chatbot ou agent IA entreprise",
+    "agent IA PME",
+    "chatbot intelligent",
+  ],
+  wordCount: 1350,
+  glossary: [
+    {
+      term: "Chatbot",
+      definition:
+        "Programme conversationnel qui répond à des questions selon des règles ou scripts prédéfinis, sans capacité d'action dans des outils externes.",
+    },
+    {
+      term: "Agent IA",
+      definition:
+        "Chaîne d'exécution contrôlée qui sait (base de connaissances), raisonne (règles métier), agit (outils externes) et est supervisée (logs, alertes, hand-off humain).",
+    },
+    {
+      term: "Function calling",
+      definition:
+        "Capacité d'un LLM à invoquer des fonctions externes typées — la brique technique qui permet à un agent IA d'agir dans vos outils (CRM, email, agenda).",
+    },
+  ],
+  sections: [
+    {
+      heading: "Qu'est-ce qu'un chatbot et à quoi sert-il réellement ?",
+      anchor: "chatbot-definition",
+      content: (
+        <p>
+          Un chatbot est un programme conversationnel. Sa promesse : répondre aux questions fréquentes, guider un visiteur dans un tunnel, qualifier une demande entrante. Les chatbots modernes (Intercom, Crisp, Zendesk Bot) s&apos;appuient sur des scripts arborescents ou des règles LLM légères pour générer des réponses fluides. Ils restent dans la fenêtre de la conversation : ils n&apos;envoient pas d&apos;e-mail, ne mettent pas à jour votre CRM, ne planifient pas de rendez-vous. Leur force est leur simplicité — déployable en quelques heures, maintenable sans compétences techniques — et leur coût limité (30-300 €/mois). Leur limite est structurelle : ils répondent, ils n&apos;agissent pas.
+        </p>
+      ),
+    },
+    {
+      heading: "Comment un agent IA agit-il là où un chatbot s'arrête ?",
+      anchor: "agent-ia-definition",
+      content: (
+        <ol className="ml-5 list-decimal space-y-2">
+          <li><strong>Il connaît votre contexte :</strong> branché sur vos documents via RAG, il répond avec vos données réelles — pas avec ce que le LLM a mémorisé à l&apos;entraînement.</li>
+          <li><strong>Il raisonne sous contraintes :</strong> règles métier explicites, seuils de confiance, validation par conditions — il n&apos;hallucine pas sur des cas critiques, il escalade au bon humain.</li>
+          <li><strong>Il agit dans vos outils :</strong> via function calling, il écrit un e-mail, crée une opportunité dans HubSpot, bloque un créneau dans Google Calendar, prépare un devis dans Pennylane.</li>
+          <li><strong>Il est supervisé :</strong> chaque action est loggée, chaque décision est traçable. Un humain peut reprendre la main à tout moment selon un seuil de confiance configurable.</li>
+        </ol>
+      ),
+    },
+    {
+      heading: "Quand un simple chatbot suffit ?",
+      anchor: "quand-chatbot-suffit",
+      content: (
+        <p>
+          Soyons directs : un chatbot suffit dans plusieurs cas courants. Si votre objectif se limite à répondre aux questions FAQ de votre site (horaires, tarifs, procédures), à qualifier un visiteur entrant avec 3-5 questions et transmettre ses coordonnées à un commercial, ou à guider un utilisateur dans un formulaire complexe — un chatbot bien configuré fait le travail pour 50-300 €/mois, sans infrastructure complexe. Inutile de sur-engineer une solution agent IA si le besoin est statique et purement informatif. Cette honnêteté est précisément ce qui construit la confiance : un bon prestataire vous dit quand vous n&apos;avez pas besoin de lui.
+        </p>
+      ),
+    },
+    {
+      heading: "Quand un agent IA devient-il nécessaire ?",
+      anchor: "quand-agent-ia",
+      content: (
+        <p>
+          L&apos;agent s&apos;impose dès que vous avez besoin d&apos;actions, pas seulement de réponses. Exemples concrets : (a) <strong>Support client :</strong> classer les demandes, résoudre les cas courants, escalader les complexes avec résumé — sans que votre équipe touche à l&apos;inbox ; (b) <strong>Commercial :</strong> qualifier les leads entrants, les enrichir depuis LinkedIn, créer l&apos;opportunité dans le CRM, envoyer l&apos;e-mail de suivi personnalisé ; (c) <strong>Opérations :</strong> lire les comptes-rendus de réunion, extraire les actions, les attribuer dans votre outil de suivi, relancer les retardataires ; (d) <strong>Finance :</strong> extraire les données d&apos;une facture reçue, valider contre vos règles métier, imputer en comptabilité. Dans ces cas, un chatbot ne peut que prendre note — seul un agent ferme la boucle.
+        </p>
+      ),
+    },
+    {
+      heading: "Comment chatbot et agent IA se combinent dans une PME ?",
+      anchor: "combinaison",
+      content: (
+        <p>
+          La configuration la plus efficace pour une PME : un chatbot sur le site pour la qualification entrante (rapide, économique, disponible immédiatement) + un agent IA en back-office pour les processus métier (plus complexe, plus puissant, coût justifié par le temps libéré). Exemple concret d&apos;un cabinet de conseil de 12 personnes : le chatbot du site répond aux questions générales et collecte les coordonnées des prospects. L&apos;agent IA, lui, enrichit la fiche dans HubSpot, analyse le contexte de la demande, prépare un briefing pour le commercial concerné et bloque un créneau de démo dans son agenda — sans intervention humaine. Le commercial arrive en rendez-vous avec un dossier préparé, pas un formulaire à lire.
+        </p>
+      ),
+    },
+  ],
+  comparison: {
+    title: "Chatbot vs agent IA : matrice comparative",
+    columns: ["Critère", "Chatbot", "Agent IA"],
+    rows: [
+      { label: "Action principale", values: ["Répond", "Agit"] },
+      { label: "Intégration outils", values: ["Aucune (ou webhook simple)", "CRM, email, agenda, ERP"] },
+      { label: "Base de connaissances", values: ["Scripts ou règles fixes", "RAG sur vos documents réels"] },
+      { label: "Coût mensuel indicatif", values: ["30-300 €", "300-4 500 €"] },
+      { label: "Cas d'usage type", values: ["FAQ, qualification entrante", "Support autonome, back-office"] },
+      { label: "Limite principale", values: ["Ne ferme pas la boucle", "Nécessite un audit terrain"] },
+    ],
+  },
+  sources: [
+    { label: "Gartner — IA et automatisation du support", url: "https://www.gartner.com/" },
+    { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
+    { label: "CNIL — Position agentic AI 2025", url: "https://www.cnil.fr/" },
+  ],
+  faq: [
+    {
+      question: "Un chatbot peut-il évoluer vers un agent IA ?",
+      answer:
+        "Techniquement oui, mais pratiquement c'est souvent une reconstruction. Un chatbot basé sur des scripts ou un LLM léger (Intercom, Crisp) n'a pas l'architecture nécessaire pour les intégrations, la gestion des états et la traçabilité des actions. Mieux vaut concevoir un agent dès le départ si le besoin final est l'action, pas seulement la réponse.",
+    },
+    {
+      question: "Quel est le coût d'un agent IA vs un chatbot pour une PME ?",
+      answer:
+        "Un chatbot coûte 30-300 €/mois en abonnement SaaS. Un agent IA sur mesure : 800-2 500 € build + 300-800 €/mois pour un niveau Démarrage. La différence de coût se justifie si l'agent économise 5-10 h/semaine à votre équipe — le ROI positif est atteint en 2-4 mois dans la majorité des cas.",
+    },
+    {
+      question: "Mon équipe craint que l'agent IA remplace des postes — que répondre ?",
+      answer:
+        "Un agent IA prend en charge les gestes répétitifs (tri inbox, mise à jour CRM, notes de réunion, relances) pour libérer du temps sur ce qui compte vraiment. Les retours terrain montrent des gains nets : moins de temps administratif, plus de temps sur le cœur de métier, moins d'erreurs de saisie. La communication interne autour du changement est aussi importante que l'outil — un agent imposé sans explication génère de la résistance, pas de la performance.",
+    },
+  ],
+  relatedLinks: [
+    { label: "Agents IA — présentation complète", href: "/agents-ia" },
+    { label: "RAG — mémoire sur vos données", href: "/rag" },
+    { label: "Combien coûte un agent IA pour une PME ?", href: "/articles/combien-coute-agent-ia-pme-2026" },
+  ],
+  pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
+};
+
 export const ARTICLES: Article[] = [
   auditApplicationMetier,
   agentIaRgpdSouverain,
   ragVsFineTuning,
   automatiserTriMails,
   factureElectroniqueChorusPro,
+  combienCouteAgentIaPme,
+  agentIaVsChatbot,
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {
