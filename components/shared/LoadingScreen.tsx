@@ -23,17 +23,28 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
       return;
     }
 
-    setMounted(true);
-
     const mobileNow = window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
     const lightMode = mobileNow || isMobile || shouldReduceMotion;
-    const logoTimer = setTimeout(() => setShowLogo(true), lightMode ? 20 : 120);
-    const exitTimer = setTimeout(() => setIsExiting(true), lightMode ? 220 : 920);
+
+    // Mobile/reduced : 320ms d'overlay n'apportent rien et recouvriraient un
+    // contenu déjà peint (LCP). Garde-fou desktop : si l'hydration arrive
+    // tard (>1,5s), l'utilisateur lit déjà la page — afficher l'overlay
+    // par-dessus serait perçu comme un flash/bug. Signature desktop only.
+    if (lightMode || performance.now() > 1500) {
+      window.sessionStorage.setItem("solutions-2ia-loaded", "1");
+      onComplete?.();
+      return;
+    }
+
+    setMounted(true);
+
+    const logoTimer = setTimeout(() => setShowLogo(true), 120);
+    const exitTimer = setTimeout(() => setIsExiting(true), 920);
     const doneTimer = setTimeout(() => {
       window.sessionStorage.setItem("solutions-2ia-loaded", "1");
       document.body.style.overflow = "";
       onComplete?.();
-    }, lightMode ? 320 : 1180);
+    }, 1180);
 
     document.body.style.overflow = "hidden";
 

@@ -58,13 +58,9 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center">
           {/* Text content */}
           <div className="max-w-2xl">
-            {/* Status badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: premiumEase }}
-              whileHover={{ y: -2 }}
-              className="group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_14px_40px_rgba(99,102,241,0.08)] transition-colors duration-300 hover:border-border-accent"
+            {/* Status badge — entrée CSS (peinte avant hydration) */}
+            <div
+              className="hero-enter group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_14px_40px_rgba(99,102,241,0.08)] transition duration-300 hover:border-border-accent hover:-translate-y-0.5"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -73,38 +69,32 @@ export function HeroSection() {
               <span className="text-xs text-text-secondary font-medium tracking-wide">
                 Développeur indépendant · web & IA
               </span>
-            </motion.div>
+            </div>
 
             {/* Title */}
-            <motion.h1
-              initial={{ opacity: 0, y: 36 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.12, ease: premiumEase }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
+            <h1
+              className="hero-enter text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
+              style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
             >
               Des outils qui travaillent
               <br />
               <span className="text-gradient-strong">pour vous</span>
-            </motion.h1>
+            </h1>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.24, ease: premiumEase }}
-              className="mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty"
+            {/* Subtitle — élément LCP : doit peindre sans attendre le JS */}
+            <p
+              className="hero-enter mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty"
+              style={{ "--enter-delay": "0.24s" } as React.CSSProperties}
             >
               Je conçois des sites web, des applications et des automatisations
               sur mesure. Vous m&apos;expliquez ce qui vous prend du temps —
               je construis l&apos;outil qui s&apos;en charge.
-            </motion.p>
+            </p>
 
             {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.36, ease: premiumEase }}
-              className="mt-10 flex flex-wrap gap-4"
+            <div
+              className="hero-enter mt-10 flex flex-wrap gap-4"
+              style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
             >
               <Button variant="primary" size="lg" href="/contact">
                 Premier échange gratuit
@@ -113,14 +103,12 @@ export function HeroSection() {
               <Button variant="secondary" size="lg" href="/services">
                 Voir ce que je fais
               </Button>
-            </motion.div>
+            </div>
 
             {/* Proof strip */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.7 }}
-              className="mt-12 flex flex-wrap items-start gap-x-8 gap-y-4"
+            <div
+              className="hero-enter-fade mt-12 flex flex-wrap items-start gap-x-8 gap-y-4"
+              style={{ "--enter-delay": "0.7s" } as React.CSSProperties}
             >
               {[
                 { label: "Agents intelligents", value: "IA", icon: (
@@ -144,13 +132,10 @@ export function HeroSection() {
                   </svg>
                 )},
               ].map((item, i) => (
-                <motion.div
+                <div
                   key={item.value}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
-                  whileHover={{ y: -3 }}
-                  className="group flex items-center gap-3"
+                  className="hero-enter group flex items-center gap-3 transition-transform duration-300 hover:-translate-y-[3px]"
+                  style={{ "--enter-delay": `${0.8 + i * 0.1}s` } as React.CSSProperties}
                 >
                   <div className="w-8 h-8 rounded-lg bg-accent-glow border border-border-subtle flex items-center justify-center transition-colors duration-300 group-hover:border-border-accent group-hover:bg-accent-glow-strong">
                     {item.icon}
@@ -159,9 +144,9 @@ export function HeroSection() {
                     <span className="text-sm font-bold text-text-primary block leading-tight">{item.value}</span>
                     <span className="text-[11px] text-text-tertiary leading-tight">{item.label}</span>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Visual composition — full/reduced desktop (HeroVisual se statifie

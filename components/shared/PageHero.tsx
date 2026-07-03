@@ -39,12 +39,10 @@ function MobileHeroPreview({
 }) {
 
   return (
-    <motion.div
+    <div
       data-mobile-hero-preview
-      className="relative mt-10 overflow-hidden rounded-3xl border border-border-subtle bg-bg-card/70 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:hidden"
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.75, delay: 0.36, ease: premiumEase }}
+      className="hero-enter relative mt-10 overflow-hidden rounded-3xl border border-border-subtle bg-bg-card/70 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:hidden"
+      style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
     >
       <motion.div
         aria-hidden="true"
@@ -104,7 +102,7 @@ function MobileHeroPreview({
           </motion.div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -151,38 +149,31 @@ export function PageHero({
 
       <div className="section-container relative z-10 pt-28 pb-16 lg:pt-36 lg:pb-20 w-full">
         <div className={hasVisual ? "grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center" : "max-w-3xl mx-auto text-center"}>
-          {/* Text */}
+          {/* Text — entrée CSS pure : le h1/description (LCP) peint avant l'hydration */}
           <div className={hasVisual ? "max-w-2xl" : ""}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: premiumEase }}
-              className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${!hasVisual ? "mx-auto" : ""}`}
+            <div
+              className={`hero-enter inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${!hasVisual ? "mx-auto" : ""}`}
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-light" />
               </span>
               <span className="text-xs text-text-secondary font-medium tracking-wide">{label}</span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 36 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: premiumEase }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
+            <h1
+              className="hero-enter text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
+              style={{ "--enter-delay": "0.1s" } as React.CSSProperties}
             >
               {title}
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: premiumEase }}
-              className={`mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty ${!hasVisual ? "mx-auto" : ""}`}
+            <p
+              className={`hero-enter mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty ${!hasVisual ? "mx-auto" : ""}`}
+              style={{ "--enter-delay": "0.2s" } as React.CSSProperties}
             >
               {description}
-            </motion.p>
+            </p>
 
             {showMobilePreview && (
               <MobileHeroPreview
@@ -193,11 +184,9 @@ export function PageHero({
             )}
 
             {(primaryCta || secondaryCta) && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3, ease: premiumEase }}
-                className={`mt-9 flex flex-wrap gap-4 ${!hasVisual ? "justify-center" : ""}`}
+              <div
+                className={`hero-enter mt-9 flex flex-wrap gap-4 ${!hasVisual ? "justify-center" : ""}`}
+                style={{ "--enter-delay": "0.3s" } as React.CSSProperties}
               >
                 {primaryCta && (
                   <Button variant="primary" size="lg" href={primaryCta.href}>
@@ -212,7 +201,7 @@ export function PageHero({
                     {secondaryCta.label}
                   </Button>
                 )}
-              </motion.div>
+              </div>
             )}
           </div>
 
