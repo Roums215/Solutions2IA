@@ -151,8 +151,9 @@ export function HeroSection() {
 
           {/* Visual composition — full/reduced desktop (HeroVisual se statifie
               lui-même en reduced) ; minimal : hero texte seul. */}
+          {/* hidden lg:block : le SSR mobile n'embarque pas le placeholder vide de 460px */}
           {!isMobile && !shouldReduceMotion && tier !== "minimal" && (
-            <div className="relative lg:pl-4">
+            <div className="relative hidden lg:block lg:pl-4">
               <HeroVisual />
             </div>
           )}
