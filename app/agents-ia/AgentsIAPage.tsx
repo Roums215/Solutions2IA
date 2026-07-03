@@ -19,8 +19,12 @@ const AIBrainScene = dynamic(
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import { AgentAnatomyDiagram } from "@/components/sections/agents-ia/AgentAnatomyDiagram";
 import { UniversalNeedsGrid } from "@/components/sections/agents-ia/UniversalNeedsGrid";
-import { OneAgentManyNeedsPipeline } from "@/components/sections/agents-ia/OneAgentManyNeedsPipeline";
 import { ProfileCarousel } from "@/components/sections/agents-ia/ProfileCarousel";
+
+// Section massive (~1000 LOC) sous la fold : chunk séparé, SSR conservé.
+const OneAgentManyNeedsPipeline = dynamic(() =>
+  import("@/components/sections/agents-ia/OneAgentManyNeedsPipeline").then((m) => m.OneAgentManyNeedsPipeline),
+);
 import { TrustGuardrails } from "@/components/sections/agents-ia/TrustGuardrails";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 

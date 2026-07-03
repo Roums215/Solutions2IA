@@ -246,9 +246,10 @@ function AutomationSceneInner() {
                 </div>
                 <div className="h-1 rounded-full bg-bg-tertiary/50 overflow-hidden">
                   <motion.div
-                    className={`h-full rounded-full ${m.bar.split(" ").slice(1).join(" ")}`}
-                    initial={{ width: 0 }}
-                    animate={{ width: m.bar.split(" ")[0].replace("w-[", "").replace("]", "") }}
+                    className={`h-full rounded-full origin-left ${m.bar.split(" ").slice(1).join(" ")}`}
+                    style={{ width: m.bar.split(" ")[0].replace("w-[", "").replace("]", "") }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
                     transition={{ delay: 1.5 + i * 0.1, duration: 0.8, ease }}
                   />
                 </div>

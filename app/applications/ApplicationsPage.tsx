@@ -19,9 +19,16 @@ const AppScene = dynamic(
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import { SectorsCoverage } from "@/components/sections/applications/SectorsCoverage";
-import { AppDigitizationPipeline } from "@/components/sections/applications/AppDigitizationPipeline";
 import { BuildOrAuditDiptych } from "@/components/sections/applications/BuildOrAuditDiptych";
-import { PerformanceTracking } from "@/components/sections/applications/PerformanceTracking";
+
+// Sections massives (~1000 LOC chacune) loin sous la fold : chunks séparés,
+// SSR conservé (contenu dans le HTML), hydration différée.
+const AppDigitizationPipeline = dynamic(() =>
+  import("@/components/sections/applications/AppDigitizationPipeline").then((m) => m.AppDigitizationPipeline),
+);
+const PerformanceTracking = dynamic(() =>
+  import("@/components/sections/applications/PerformanceTracking").then((m) => m.PerformanceTracking),
+);
 
 const capabilities = [
   {
