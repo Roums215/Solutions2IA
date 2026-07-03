@@ -18,6 +18,7 @@ const AutomationScene = dynamic(
 );
 import { SectorGrid } from "@/components/sections/automation/SectorGrid";
 import { IntegrationsConnect } from "@/components/sections/automation/IntegrationsConnect";
+import { ChorusProSection } from "@/components/sections/automation/ChorusProSection";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 
@@ -153,6 +154,9 @@ export function AutomatisationPage() {
 
       {/* Outils connectés — hub animé + logos de marques + barre défilante */}
       <IntegrationsConnect />
+
+      {/* Échéance Chorus Pro / Factur-X — cible "facture électronique 2026" */}
+      <ChorusProSection />
 
       <RelatedServices current="automatisation" />
 

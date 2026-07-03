@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   buildBreadcrumbSchema,
+  buildOfferCatalogSchema,
   buildServiceSchema,
   combineSchemas,
 } from "@/lib/seo/schema";
@@ -41,6 +42,45 @@ export default function Page() {
       { name: "Accueil", url: "/" },
       { name: "Services", url: "/services" },
     ]),
+    // Fourchettes alignées sur la FAQ (lib/content/faqData.ts, méthode & pricing).
+    buildOfferCatalogSchema({
+      name: "Services Solutions 2IA",
+      tiers: [
+        {
+          name: "Site web",
+          description:
+            "Site vitrine ou site connecté (réservation, espace client, paiement), rapide et référencé.",
+          priceRange: "dès 500 €",
+          url: "/sites-web",
+        },
+        {
+          name: "Application métier sur mesure",
+          description:
+            "Du MVP fonctionnel à la plateforme avancée : remplace Excel et le papier par un outil unique.",
+          priceRange: "1 500 € — 40 000 €",
+          url: "/applications",
+        },
+        {
+          name: "Agent IA sur mesure",
+          description:
+            "Assistant qui trie les mails, prépare les devis, met à jour le CRM. Hébergement souverain UE.",
+          priceRange: "800 € — 20 000 € (build) + run mensuel",
+          url: "/agents-ia",
+        },
+        {
+          name: "Automatisation",
+          description:
+            "Vos logiciels reliés entre eux : fin des ressaisies et relances manuelles. Chiffrage après audit d'un process réel.",
+          url: "/automatisation",
+        },
+        {
+          name: "Mémoire d'entreprise (RAG)",
+          description:
+            "Une IA qui répond avec vos documents et cite ses sources, hébergée en UE.",
+          url: "/rag",
+        },
+      ],
+    }),
   );
 
   return (

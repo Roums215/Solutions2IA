@@ -83,9 +83,10 @@ function AppSceneInner() {
                 {[25, 40, 35, 60, 45, 75, 55, 80, 65, 90, 70, 85].map((h, i) => (
                   <motion.div
                     key={i}
-                    className="flex-1 rounded-t-sm bg-gradient-to-t from-accent-primary/25 to-accent-light/35"
-                    initial={{ height: 0 }}
-                    animate={{ height: `${h}%` }}
+                    className="flex-1 rounded-t-sm bg-gradient-to-t from-accent-primary/25 to-accent-light/35 origin-bottom"
+                    style={{ height: `${h}%` }}
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
                     transition={{ delay: 1.0 + i * 0.04, duration: 0.4, ease }}
                   />
                 ))}
@@ -140,9 +141,10 @@ function AppSceneInner() {
                   return (
                     <motion.div
                       key={i}
-                      className="flex-1 rounded-t-sm bg-gradient-to-t from-accent-primary/20 to-accent-light/35"
-                      initial={{ height: 0 }}
-                      animate={{ height: `${Math.min(95, h)}%` }}
+                      className="flex-1 rounded-t-sm bg-gradient-to-t from-accent-primary/20 to-accent-light/35 origin-bottom"
+                      style={{ height: `${Math.min(95, h)}%` }}
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
                       transition={{ delay: 1.2 + i * 0.04, duration: 0.4, ease }}
                     />
                   );

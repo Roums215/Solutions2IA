@@ -60,9 +60,9 @@ function WebSceneInner() {
 
             {/* Hero section mock */}
             <div className="rounded-xl bg-gradient-to-br from-accent-primary/8 via-bg-tertiary/20 to-cyan/5 border border-border-subtle p-4">
-              <motion.div className="w-[55%] h-5 rounded bg-white/8 mb-2" initial={{ width: 0 }} animate={{ width: "55%" }} transition={{ delay: 0.8, duration: 0.6, ease }} />
-              <motion.div className="w-[75%] h-2 rounded bg-white/4 mb-1.5" initial={{ width: 0 }} animate={{ width: "75%" }} transition={{ delay: 0.9, duration: 0.5, ease }} />
-              <motion.div className="w-[45%] h-2 rounded bg-white/4" initial={{ width: 0 }} animate={{ width: "45%" }} transition={{ delay: 1.0, duration: 0.5, ease }} />
+              <motion.div className="w-[55%] h-5 rounded bg-white/8 mb-2 origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 0.6, ease }} />
+              <motion.div className="w-[75%] h-2 rounded bg-white/4 mb-1.5 origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.9, duration: 0.5, ease }} />
+              <motion.div className="w-[45%] h-2 rounded bg-white/4 origin-left" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 1.0, duration: 0.5, ease }} />
               <div className="flex gap-2 mt-4">
                 <motion.div className="w-20 h-7 rounded-lg bg-accent-primary/30 border border-accent-primary/15" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.1, duration: 0.3, ease }} />
                 <motion.div className="w-20 h-7 rounded-lg border border-border-subtle" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 1.2, duration: 0.3, ease }} />

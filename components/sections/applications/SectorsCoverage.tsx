@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -84,6 +85,16 @@ export function SectorsCoverage() {
                       </li>
                     ))}
                   </ul>
+                  <Link
+                    href={`/applications/${sector.slug}`}
+                    className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-light transition-colors duration-200 hover:text-text-primary"
+                    style={{ transform: "translateZ(14px)" }}
+                  >
+                    Voir le détail {sector.name}
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               </SpotlightCard>
             </motion.article>

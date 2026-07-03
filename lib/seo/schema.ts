@@ -254,6 +254,41 @@ export function buildOfferCatalogSchema(input: {
   };
 }
 
+// ─── DefinedTermSet (glossaire — fort levier GEO, cité par les IA) ─────────
+
+export type DefinedTermInput = {
+  name: string;
+  description: string;
+  /** Ancre sur la page glossaire, ex: "/glossaire#agent-ia" */
+  url: string;
+};
+
+export function buildDefinedTermSetSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  terms: DefinedTermInput[];
+}): JsonLdObject {
+  const setId = `${absoluteUrl(input.url)}#termset`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    "@id": setId,
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl(input.url),
+    inLanguage: "fr-FR",
+    publisher: { "@id": ORG_ID },
+    hasDefinedTerm: input.terms.map((t) => ({
+      "@type": "DefinedTerm",
+      name: t.name,
+      description: t.description,
+      url: absoluteUrl(t.url),
+      inDefinedTermSet: { "@id": setId },
+    })),
+  };
+}
+
 // ─── Wrapper @graph (pour injecter plusieurs schemas dans un seul script) ──
 
 export function combineSchemas(...schemas: JsonLdObject[]): JsonLdObject {

@@ -5,6 +5,8 @@ import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { deliveryFlow } from "@/components/sections/home/homeDeliveryFlow";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildHowToSchema } from "@/lib/seo/schema";
 
 // Sections sous la fold : chunks séparés, hydration différée. ssr:true (défaut)
 // → le contenu reste dans le HTML (SEO intact), seul le JS arrive plus tard.
@@ -25,8 +27,16 @@ const HomeApproachSplit = dynamic(() =>
 );
 
 export default function Home() {
+  const howToSchema = buildHowToSchema({
+    name: "Comment je travaille — du premier échange à l'outil en production",
+    description:
+      "Méthode en quatre étapes pour créer un site web, une application ou une automatisation sur mesure : échange gratuit, proposition chiffrée, construction, mise en ligne et suivi.",
+    steps: deliveryFlow.map((s) => ({ name: s.title, text: s.description })),
+  });
+
   return (
     <>
+      <JsonLd schema={howToSchema} id="ld-home-howto" />
       <PageAtmosphere preset="home" />
       <FluidMouseField intensity={1} />
 

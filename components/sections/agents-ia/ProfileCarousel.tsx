@@ -104,9 +104,9 @@ export function ProfileCarousel() {
             {autoplayActive ? (
               <motion.span
                 key={cycleKey}
-                className="absolute inset-y-0 left-0 block"
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
+                className="absolute inset-0 block origin-left"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
                 transition={{ duration: ROTATION_MS / 1000, ease: "linear" }}
                 style={{
                   background:

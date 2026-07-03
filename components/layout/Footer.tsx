@@ -34,8 +34,8 @@ export function Footer() {
             </Link>
             <p className="text-sm text-text-secondary leading-relaxed max-w-sm">
               Expériences digitales intelligentes. Sites web, applications,
-              agents IA et automatisation pour les entreprises qui visent
-              l&apos;excellence.
+              agents IA et automatisation pour les entreprises en France,
+              Belgique, Suisse et Luxembourg.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs text-text-tertiary">
               <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
