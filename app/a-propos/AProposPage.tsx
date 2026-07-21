@@ -96,7 +96,7 @@ export function AProposPage() {
                 Je m&apos;appelle <span className="text-text-primary font-medium">Iulian Ionita</span>. J&apos;ai été
                 formé en ingénierie du web, puis j&apos;ai travaillé sur des projets pour des
                 entreprises comme <span className="text-text-primary">DFT (Digital Factory Telecom)</span> et
-                <span className="text-text-primary"> Ramsay Santé</span> — des télécoms à la santé.
+                <span className="text-text-primary"> Ramsay Santé</span>, des télécoms à la santé.
               </p>
               <p>
                 C&apos;est là que j&apos;ai vu la même chose partout : des équipes qui perdent un temps
@@ -107,7 +107,7 @@ export function AProposPage() {
                 Aujourd&apos;hui, je me lance à mon compte pour faire ça directement pour vous.{" "}
                 <span className="text-text-primary font-medium">Démarrer, c&apos;est ma force :</span> je
                 suis disponible, proche, je prends le temps, et mes prix sont accessibles. Vous
-                n&apos;êtes pas un dossier parmi cent — vous parlez à la personne qui construit.
+                n&apos;êtes pas un dossier parmi cent. Vous parlez à la personne qui construit.
               </p>
             </motion.div>
           </motion.div>
@@ -221,7 +221,7 @@ export function AProposPage() {
 
       <CTABand
         title={<>On fait <span className="text-gradient-strong">connaissance</span> ?</>}
-        description="Le meilleur moyen de voir si on peut travailler ensemble, c'est d'en parler. Premier échange gratuit, sans engagement — et vous repartez au minimum avec un regard neuf sur votre situation."
+        description="Le meilleur moyen de voir si on peut travailler ensemble, c'est d'en parler. Premier échange gratuit, sans engagement : vous repartez au minimum avec un regard neuf sur votre situation."
         primaryLabel="Premier échange gratuit"
       />
     </>

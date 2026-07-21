@@ -67,7 +67,7 @@ export function WebOpportunityFlow() {
               <span className="text-gradient-strong">prochain client</span>.
             </>
           }
-          description="Neuf étapes connectées. Une seule logique : chaque étape transmet le contexte à la suivante — sans intervention manuelle, sans perte d'information."
+          description="Neuf étapes connectées. Une seule logique : chaque étape transmet le contexte à la suivante, sans intervention manuelle, sans perte d'information."
         />
 
         <motion.div

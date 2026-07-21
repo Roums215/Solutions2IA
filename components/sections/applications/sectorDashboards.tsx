@@ -166,7 +166,7 @@ const PRACTITIONERS = [
   { name: "Dr Martin", status: "Téléconsult", time: "14:25", level: "ok" as AlertLevel },
   { name: "Dr Bensimon", status: "Consultation", time: "14:12", level: "ok" as AlertLevel },
   { name: "Dr Dupont", status: "Salle d'attente · 4 patients", time: "14:30", level: "warn" as AlertLevel },
-  { name: "Dr Aubry", status: "Disponible", time: "—", level: "info" as AlertLevel },
+  { name: "Dr Aubry", status: "Disponible", time: "–", level: "info" as AlertLevel },
 ];
 
 // Slots de la journée (8h-19h), une marque par RDV
@@ -276,7 +276,7 @@ function SanteDashboard({ reduced }: { reduced: boolean }) {
 
         <StaggerItem>
           <div className="mt-4">
-            <SectionLabel>Praticiens — statut temps réel</SectionLabel>
+            <SectionLabel>Praticiens : statut temps réel</SectionLabel>
             <ul className="mt-2 space-y-1.5">
               {PRACTITIONERS.map((p) => (
                 <li
@@ -528,7 +528,7 @@ function IndustrieDashboard({ reduced }: { reduced: boolean }) {
 
         <StaggerItem>
           <div className="mt-4">
-            <SectionLabel>OEE par ligne — temps réel</SectionLabel>
+            <SectionLabel>OEE par ligne : temps réel</SectionLabel>
             <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {LINES.map((l, i) => {
                 const offline = l.oee === 0;
@@ -693,7 +693,7 @@ function ServicesProDashboard({ reduced }: { reduced: boolean }) {
 
         <StaggerItem>
           <div className="mt-4">
-            <SectionLabel>Dossiers actifs — heures du jour</SectionLabel>
+            <SectionLabel>Dossiers actifs : heures du jour</SectionLabel>
             <ul className="mt-2 space-y-1.5">
               {MATTERS.map((m, i) => (
                 <li
@@ -984,7 +984,7 @@ function ImmoDashboard({ reduced }: { reduced: boolean }) {
 
         <StaggerItem>
           <div className="mt-4">
-            <SectionLabel>Pointage temps réel — équipes présentes</SectionLabel>
+            <SectionLabel>Pointage temps réel : équipes présentes</SectionLabel>
             <ul className="mt-2 space-y-1">
               {CREWS.map((c) => (
                 <li

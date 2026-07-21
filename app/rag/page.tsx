@@ -8,7 +8,7 @@ import {
 import { RagPage } from "./RagPage";
 
 export const metadata: Metadata = {
-  title: "Mémoire d'entreprise (RAG) — l'IA qui répond avec vos documents",
+  title: "Mémoire d'entreprise (RAG) : l'IA qui répond avec vos documents",
   description:
     "Connectez vos procédures, contrats et PDF : une IA qui répond avec vos propres documents et cite ses sources, hébergée en UE. Premier échange gratuit.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/rag" },
   openGraph: {
-    title: "Mémoire d'entreprise (RAG) — une IA qui cite vos documents",
+    title: "Mémoire d'entreprise (RAG) : une IA qui cite vos documents",
     description:
       "Une IA branchée sur vos documents internes, qui répond aux questions métier et cite ses sources. Hébergée en UE.",
     url: "/rag",

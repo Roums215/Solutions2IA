@@ -92,10 +92,10 @@ export const OPPORTUNITY_STATIONS: OpportunityStation[] = [
 ];
 
 export const OPPORTUNITY_CLOSING =
-  "Le site déclenche le flux. Chaque étape transmet le contexte. Personne n'a à y penser — et personne ne tombe entre les mailles.";
+  "Le site déclenche le flux. Chaque étape transmet le contexte. Personne n'a à y penser, et personne ne tombe entre les mailles.";
 
 export const OPPORTUNITY_BRIDGE_TO_TOOLS =
   "Chaque étape repose sur un outil métier précis.";
 
 export const OPPORTUNITY_EDITORIAL_V64 =
-  "Chacune des 9 étapes peut être renforcée par une solution sur-mesure — automatisation, mémoire métier ou agent autonome — selon ce que votre activité réclame.";
+  "Chacune des 9 étapes peut être renforcée par une solution sur-mesure (automatisation, mémoire métier ou agent autonome) selon ce que votre activité réclame.";

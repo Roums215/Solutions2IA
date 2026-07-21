@@ -115,7 +115,7 @@ const SOURCES: SourceDef[] = [
       kicker: "Intégration",
       title: "Vos SaaS dialoguent enfin",
       description:
-        "Connecteurs API REST, webhooks entrants/sortants ou polling — vos outils restent en place mais arrêtent de travailler en silos.",
+        "Connecteurs API REST, webhooks entrants/sortants ou polling : vos outils restent en place mais arrêtent de travailler en silos.",
       tags: ["REST", "Webhooks", "Polling"],
     },
   },
@@ -422,7 +422,7 @@ function NodeCard({
       {...(onSelect
         ? { type: "button" as const, onClick: onSelect, "aria-pressed": isSelected }
         : { role: "group" as const })}
-      aria-label={ariaLabel ?? `${label} — ${sublabel}`}
+      aria-label={ariaLabel ?? `${label} : ${sublabel}`}
       aria-current={status === "active" ? "step" : undefined}
       tabIndex={showTooltip || onSelect ? 0 : undefined}
       className={[
@@ -740,7 +740,7 @@ function NodeOverlay({
           }
           status={getAppStatus(effectiveTick)}
           size="central"
-          ariaLabel="Application métier — cœur du dispositif qui ingère, normalise et restitue les données."
+          ariaLabel="Application métier : cœur du dispositif qui ingère, normalise et restitue les données."
           hover={APP_HOVER}
           tooltipSide={appTooltipSide}
           enableHover={enableHover}
@@ -1004,7 +1004,7 @@ export function AppDigitizationPipeline() {
                   },
                   {
                     label: "Synchro API",
-                    text: "connecteurs ERP, CRM, comptabilité, paie, outils existants — sans casser ce qui marche.",
+                    text: "connecteurs ERP, CRM, comptabilité, paie, outils existants, sans casser ce qui marche.",
                   },
                   {
                     label: "Restitution pilotage",

@@ -38,7 +38,7 @@ function StudioSceneInner() {
               <div className="w-2 h-2 rounded-full bg-yellow-400/80" />
               <div className="w-2 h-2 rounded-full bg-green-400/80" />
             </div>
-            <span className="text-[8px] text-text-tertiary font-mono ml-2">Composition — Studio 2IA</span>
+            <span className="text-[8px] text-text-tertiary font-mono ml-2">Composition · Studio 2IA</span>
             <div className="ml-auto flex gap-1">
               <div className="px-2 py-0.5 rounded bg-accent-glow border border-accent-primary/20">
                 <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" className="text-accent-light"><polygon points="5 3 19 12 5 21" /></svg>

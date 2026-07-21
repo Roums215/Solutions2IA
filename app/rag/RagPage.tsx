@@ -32,7 +32,7 @@ export function RagPage() {
         title={
           <>
             Une IA qui répond avec{" "}
-            <span className="text-gradient-strong">vos documents</span> — pas
+            <span className="text-gradient-strong">vos documents</span>, pas
             avec du vent.
           </>
         }

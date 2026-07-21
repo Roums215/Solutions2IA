@@ -104,7 +104,7 @@ export const SOURCES_ADAPTIVE_LINES = [
 ];
 
 export const SOURCES_ADAPTIVE_CONCLUSION =
-  "Je branche les canaux qui comptent pour vous — et on laisse de côté les autres.";
+  "Je branche les canaux qui comptent pour vous, et on laisse de côté les autres.";
 
 export const SOURCES_CLOSING =
   "Neuf canaux. Un seul site qui les centralise et les transforme en contacts qualifiés.";

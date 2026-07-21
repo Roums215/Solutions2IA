@@ -104,7 +104,7 @@ export function GlossairePage() {
             <span className="text-gradient-strong">sans jargon</span>.
           </>
         }
-        description="Premier échange gratuit : vous expliquez votre quotidien, je traduis ce que l'IA et l'automatisation peuvent y changer — en français."
+        description="Premier échange gratuit : vous expliquez votre quotidien, je traduis ce que l'IA et l'automatisation peuvent y changer, en français."
       />
     </>
   );

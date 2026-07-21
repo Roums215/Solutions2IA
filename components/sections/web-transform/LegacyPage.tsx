@@ -143,7 +143,7 @@ function HeroSection() {
         </h1>
         <p className="text-[11px] sm:text-[13px] text-[#64748b] leading-relaxed mb-3 sm:mb-4 max-w-[95%]">
           Trouvez votre meuble pas cher livré chez vous ! Plus de 5000
-          références en stock — canapés, tables, armoires, déco. Paiement en
+          références en stock : canapés, tables, armoires, déco. Paiement en
           3x sans frais.
         </p>
         <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">

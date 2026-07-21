@@ -33,7 +33,7 @@ const services = [
   },
   {
     title: "Automatisations",
-    description: "Vos logiciels se parlent enfin. Les tâches répétitives — ressaisies, relances, transferts — se font toutes seules.",
+    description: "Vos logiciels se parlent enfin. Les tâches répétitives (ressaisies, relances, transferts) se font toutes seules.",
     href: "/automatisation",
     gradient: "from-accent-dark to-cyan",
     includes: ["On part de vos outils actuels", "Plus de ressaisie à la main", "Vous gardez le contrôle", "Je surveille que ça tourne"],
@@ -51,7 +51,7 @@ const services = [
   },
   {
     title: "Mémoire d'entreprise",
-    description: "Vos documents deviennent une IA qui répond — en citant le bon fichier. Plus besoin de déranger la personne qui sait.",
+    description: "Vos documents deviennent une IA qui répond, en citant le bon fichier. Plus besoin de déranger la personne qui sait.",
     href: "/rag",
     gradient: "from-accent-light to-accent-primary",
     includes: ["Branchée sur vos documents", "Répond en citant la source", "Vos données restent en Europe", "Se met à jour toute seule"],
@@ -188,7 +188,7 @@ export function ServicesPage() {
           <SectionHeading
             label="Les prix, sans détour"
             title="Combien ça coûte ?"
-            description="Des fourchettes claires pour situer votre projet. Le prix exact dépend de vos besoins — il peut être plus bas comme plus haut — et il est fixé ensemble, avant de démarrer."
+            description="Des fourchettes claires pour situer votre projet. Le prix exact dépend de vos besoins (il peut être plus bas comme plus haut) et il est fixé ensemble, avant de démarrer."
           />
           <motion.div
             variants={staggerContainer}
@@ -225,7 +225,7 @@ export function ServicesPage() {
           <PremiumFlowPanel
             label="Comment je travaille"
             title="De votre besoin à l'outil qui tourne, en quatre étapes."
-            description="La même méthode pour tous les projets, du petit site à l'application : on se parle, je propose, je construis, ça tourne — et je reste là."
+            description="La même méthode pour tous les projets, du petit site à l'application : on se parle, je propose, je construis, ça tourne. Et je reste là."
             steps={serviceFlow}
             accent="129, 140, 248"
           />
@@ -264,7 +264,7 @@ export function ServicesPage() {
 
       <CTABand
         title={<>Vous ne savez pas par où <span className="text-gradient-strong">commencer</span> ?</>}
-        description="C'est normal, et c'est justement mon travail. Expliquez-moi votre situation lors d'un premier échange gratuit — je vous dis ce qui vous aiderait le plus, simplement."
+        description="C'est normal, et c'est justement mon travail. Expliquez-moi votre situation lors d'un premier échange gratuit : je vous dis ce qui vous aiderait le plus, simplement."
         primaryLabel="Premier échange gratuit"
       />
     </>

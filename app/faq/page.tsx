@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "30 questions structurées : comment un agent IA évite les hallucinations, RAG vs fine-tuning, hébergement souverain UE, pilote 30 jours, coûts, secteurs couverts.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ — 30 questions sur agents IA, apps métier, RAG, RGPD, pricing",
+    title: "FAQ : 30 questions sur agents IA, apps métier, RAG, RGPD, pricing",
     description: "Réponses concrètes et sourcées sur l'IA enterprise française.",
     url: "/faq",
     type: "website",

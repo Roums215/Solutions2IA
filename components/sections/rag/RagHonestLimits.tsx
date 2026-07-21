@@ -54,7 +54,7 @@ export function RagHonestLimits() {
               <span className="text-gradient-strong">ne fait pas</span>.
             </>
           }
-          description="Trois limites que je préfère poser avant l'engagement. La mémoire métier est efficace — pas magique."
+          description="Trois limites que je préfère poser avant l'engagement. La mémoire métier est efficace, pas magique."
         />
 
         <motion.div

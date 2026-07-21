@@ -395,7 +395,7 @@ export function FelicationBebeLovePage() {
                 </p>
                 <p>
                   Aucune dispute ne pèsera jamais plus lourd que toi dans ma vie. Tu es ce qui
-                  m&apos;arrive de mieux — et aujourd&apos;hui, j&apos;ai surtout une{" "}
+                  m&apos;arrive de mieux, et aujourd&apos;hui j&apos;ai surtout une{" "}
                   <span className="text-text-primary">immense</span> raison d&apos;être fier de toi.
                 </p>
                 <p className="text-text-tertiary">
@@ -523,14 +523,14 @@ export function FelicationBebeLovePage() {
                   className="mx-auto mt-7 max-w-xl space-y-4 text-base leading-relaxed text-text-secondary"
                 >
                   <p>
-                    Je sais à quel point tu t&apos;es battue pour en arriver là — les nuits de
+                    Je sais à quel point tu t&apos;es battue pour en arriver là : les nuits de
                     révisions, le stress des partiels, les moments de doute. Et tu as tenu. Tu as
                     réussi. Je suis tellement fier de toi.
                   </p>
                   <p>
                     Tes études, ton futur métier, tous tes projets : je serai là, à chaque étape.
-                    Quel que soit le chemin que tu choisiras — avocate, juriste, ou tout ce dont tu
-                    rêves — tu vas y briller. Je crois en toi plus que personne, et je ne te lâcherai
+                    Quel que soit le chemin que tu choisiras, avocate, juriste, ou tout ce dont tu
+                    rêves, tu vas y briller. Je crois en toi plus que personne, et je ne te lâcherai
                     jamais.
                   </p>
                   <p className="text-text-primary">

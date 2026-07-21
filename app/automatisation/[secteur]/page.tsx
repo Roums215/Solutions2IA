@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: RouteParams }) {
   const url = `/automatisation/${secteur}`;
   const schema = combineSchemas(
     buildServiceSchema({
-      name: `Automatisation — ${sector.name}`,
+      name: `Automatisation : ${sector.name}`,
       description: sector.seoDescription,
       url,
       serviceType: "Automatisation",

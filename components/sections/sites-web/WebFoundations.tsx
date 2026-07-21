@@ -70,7 +70,7 @@ export function WebFoundations() {
               .
             </>
           }
-          description="Quatre couches. Huit bénéfices. Voilà ce que votre site fait en plus pour vous au quotidien — sans que vous ayez à y penser."
+          description="Quatre couches. Huit bénéfices. Voilà ce que votre site fait en plus pour vous au quotidien, sans que vous ayez à y penser."
         />
 
         <motion.div className="mx-auto max-w-[1100px]" {...parentProps}>
@@ -248,7 +248,7 @@ function PilierCard({
             aria-hidden
             className="text-[9px] font-semibold uppercase tracking-[0.24em] text-text-tertiary/60"
           >
-            —
+            ·
           </span>
         )}
       </div>

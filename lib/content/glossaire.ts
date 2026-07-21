@@ -27,7 +27,7 @@ export const GLOSSAIRE = {
     terme: "agent IA",
     simple: "assistant numérique",
     definition:
-      "Un assistant numérique qui travaille tout seul sur une tâche précise : lire, trier, répondre, alerter — selon vos règles.",
+      "Un assistant numérique qui travaille tout seul sur une tâche précise : lire, trier, répondre, alerter, selon vos règles.",
   },
   rag: {
     terme: "mémoire d'entreprise",
@@ -45,7 +45,7 @@ export const GLOSSAIRE = {
     terme: "workflow",
     simple: "enchaînement de tâches",
     definition:
-      "La suite d'étapes qu'une tâche traverse, de son déclenchement jusqu'au résultat — décrite une fois, exécutée à chaque fois.",
+      "La suite d'étapes qu'une tâche traverse, de son déclenchement jusqu'au résultat : décrite une fois, exécutée à chaque fois.",
   },
   webhook: {
     terme: "webhook",
@@ -75,13 +75,13 @@ export const GLOSSAIRE = {
     terme: "tableau de bord",
     simple: "tableau de bord",
     definition:
-      "Un écran qui montre d'un coup d'œil ce qui compte pour vous : activité, chiffres, alertes — mis à jour automatiquement.",
+      "Un écran qui montre d'un coup d'œil ce qui compte pour vous : activité, chiffres, alertes, mis à jour automatiquement.",
   },
   "hebergement-souverain": {
     terme: "hébergement souverain",
     simple: "données hébergées en Europe",
     definition:
-      "Vos données restent sur des serveurs en Europe, soumis au droit européen — pas d'envoi vers des serveurs américains.",
+      "Vos données restent sur des serveurs en Europe, soumis au droit européen, sans envoi vers des serveurs américains.",
   },
   rgpd: {
     terme: "RGPD",

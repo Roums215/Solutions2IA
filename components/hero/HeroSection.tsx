@@ -87,7 +87,7 @@ export function HeroSection() {
               style={{ "--enter-delay": "0.24s" } as React.CSSProperties}
             >
               Je conçois des sites web, des applications et des automatisations
-              sur mesure. Vous m&apos;expliquez ce qui vous prend du temps —
+              sur mesure. Vous m&apos;expliquez ce qui vous prend du temps,
               je construis l&apos;outil qui s&apos;en charge.
             </p>
 

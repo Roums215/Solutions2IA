@@ -36,7 +36,7 @@ export function RagDailyUsage() {
               <span className="text-gradient-strong">mémoire branchée</span>.
             </>
           }
-          description="Quatre moments concrets d'utilisation, du matin à la fin de journée. La mémoire métier ne change pas votre quotidien — elle l'allège."
+          description="Quatre moments concrets d'utilisation, du matin à la fin de journée. La mémoire métier ne change pas votre quotidien : elle l'allège."
         />
 
         <motion.div

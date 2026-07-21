@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Guides ultra-optimisés : audit application métier, agent IA souverain France/UE, RAG vs fine-tuning, automatiser tri mails PME, facture électronique 2026.",
   alternates: { canonical: "/articles" },
   openGraph: {
-    title: "Articles — Guides IA, applications métier, automatisation",
+    title: "Articles : Guides IA, applications métier, automatisation",
     description:
       "5 guides experts pour les PME françaises : audit, IA souveraine, RAG, tri mails, Chorus Pro.",
     url: "/articles",

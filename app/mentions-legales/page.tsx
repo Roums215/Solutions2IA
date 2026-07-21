@@ -21,7 +21,7 @@ export default function Page() {
             "Le présent site est édité par Solutions 2IA, entreprise proposant des prestations de conception de sites web, applications, agents IA, automatisation, UI/UX, motion design et expériences visuelles digitales.",
           ],
           items: [
-            "Dénomination sociale : Solutions 2IA — à compléter avec la dénomination juridique exacte.",
+            "Dénomination sociale : Solutions 2IA (à compléter avec la dénomination juridique exacte).",
             "Forme juridique : à compléter.",
             "Capital social : à compléter si société.",
             "Siège social : à compléter.",

@@ -26,7 +26,7 @@ export function RagUsagesTabs() {
               <span className="text-gradient-strong">votre mémoire métier</span>.
             </>
           }
-          description="Un seul moteur, adapté à vos usages. Vos équipes choisissent la façon dont elles l'interrogent — vous gardez toujours la même mémoire métier."
+          description="Un seul moteur, adapté à vos usages. Vos équipes choisissent la façon dont elles l'interrogent : vous gardez toujours la même mémoire métier."
         />
 
         <div className="mx-auto max-w-[1080px]">

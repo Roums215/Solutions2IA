@@ -56,7 +56,7 @@ export function RagSizing() {
               ?
             </>
           }
-          description="La mémoire métier s'adapte à votre volumétrie. Le moteur ne change pas — seule la quantité d'information varie."
+          description="La mémoire métier s'adapte à votre volumétrie. Le moteur ne change pas : seule la quantité d'information varie."
         />
 
         <motion.div

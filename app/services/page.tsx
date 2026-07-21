@@ -9,7 +9,7 @@ import {
 import { ServicesPage } from "./ServicesPage";
 
 export const metadata: Metadata = {
-  title: "Mes services — sites web, applications, automatisations, assistant IA",
+  title: "Mes services : sites web, applications, automatisations, assistant IA",
   description:
     "Sites web, applications sur mesure, automatisations et IA pour PME : cinq façons de remplacer ce qui vous prend du temps. Prix clairs, premier échange gratuit.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Mes services — sites, applications, automatisations, assistant IA",
+    title: "Mes services : sites, applications, automatisations, assistant IA",
     description:
       "Cinq services pour remplacer ce qui vous prend du temps par un outil qui le fait à votre place. Prix affichés, premier échange gratuit.",
     url: "/services",
@@ -57,14 +57,14 @@ export default function Page() {
           name: "Application métier sur mesure",
           description:
             "Du MVP fonctionnel à la plateforme avancée : remplace Excel et le papier par un outil unique.",
-          priceRange: "1 500 € — 40 000 €",
+          priceRange: "1 500 € à 40 000 €",
           url: "/applications",
         },
         {
           name: "Agent IA sur mesure",
           description:
             "Assistant qui trie les mails, prépare les devis, met à jour le CRM. Hébergement souverain UE.",
-          priceRange: "800 € — 20 000 € (build) + run mensuel",
+          priceRange: "800 € à 20 000 € (build) + run mensuel",
           url: "/agents-ia",
         },
         {

@@ -38,7 +38,7 @@ export function WebPainBusiness() {
               .
             </>
           }
-          description="Sept pertes business que la plupart des dirigeants ne mesurent pas — et qui pèsent chaque mois sur l'activité."
+          description="Sept pertes business que la plupart des dirigeants ne mesurent pas, et qui pèsent chaque mois sur l'activité."
         />
 
         <motion.div

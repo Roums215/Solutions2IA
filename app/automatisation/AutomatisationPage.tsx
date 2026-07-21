@@ -26,7 +26,7 @@ import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
  * outils et approches différents à chaque fois (règle : zéro vécu inventé). */
 const useCases = [
   {
-    badge: "Mon flux — il tourne en ce moment",
+    badge: "Mon flux (il tourne en ce moment)",
     title: "Appels de prospection → fiches clients",
     description: "Chaque appel marqué « intéressé » crée tout seul la fiche contact, l'entreprise et l'opportunité dans mon fichier clients. Zéro ressaisie, zéro contact perdu. C'est le flux que je montre plus haut.",
     icon: (
@@ -79,7 +79,7 @@ export function AutomatisationPage() {
       <PageHero
         label="Automatisation"
         title={<>Ce qui se répète peut se faire <span className="text-gradient-strong">tout seul</span></>}
-        description="Ressaisies, relances, transferts d'un outil à l'autre : je relie vos logiciels entre eux pour que ces tâches se fassent sans vous. Je le fais déjà pour ma propre prospection — je vous montre le flux plus bas."
+        description="Ressaisies, relances, transferts d'un outil à l'autre : je relie vos logiciels entre eux pour que ces tâches se fassent sans vous. Je le fais déjà pour ma propre prospection, je vous montre le flux plus bas."
         primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
         secondaryCta={{ label: "Voir tous les services", href: "/services" }}
         visual={<AutomationScene />}
@@ -93,7 +93,7 @@ export function AutomatisationPage() {
 
       {/* Mécanique signature : mon flux réel JobPhoning → n8n → Axonaut */}
       <AutomationPipeline
-        intro="Mon propre flux de prospection — il tourne en ce moment. Un appel qualifié chez l'un, et la fiche complète apparaît dans le fichier clients avant la fin de la conversation."
+        intro="Mon propre flux de prospection (il tourne en ce moment). Un appel qualifié chez l'un, et la fiche complète apparaît dans le fichier clients avant la fin de la conversation."
       />
 
       {/* Pipelines par métier — grille de cartes (aperçu statique) */}
@@ -107,7 +107,7 @@ export function AutomatisationPage() {
           <SectionHeading
             label="Ce que ça change"
             title="Un cas réel, trois exemples parlants"
-            description="Le premier flux est le mien — il tourne tous les jours. Les trois autres montrent la même mécanique appliquée à d'autres outils et d'autres situations."
+            description="Le premier flux est le mien, il tourne tous les jours. Les trois autres montrent la même mécanique appliquée à d'autres outils et d'autres situations."
           />
           <motion.div
             variants={staggerContainer}
@@ -162,7 +162,7 @@ export function AutomatisationPage() {
 
       <CTABand
         title={<>Quelle tâche refaites-vous <span className="text-gradient-strong">chaque semaine</span> ?</>}
-        description="Dites-la-moi lors d'un premier échange gratuit. Si elle peut se faire toute seule, je vous explique comment — simplement, et avec un prix clair."
+        description="Dites-la-moi lors d'un premier échange gratuit. Si elle peut se faire toute seule, je vous explique comment, simplement, et avec un prix clair."
         primaryLabel="Premier échange gratuit"
       />
     </>

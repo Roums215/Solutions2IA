@@ -175,7 +175,7 @@ function CommercialProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="70 %"
           label="du temps en admin / CRM"
-          detail="2,5 h/jour passées à saisir des notes plutôt qu'à vendre — source : Sybill 2025."
+          detail="2,5 h/jour passées à saisir des notes plutôt qu'à vendre. Source : Sybill 2025."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -213,7 +213,7 @@ function CommercialProfile({ reduced }: { reduced: boolean }) {
           ]}
         />
 
-        <KpiGain value="+8 h / sem" label="Plus de temps en RDV, moins de saisie — source : Sybill 2025." />
+        <KpiGain value="+8 h / sem" label="Plus de temps en RDV, moins de saisie. Source : Sybill 2025." />
 
         <ToolBadges tools={["HubSpot", "Salesforce", "Gmail", "Aircall"]} />
       </div>
@@ -242,7 +242,7 @@ function DirigeantProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="73 %"
           label="des dirigeants débordés par l'opérationnel"
-          detail="Trop de casquettes, peu de temps pour la stratégie — source : WRITER 2026."
+          detail="Trop de casquettes, peu de temps pour la stratégie. Source : WRITER 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -389,7 +389,7 @@ function SavProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="22 %"
           label="des PME ont un assistant vocal · 31 % dans les 2 ans"
-          detail="Volume de tickets en hausse, équipes saturées — source : Vstorm 2026."
+          detail="Volume de tickets en hausse, équipes saturées. Source : Vstorm 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -474,7 +474,7 @@ function MarketeurProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="5 canaux"
           label="à alimenter (blog + LinkedIn + IG + email + ads)"
-          detail="Un calendrier éditorial à tenir seul est épuisant — l'assistant allège la charge de production."
+          detail="Un calendrier éditorial à tenir seul est épuisant : l'assistant allège la charge de production."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">
@@ -552,7 +552,7 @@ function FreelanceProfile({ reduced }: { reduced: boolean }) {
         <PainBlock
           stat="60-70 %"
           label="du temps en recherche, pas en conseil"
-          detail="Le temps facturable s'érode dans la préparation — source : MindStudio 2026."
+          detail="Le temps facturable s'érode dans la préparation. Source : MindStudio 2026."
         />
 
         <div className="rounded-lg border border-border-subtle/60 bg-bg-card/30 px-4 py-3">

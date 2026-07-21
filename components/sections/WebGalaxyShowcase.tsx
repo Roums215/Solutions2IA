@@ -806,7 +806,7 @@ function RestaurantSite() {
                 {Array.from({ length: t.stars }).map((_, k) => <span key={k} style={{ color: "#f97316", fontSize: 12 }}>★</span>)}
               </div>
               <p style={{ fontSize: 13, color: "rgba(245,240,232,0.7)", lineHeight: 1.75, fontStyle: "italic", marginBottom: "1rem" }}>{t.quote}</p>
-              <div style={{ fontSize: 11, color: "#f97316", fontWeight: 700, letterSpacing: "0.05em" }}>— {t.name}</div>
+              <div style={{ fontSize: 11, color: "#f97316", fontWeight: 700, letterSpacing: "0.05em" }}>{t.name}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -947,7 +947,7 @@ function EcommerceSite() {
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
           style={{ maxWidth: 960, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: "1.5rem" }}
         >
-          {[["🚚", "Livraison offerte", "Dès 150€ d'achat, en France et Europe"], ["↩️", "Retours 30 jours", "Remboursement intégral sans justification"], ["🔒", "Paiement sécurisé", "CB, Paypal, virement — 3D Secure"], ["💎", "Garantie qualité", "Matières certifiées, fabrication contrôlée"]].map(([icon, title, desc]) => (
+          {[["🚚", "Livraison offerte", "Dès 150€ d'achat, en France et Europe"], ["↩️", "Retours 30 jours", "Remboursement intégral sans justification"], ["🔒", "Paiement sécurisé", "CB, Paypal, virement, 3D Secure"], ["💎", "Garantie qualité", "Matières certifiées, fabrication contrôlée"]].map(([icon, title, desc]) => (
             <motion.div
               key={title}
               variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
@@ -994,7 +994,7 @@ function EcommerceSite() {
                 {Array.from({ length: 5 }).map((_, k) => <span key={k} style={{ color: "#06b6d4", fontSize: 13 }}>★</span>)}
               </div>
               <p style={{ fontSize: 13, color: "rgba(240,249,255,0.7)", lineHeight: 1.75, marginBottom: "1rem" }}>&laquo; {a.quote} &raquo;</p>
-              <div style={{ fontSize: 12, color: "#06b6d4", fontWeight: 700 }}>— {a.name}</div>
+              <div style={{ fontSize: 12, color: "#06b6d4", fontWeight: 700 }}>{a.name}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -1049,7 +1049,7 @@ function SaaSSite() {
 
       <section style={{ padding: "5.5rem 2rem 4rem", textAlign: "center", position: "relative" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,92,246,0.15), transparent)", pointerEvents: "none" }} />
-        <span style={{ display: "inline-block", padding: "5px 16px", background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.35)", borderRadius: 20, fontSize: 12, color: "#a78bfa", marginBottom: "1.5rem" }}>🎉 v3.0 — IA générative intégrée</span>
+        <span style={{ display: "inline-block", padding: "5px 16px", background: "rgba(139,92,246,0.15)", border: "1px solid rgba(139,92,246,0.35)", borderRadius: 20, fontSize: 12, color: "#a78bfa", marginBottom: "1.5rem" }}>🎉 v3.0 · IA générative intégrée</span>
         <h1 style={{ fontSize: "clamp(2.4rem,6vw,4.2rem)", fontWeight: 900, lineHeight: 1.06, letterSpacing: "-0.035em", marginBottom: "1.25rem" }}>
           Automatisez 80% de<br /><span style={{ color: "#8b5cf6" }}>vos tâches répétitives.</span>
         </h1>
@@ -1566,7 +1566,7 @@ function MedicalSite() {
                 {Array.from({ length: 5 }).map((_, k) => <span key={k} style={{ color: "#14b8a6", fontSize: 12 }}>★</span>)}
               </div>
               <p style={{ fontSize: 13, color: "rgba(240,250,248,0.7)", lineHeight: 1.7, marginBottom: "0.75rem" }}>&laquo; {a.q} &raquo;</p>
-              <div style={{ fontSize: 11, color: "#14b8a6", fontWeight: 700 }}>— {a.name}</div>
+              <div style={{ fontSize: 11, color: "#14b8a6", fontWeight: 700 }}>{a.name}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -1762,7 +1762,7 @@ function EventSite() {
         >
           {[
             { date: "Ven 12 juil · 21h", title: "Cérémonie d'ouverture", desc: "Performance inaugurale · Mappings monumentaux" },
-            { date: "Sam–Dim · 18h", title: "Expo « Flux » — Vieux Lyon", desc: "Installation permanente · 8 artistes · 2,4 km" },
+            { date: "Sam–Dim · 18h", title: "Expo « Flux » · Vieux Lyon", desc: "Installation permanente · 8 artistes · 2,4 km" },
             { date: "Sam 19 juil · 23h", title: "Grande Finale pyrotechnique", desc: "Clôture spectaculaire sur la Saône · 30 min" },
           ].map(({ date, title, desc }) => (
             <motion.div

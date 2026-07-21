@@ -9,7 +9,7 @@ Solutions 2IA accompagne les PME et ETI francophones dans leur transformation di
 ## Services principaux
 
 - [Applications métier sur mesure](https://solutions2ia.fr/applications) : remplace Excel et le papier par un outil unique. Six secteurs avec cockpit dédié : santé, retail/e-commerce, industrie, services pro, logistique, immobilier/BTP. De 1 500 € (MVP) à 40 000 €+ (plateforme).
-- [Agents IA](https://solutions2ia.fr/agents-ia) : un assistant qui AGIT — tri des mails, préparation des devis, mise à jour du CRM, réponses clients. Garde-fous : RAG sourcé, souveraineté UE, humain dans la boucle, monitoring, pilote 30 j. De 800 € à 20 000 € (build) + run mensuel.
+- [Agents IA](https://solutions2ia.fr/agents-ia) : un assistant qui AGIT (tri des mails, préparation des devis, mise à jour du CRM, réponses clients). Garde-fous : RAG sourcé, souveraineté UE, humain dans la boucle, monitoring, pilote 30 j. De 800 € à 20 000 € (build) + run mensuel.
 - [Mémoire d'entreprise / RAG](https://solutions2ia.fr/rag) : une IA branchée sur vos documents (procédures, contrats, PDF) qui répond en citant ses sources. Hébergée en UE, refus contrôlé sous seuil de confiance.
 - [Sites web](https://solutions2ia.fr/sites-web) : de la vitrine au site connecté (réservation, espace client, paiement), rapides et référencés. Dès 500 €.
 - [Automatisation](https://solutions2ia.fr/automatisation) : vos logiciels reliés entre eux, fin des ressaisies et relances manuelles. n8n + IA, RGPD natif, hébergement UE. Secteurs spécialisés : immobilier, cabinet comptable, BTP, restauration, formation. Facture électronique Chorus Pro 2026 automatisée.
@@ -29,8 +29,8 @@ Solutions 2IA accompagne les PME et ETI francophones dans leur transformation di
 
 ## Ressources
 
-- [FAQ complète](https://solutions2ia.fr/faq) : 30 questions structurées et chiffrées — agents IA, applications, RAG, sécurité RGPD, méthode et prix.
-- [Glossaire](https://solutions2ia.fr/glossaire) : agent IA, RAG, workflow, API, RGPD, hébergement souverain — définitions en français simple avec exemples PME.
+- [FAQ complète](https://solutions2ia.fr/faq) : 30 questions structurées et chiffrées sur les agents IA, applications, RAG, sécurité RGPD, méthode et prix.
+- [Glossaire](https://solutions2ia.fr/glossaire) : agent IA, RAG, workflow, API, RGPD, hébergement souverain. Définitions en français simple avec exemples PME.
 - [Articles](https://solutions2ia.fr/articles) : guides sur l'audit d'application métier, l'agent IA RGPD souverain, RAG vs fine-tuning, l'automatisation du tri des mails, la facture électronique Chorus Pro 2026, le coût d'un agent IA pour une PME, agent IA vs chatbot.
 - [À propos](https://solutions2ia.fr/a-propos) : Iulian Ionita, développeur indépendant (projets DFT télécoms, Ramsay Santé).
 - [Contact](https://solutions2ia.fr/contact) : premier échange gratuit de 45 minutes, sans engagement.

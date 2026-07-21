@@ -104,7 +104,7 @@ export function RagMemoryFlow() {
               .
             </>
           }
-          description="La connaissance ne dépend plus d'une seule personne — elle vit dans vos documents et reste interrogeable à toute heure."
+          description="La connaissance ne dépend plus d'une seule personne : elle vit dans vos documents et reste interrogeable à toute heure."
         />
 
         <div
@@ -279,7 +279,7 @@ export function RagMemoryFlow() {
                     {RAG_CITATION.file}
                   </span>
                   <span className="text-text-tertiary">
-                    — page {RAG_CITATION.page}
+                    · page {RAG_CITATION.page}
                   </span>
                 </div>
               </div>
@@ -380,7 +380,7 @@ function PassageCard({
       </div>
       <div className="mt-1.5 flex flex-wrap items-baseline gap-x-2 text-sm">
         <span className="font-medium text-text-primary">{passage.doc}</span>
-        <span className="text-xs text-text-tertiary">— {passage.section}</span>
+        <span className="text-xs text-text-tertiary">· {passage.section}</span>
       </div>
       <p className="mt-1.5 text-xs leading-snug text-text-secondary sm:text-[13px]">
         {passage.excerpt}

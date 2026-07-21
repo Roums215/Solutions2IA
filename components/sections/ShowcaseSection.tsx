@@ -199,7 +199,7 @@ function MockAIChat() {
         </div>
         <div className="flex-1">
           <span className="text-xs font-semibold block leading-tight">Assistant IA</span>
-          <span className="text-[9px] text-green-400 font-medium">En ligne — répond en 0.3s</span>
+          <span className="text-[9px] text-green-400 font-medium">En ligne, répond en 0.3s</span>
         </div>
         <div className="flex gap-1">
           <div className="w-5 h-5 rounded-md bg-bg-tertiary/50 border border-border-subtle" />
@@ -272,7 +272,7 @@ export function ShowcaseSection() {
         <SectionHeading
           label="Réalisations"
           title="Des expériences qui marquent"
-          description="Dashboards intelligents, applications mobiles élégantes, assistants IA — nous donnons vie à des produits digitaux premium."
+          description="Dashboards intelligents, applications mobiles élégantes, assistants IA : nous donnons vie à des produits digitaux premium."
         />
 
         <motion.div

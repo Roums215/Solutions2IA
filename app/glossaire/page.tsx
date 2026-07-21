@@ -12,7 +12,7 @@ import {
 import { GlossairePage } from "./GlossairePage";
 
 export const metadata: Metadata = {
-  title: "Glossaire — agent IA, RAG, automatisation expliqués simplement",
+  title: "Glossaire : agent IA, RAG, automatisation expliqués simplement",
   description:
     "Agent IA, RAG, workflow, API, RGPD, hébergement souverain : les termes de l'IA et de l'automatisation expliqués en français simple, avec des exemples concrets de PME.",
   keywords: [
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/glossaire" },
   openGraph: {
-    title: "Glossaire — l'IA et l'automatisation en français simple",
+    title: "Glossaire : l'IA et l'automatisation en français simple",
     description:
       "Les termes que vous croiserez dans un projet IA ou d'automatisation, expliqués sans jargon, avec des exemples concrets.",
     url: "/glossaire",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function Page() {
   const schema = combineSchemas(
     buildDefinedTermSetSchema({
-      name: "Glossaire Solutions 2IA — IA & automatisation",
+      name: "Glossaire Solutions 2IA : IA & automatisation",
       description:
         "Définitions en français simple des termes de l'IA et de l'automatisation pour les PME : agent IA, RAG, workflow, API, RGPD…",
       url: "/glossaire",

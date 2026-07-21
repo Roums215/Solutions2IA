@@ -431,7 +431,7 @@ function VariantSimple() {
           fontSize="8.5"
           fontFamily="Inter, system-ui, sans-serif"
         >
-          Source : doc — page N
+          Source : doc · page N
         </text>
       </g>
     </g>

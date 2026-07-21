@@ -171,7 +171,7 @@ export function AgentsIAPage() {
                 Un assistant qui <span className="text-gradient-strong">comprend et agit</span>
               </>
             }
-            description="Six raisons concrètes pour lesquelles un assistant bien conçu vous fait gagner du temps — sans jamais vous échapper."
+            description="Six raisons concrètes pour lesquelles un assistant bien conçu vous fait gagner du temps, sans jamais vous échapper."
           />
           <motion.div
             variants={staggerContainer}
@@ -229,7 +229,7 @@ export function AgentsIAPage() {
             Quelle tâche aimeriez-vous <span className="text-gradient-strong">déléguer</span> ?
           </>
         }
-        description="Parlez-m'en lors d'un premier échange gratuit. Je vous dis franchement si un assistant peut s'en charger, et ce que ça implique — simplement."
+        description="Parlez-m'en lors d'un premier échange gratuit. Je vous dis franchement si un assistant peut s'en charger, et ce que ça implique, simplement."
         primaryLabel="Premier échange gratuit"
       />
     </>

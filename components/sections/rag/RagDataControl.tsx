@@ -33,7 +33,7 @@ export function RagDataControl() {
               <span className="text-gradient-strong">sous contrôle</span>.
             </>
           }
-          description="Six engagements concrets sur la circulation, la protection et la traçabilité de vos documents. Pas de promesse vague — des règles applicables."
+          description="Six engagements concrets sur la circulation, la protection et la traçabilité de vos documents. Pas de promesse vague : des règles applicables."
         />
 
         <motion.div
@@ -89,7 +89,7 @@ export function RagDataControl() {
           </div>
           <p className="mt-4 text-xs text-text-tertiary sm:text-[13px]">
             Exemples non exhaustifs. La stack exacte dépend de votre volumétrie et
-            de votre cadre de souveraineté — toutes les briques sont hébergeables
+            de votre cadre de souveraineté : toutes les briques sont hébergeables
             en UE.
           </p>
         </div>

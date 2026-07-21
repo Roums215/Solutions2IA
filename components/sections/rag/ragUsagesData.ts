@@ -32,7 +32,7 @@ export const RAG_USAGES: RagUsage[] = [
     key: "conversationnel",
     label: "Explorer",
     one_liner:
-      "Affiner, préciser, comparer — la mémoire garde le fil sans rien inventer.",
+      "Affiner, préciser, comparer : la mémoire garde le fil sans rien inventer.",
     best_when:
       "Cas complexes nécessitant plusieurs allers-retours (juridique, dossiers contentieux, exploration).",
     sector_example: {

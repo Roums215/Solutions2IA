@@ -109,7 +109,7 @@ function StepCard({
   return (
     <div
       role="group"
-      aria-label={`${step.title} — ${step.pitch}`}
+      aria-label={`${step.title} : ${step.pitch}`}
       tabIndex={expanded ? undefined : 0}
       className="group relative flex h-full w-full min-w-0 flex-col items-center rounded-2xl border border-border-subtle bg-bg-card/55 px-5 py-6 text-center backdrop-blur-xl transition-all duration-500 hover:border-accent-primary/35 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary/60 sm:px-6"
       style={{
@@ -283,7 +283,7 @@ export function AgentAnatomyDiagram() {
           label="Comment ça fonctionne"
           title={
             <>
-              Un assistant numérique fiable, ce n&apos;est pas un simple robot —{" "}
+              Un assistant numérique fiable, ce n&apos;est pas un simple robot :{" "}
               <span className="text-gradient-strong">c&apos;est un système structuré et contrôlé</span>.
             </>
           }

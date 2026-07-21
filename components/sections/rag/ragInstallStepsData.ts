@@ -9,19 +9,19 @@ export const INSTALL_STEPS: InstallStep[] = [
     n: 1,
     label: "Inventaire de vos documents",
     deliverable:
-      "Inventaire des documents, sources prioritaires, droits d'accès — sortie : la carte de votre savoir interne.",
+      "Inventaire des documents, sources prioritaires, droits d'accès. Sortie : la carte de votre savoir interne.",
   },
   {
     n: 2,
     label: "Branchement sources",
     deliverable:
-      "Connexion aux outils (Drive, SharePoint, Notion, CRM) — vos documents restent chez vous, les ACL existantes s'appliquent.",
+      "Connexion aux outils (Drive, SharePoint, Notion, CRM). Vos documents restent chez vous, les ACL existantes s'appliquent.",
   },
   {
     n: 3,
     label: "Préparation mémoire",
     deliverable:
-      "Le moteur est calibré sur votre vocabulaire métier — premières questions testées avec vous.",
+      "Le moteur est calibré sur votre vocabulaire métier, premières questions testées avec vous.",
   },
   {
     n: 4,

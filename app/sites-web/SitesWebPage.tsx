@@ -84,7 +84,7 @@ export function SitesWebPage() {
 
       <CTABand
         title={<>Parlons de votre <span className="text-gradient-strong">site</span></>}
-        description="Que vous partiez de zéro ou que vous ayez déjà un site à refaire, le premier échange est gratuit. Je vous dis franchement ce qui vous aiderait, et ce que ça coûterait — à partir de 500 €."
+        description="Que vous partiez de zéro ou que vous ayez déjà un site à refaire, le premier échange est gratuit. Je vous dis franchement ce qui vous aiderait, et ce que ça coûterait, à partir de 500 €."
         primaryLabel="Premier échange gratuit"
       />
     </>
