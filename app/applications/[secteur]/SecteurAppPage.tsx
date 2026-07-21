@@ -27,7 +27,7 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
         label={`Applications · ${sector.name}`}
         title={
           <>
-            {sector.name} —{" "}
+            {sector.name} :{" "}
             <span className="text-gradient-strong">{vertical.heroAccent}</span>
           </>
         }
@@ -48,7 +48,7 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
                 <span className="text-gradient-strong">le quotidien</span>
               </>
             }
-            description={`Chaque module épouse les gestes réels du métier — ${sector.meta.toLowerCase()} — plutôt que d'imposer un parcours générique.`}
+            description={`Chaque module épouse les gestes réels du métier (${sector.meta.toLowerCase()}) plutôt que d'imposer un parcours générique.`}
           />
           <motion.div
             variants={staggerContainer}
@@ -131,7 +131,7 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
             <span className="text-gradient-strong">{sector.name.toLowerCase()}</span>
           </>
         }
-        description="Premier échange gratuit : vous décrivez vos outils actuels et ce qui coince, je vous dis honnêtement ce qu'une application sur mesure changerait — et ce qu'elle coûterait."
+        description="Premier échange gratuit : vous décrivez vos outils actuels et ce qui coince, je vous dis honnêtement ce qu'une application sur mesure changerait et ce qu'elle coûterait."
       />
     </>
   );

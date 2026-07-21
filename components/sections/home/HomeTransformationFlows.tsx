@@ -64,7 +64,7 @@ export function HomeTransformationFlows() {
               <span className="text-gradient-strong">votre quotidien</span>.
             </>
           }
-          description="Quatre transformations concrètes. Pas de promesse marketing — uniquement ce que vous constatez chaque semaine."
+          description="Quatre transformations concrètes. Pas de promesse marketing : uniquement ce que vous constatez chaque semaine."
         />
 
         <motion.div

@@ -32,7 +32,7 @@ export function RagRealExamples() {
               <span className="text-gradient-strong">tirés du quotidien</span>.
             </>
           }
-          description="Pour chaque métier, une vraie question posée — la réponse attendue, et le document source qui la justifie."
+          description="Pour chaque métier, une vraie question posée : la réponse attendue, et le document source qui la justifie."
         />
 
         <motion.div

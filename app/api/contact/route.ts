@@ -74,9 +74,9 @@ export async function POST(req: Request) {
   const lignes = [
     ["Nom", nom],
     ["Email", email],
-    ["Entreprise", entreprise || "—"],
-    ["Type de demande", type || "—"],
-    ["Budget indiqué", budget || "—"],
+    ["Entreprise", entreprise || "(non renseigné)"],
+    ["Type de demande", type || "(non renseigné)"],
+    ["Budget indiqué", budget || "(non renseigné)"],
   ];
   const tableRows = lignes
     .map(
@@ -87,13 +87,13 @@ export async function POST(req: Request) {
 
   const adminHtml = `
     <div style="font-family:system-ui,sans-serif;max-width:560px">
-      <h2 style="color:#6366f1;margin:0 0 16px">Nouvelle demande — Solutions 2IA</h2>
+      <h2 style="color:#6366f1;margin:0 0 16px">Nouvelle demande · Solutions 2IA</h2>
       <table style="border-collapse:collapse;font-size:14px;margin-bottom:16px">${tableRows}</table>
       <div style="background:#f4f5fb;border-radius:8px;padding:14px 16px;font-size:14px;color:#1a1c2e;white-space:pre-wrap">${esc(message)}</div>
     </div>`;
 
   const adminText =
-    `Nouvelle demande — Solutions 2IA\n\n` +
+    `Nouvelle demande · Solutions 2IA\n\n` +
     lignes.map(([k, v]) => `${k}: ${v}`).join("\n") +
     `\n\nMessage:\n${message}\n`;
 
@@ -128,13 +128,13 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: FROM_EMAIL,
       to: [email],
-      subject: "J'ai bien reçu votre message — Solutions 2IA",
+      subject: "J'ai bien reçu votre message · Solutions 2IA",
       html: `<div style="font-family:system-ui,sans-serif;max-width:520px;color:#1a1c2e">
         <p>Bonjour ${esc(nom)},</p>
         <p>Merci pour votre message, je l'ai bien reçu. Je reviens vers vous sous 24 h avec une première réponse.</p>
-        <p style="color:#6b7280;font-size:13px">— Iulian, Solutions 2IA</p>
+        <p style="color:#6b7280;font-size:13px">Iulian · Solutions 2IA</p>
       </div>`,
-      text: `Bonjour ${nom},\n\nMerci pour votre message, je l'ai bien reçu. Je reviens vers vous sous 24 h.\n\n— Iulian, Solutions 2IA`,
+      text: `Bonjour ${nom},\n\nMerci pour votre message, je l'ai bien reçu. Je reviens vers vous sous 24 h.\n\nIulian · Solutions 2IA`,
     });
   } catch (e) {
     // L'accusé est un bonus : on log et on continue.

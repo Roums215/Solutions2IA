@@ -30,7 +30,7 @@ export function SectorCard({
   return (
     <Link
       href={`/automatisation/${sector.slug}`}
-      aria-label={`${sector.name} — voir le pipeline d'automatisation`}
+      aria-label={`${sector.name} : voir le pipeline d'automatisation`}
       onPointerEnter={onHoverStart}
       onPointerLeave={onHoverEnd}
       onFocus={onHoverStart}

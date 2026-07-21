@@ -130,7 +130,7 @@ export function BuildOrAuditDiptych() {
               <span className="text-gradient-strong">refonte après audit</span>.
             </>
           }
-          description="Selon que vous partiez d'une page blanche ou d'un existant à reprendre, la trajectoire change — la rigueur, non."
+          description="Selon que vous partiez d'une page blanche ou d'un existant à reprendre, la trajectoire change. La rigueur, non."
         />
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
@@ -140,7 +140,7 @@ export function BuildOrAuditDiptych() {
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-sm italic leading-relaxed text-text-tertiary">
-          Vous ne savez pas dans quelle voie vous êtes ? Le premier échange sert exactement à ça — on tranche en 45 minutes.
+          Vous ne savez pas dans quelle voie vous êtes ? Le premier échange sert exactement à ça : on tranche en 45 minutes.
         </p>
       </div>
     </section>
@@ -189,7 +189,7 @@ function PathCard({ path }: { path: Path }) {
       {/* Steps timeline */}
       <ol
         className="relative mt-8 space-y-5"
-        aria-label={`Étapes — ${path.label}`}
+        aria-label={`Étapes : ${path.label}`}
       >
         {/* Vertical line */}
         <span

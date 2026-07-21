@@ -115,7 +115,7 @@ export function RagInstallSteps() {
 
         <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-text-tertiary sm:text-sm">
           Durée moyenne : <span className="text-text-secondary">{INSTALL_AVG}</span>{" "}
-          Aucune réécriture de vos documents — vos sources restent en place.
+          Aucune réécriture de vos documents, vos sources restent en place.
         </p>
       </div>
     </section>

@@ -444,7 +444,7 @@ function NodeCard({
       {...(onSelect
         ? { type: "button" as const, onClick: onSelect, "aria-pressed": isSelected }
         : { role: "group" as const })}
-      aria-label={ariaLabel ?? `${label} — ${sublabel}`}
+      aria-label={ariaLabel ?? `${label} : ${sublabel}`}
       aria-current={status === "active" ? "step" : undefined}
       tabIndex={showTooltip || onSelect ? 0 : undefined}
       className={[
@@ -751,7 +751,7 @@ function NodeOverlay({
           }
           status={getAgentStatus(effectiveTick)}
           size="central"
-          ariaLabel="Assistant numérique — cœur du dispositif, analyse les demandes entrantes et déclenche les bonnes actions."
+          ariaLabel="Assistant numérique : cœur du dispositif, analyse les demandes entrantes et déclenche les bonnes actions."
           hover={AGENT_HOVER}
           tooltipSide={agentSide}
           enableHover={enableHover}
@@ -900,7 +900,7 @@ export function OneAgentManyNeedsPipeline() {
               <span className="text-gradient-strong">plusieurs besoins à la fois</span>.
             </>
           }
-          description="Vous n'achetez pas un outil par tâche. Je configure un assistant numérique qui gère tout ce qui peut l'être — en cohérence avec votre façon de travailler."
+          description="Vous n'achetez pas un outil par tâche. Je configure un assistant numérique qui gère tout ce qui peut l'être, en cohérence avec votre façon de travailler."
         />
 
         <div ref={containerRef} className="relative">
@@ -1012,7 +1012,7 @@ export function OneAgentManyNeedsPipeline() {
                   },
                   {
                     label: "Connexion à vos outils",
-                    text: "Branché sur vos outils existants : Gmail, CRM, Agenda, Notion, Slack, ERP — sans changer vos habitudes.",
+                    text: "Branché sur vos outils existants : Gmail, CRM, Agenda, Notion, Slack, ERP, sans changer vos habitudes.",
                   },
                   {
                     label: "Garde-fous métier",
@@ -1020,7 +1020,7 @@ export function OneAgentManyNeedsPipeline() {
                   },
                   {
                     label: "Historique & traçabilité",
-                    text: "Chaque action est enregistrée, explicable, versionnable — vérifiable à tout moment.",
+                    text: "Chaque action est enregistrée, explicable, versionnable, vérifiable à tout moment.",
                   },
                 ].map((item) => (
                   <li key={item.label} className="flex gap-3">

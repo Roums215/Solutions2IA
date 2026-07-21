@@ -14,12 +14,12 @@ const RISKS: Risk[] = [
   {
     title: "Perte de savoir lors d'un départ",
     detail:
-      "Un référent quitte l'entreprise, ses connaissances métier restent — dans la mémoire, sourcées, consultables.",
+      "Un référent quitte l'entreprise, ses connaissances métier restent : dans la mémoire, sourcées, consultables.",
   },
   {
     title: "Mauvaise réponse client",
     detail:
-      "Plus de réponses approximatives livrées sous pression — chaque retour client peut être tracé jusqu'à la procédure.",
+      "Plus de réponses approximatives livrées sous pression : chaque retour client peut être tracé jusqu'à la procédure.",
   },
   {
     title: "Erreur de procédure",
@@ -29,7 +29,7 @@ const RISKS: Risk[] = [
   {
     title: "Audit compliqué",
     detail:
-      "Chaque décision opérationnelle peut citer le document d'origine — l'audit devient une vérification, pas une enquête.",
+      "Chaque décision opérationnelle peut citer le document d'origine : l'audit devient une vérification, pas une enquête.",
   },
   {
     title: "Dépendance à une seule personne",
@@ -64,7 +64,7 @@ export function RagAvoids() {
               <span className="text-gradient-strong">qu&apos;elle prévient</span>.
             </>
           }
-          description="Cinq risques que la mémoire métier neutralise au quotidien. Aucun ne se mesure facilement — tous coûtent cher quand ils surviennent."
+          description="Cinq risques que la mémoire métier neutralise au quotidien. Aucun ne se mesure facilement, mais tous coûtent cher quand ils surviennent."
         />
 
         <motion.div

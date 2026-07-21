@@ -22,7 +22,7 @@ export function SecteurPage({ sector }: SecteurPageProps) {
         label={`Automatisation · ${sector.name}`}
         title={
           <>
-            {sector.name} —{" "}
+            {sector.name} :{" "}
             <span className="text-gradient-strong">le pipeline réel</span>
           </>
         }

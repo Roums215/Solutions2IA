@@ -136,7 +136,7 @@ export const SECTORS: Sector[] = [
     name: "Immobilier",
     icon: ImmobilierIcon,
     problem:
-      "Vos leads SeLoger et Leboncoin se perdent entre une boîte mail et un tableur — quand vous rappelez, l'agence d'à côté a déjà décroché.",
+      "Vos leads SeLoger et Leboncoin se perdent entre une boîte mail et un tableur : quand vous rappelez, l'agence d'à côté a déjà décroché.",
     benefit:
       "Chaque demande qualifiée arrive en quelques minutes dans le CRM, avec un SMS au commercial qui peut rappeler avant tout le monde.",
     nodes: [
@@ -157,7 +157,7 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["SeLoger", "Leboncoin", "n8n", "Claude", "CRM", "SMS"],
     seoTitle:
-      "Automatisation immobilier — leads SeLoger/Leboncoin qualifiés en CRM | Solutions 2IA",
+      "Automatisation immobilier : leads SeLoger/Leboncoin qualifiés en CRM | Solutions 2IA",
     seoDescription:
       "Pipeline d'automatisation pour agences immobilières : chaque lead SeLoger ou Leboncoin est qualifié par IA, enrichi et poussé dans votre CRM avec alerte SMS au commercial. Hébergé en UE.",
     details: {
@@ -184,7 +184,7 @@ export const SECTORS: Sector[] = [
     name: "Cabinet comptable",
     icon: CabinetComptableIcon,
     problem:
-      "Factures, relevés, reçus s'accumulent — vos collaborateurs trient et relancent au lieu d'analyser.",
+      "Factures, relevés, reçus s'accumulent : vos collaborateurs trient et relancent au lieu d'analyser.",
     benefit:
       "Chaque pièce arrive, est lue et classée sans ressaisie. Le dossier se construit seul. Le collaborateur se concentre sur l'analyse.",
     nodes: [
@@ -227,7 +227,7 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Gmail", "Drive", "OCR", "Claude", "n8n", "Pennylane"],
     seoTitle:
-      "Automatisation cabinet comptable — collecte et écriture sans ressaisie | Solutions 2IA",
+      "Automatisation cabinet comptable : collecte et écriture sans ressaisie | Solutions 2IA",
     seoDescription:
       "Pipeline IA pour experts-comptables : collecte multicanal, lecture OCR, export Pennylane, Sage ou Quadra, relances automatiques. Hébergé en UE.",
     details: {
@@ -254,7 +254,7 @@ export const SECTORS: Sector[] = [
     name: "BTP",
     icon: BtpIcon,
     problem:
-      "Un client envoie des photos et une description WhatsApp — le devis part trois jours plus tard, quand le concurrent l'a déjà signé.",
+      "Un client envoie des photos et une description WhatsApp : le devis part trois jours plus tard, quand le concurrent l'a déjà signé.",
     benefit:
       "Chaque demande chantier génère un pré-devis structuré dans Tolteck ou Obat, avec une notification à l'artisan dès la mise en attente.",
     nodes: [
@@ -297,7 +297,7 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Tolteck", "Obat", "Batappli", "Claude", "n8n"],
     seoTitle:
-      "Automatisation BTP — devis et relances auto | Solutions 2IA",
+      "Automatisation BTP : devis et relances auto | Solutions 2IA",
     seoDescription:
       "Pipeline IA pour artisans BTP : demande analysée, pré-devis généré dans Tolteck ou Obat, relance auto J+3 si sans réponse. Hébergé en UE.",
     details: {
@@ -324,7 +324,7 @@ export const SECTORS: Sector[] = [
     name: "Restauration",
     icon: RestaurationIcon,
     problem:
-      "Les réservations arrivent sur Instagram, WhatsApp et le site en même temps — une table promise deux fois, une soirée pleine qui se vide d'un coup.",
+      "Les réservations arrivent sur Instagram, WhatsApp et le site en même temps : une table promise deux fois, une soirée pleine qui se vide d'un coup.",
     benefit:
       "Chaque demande est lue, la disponibilité vérifiée et la réservation posée dans Zenchef ou TheFork avant que vous ayez vu le message.",
     nodes: [
@@ -367,7 +367,7 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Zenchef", "TheFork", "Google Calendar", "Claude", "SMS"],
     seoTitle:
-      "Automatisation restaurant — résa et no-show | Solutions 2IA",
+      "Automatisation restaurant : résa et no-show | Solutions 2IA",
     seoDescription:
       "Pipeline IA pour restaurants : demandes multicanal traitées, réservation posée dans Zenchef ou TheFork, rappel J-1 anti no-show automatique. Hébergé en UE.",
     details: {
@@ -394,7 +394,7 @@ export const SECTORS: Sector[] = [
     name: "Formation",
     icon: FormationIcon,
     problem:
-      "Un prospect CPF remplit le formulaire un vendredi — sans relance sous 48 h, il signe ailleurs et le dossier de financement n'existe plus.",
+      "Un prospect CPF remplit le formulaire un vendredi : sans relance sous 48 h, il signe ailleurs et le dossier de financement n'existe plus.",
     benefit:
       "Chaque lead est qualifié, le programme adapté à son profil et le dossier d'inscription envoyé à la signature sans intervention manuelle.",
     nodes: [
@@ -437,7 +437,7 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Digiforma", "Dendreo", "Yousign", "Claude", "n8n"],
     seoTitle:
-      "Automatisation organisme formation — CPF et OPCO | Solutions 2IA",
+      "Automatisation organisme formation : CPF et OPCO | Solutions 2IA",
     seoDescription:
       "Pipeline IA pour organismes de formation : lead CPF ou OPCO qualifié, programme sélectionné, dossier Digiforma ou Dendreo, signature Yousign. Hébergé en UE.",
     details: {

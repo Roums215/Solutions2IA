@@ -43,7 +43,7 @@ export function RagDecisionWizard() {
               <span className="text-gradient-strong">vous correspond</span> ?
             </>
           }
-          description="Trois questions, une recommandation. Une recommandation par défaut s'affiche tant que vous n'avez pas répondu — affinez si besoin."
+          description="Trois questions, une recommandation. Une recommandation par défaut s'affiche tant que vous n'avez pas répondu, affinez si besoin."
         />
 
         <div className="mx-auto max-w-[1080px]">

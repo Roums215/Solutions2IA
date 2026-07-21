@@ -14,7 +14,7 @@ const differentiators = [
   {
     title: "Design premium",
     description:
-      "Chaque interface est conçue avec un souci obsessionnel du détail. Typographie, spacing, animations — rien n'est laissé au hasard.",
+      "Chaque interface est conçue avec un souci obsessionnel du détail. Typographie, spacing, animations : rien n'est laissé au hasard.",
     gradient: "from-accent-light to-cyan",
   },
   {

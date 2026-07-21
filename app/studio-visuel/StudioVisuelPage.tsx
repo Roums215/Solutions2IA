@@ -19,7 +19,7 @@ const disciplines = [
   { title: "Remotion & vidéo", description: "Vidéos générées par code, templates dynamiques et contenu vidéo personnalisé à grande échelle. Automatisation de la production vidéo.", color: "from-accent-light to-cyan" },
   { title: "Interfaces immersives", description: "UI animées, parallax, scroll storytelling et compositions visuelles qui transforment la navigation en véritable expérience.", color: "from-accent-dark to-accent-primary" },
   { title: "Data visualization", description: "Graphiques animés, dashboards visuels et représentations de données élégantes qui rendent le complexe compréhensible.", color: "from-cyan to-green-400" },
-  { title: "Identité visuelle digitale", description: "Direction artistique, design system, composants visuels — votre marque prend vie dans chaque pixel de chaque écran.", color: "from-accent-primary to-accent-dark" },
+  { title: "Identité visuelle digitale", description: "Direction artistique, design system, composants visuels : votre marque prend vie dans chaque pixel de chaque écran.", color: "from-accent-primary to-accent-dark" },
 ];
 
 const beforeAfter = [
@@ -49,9 +49,9 @@ const deliverables = [
 ];
 
 const showcaseItems = [
-  { title: "Scroll storytelling", description: "Des pages qui racontent une histoire au fil du scroll. Animations séquencées, parallax, reveal progressif — chaque défilement est un moment de découverte.", tech: "GSAP + ScrollTrigger" },
-  { title: "Particules interactives", description: "Systèmes de particules réactifs au curseur et au scroll. Champs de forces, attracteurs, physique fluide — un univers vivant.", tech: "Canvas / WebGL" },
-  { title: "UI animée premium", description: "Micro-interactions, transitions de page, états de hover et focus — chaque interaction est un moment de plaisir qui renforce votre image.", tech: "Motion + CSS" },
+  { title: "Scroll storytelling", description: "Des pages qui racontent une histoire au fil du scroll. Animations séquencées, parallax, reveal progressif : chaque défilement est un moment de découverte.", tech: "GSAP + ScrollTrigger" },
+  { title: "Particules interactives", description: "Systèmes de particules réactifs au curseur et au scroll. Champs de forces, attracteurs, physique fluide : un univers vivant.", tech: "Canvas / WebGL" },
+  { title: "UI animée premium", description: "Micro-interactions, transitions de page, états de hover et focus : chaque interaction est un moment de plaisir qui renforce votre image.", tech: "Motion + CSS" },
   { title: "Vidéo programmatique", description: "Génération de vidéos personnalisées à la volée. Templates dynamiques, données en temps réel, export automatique à grande échelle.", tech: "Remotion" },
 ];
 

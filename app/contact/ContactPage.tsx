@@ -19,16 +19,16 @@ const serviceOptions = [
 ];
 
 const processSteps = [
-  { number: "01", title: "Vous m'écrivez", description: "Décrivez votre besoin en quelques mots. Pas besoin d'un dossier parfait — une idée suffit pour commencer." },
+  { number: "01", title: "Vous m'écrivez", description: "Décrivez votre besoin en quelques mots. Pas besoin d'un dossier parfait, une idée suffit pour commencer." },
   { number: "02", title: "Je réponds sous 24 h", description: "Je lis votre message et je reviens vers vous avec quelques questions et une première idée de ce qui vous aiderait." },
   { number: "03", title: "On échange, gratuitement", description: "Un appel d'une trentaine de minutes pour bien comprendre votre situation. Gratuit, sans engagement." },
   { number: "04", title: "Je vous propose une solution", description: "Vous recevez une proposition claire : ce que je construis, ce que ça change, le prix et le délai." },
 ];
 
 const faq = [
-  { q: "Combien ça coûte ?", a: "Pour vous situer : un site vitrine simple démarre autour de 500 €, un site vitrine premium entre 1 000 et 2 500 €, un site relié à vos outils (réservation, espace client, paiement…) entre 2 500 et 5 000 €, et une application sur mesure entre 1 500 et 15 000 € selon le nombre de fonctions. Pour les automatisations et les assistants IA, le prix dépend trop du projet pour une fourchette honnête — on en parle lors du premier échange, qui est gratuit. Dans tous les cas, le prix est fixé ensemble avant de démarrer : pas de mauvaise surprise." },
+  { q: "Combien ça coûte ?", a: "Pour vous situer : un site vitrine simple démarre autour de 500 €, un site vitrine premium entre 1 000 et 2 500 €, un site relié à vos outils (réservation, espace client, paiement…) entre 2 500 et 5 000 €, et une application sur mesure entre 1 500 et 15 000 € selon le nombre de fonctions. Pour les automatisations et les assistants IA, le prix dépend trop du projet pour une fourchette honnête. On en parle lors du premier échange, qui est gratuit. Dans tous les cas, le prix est fixé ensemble avant de démarrer : pas de mauvaise surprise." },
   { q: "En combien de temps ?", a: "Un site simple : quelques jours à deux semaines. Un site premium : deux à six semaines. Une application : selon la taille, de quelques semaines à quelques mois. Je vous donne un délai clair dans la proposition, et je m'y tiens." },
-  { q: "Je ne suis pas du tout technique, c'est un problème ?", a: "Au contraire, c'est mon métier de traduire. Je vous explique tout avec des mots simples, sans jargon. Vous n'avez jamais besoin de comprendre la technique — juste de me dire ce qui vous prend du temps." },
+  { q: "Je ne suis pas du tout technique, c'est un problème ?", a: "Au contraire, c'est mon métier de traduire. Je vous explique tout avec des mots simples, sans jargon. Vous n'avez jamais besoin de comprendre la technique : dites-moi simplement ce qui vous prend du temps." },
   { q: "Et après la mise en ligne ?", a: "Je reste joignable. Je prends le temps de vous montrer comment ça marche, et je suis là pour ajuster ou faire évoluer l'outil quand votre besoin change. On peut aussi convenir d'un suivi régulier si vous le souhaitez." },
 ];
 
@@ -107,7 +107,7 @@ export function ContactPage() {
       <PageHero
         label="Parlons-en"
         title={<>Dites-moi ce qui vous <span className="text-gradient-strong">prend du temps</span></>}
-        description="Pas besoin de savoir ce qu'il vous faut. Décrivez votre situation avec vos mots — je reviens vers vous sous 24 h avec une première idée, gratuitement et sans engagement."
+        description="Pas besoin de savoir ce qu'il vous faut. Décrivez votre situation avec vos mots : je reviens vers vous sous 24 h avec une première idée, gratuitement et sans engagement."
       />
 
       <section className="section-shell-tight">
@@ -136,7 +136,7 @@ export function ContactPage() {
             {/* Service selection */}
             <motion.div variants={fadeInUp} className="mb-10">
               <span id="type-projet-label" className="text-base font-semibold text-text-primary block mb-2">Qu&apos;est-ce qui vous amène ?</span>
-              <p className="text-sm text-text-secondary/85 mb-5">Choisissez ce qui s&apos;en rapproche le plus. Si vous hésitez, ce n&apos;est pas grave — on en parle.</p>
+              <p className="text-sm text-text-secondary/85 mb-5">Choisissez ce qui s&apos;en rapproche le plus. Si vous hésitez, ce n&apos;est pas grave, on en parle.</p>
               <div className="flex flex-wrap gap-3" role="group" aria-labelledby="type-projet-label">
                 {serviceOptions.map((s) => (
                   <button
@@ -187,9 +187,9 @@ export function ContactPage() {
                   <select id="contact-budget" name="budget" className="w-full px-5 py-3.5 rounded-xl bg-bg-tertiary/50 border border-border-medium text-sm text-text-secondary focus:outline-none focus:border-accent-primary/50 focus:ring-2 focus:ring-accent-primary/10 transition-all appearance-none cursor-pointer">
                     <option>Je préfère en parler</option>
                     <option>Moins de 1 000 €</option>
-                    <option>1 000 € — 3 000 €</option>
-                    <option>3 000 € — 8 000 €</option>
-                    <option>8 000 € — 20 000 €</option>
+                    <option>1 000 € à 3 000 €</option>
+                    <option>3 000 € à 8 000 €</option>
+                    <option>8 000 € à 20 000 €</option>
                     <option>Plus de 20 000 €</option>
                   </select>
                 </div>
@@ -205,7 +205,7 @@ export function ContactPage() {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                   )}
                 </Button>
-                <p className="text-xs text-text-tertiary">Réponse sous 24 h — gratuit, sans engagement</p>
+                <p className="text-xs text-text-tertiary">Réponse sous 24 h, gratuit, sans engagement</p>
               </div>
 
               {/* Retour accessible après envoi */}
@@ -337,7 +337,7 @@ export function ContactPage() {
             <motion.div variants={fadeInUp} className="rounded-xl border border-border-subtle bg-bg-card/50 p-7 text-center card-shine">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light mx-auto mb-4"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>
               <p className="text-sm font-medium">Appel découverte</p>
-              <p className="text-xs text-text-tertiary mt-1">30 min — gratuit</p>
+              <p className="text-xs text-text-tertiary mt-1">30 min, gratuit</p>
             </motion.div>
           </motion.div>
         </div>

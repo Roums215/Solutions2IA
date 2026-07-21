@@ -22,7 +22,7 @@ const ENRICH_STEPS: EnrichStep[] = [
     n: 2,
     label: "Vérification droits",
     detail:
-      "La mémoire respecte les permissions existantes — qui peut le voir aujourd'hui pourra l'interroger demain.",
+      "La mémoire respecte les permissions existantes : qui peut le voir aujourd'hui pourra l'interroger demain.",
   },
   {
     n: 3,
@@ -75,7 +75,7 @@ export function RagEnrichmentStatic() {
               <span className="text-gradient-strong">toute seule</span>.
             </>
           }
-          description="Quand un document change ou qu'un nouveau est ajouté, la mémoire suit — sans intervention. Le schéma est statique : on ne vous vend pas une animation, on vous montre une logique."
+          description="Quand un document change ou qu'un nouveau est ajouté, la mémoire suit, sans intervention. Le schéma est statique : on ne vous vend pas une animation, on vous montre une logique."
         />
 
         <motion.div

@@ -10,11 +10,11 @@ export const WEB_VS_AGENCY_ROWS: VsRow[] = [
   },
   {
     classic: "S'arrête à la mise en ligne.",
-    s2ia: "Je continue après la mise en ligne — support, évolution, automatisations.",
+    s2ia: "Je continue après la mise en ligne : support, évolution, automatisations.",
   },
   {
     classic: "Pas de connexion aux outils métier.",
-    s2ia: "Je branche le site sur vos outils — agenda, messagerie, gestion, automatisation.",
+    s2ia: "Je branche le site sur vos outils : agenda, messagerie, gestion, automatisation.",
   },
   {
     classic: "Pas de circulation des demandes entrantes.",
@@ -22,7 +22,7 @@ export const WEB_VS_AGENCY_ROWS: VsRow[] = [
   },
   {
     classic: "Pas d'automatisation des suites.",
-    s2ia: "J'automatise les suites — notifications, relances, tableaux de bord.",
+    s2ia: "J'automatise les suites : notifications, relances, tableaux de bord.",
   },
   {
     classic: "Pas d'IA métier.",
@@ -40,7 +40,7 @@ export const WEB_VS_AGENCY_HEADERS = {
     sublabel: "Le site comme livrable",
   },
   s2ia: {
-    label: "Solutions 2IA — indépendant",
+    label: "Solutions 2IA · indépendant",
     sublabel: "Le site comme point d'entrée",
   },
 };

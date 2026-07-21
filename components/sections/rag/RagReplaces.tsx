@@ -58,7 +58,7 @@ export function RagReplaces() {
               <span className="text-gradient-strong">remplace</span> au quotidien.
             </>
           }
-          description="Le travail invisible que vos équipes font pour retrouver l'information — c'est lui que la mémoire d'entreprise prend en charge."
+          description="Le travail invisible que vos équipes font pour retrouver l'information : c'est lui que la mémoire d'entreprise prend en charge."
         />
 
         <motion.div

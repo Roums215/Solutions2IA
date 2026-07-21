@@ -52,7 +52,7 @@ function delta(current: number, previous: number, opts: { lowerIsBetter?: boolea
   const flat = Math.abs(diff) < 1e-9;
   const color = flat ? C.muted : improved ? C.good : C.bad;
   const arrow = flat ? "→" : improved ? "▲" : "▼";
-  const pctStr = pct === null ? "—" : `${pct >= 0 ? "+" : ""}${fmt(pct, 0)}%`;
+  const pctStr = pct === null ? "n/a" : `${pct >= 0 ? "+" : ""}${fmt(pct, 0)}%`;
   return `<span style="color:${color};font-weight:600">${arrow} ${fmt(Math.abs(diff), digits)}${suffix} (${pctStr})</span>`;
 }
 
@@ -105,7 +105,7 @@ function queriesTable(gsc: GscReport): string {
 function healthChecklist(onpage: OnPageReport): string {
   const failed: string[] = [];
   for (const sc of onpage.siteChecks) {
-    if (!sc.passed) failed.push(`Site — ${sc.label}${sc.detail ? ` (${sc.detail})` : ""}`);
+    if (!sc.passed) failed.push(`Site · ${sc.label}${sc.detail ? ` (${sc.detail})` : ""}`);
   }
   for (const p of onpage.pages) {
     const path = (() => {
@@ -117,7 +117,7 @@ function healthChecklist(onpage: OnPageReport): string {
     })();
     for (const c of p.checks) {
       if (!c.passed)
-        failed.push(`${path} — ${c.label}${c.detail ? ` (${c.detail})` : ""}`);
+        failed.push(`${path} · ${c.label}${c.detail ? ` (${c.detail})` : ""}`);
     }
   }
   if (failed.length === 0) {
@@ -144,7 +144,7 @@ export function buildReportEmail(data: ReportData): {
         ${metricRow("CTR moyen", `${fmt(gsc.current.ctr * 100, 1)}%`, delta(gsc.current.ctr * 100, gsc.previous.ctr * 100, { suffix: " pt", digits: 1 }))}
         ${metricRow("Position moyenne", fmt(gsc.current.position, 1), delta(gsc.current.position, gsc.previous.position, { lowerIsBetter: true, digits: 1 }))}
       </table>`
-    : `<p style="color:${C.muted};font-size:13px;line-height:1.6">Google Search Console n'est pas encore connecté — la <strong>visibilité réelle</strong> (position, clics, impressions) n'est donc pas mesurée. Le score ci-dessus reflète uniquement la <strong>santé technique on-page</strong>. Connecte GSC pour débloquer le suivi de classement.</p>`;
+    : `<p style="color:${C.muted};font-size:13px;line-height:1.6">Google Search Console n'est pas encore connecté : la <strong>visibilité réelle</strong> (position, clics, impressions) n'est donc pas mesurée. Le score ci-dessus reflète uniquement la <strong>santé technique on-page</strong>. Connecte GSC pour débloquer le suivi de classement.</p>`;
 
   const visibilityLine =
     score.visibility !== null
@@ -192,7 +192,7 @@ export function buildReportEmail(data: ReportData): {
 </body></html>`;
 
   const text = [
-    `Solutions 2IA — Rapport SEO ${modeLabel} (${periodLabel})`,
+    `Solutions 2IA · Rapport SEO ${modeLabel} (${periodLabel})`,
     ``,
     `SCORE GLOBAL : ${score.global}/100 (note ${score.grade})`,
     score.visibility !== null
@@ -206,10 +206,10 @@ export function buildReportEmail(data: ReportData): {
           `CTR : ${fmt(gsc.current.ctr * 100, 1)}%`,
           `Position moyenne : ${fmt(gsc.current.position, 1)} (préc. ${fmt(gsc.previous.position, 1)})`,
         ].join("\n")
-      : `GSC non connecté — visibilité non mesurée.`,
+      : `GSC non connecté, visibilité non mesurée.`,
   ].join("\n");
 
-  const subject = `[SEO ${modeLabel}] Score ${score.global}/100 (${score.grade}) — Solutions 2IA`;
+  const subject = `[SEO ${modeLabel}] Score ${score.global}/100 (${score.grade}) · Solutions 2IA`;
 
   return { subject, html, text };
 }

@@ -16,7 +16,7 @@ const points = [
   },
   {
     title: "Ce que j'automatise",
-    text: "Génération des factures au bon format depuis vos outils actuels, transmission automatique, suivi des statuts (déposée, acceptée, payée) et relances — sans changer votre façon de facturer.",
+    text: "Génération des factures au bon format depuis vos outils actuels, transmission automatique, suivi des statuts (déposée, acceptée, payée) et relances, sans changer votre façon de facturer.",
   },
 ];
 
@@ -32,7 +32,7 @@ export function ChorusProSection() {
               <span className="text-gradient-strong">l&apos;automatiser plutôt que la subir</span>
             </>
           }
-          description="L'obligation Chorus Pro / Factur-X arrive. C'est une contrainte — et l'occasion idéale de supprimer la saisie de facturation pour de bon."
+          description="L'obligation Chorus Pro / Factur-X arrive. C'est une contrainte, et l'occasion idéale de supprimer la saisie de facturation pour de bon."
         />
         <motion.div
           variants={staggerContainer}

@@ -55,7 +55,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "agents-ia",
     question: "Comment éviter les hallucinations d'un agent IA en production ?",
     answer:
-      "Trois leviers cumulés : (1) une IA branchée sur vos propres documents (l'agent ne sait que ce qui est indexé, citations sources affichées, refus contrôlé sous seuil de confiance), (2) contraintes métier explicites dans le prompt système avec validation par règles, (3) humain dans la boucle pour les actions sensibles (seuil de confiance configurable, hand-off Slack ou e-mail, override audité). La fiabilité est souvent le premier frein cité à l'adoption — c'est précisément ce que ces garde-fous adressent.",
+      "Trois leviers cumulés : (1) une IA branchée sur vos propres documents (l'agent ne sait que ce qui est indexé, citations sources affichées, refus contrôlé sous seuil de confiance), (2) contraintes métier explicites dans le prompt système avec validation par règles, (3) humain dans la boucle pour les actions sensibles (seuil de confiance configurable, hand-off Slack ou e-mail, override audité). La fiabilité est souvent le premier frein cité à l'adoption : c'est précisément ce que ces garde-fous adressent.",
   },
   {
     category: "agents-ia",
@@ -73,20 +73,20 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "agents-ia",
     question: "Combien de temps pour mettre un premier agent en production ?",
     answer:
-      "Je travaille par étapes courtes pour limiter les risques : 3 à 4 semaines entre l'audit et le premier déploiement. Semaine 1 : audit du terrain réel (inbox, CRM, outils métier, identification des 2-3 cas d'usage à plus fort levier). Semaines 2-3 : build de l'agent avec chaîne K→R→A→M (Knowledge → Reasoning → Actions → Monitoring), intégrations validées. Semaine 4 : déploiement progressif et prise en main par votre équipe. Beaucoup de projets IA échouent parce que les données et processus sous-jacents n'ont jamais été audités — c'est précisément ce que cette méthode évite.",
+      "Je travaille par étapes courtes pour limiter les risques : 3 à 4 semaines entre l'audit et le premier déploiement. Semaine 1 : audit du terrain réel (inbox, CRM, outils métier, identification des 2-3 cas d'usage à plus fort levier). Semaines 2-3 : build de l'agent avec chaîne K→R→A→M (Knowledge → Reasoning → Actions → Monitoring), intégrations validées. Semaine 4 : déploiement progressif et prise en main par votre équipe. Beaucoup de projets IA échouent parce que les données et processus sous-jacents n'ont jamais été audités : c'est précisément ce que cette méthode évite.",
   },
   {
     category: "agents-ia",
     question: "Quels modèles LLM utilisez-vous ?",
     answer:
-      "Selon la criticité du cas d'usage : Claude (Anthropic, hébergement UE possible) pour les tâches qui demandent du raisonnement et de la fidélité contextuelle ; GPT-4o/GPT-5 (OpenAI) pour les volumes élevés ; Mistral Large/Codestral (Mistral AI, hébergement Paris) quand la souveraineté ou la latence prime. Aucun modèle n'est figé : je benchmark sur vos vrais prompts avant de choisir. Les modèles sont contraints par chaîne de pensée explicite, validation par règles métier et fallback humain — pas en mode génératif pur.",
+      "Selon la criticité du cas d'usage : Claude (Anthropic, hébergement UE possible) pour les tâches qui demandent du raisonnement et de la fidélité contextuelle ; GPT-4o/GPT-5 (OpenAI) pour les volumes élevés ; Mistral Large/Codestral (Mistral AI, hébergement Paris) quand la souveraineté ou la latence prime. Aucun modèle n'est figé : je benchmark sur vos vrais prompts avant de choisir. Les modèles sont contraints par chaîne de pensée explicite, validation par règles métier et fallback humain, pas en mode génératif pur.",
   },
   // ─── Applications métier ───
   {
     category: "applications-metier",
     question: "Pourquoi une application métier sur mesure plutôt qu'un SaaS générique ?",
     answer:
-      "Le SaaS générique impose ses parcours, son vocabulaire et ses limites. Une app métier épouse vos gestes réels : un agenda santé qui montre vos no-show et téléconsultations en cours, un cockpit industrie avec vos lignes et OEE temps réel, un suivi chantier BTP avec pointage géolocalisé et marge en direct. Je conçois des dashboards vraiment différenciés par secteur (santé, retail, industrie, services pro, logistique, immobilier/BTP) — chaque cockpit reflète le vocabulaire et les KPIs propres à votre métier, pas une template générique.",
+      "Le SaaS générique impose ses parcours, son vocabulaire et ses limites. Une app métier épouse vos gestes réels : un agenda santé qui montre vos no-show et téléconsultations en cours, un cockpit industrie avec vos lignes et OEE temps réel, un suivi chantier BTP avec pointage géolocalisé et marge en direct. Je conçois des dashboards vraiment différenciés par secteur (santé, retail, industrie, services pro, logistique, immobilier/BTP) : chaque cockpit reflète le vocabulaire et les KPIs propres à votre métier, pas une template générique.",
   },
   {
     category: "applications-metier",
@@ -123,7 +123,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "rag-memoire",
     question: "Comment fonctionne le RAG sur vos données ?",
     answer:
-      "Vos documents (Notion, Confluence, SharePoint, Google Drive, etc.) sont indexés sous forme vectorielle dans une base spécialisée comme pgvector ou Qdrant — chaque fragment de texte est rangé de façon à être retrouvé vite par similarité de sens. Quand un utilisateur pose une question, le système retrouve les passages pertinents et les fournit à l'IA comme contexte. L'IA répond uniquement à partir de ces passages, avec citations sources affichées. C'est aujourd'hui le standard pour éviter les hallucinations dans les projets en entreprise.",
+      "Vos documents (Notion, Confluence, SharePoint, Google Drive, etc.) sont indexés sous forme vectorielle dans une base spécialisée comme pgvector ou Qdrant : chaque fragment de texte est rangé de façon à être retrouvé vite par similarité de sens. Quand un utilisateur pose une question, le système retrouve les passages pertinents et les fournit à l'IA comme contexte. L'IA répond uniquement à partir de ces passages, avec citations sources affichées. C'est aujourd'hui le standard pour éviter les hallucinations dans les projets en entreprise.",
   },
   {
     category: "rag-memoire",
@@ -141,13 +141,13 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "rag-memoire",
     question: "À quelle fréquence la base RAG est-elle mise à jour ?",
     answer:
-      "En temps quasi-réel pour les sources qui exposent des signaux automatiques (Notion, Slack, Confluence Cloud, SharePoint Online) — la donnée est indexée en 5-15 minutes après modification. Pour les sources sans signal automatique, vérification configurable toutes les 1 h à 24 h. Pour les sources statiques (PDF déposés manuellement), upload + indexation à la demande. La fraîcheur des documents compte directement sur la qualité des réponses : un corpus vieillissant produit des réponses périmées.",
+      "En temps quasi-réel pour les sources qui exposent des signaux automatiques (Notion, Slack, Confluence Cloud, SharePoint Online) : la donnée est indexée en 5-15 minutes après modification. Pour les sources sans signal automatique, vérification configurable toutes les 1 h à 24 h. Pour les sources statiques (PDF déposés manuellement), upload + indexation à la demande. La fraîcheur des documents compte directement sur la qualité des réponses : un corpus vieillissant produit des réponses périmées.",
   },
   {
     category: "rag-memoire",
     question: "Le RAG fonctionne-t-il sur des documents juridiques sourcés ?",
     answer:
-      "Oui, c'est même l'un des cas d'usage les plus solides. Un cabinet d'avocat indexe jurisprudence, doctrine, contrats-types, dossiers contentieux. L'agent répond avec citations sources exactes (article, paragraphe), refus contrôlé si la donnée n'est pas dans le corpus. Sans base documentaire propre, les IA généralistes inventent des références juridiques — c'est documenté dans la littérature spécialisée. Avec une base bien construite, le taux d'erreur sur les réponses sourcées descend sous 0,5 %.",
+      "Oui, c'est même l'un des cas d'usage les plus solides. Un cabinet d'avocat indexe jurisprudence, doctrine, contrats-types, dossiers contentieux. L'agent répond avec citations sources exactes (article, paragraphe), refus contrôlé si la donnée n'est pas dans le corpus. Sans base documentaire propre, les IA généralistes inventent des références juridiques (phénomène documenté dans la littérature spécialisée). Avec une base bien construite, le taux d'erreur sur les réponses sourcées descend sous 0,5 %.",
   },
   {
     category: "rag-memoire",
@@ -160,7 +160,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "securite-rgpd",
     question: "Où sont hébergées les données de mes utilisateurs ?",
     answer:
-      "France ou Union européenne, jamais ailleurs. Infrastructure : OVH Paris ou Scaleway pour le compute, Supabase EU (Francfort) ou base PostgreSQL Vercel EU pour la donnée structurée, modèles Mistral hébergés à Paris ou Claude EU (région européenne d'Anthropic) pour l'IA. La localisation des données est souvent le premier frein cité à l'adoption d'IA dans les entreprises — c'est précisément ce que cette architecture adresse.",
+      "France ou Union européenne, jamais ailleurs. Infrastructure : OVH Paris ou Scaleway pour le compute, Supabase EU (Francfort) ou base PostgreSQL Vercel EU pour la donnée structurée, modèles Mistral hébergés à Paris ou Claude EU (région européenne d'Anthropic) pour l'IA. La localisation des données est souvent le premier frein cité à l'adoption d'IA dans les entreprises : c'est précisément ce que cette architecture adresse.",
   },
   {
     category: "securite-rgpd",
@@ -197,7 +197,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "methode-pricing",
     question: "Comment se déroule le premier mois après le build ?",
     answer:
-      "Une fois le build terminé, vous démarrez 30 jours d'usage réel avec votre équipe sur les cas concrets identifiés en audit. Je mesure avec vous l'adoption et les gains réels (temps économisé, erreurs évitées, cas traités). Si les indicateurs ne correspondent pas aux objectifs fixés ensemble, on ajuste — c'est l'intérêt d'un suivi serré sur cette période. Beaucoup de projets IA ne tiennent pas leurs promesses parce que les données et processus n'ont jamais été audités en amont : c'est précisément ce que cette méthode par étapes courtes évite.",
+      "Une fois le build terminé, vous démarrez 30 jours d'usage réel avec votre équipe sur les cas concrets identifiés en audit. Je mesure avec vous l'adoption et les gains réels (temps économisé, erreurs évitées, cas traités). Si les indicateurs ne correspondent pas aux objectifs fixés ensemble, on ajuste : c'est l'intérêt d'un suivi serré sur cette période. Beaucoup de projets IA ne tiennent pas leurs promesses parce que les données et processus n'ont jamais été audités en amont : c'est précisément ce que cette méthode par étapes courtes évite.",
   },
   {
     category: "methode-pricing",
@@ -215,7 +215,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "methode-pricing",
     question: "Pratiquez-vous le paiement à la performance ?",
     answer:
-      "Oui, en option. Modèle hybride : base fixe (couvrant les coûts d'infrastructure et de monitoring) + variable lié à la performance — typiquement par lead qualifié, par ticket résolu autonomement ou par économie de temps mesurée. L'avantage : alignement parfait entre risque et valeur délivrée. Conditions négociées au cas par cas après le premier échange.",
+      "Oui, en option. Modèle hybride : base fixe (couvrant les coûts d'infrastructure et de monitoring) + variable lié à la performance (par lead qualifié, par ticket résolu autonomement ou par économie de temps mesurée). L'avantage : alignement parfait entre risque et valeur délivrée. Conditions négociées au cas par cas après le premier échange.",
   },
   {
     category: "methode-pricing",

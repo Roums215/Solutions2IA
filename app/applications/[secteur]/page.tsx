@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: RouteParams }) {
   const url = `/applications/${secteur}`;
   const schema = combineSchemas(
     buildServiceSchema({
-      name: `Application métier — ${sector.name}`,
+      name: `Application métier : ${sector.name}`,
       description: vertical.seoDescription,
       url,
       serviceType: "Application métier sur mesure",

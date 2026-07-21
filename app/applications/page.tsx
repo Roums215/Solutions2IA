@@ -8,7 +8,7 @@ import {
 import { ApplicationsPage } from "./ApplicationsPage";
 
 export const metadata: Metadata = {
-  title: "Application métier sur mesure — remplacez Excel et le papier",
+  title: "Application métier sur mesure : remplacez Excel et le papier",
   description:
     "L'application web et mobile qui remplace vos fichiers Excel et votre papier : une seule, simple, pensée pour votre métier. Premier échange gratuit.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/applications" },
   openGraph: {
-    title: "Applications sur mesure — un outil fait pour votre métier",
+    title: "Applications sur mesure : un outil fait pour votre métier",
     description:
       "Je remplace vos fichiers éparpillés par une application simple, accessible partout, reliée à vos outils. Premier échange gratuit.",
     url: "/applications",

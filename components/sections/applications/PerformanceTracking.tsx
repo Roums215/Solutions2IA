@@ -17,7 +17,7 @@ const KPIS: KPI[] = [
   {
     value: "Adoption",
     label: "Qui s'en sert vraiment",
-    detail: "Combien de votre équipe utilise l'outil au quotidien — pas juste qui s'est connecté une fois.",
+    detail: "Combien de votre équipe utilise l'outil au quotidien, pas juste qui s'est connecté une fois.",
   },
   {
     value: "Temps",
@@ -225,7 +225,7 @@ function SectorDashboardCarousel() {
             key={active.slug}
             id={`dashboard-panel-${active.slug}`}
             role="tabpanel"
-            aria-label={`Cockpit ${active.short} — ${active.meta}`}
+            aria-label={`Cockpit ${active.short} : ${active.meta}`}
             initial={shouldReduceMotion ? false : { opacity: 0, y: 8, scale: 0.99 }}
             animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8, scale: 0.99 }}

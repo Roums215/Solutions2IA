@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { BRAND, SITE_NAME, SITE_TAGLINE } from "@/lib/seo/constants";
 
 export const runtime = "edge";
-export const alt = "Solutions 2IA — Applications IA, agents IA, sites web et automatisation sur mesure";
+export const alt = "Solutions 2IA : applications IA, agents IA, sites web et automatisation sur mesure";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

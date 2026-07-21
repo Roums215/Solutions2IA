@@ -111,7 +111,7 @@ export function TrustGuardrails() {
           label="Garde-fous"
           title={
             <>
-              Un assistant qui ne casse rien — et que vos équipes{" "}
+              Un assistant qui ne casse rien, et que vos équipes{" "}
               <span className="text-gradient-strong">acceptent vraiment</span>.
             </>
           }

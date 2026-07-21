@@ -32,7 +32,7 @@ const DEFAULT_DETAILS: SectorDetails = {
   },
   write: {
     label: "Écriture Axonaut",
-    text: "API REST — contact + entreprise + opportunité, option devis pré-rempli.",
+    text: "API REST : contact + entreprise + opportunité, option devis pré-rempli.",
   },
   reliability: {
     label: "Fiabilité",
@@ -115,8 +115,8 @@ function PipelineNodeCard({
   const isSent = isNotify && status === "done";
   const showMicroStatus = status === "active" && !!activeStatusText;
   const ariaLabel = showMicroStatus
-    ? `${node.label} — ${activeStatusText}`
-    : `${node.label} — ${node.sublabel}`;
+    ? `${node.label} : ${activeStatusText}`
+    : `${node.label} : ${node.sublabel}`;
   return (
     <div
       role="group"
@@ -572,7 +572,7 @@ export function AutomationPipeline({
   const resolvedHeading: ReactNode = heading ?? "JobPhoning → n8n → Axonaut";
   const resolvedIntro: ReactNode =
     intro ??
-    "Un appel qualifié déclenche le webhook — contact, entreprise et opportunité sont dans Axonaut avant que le commercial raccroche.";
+    "Un appel qualifié déclenche le webhook : contact, entreprise et opportunité sont dans Axonaut avant que le commercial raccroche.";
 
   if (!mounted) return null;
 

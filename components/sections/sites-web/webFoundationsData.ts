@@ -125,4 +125,4 @@ export const FOUNDATION_PILIERS: FoundationPilier[] = [
 export const FOUNDATION_SEPARATOR_LABEL = "8 bénéfices business";
 
 export const FOUNDATION_CLOSING =
-  "Voilà pourquoi votre site n'est pas un site — c'est ce que vous obtenez en plus, chaque jour, sans avoir à y penser.";
+  "Voilà pourquoi votre site n'est pas un site : c'est ce que vous obtenez en plus, chaque jour, sans avoir à y penser.";

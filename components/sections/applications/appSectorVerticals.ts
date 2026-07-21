@@ -24,7 +24,7 @@ export type SectorVertical = {
 export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   sante: {
     slug: "sante",
-    seoTitle: "Application santé sur mesure — cabinet, DPI, RDV, Ségur",
+    seoTitle: "Application santé sur mesure : cabinet, DPI, RDV, Ségur",
     seoDescription:
       "Application métier pour cabinets et structures de santé : agenda RDV anti no-show, dossier patient unifié, téléconsultation, MSSanté/INS. Hébergement HDS possible.",
     keywords: [
@@ -35,7 +35,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
     ],
     heroAccent: "le cockpit du cabinet",
     intro:
-      "Dossier patient éclaté entre papier, Excel et quatre logiciels qui ne se parlent pas ; no-show qui grignote les journées ; échéances Ségur qui approchent. Une application santé sur mesure réunit agenda, dossier patient et échanges sécurisés dans un seul outil — pensé avec votre équipe, conforme dès la conception.",
+      "Dossier patient éclaté entre papier, Excel et quatre logiciels qui ne se parlent pas ; no-show qui grignote les journées ; échéances Ségur qui approchent. Une application santé sur mesure réunit agenda, dossier patient et échanges sécurisés dans un seul outil, pensé avec votre équipe, conforme dès la conception.",
     moduleDetails: [
       {
         name: "RDV en ligne",
@@ -43,7 +43,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
       },
       {
         name: "DPI unifié",
-        text: "Un dossier patient informatisé unique : antécédents, comptes-rendus, documents, courriers. Fini les triples saisies entre logiciels — l'information suit le patient.",
+        text: "Un dossier patient informatisé unique : antécédents, comptes-rendus, documents, courriers. Fini les triples saisies entre logiciels : l'information suit le patient.",
       },
       {
         name: "Téléconsultation",
@@ -51,7 +51,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
       },
       {
         name: "MSSanté / INS",
-        text: "Échanges par messagerie sécurisée de santé et identité nationale de santé intégrés — le socle des exigences Ségur, télétransmission incluse.",
+        text: "Échanges par messagerie sécurisée de santé et identité nationale de santé intégrés : le socle des exigences Ségur, télétransmission incluse.",
       },
     ],
     kpis: [
@@ -64,7 +64,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   },
   retail: {
     slug: "retail",
-    seoTitle: "Application retail/e-commerce sur mesure — PIM, OMS, stock",
+    seoTitle: "Application retail/e-commerce sur mesure : PIM, OMS, stock",
     seoDescription:
       "Application sur mesure pour boutiques et e-commerce : stock unifié multi-canal, PIM/OMS, click & collect, caisse connectée, CRM fidélité. Fini les silos entre canaux.",
     keywords: [
@@ -75,7 +75,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
     ],
     heroAccent: "un seul stock, tous vos canaux",
     intro:
-      "Boutique, site, marketplaces : trois stocks qui divergent, des fiches produit recopiées partout, des paniers abandonnés sans relance. Une application retail sur mesure unifie produits, stocks et commandes — chaque canal lit la même vérité, en temps réel.",
+      "Boutique, site, marketplaces : trois stocks qui divergent, des fiches produit recopiées partout, des paniers abandonnés sans relance. Une application retail sur mesure unifie produits, stocks et commandes : chaque canal lit la même vérité, en temps réel.",
     moduleDetails: [
       {
         name: "PIM / OMS",
@@ -91,7 +91,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
       },
       {
         name: "CRM fidélité",
-        text: "Historique d'achat unifié en ligne + boutique : segments, relances panier, offres ciblées — la donnée client travaille enfin pour vous.",
+        text: "Historique d'achat unifié en ligne + boutique : segments, relances panier, offres ciblées. La donnée client travaille enfin pour vous.",
       },
     ],
     kpis: [
@@ -104,7 +104,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   },
   industrie: {
     slug: "industrie",
-    seoTitle: "Application industrie sur mesure — MES, OEE/TRS, suivi OF",
+    seoTitle: "Application industrie sur mesure : MES, OEE/TRS, suivi OF",
     seoDescription:
       "Application atelier sur mesure pour PME industrielles : suivi des ordres de fabrication sur tablette, OEE/TRS en temps réel, GMAO mobile, traçabilité des lots.",
     keywords: [
@@ -115,7 +115,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
     ],
     heroAccent: "l'atelier en temps réel",
     intro:
-      "Les fiches suiveuses papier se perdent, le TRS s'estime au doigt mouillé, et l'ERP du bureau ne descend jamais jusqu'aux machines. Une application industrie sur mesure fait remonter la production en direct — chaque ligne, chaque OF, chaque arrêt — sans alourdir le geste des opérateurs.",
+      "Les fiches suiveuses papier se perdent, le TRS s'estime au doigt mouillé, et l'ERP du bureau ne descend jamais jusqu'aux machines. Une application industrie sur mesure fait remonter la production en direct : chaque ligne, chaque OF, chaque arrêt, sans alourdir le geste des opérateurs.",
     moduleDetails: [
       {
         name: "Suivi OF tablette",
@@ -144,7 +144,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   },
   "services-pro": {
     slug: "services-pro",
-    seoTitle: "Application cabinet & conseil — temps, facturation, Chorus Pro",
+    seoTitle: "Application cabinet & conseil : temps, facturation, Chorus Pro",
     seoDescription:
       "Application sur mesure pour avocats, experts-comptables et conseils : suivi des temps, facturation automatique, GED avec signature, Chorus Pro / facture électronique 2026.",
     keywords: [
@@ -167,7 +167,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
       },
       {
         name: "GED + e-sign",
-        text: "Gestion documentaire avec versions, modèles et signature électronique intégrée — les allers-retours d'engagement se règlent en heures, pas en semaines.",
+        text: "Gestion documentaire avec versions, modèles et signature électronique intégrée : les allers-retours d'engagement se règlent en heures, pas en semaines.",
       },
       {
         name: "Chorus Pro / PDP",
@@ -184,7 +184,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   },
   logistique: {
     slug: "logistique",
-    seoTitle: "Application transport & logistique — TMS, ePOD, tournées",
+    seoTitle: "Application transport & logistique : TMS, ePOD, tournées",
     seoDescription:
       "Application sur mesure pour transporteurs : TMS, optimisation de tournées, preuve de livraison ePOD photo + signature, tracking temps réel avec ETA. Prêt pour l'eCMR.",
     keywords: [
@@ -195,7 +195,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
     ],
     heroAccent: "chaque livraison prouvée",
     intro:
-      "Des bons de livraison papier qui se perdent, un last-mile qui pèse plus de la moitié du coût, des clients qui appellent pour savoir « où est le camion ». Une application logistique sur mesure met tournées, preuves de livraison et position des véhicules dans le même écran — pour vous et pour vos clients.",
+      "Des bons de livraison papier qui se perdent, un last-mile qui pèse plus de la moitié du coût, des clients qui appellent pour savoir « où est le camion ». Une application logistique sur mesure met tournées, preuves de livraison et position des véhicules dans le même écran : pour vous et pour vos clients.",
     moduleDetails: [
       {
         name: "TMS",
@@ -224,7 +224,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
   },
   immobilier: {
     slug: "immobilier",
-    seoTitle: "Application immobilier & BTP — CRM Hoguet, chantiers, marges",
+    seoTitle: "Application immobilier & BTP : CRM Hoguet, chantiers, marges",
     seoDescription:
       "Application sur mesure pour agences et entreprises BTP : CRM mandats conforme loi Hoguet, pointage chantier géolocalisé, devis → facture, marge par chantier en direct.",
     keywords: [
@@ -235,7 +235,7 @@ export const SECTOR_VERTICALS: Record<SectorApp["slug"], SectorVertical> = {
     ],
     heroAccent: "mandats et chantiers sous contrôle",
     intro:
-      "Des mandats suivis sur carnet, des pointages chantier contestés, des marges découvertes en fin d'opération quand il est trop tard. Une application immobilier/BTP sur mesure relie commercial, terrain et finances — chaque chantier montre sa marge pendant qu'on peut encore agir.",
+      "Des mandats suivis sur carnet, des pointages chantier contestés, des marges découvertes en fin d'opération quand il est trop tard. Une application immobilier/BTP sur mesure relie commercial, terrain et finances : chaque chantier montre sa marge pendant qu'on peut encore agir.",
     moduleDetails: [
       {
         name: "CRM mandats Hoguet",

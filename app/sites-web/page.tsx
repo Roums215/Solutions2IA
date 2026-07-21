@@ -8,7 +8,7 @@ import {
 import { SitesWebPage } from "./SitesWebPage";
 
 export const metadata: Metadata = {
-  title: "Création de site web — un site qui vous amène des clients (dès 500 €)",
+  title: "Création de site web : un site qui vous amène des clients (dès 500 €)",
   description:
     "Sites web clairs, rapides et bien référencés sur Google : de la vitrine au site connecté (réservation, espace client, paiement). Dès 500 €, échange gratuit.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/sites-web" },
   openGraph: {
-    title: "Création de site web — un site qui vous amène des clients",
+    title: "Création de site web : un site qui vous amène des clients",
     description:
       "Un site qui accueille vos visiteurs et vous transmet chaque demande. De la vitrine au site connecté. Dès 500 €, premier échange gratuit.",
     url: "/sites-web",

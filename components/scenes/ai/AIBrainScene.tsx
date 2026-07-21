@@ -309,7 +309,7 @@ const COLOR_CLASS: Record<LineColor, string> = {
 const OUTPUT_POOL: { color: LineColor; text: string }[] = [
   { color: "accent", text: "Analyse de 24,847 points de données" },
   { color: "cyan", text: "3 recommandations prioritaires identifiées" },
-  { color: "green", text: "Action déployée — +34% efficacité" },
+  { color: "green", text: "Action déployée : +34% efficacité" },
   { color: "accent", text: "Mise à jour mémoire contextuelle (847 nœuds)" },
   { color: "cyan", text: "Détection d'anomalie sur cluster N-3" },
   { color: "green", text: "Workflow CRM synchronisé (12 entrées)" },
@@ -418,7 +418,7 @@ function AgentOutputCard() {
           animate={staticMode || paused ? undefined : { scale: [1, 1.4, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <span className="text-[10px] text-green-400 font-semibold">Sortie agent — Confiance : 97.4%</span>
+        <span className="text-[10px] text-green-400 font-semibold">Sortie agent · Confiance : 97.4%</span>
       </div>
       <div className="rounded-lg bg-bg-primary/40 p-3 font-mono text-[9px] text-text-secondary leading-relaxed space-y-1.5 min-h-[68px]">
         {lines.map((l) => (

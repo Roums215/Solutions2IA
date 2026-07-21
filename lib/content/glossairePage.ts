@@ -20,25 +20,25 @@ export const GLOSSAIRE_PAGE_ENTRIES: GlossairePageEntry[] = [
   {
     key: "ia",
     extended:
-      "Concrètement, une IA moderne lit et rédige du texte comme un collaborateur rapide : elle résume un dossier, répond à un email, classe des demandes. Elle ne remplace pas votre jugement — elle exécute les tâches de lecture et d'écriture qui vous prennent du temps. Dans une PME, ses premiers usages rentables sont presque toujours le tri, la synthèse et la préparation de réponses.",
+      "Concrètement, une IA moderne lit et rédige du texte comme un collaborateur rapide : elle résume un dossier, répond à un email, classe des demandes. Elle ne remplace pas votre jugement : elle exécute les tâches de lecture et d'écriture qui vous prennent du temps. Dans une PME, ses premiers usages rentables sont presque toujours le tri, la synthèse et la préparation de réponses.",
     seeAlso: { label: "Ce qu'un agent IA peut faire pour vous", href: "/agents-ia" },
   },
   {
     key: "agent-ia",
     extended:
-      "La différence avec un simple chatbot : l'agent n'attend pas qu'on lui parle, il AGIT. Il surveille une boîte mail, extrait les informations utiles, met à jour le fichier clients, prépare un devis, alerte la bonne personne — en suivant vos règles, avec vos outils. Vous gardez la main : il propose, journalise, et n'envoie rien d'important sans validation si c'est votre choix.",
+      "La différence avec un simple chatbot : l'agent n'attend pas qu'on lui parle, il AGIT. Il surveille une boîte mail, extrait les informations utiles, met à jour le fichier clients, prépare un devis, alerte la bonne personne. Il suit vos règles, avec vos outils. Vous gardez la main : il propose, journalise, et n'envoie rien d'important sans validation si c'est votre choix.",
     seeAlso: { label: "Assistant IA sur mesure", href: "/agents-ia" },
   },
   {
     key: "llm",
     extended:
-      "Claude (Anthropic), Mistral, GPT : ce sont des modèles d'IA. Chacun a ses forces, ses limites et son niveau de confidentialité. Je choisis le modèle selon votre besoin réel — et pour les données sensibles, je privilégie des options hébergées en Europe. Le modèle n'est qu'un moteur : ce qui crée la valeur, c'est ce qu'on branche autour (vos données, vos règles, vos outils).",
+      "Claude (Anthropic), Mistral, GPT : ce sont des modèles d'IA. Chacun a ses forces, ses limites et son niveau de confidentialité. Je choisis le modèle selon votre besoin réel. Pour les données sensibles, je privilégie des options hébergées en Europe. Le modèle n'est qu'un moteur : ce qui crée la valeur, c'est ce qu'on branche autour (vos données, vos règles, vos outils).",
     seeAlso: { label: "Comment je choisis les modèles", href: "/agents-ia" },
   },
   {
     key: "rag",
     extended:
-      "Techniquement appelé RAG (Retrieval-Augmented Generation), le principe est simple : au lieu de répondre « de mémoire », l'IA va d'abord chercher dans VOS documents, puis répond en citant ses sources. Résultat : des réponses fiables, vérifiables, à jour — sans réentraîner de modèle. C'est la meilleure approche pour interroger procédures, contrats et bases internes.",
+      "Techniquement appelé RAG (Retrieval-Augmented Generation), le principe est simple : au lieu de répondre « de mémoire », l'IA va d'abord chercher dans VOS documents, puis répond en citant ses sources. Résultat : des réponses fiables, vérifiables, à jour, sans réentraîner de modèle. C'est la meilleure approche pour interroger procédures, contrats et bases internes.",
     seeAlso: { label: "Mémoire d'entreprise (RAG)", href: "/rag" },
   },
   {
@@ -50,7 +50,7 @@ export const GLOSSAIRE_PAGE_ENTRIES: GlossairePageEntry[] = [
   {
     key: "workflow",
     extended:
-      "« Nouvelle facture reçue → extraire les montants → vérifier le fournisseur → enregistrer en compta → notifier si anomalie » : voilà un workflow. On le décrit une fois, précisément, puis il s'exécute à chaque fois de la même façon. La qualité d'une automatisation se joue dans la précision de cette description — c'est exactement le travail d'audit que je fais avec vous.",
+      "« Nouvelle facture reçue → extraire les montants → vérifier le fournisseur → enregistrer en compta → notifier si anomalie » : voilà un workflow. On le décrit une fois, précisément, puis il s'exécute à chaque fois de la même façon. La qualité d'une automatisation se joue dans la précision de cette description : c'est exactement le travail d'audit que je fais avec vous.",
     seeAlso: { label: "Comment je câble vos workflows", href: "/automatisation" },
   },
   {
@@ -61,7 +61,7 @@ export const GLOSSAIRE_PAGE_ENTRIES: GlossairePageEntry[] = [
   {
     key: "api",
     extended:
-      "Chaque logiciel sérieux (CRM, facturation, agenda, banque) expose une API : la porte officielle, documentée et sécurisée, par laquelle un autre programme peut lire ou écrire des données. Je n'utilise que ces portes officielles — jamais de bidouille fragile qui casse à la première mise à jour.",
+      "Chaque logiciel sérieux (CRM, facturation, agenda, banque) expose une API : la porte officielle, documentée et sécurisée, par laquelle un autre programme peut lire ou écrire des données. Je n'utilise que ces portes officielles, jamais de bidouille fragile qui casse à la première mise à jour.",
   },
   {
     key: "n8n",
@@ -72,19 +72,19 @@ export const GLOSSAIRE_PAGE_ENTRIES: GlossairePageEntry[] = [
   {
     key: "crm",
     extended:
-      "Axonaut, HubSpot, Pipedrive… peu importe l'outil : un CRM n'a de valeur que s'il est à jour. C'est précisément là que l'automatisation et les agents IA brillent — remplir et actualiser le CRM automatiquement à partir des mails, appels et formulaires, au lieu de compter sur la discipline de saisie de chacun.",
+      "Axonaut, HubSpot, Pipedrive… peu importe l'outil : un CRM n'a de valeur que s'il est à jour. C'est précisément là que l'automatisation et les agents IA brillent, en remplissant et actualisant le CRM automatiquement à partir des mails, appels et formulaires, au lieu de compter sur la discipline de saisie de chacun.",
     seeAlso: { label: "Relier votre CRM au reste", href: "/automatisation" },
   },
   {
     key: "dashboard",
     extended:
-      "Un bon tableau de bord répond en un regard à la question « est-ce que tout va bien ? » : activité du jour, chiffres clés, alertes. Je le construis sur mesure à partir des données que vos outils produisent déjà — sans ressaisie, mis à jour en continu.",
+      "Un bon tableau de bord répond en un regard à la question « est-ce que tout va bien ? » : activité du jour, chiffres clés, alertes. Je le construis sur mesure à partir des données que vos outils produisent déjà, sans ressaisie, mis à jour en continu.",
     seeAlso: { label: "Applications et tableaux de bord", href: "/applications" },
   },
   {
     key: "site-connecte",
     extended:
-      "Un site vitrine montre. Un site connecté travaille : il prend les réservations dans votre agenda, transmet chaque demande dans votre CRM, encaisse un acompte, envoie l'accusé de réception. La différence de valeur entre les deux est énorme — et c'est souvent la meilleure première marche de digitalisation d'une PME.",
+      "Un site vitrine montre. Un site connecté travaille : il prend les réservations dans votre agenda, transmet chaque demande dans votre CRM, encaisse un acompte, envoie l'accusé de réception. La différence de valeur entre les deux est énorme, et c'est souvent la meilleure première marche de digitalisation d'une PME.",
     seeAlso: { label: "Sites web connectés", href: "/sites-web" },
   },
   {
@@ -102,7 +102,7 @@ export const GLOSSAIRE_PAGE_ENTRIES: GlossairePageEntry[] = [
   {
     key: "rgpd",
     extended:
-      "Le RGPD n'interdit pas l'IA ni l'automatisation — il impose de savoir quelles données on traite, pourquoi, où, et de pouvoir les effacer. Concevoir un projet « RGPD dès le départ » coûte peu ; le rattraper après coup coûte cher. C'est un réflexe intégré à chaque projet que je livre, pas une option.",
+      "Le RGPD n'interdit pas l'IA ni l'automatisation : il impose de savoir quelles données on traite, pourquoi, où, et de pouvoir les effacer. Concevoir un projet « RGPD dès le départ » coûte peu ; le rattraper après coup coûte cher. C'est un réflexe intégré à chaque projet que je livre, pas une option.",
     seeAlso: { label: "Questions RGPD dans la FAQ", href: "/faq" },
   },
 ];

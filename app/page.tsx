@@ -28,7 +28,7 @@ const HomeApproachSplit = dynamic(() =>
 
 export default function Home() {
   const howToSchema = buildHowToSchema({
-    name: "Comment je travaille — du premier échange à l'outil en production",
+    name: "Comment je travaille : du premier échange à l'outil en production",
     description:
       "Méthode en quatre étapes pour créer un site web, une application ou une automatisation sur mesure : échange gratuit, proposition chiffrée, construction, mise en ligne et suivi.",
     steps: deliveryFlow.map((s) => ({ name: s.title, text: s.description })),

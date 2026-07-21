@@ -5,7 +5,7 @@ import { SectionParticles } from "@/components/shared/SectionParticles";
 
 const workPoints = [
   "Un seul interlocuteur : celui qui comprend le besoin est celui qui construit",
-  "Des mots simples — vous comprenez ce que vous achetez",
+  "Des mots simples : vous comprenez ce que vous achetez",
   "Du code propre, qui reste à vous",
   "Réponse sous 24 h, premier échange gratuit",
   "Des prix de démarrage honnêtes, annoncés dès le devis",
@@ -49,7 +49,7 @@ export function HomeApproachSplit() {
             {/* Double lecture — le volet technique pour ceux qui veulent vérifier */}
             <details className="group rounded-xl border border-border-subtle bg-bg-card/60 transition-colors duration-300 open:border-border-accent">
               <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 list-none [&::-webkit-details-marker]:hidden">
-                <span className="text-base font-semibold text-text-primary">Détails techniques — pour les curieux</span>
+                <span className="text-base font-semibold text-text-primary">Détails techniques : pour les curieux</span>
                 <svg aria-hidden className="h-4 w-4 shrink-0 text-text-tertiary transition-transform duration-300 group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
@@ -57,7 +57,7 @@ export function HomeApproachSplit() {
               <div className="border-t border-border-subtle/60 px-6 py-5 text-sm leading-[1.8] text-text-secondary space-y-3">
                 <p>
                   <strong className="text-text-primary">Sites & applications :</strong>{" "}
-                  Next.js, React, TypeScript — les technologies des grandes plateformes,
+                  Next.js, React, TypeScript : les technologies des grandes plateformes,
                   à l&apos;échelle de votre projet. Hébergement rapide et sécurisé inclus.
                 </p>
                 <p>

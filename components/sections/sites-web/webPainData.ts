@@ -32,18 +32,18 @@ export const WEB_PAINS: WebPain[] = [
   {
     title: "Manque de suivi",
     detail:
-      "Les contacts entrants ne sont nulle part. Oubliés sous 48 h, perdus pour de bon — ou récupérés par hasard.",
+      "Les contacts entrants ne sont nulle part. Oubliés sous 48 h, perdus pour de bon, ou récupérés par hasard.",
   },
   {
     title: "Outils déconnectés",
     detail:
-      "Site, agenda, messagerie, formulaires — tout vit en silos. Impossible de savoir où en est chaque demande.",
+      "Site, agenda, messagerie, formulaires : tout vit en silos. Impossible de savoir où en est chaque demande.",
   },
 ];
 
 export const WEB_PAIN_TURNAROUND = {
   label: "Avec un site connecté",
-  headline: "Le site arrête ces pertes — et les transforme en circulation.",
+  headline: "Le site arrête ces pertes, et les transforme en circulation.",
   promises: [
     "Clarifie votre offre dès la première seconde.",
     "Rassure le visiteur par la preuve et la cohérence.",

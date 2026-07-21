@@ -131,6 +131,9 @@ pnpm remotion:render        # rendu MP4 (composition Hero par défaut)
 pnpm exec playwright test   # tests E2E
 ```
 
+## Règle de copy (demande explicite du client)
+- **Jamais de tiret cadratin « — » dans le contenu visible** (pages, metadata, titres, FAQ, articles, emails, llms.txt) : ça « fait IA ». Remplacer par deux-points, virgule, parenthèses, point médian « · » (titres/labels) ou « X à Y » (fourchettes). Les commentaires de code peuvent en garder.
+
 ## Façon de travailler
 - Lire l'existant avant de modifier · réutiliser `SpotlightCard` / `FluidMouseField` plutôt que recréer
 - Chaque page garde sa personnalité visuelle (preset domaine) dans l'identité globale

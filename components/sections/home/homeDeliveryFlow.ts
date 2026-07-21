@@ -2,7 +2,7 @@ export const deliveryFlow = [
   {
     meta: "On se parle",
     title: "Vous m'expliquez votre quotidien",
-    description: "Premier échange gratuit. Je cherche ce qui vous prend du temps pour rien — pas ce que je pourrais vous vendre.",
+    description: "Premier échange gratuit. Je cherche ce qui vous prend du temps pour rien, pas ce que je pourrais vous vendre.",
   },
   {
     meta: "Je propose",

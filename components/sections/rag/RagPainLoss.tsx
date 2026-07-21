@@ -14,7 +14,7 @@ type Pain = {
 const PAINS: Pain[] = [
   {
     title: "Un collaborateur part",
-    detail: "Son savoir part avec lui — procédures, contacts, gestes métier.",
+    detail: "Son savoir part avec lui : procédures, contacts, gestes métier.",
   },
   {
     title: "Une procédure est introuvable",
@@ -30,7 +30,7 @@ const PAINS: Pain[] = [
   },
   {
     title: "L'info se cherche partout",
-    detail: "Slack, mails, Drive, Notion, têtes — jamais un seul endroit.",
+    detail: "Slack, mails, Drive, Notion, mémoires vives : jamais un seul endroit.",
   },
 ];
 
@@ -70,7 +70,7 @@ export function RagPainLoss() {
               <span className="text-gradient-strong">perdent leur savoir</span>.
             </>
           }
-          description="Cinq fuites silencieuses, sur lesquelles aucune équipe ne met de chiffre — mais que tout le monde paie."
+          description="Cinq fuites silencieuses, sur lesquelles aucune équipe ne met de chiffre, mais que tout le monde paie."
         />
 
         <motion.div

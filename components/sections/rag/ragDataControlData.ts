@@ -7,7 +7,7 @@ export const RAG_GUARANTEES: RagGuarantee[] = [
   {
     title: "Sources vérifiables",
     detail:
-      "Chaque réponse peut afficher ses sources — cliquables jusqu'au document, à la page, à l'extrait. La traçabilité est intégrée, jamais une promesse vague.",
+      "Chaque réponse peut afficher ses sources, cliquables jusqu'au document, à la page, à l'extrait. La traçabilité est intégrée, jamais une promesse vague.",
   },
   {
     title: "Permissions respectées",
@@ -32,7 +32,7 @@ export const RAG_GUARANTEES: RagGuarantee[] = [
   {
     title: "Validation humaine possible",
     detail:
-      "Vos équipes peuvent corriger, approuver ou rejeter une réponse avant qu'elle ne soit diffusée — la mémoire reste sous contrôle humain.",
+      "Vos équipes peuvent corriger, approuver ou rejeter une réponse avant qu'elle ne soit diffusée : la mémoire reste sous contrôle humain.",
   },
 ];
 

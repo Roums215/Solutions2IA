@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     // Version courte pour la SERP (~60 car.) — la tagline complète reste sur l'OG.
-    default: `${SITE_NAME} — Sites web, applications, agents IA sur mesure`,
-    template: `%s — ${SITE_NAME}`,
+    default: `${SITE_NAME} · Sites web, applications, agents IA sur mesure`,
+    template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -60,12 +60,12 @@ export const metadata: Metadata = {
     locale: SITE_LOCALE,
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    title: `${SITE_NAME} · ${SITE_TAGLINE}`,
     description: SITE_DESCRIPTION,
     creator: "@solutions2ia",
     site: "@solutions2ia",

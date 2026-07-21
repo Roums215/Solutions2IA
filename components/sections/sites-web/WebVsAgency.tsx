@@ -39,7 +39,7 @@ export function WebVsAgency() {
               .
             </>
           }
-          description="Comparaison factuelle, sans dénigrement — juste ce que je fais en plus, et pourquoi ça change tout pour votre activité."
+          description="Comparaison factuelle, sans dénigrement : juste ce que je fais en plus, et pourquoi ça change tout pour votre activité."
         />
 
         <motion.div

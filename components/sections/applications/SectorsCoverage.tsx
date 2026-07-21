@@ -26,7 +26,7 @@ export function SectorsCoverage() {
               <span className="text-gradient-strong">L&apos;outil s&apos;y adapte</span>.
             </>
           }
-          description="Voici des exemples de ce qu'une application sur mesure peut simplifier, selon votre activité. La vôtre n'est pas là ? La démarche reste la même — on en parle."
+          description="Voici des exemples de ce qu'une application sur mesure peut simplifier, selon votre activité. La vôtre n'est pas là ? La démarche reste la même : on en parle."
         />
 
         <motion.div
@@ -108,7 +108,7 @@ export function SectorsCoverage() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto mt-12 max-w-2xl text-center text-sm italic leading-relaxed text-text-tertiary"
         >
-          Et si votre métier n&apos;est pas listé : c&apos;est précisément la même méthode qui s&apos;applique — on commence par comprendre le terrain.
+          Et si votre métier n&apos;est pas listé : c&apos;est précisément la même méthode qui s&apos;applique, on commence par comprendre le terrain.
         </motion.p>
       </div>
     </section>

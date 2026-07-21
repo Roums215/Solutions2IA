@@ -33,7 +33,7 @@ const auditApplicationMetier: Article = {
     {
       term: "Refonte ciblée",
       definition:
-        "Réécriture progressive module par module — ancien et nouveau cohabitent jusqu'à la bascule complète.",
+        "Réécriture progressive module par module : l'ancien et le nouveau cohabitent jusqu'à la bascule complète.",
     },
     {
       term: "Greenfield",
@@ -69,7 +69,7 @@ const auditApplicationMetier: Article = {
       anchor: "cout-audit",
       content: (
         <p>
-          Selon le périmètre et l&apos;ancienneté du code, comptez entre 1 000 € (audit léger 1-2 modules) et 5 000 € (audit complet d&apos;une plateforme métier 50+ écrans avec dette technique chiffrée et trajectoire de migration documentée). Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet, le nombre de modules à analyser et les intégrations à cartographier. Ce coût se rentabilise dès le premier trimestre si la décision optimale évite 3 mois de refonte mal cadrée. Règle empirique : 5-10 % du budget de refonte cible. Audit gratuit de cadrage offert avant tout engagement.
+          Selon le périmètre et l&apos;ancienneté du code, comptez entre 1 000 € (audit léger 1-2 modules) et 5 000 € (audit complet d&apos;une plateforme métier 50+ écrans avec dette technique chiffrée et trajectoire de migration documentée). Ces prix peuvent varier, à la hausse ou à la baisse, selon la complexité du projet, le nombre de modules à analyser et les intégrations à cartographier. Ce coût se rentabilise dès le premier trimestre si la décision optimale évite 3 mois de refonte mal cadrée. Règle empirique : 5-10 % du budget de refonte cible. Audit gratuit de cadrage offert avant tout engagement.
         </p>
       ),
     },
@@ -78,7 +78,7 @@ const auditApplicationMetier: Article = {
       anchor: "refondre-reconstruire",
       content: (
         <p>
-          Refondre quand : (a) le métier n&apos;a pas radicalement changé, (b) 60 %+ des entités de données restent valides, (c) la dette technique est concentrée sur 2-3 modules identifiables. Reconstruire quand : (a) le modèle métier a évolué (passage B2C → B2B par ex.), (b) les bibliothèques/frameworks sont en fin de vie sans chemin de migration, (c) plus de 80 % du code doit être réécrit. Dans la plupart des cas rencontrés, la refonte ciblée gagne — moins risquée, valeur livrée plus vite.
+          Refondre quand : (a) le métier n&apos;a pas radicalement changé, (b) 60 %+ des entités de données restent valides, (c) la dette technique est concentrée sur 2-3 modules identifiables. Reconstruire quand : (a) le modèle métier a évolué (passage B2C → B2B par ex.), (b) les bibliothèques/frameworks sont en fin de vie sans chemin de migration, (c) plus de 80 % du code doit être réécrit. Dans la plupart des cas rencontrés, la refonte ciblée gagne : moins risquée, valeur livrée plus vite.
         </p>
       ),
     },
@@ -95,9 +95,9 @@ const auditApplicationMetier: Article = {
     ],
   },
   sources: [
-    { label: "Seekr — Hallucination tax field guide", url: "https://www.seekr.com/" },
-    { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
-    { label: "BPI France — Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
+    { label: "Seekr : Hallucination tax field guide", url: "https://www.seekr.com/" },
+    { label: "McKinsey : State of AI 2024", url: "https://www.mckinsey.com/" },
+    { label: "BPI France : Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
   ],
   faq: [
     {
@@ -113,13 +113,13 @@ const auditApplicationMetier: Article = {
     {
       question: "Peut-on commencer la refonte pendant l'audit ?",
       answer:
-        "Non recommandé. L'audit est précisément là pour éviter les choix prématurés. Les hypothèses qu'on a avant l'audit ne survivent presque jamais aux observations terrain — d'où l'importance de séquencer.",
+        "Non recommandé. L'audit est précisément là pour éviter les choix prématurés. Les hypothèses qu'on a avant l'audit ne survivent presque jamais aux observations terrain : voilà pourquoi il faut séquencer.",
     },
   ],
   relatedLinks: [
-    { label: "Méthode 2IA — Audit, Build, Pilote 30j, Run", href: "/applications#methode" },
+    { label: "Méthode 2IA : Audit, Build, Pilote 30j, Run", href: "/applications#methode" },
     { label: "Applications métier sur mesure", href: "/applications" },
-    { label: "FAQ — Méthode & pricing", href: "/faq#methode-pricing" },
+    { label: "FAQ : Méthode & pricing", href: "/faq#methode-pricing" },
   ],
   pillarLink: { label: "Voir les applications métier", href: "/applications" },
 };
@@ -130,7 +130,7 @@ const agentIaRgpdSouverain: Article = {
   description:
     "Agent IA RGPD compatible et hébergé en France ou UE : panorama Mistral vs Claude EU, garanties DPA, isolation par client, audit possible. Guide PME 2026.",
   tldr:
-    "Un agent IA souverain combine modèle hébergé en France ou UE (Mistral à Paris, Claude EU), infrastructure RGPD compatible (OVH, Scaleway), contrats DPA signés et garanties de non-entraînement sur vos données. La localisation des données est souvent le premier frein à l'adoption d'IA — l'architecture européenne lève ce frein.",
+    "Un agent IA souverain combine modèle hébergé en France ou UE (Mistral à Paris, Claude EU), infrastructure RGPD compatible (OVH, Scaleway), contrats DPA signés et garanties de non-entraînement sur vos données. La localisation des données est souvent le premier frein à l'adoption d'IA. L'architecture européenne lève ce frein.",
   category: "Agents IA",
   publishedAt: "2026-06-08",
   keywords: [
@@ -145,7 +145,7 @@ const agentIaRgpdSouverain: Article = {
     {
       term: "DPA",
       definition:
-        "Data Processing Agreement — contrat de sous-traitance imposé par l'article 28 du RGPD entre responsable de traitement et sous-traitant IT.",
+        "Data Processing Agreement : contrat de sous-traitance imposé par l'article 28 du RGPD entre responsable de traitement et sous-traitant IT.",
     },
     {
       term: "Souveraineté",
@@ -208,10 +208,10 @@ const agentIaRgpdSouverain: Article = {
     ],
   },
   sources: [
-    { label: "Inside Privacy — data residency et adoption IA", url: "https://www.insideprivacy.com/" },
-    { label: "CNIL — Position agentic AI 2025", url: "https://www.cnil.fr/" },
-    { label: "Mistral AI — Enterprise privacy", url: "https://mistral.ai/security" },
-    { label: "Anthropic — Privacy & data usage", url: "https://www.anthropic.com/legal" },
+    { label: "Inside Privacy : data residency et adoption IA", url: "https://www.insideprivacy.com/" },
+    { label: "CNIL : Position agentic AI 2025", url: "https://www.cnil.fr/" },
+    { label: "Mistral AI : Enterprise privacy", url: "https://mistral.ai/security" },
+    { label: "Anthropic : Privacy & data usage", url: "https://www.anthropic.com/legal" },
   ],
   faq: [
     {
@@ -222,7 +222,7 @@ const agentIaRgpdSouverain: Article = {
     {
       question: "Quelle différence entre Mistral et Claude EU sur la souveraineté ?",
       answer:
-        "Mistral est 100 % français (modèle, infrastructure, contrat). Claude EU est américain (Anthropic) avec hébergement EU et contrat UE — souverain au sens technique mais pas au sens géopolitique. Mistral est préféré pour les marchés publics ; Claude EU pour la qualité de raisonnement.",
+        "Mistral est 100 % français (modèle, infrastructure, contrat). Claude EU est américain (Anthropic) avec hébergement EU et contrat UE, souverain au sens technique mais pas au sens géopolitique. Mistral est préféré pour les marchés publics ; Claude EU pour la qualité de raisonnement.",
     },
     {
       question: "Les données indexées en RAG sont-elles aussi soumises au RGPD ?",
@@ -231,9 +231,9 @@ const agentIaRgpdSouverain: Article = {
     },
   ],
   relatedLinks: [
-    { label: "Agents IA — N besoins, votre métier", href: "/agents-ia" },
+    { label: "Agents IA : vos besoins, votre métier", href: "/agents-ia" },
     { label: "RAG sur vos data", href: "/rag" },
-    { label: "FAQ — Sécurité & RGPD", href: "/faq#securite-rgpd" },
+    { label: "FAQ : Sécurité & RGPD", href: "/faq#securite-rgpd" },
   ],
   pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
 };
@@ -297,7 +297,7 @@ const ragVsFineTuning: Article = {
       anchor: "cout-compare",
       content: (
         <p>
-          <strong>Mémoire d&apos;entreprise (RAG) :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inférence IA ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 100-1 000 €/mois selon volume et fréquence d&apos;usage. <strong>Ré-entraînement du modèle :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 2 000-10 000 €), location GPU 300-1 500 € par cycle, hébergement du modèle ré-entraîné 100-1 000 €/mois. Total typique : 2 000-15 000 € par cycle + run mensuel — à reconduire dès que la connaissance évolue. Ces prix peuvent varier selon la complexité et les intégrations. Un premier échange gratuit chiffre les deux scénarios sur votre cas réel.
+          <strong>Mémoire d&apos;entreprise (RAG) :</strong> infrastructure pgvector ≈ 50 €/mois (PostgreSQL managé) ; indexation initiale ≈ 0,02 €/1k tokens × volume corpus ; inférence IA ≈ 0,15-1,5 €/1k tokens selon modèle. Total typique PME : 100-1 000 €/mois selon volume et fréquence d&apos;usage. <strong>Ré-entraînement du modèle :</strong> jeu de données labellisé 5-20 k échantillons (coût annotation 2 000-10 000 €), location GPU 300-1 500 € par cycle, hébergement du modèle ré-entraîné 100-1 000 €/mois. Total typique : 2 000-15 000 € par cycle + run mensuel, à reconduire dès que la connaissance évolue. Ces prix peuvent varier selon la complexité et les intégrations. Un premier échange gratuit chiffre les deux scénarios sur votre cas réel.
         </p>
       ),
     },
@@ -324,9 +324,9 @@ const ragVsFineTuning: Article = {
     ],
   },
   sources: [
-    { label: "Techment — RAG et projets GenAI enterprise", url: "https://www.techment.com/" },
-    { label: "Seekr — Hallucination tax field guide", url: "https://www.seekr.com/" },
-    { label: "Pinecone — RAG vs fine-tuning research", url: "https://www.pinecone.io/" },
+    { label: "Techment : RAG et projets GenAI enterprise", url: "https://www.techment.com/" },
+    { label: "Seekr : Hallucination tax field guide", url: "https://www.seekr.com/" },
+    { label: "Pinecone : RAG vs fine-tuning research", url: "https://www.pinecone.io/" },
   ],
   faq: [
     {
@@ -347,8 +347,8 @@ const ragVsFineTuning: Article = {
   ],
   relatedLinks: [
     { label: "RAG sur vos data", href: "/rag" },
-    { label: "Agents IA — Anatomie K→R→A→M", href: "/agents-ia" },
-    { label: "FAQ — RAG & mémoire métier", href: "/faq#rag-memoire" },
+    { label: "Agents IA : Anatomie K→R→A→M", href: "/agents-ia" },
+    { label: "FAQ : RAG & mémoire métier", href: "/faq#rag-memoire" },
   ],
   pillarLink: { label: "Voir l'offre mémoire d'entreprise", href: "/rag" },
 };
@@ -384,7 +384,7 @@ const automatiserTriMails: Article = {
     {
       term: "Ton de marque",
       definition:
-        "Voix et style éditorial constants — formel, chaleureux, technique, etc. — préservés par prompt système et exemples.",
+        "Voix et style éditorial constants (formel, chaleureux, technique, etc.), préservés par prompt système et exemples.",
     },
   ],
   sections: [
@@ -393,7 +393,7 @@ const automatiserTriMails: Article = {
       anchor: "temps-perdu",
       content: (
         <p>
-          Le constat est régulier : les cabinets médicaux passent une part significative de leur temps admin sur l&apos;inbox (RDV, confirmations, demandes courantes) ; un dirigeant de PME y consacre souvent plusieurs heures par semaine ; un commercial perd une bonne partie de son temps sur les mails de suivi et de relance. Ramené à l&apos;année, ce sont des dizaines ou centaines d&apos;heures récupérables par organisation — selon le volume et le type de messages.
+          Le constat est régulier : les cabinets médicaux passent une part significative de leur temps admin sur l&apos;inbox (RDV, confirmations, demandes courantes) ; un dirigeant de PME y consacre souvent plusieurs heures par semaine ; un commercial perd une bonne partie de son temps sur les mails de suivi et de relance. Ramené à l&apos;année, ce sont des dizaines ou centaines d&apos;heures récupérables par organisation, selon le volume et le type de messages.
         </p>
       ),
     },
@@ -441,8 +441,8 @@ const automatiserTriMails: Article = {
     ],
   },
   sources: [
-    { label: "Sybill — temps commercial et mails de suivi", url: "https://www.sybill.ai/" },
-    { label: "Gartner — IA et automatisation du support", url: "https://www.gartner.com/" },
+    { label: "Sybill : temps commercial et mails de suivi", url: "https://www.sybill.ai/" },
+    { label: "Gartner : IA et automatisation du support", url: "https://www.gartner.com/" },
   ],
   faq: [
     {
@@ -458,20 +458,20 @@ const automatiserTriMails: Article = {
     {
       question: "Que se passe-t-il si l'agent fait une erreur ?",
       answer:
-        "Logs structurés de chaque action, audit complet, possibilité de rappel/correction sur la conversation, ajustement immédiat du prompt ou seuil. La majorité des erreurs viennent d'un seuil de confiance trop bas — ajustable en quelques minutes.",
+        "Logs structurés de chaque action, audit complet, possibilité de rappel/correction sur la conversation, ajustement immédiat du prompt ou seuil. La majorité des erreurs viennent d'un seuil de confiance trop bas, ajustable en quelques minutes.",
     },
   ],
   relatedLinks: [
-    { label: "Agents IA — N besoins, votre métier", href: "/agents-ia" },
-    { label: "Automatisation — JobPhoning → Axonaut", href: "/automatisation" },
-    { label: "FAQ — Agents IA", href: "/faq#agents-ia" },
+    { label: "Agents IA : vos besoins, votre métier", href: "/agents-ia" },
+    { label: "Automatisation : JobPhoning → Axonaut", href: "/automatisation" },
+    { label: "FAQ : Agents IA", href: "/faq#agents-ia" },
   ],
   pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
 };
 
 const factureElectroniqueChorusPro: Article = {
   slug: "facture-electronique-chorus-pro-2026-obligation",
-  title: "Facture électronique obligatoire 2026 : Chorus Pro, PDP, Factur-X — guide PME",
+  title: "Facture électronique obligatoire 2026 : Chorus Pro, PDP, Factur-X. Guide PME",
   description:
     "Facture électronique 2026 : qui est concerné, quand, comment se mettre en conformité avec Chorus Pro, PDP agréée et format Factur-X. Calendrier officiel, sanctions, automatisation.",
   tldr:
@@ -490,7 +490,7 @@ const factureElectroniqueChorusPro: Article = {
     {
       term: "PDP",
       definition:
-        "Plateforme de Dématérialisation Partenaire — opérateur privé agréé par la DGFiP pour émettre, transmettre et recevoir des factures électroniques.",
+        "Plateforme de Dématérialisation Partenaire : opérateur privé agréé par la DGFiP pour émettre, transmettre et recevoir des factures électroniques.",
     },
     {
       term: "Factur-X",
@@ -500,7 +500,7 @@ const factureElectroniqueChorusPro: Article = {
     {
       term: "PPF",
       definition:
-        "Portail Public de Facturation — solution gratuite gérée par l'État via Chorus Pro, alternative aux PDP privées.",
+        "Portail Public de Facturation : solution gratuite gérée par l'État via Chorus Pro, alternative aux PDP privées.",
     },
   ],
   sections: [
@@ -518,7 +518,7 @@ const factureElectroniqueChorusPro: Article = {
       anchor: "chorus-pdp-od",
       content: (
         <p>
-          <strong>Chorus Pro (PPF) :</strong> gratuit, géré par l&apos;État (DGFiP/AIFE), interface basique mais conforme. Risque : pas d&apos;intégration native avec vos outils métier. <strong>PDP (Plateforme de Dématérialisation Partenaire) :</strong> opérateur privé agréé (Yooz, Pennylane, Sage, Cegid, Doctolib, etc.), services à valeur ajoutée (intégration ERP, archivage à valeur probante, automatisation). <strong>OD (Opérateur de Dématérialisation) :</strong> opérateur non agréé mais raccordé à une PDP — solution intermédiaire pour les éditeurs métier.
+          <strong>Chorus Pro (PPF) :</strong> gratuit, géré par l&apos;État (DGFiP/AIFE), interface basique mais conforme. Risque : pas d&apos;intégration native avec vos outils métier. <strong>PDP (Plateforme de Dématérialisation Partenaire) :</strong> opérateur privé agréé (Yooz, Pennylane, Sage, Cegid, Doctolib, etc.), services à valeur ajoutée (intégration ERP, archivage à valeur probante, automatisation). <strong>OD (Opérateur de Dématérialisation) :</strong> opérateur non agréé mais raccordé à une PDP, solution intermédiaire pour les éditeurs métier.
         </p>
       ),
     },
@@ -553,9 +553,9 @@ const factureElectroniqueChorusPro: Article = {
     ],
   },
   sources: [
-    { label: "DGFiP — Réforme facture électronique", url: "https://www.impots.gouv.fr/professionnel/je-passe-la-facture-electronique" },
-    { label: "FNFE-MPE — Spécifications Factur-X", url: "https://fnfe-mpe.org/" },
-    { label: "Yooz — Baromètre facture électronique 2025", url: "https://www.getyooz.com/" },
+    { label: "DGFiP : Réforme facture électronique", url: "https://www.impots.gouv.fr/professionnel/je-passe-la-facture-electronique" },
+    { label: "FNFE-MPE : Spécifications Factur-X", url: "https://fnfe-mpe.org/" },
+    { label: "Yooz : Baromètre facture électronique 2025", url: "https://www.getyooz.com/" },
   ],
   faq: [
     {
@@ -571,13 +571,13 @@ const factureElectroniqueChorusPro: Article = {
     {
       question: "Combien coûte la mise en conformité ?",
       answer:
-        "Setup initial typique : 500-2 000 € (intégration PDP, paramétrage, formation des équipes) selon votre stack et le volume de factures. Coût récurrent : 5-50 €/mois pour l'abonnement PDP selon volume. Ces prix peuvent varier — à la hausse ou à la baisse — selon la complexité du projet et les fonctionnalités demandées. Le ROI vient de l'économie de manipulation (3-5 min/facture × volume × coût horaire). Pour une PME émettant 100 factures/mois, retour sur investissement typique sous 6 mois. Audit gratuit pour choisir la bonne PDP et chiffrer votre intégration.",
+        "Setup initial typique : 500-2 000 € (intégration PDP, paramétrage, formation des équipes) selon votre stack et le volume de factures. Coût récurrent : 5-50 €/mois pour l'abonnement PDP selon volume. Ces prix peuvent varier, à la hausse ou à la baisse, selon la complexité du projet et les fonctionnalités demandées. Le ROI vient de l'économie de manipulation (3-5 min/facture × volume × coût horaire). Pour une PME émettant 100 factures/mois, retour sur investissement typique sous 6 mois. Audit gratuit pour choisir la bonne PDP et chiffrer votre intégration.",
     },
   ],
   relatedLinks: [
-    { label: "Automatisation — JobPhoning → Axonaut", href: "/automatisation" },
-    { label: "Applications métier — Services pro", href: "/applications" },
-    { label: "FAQ — Méthode & pricing", href: "/faq#methode-pricing" },
+    { label: "Automatisation : JobPhoning → Axonaut", href: "/automatisation" },
+    { label: "Applications métier : Services pro", href: "/applications" },
+    { label: "FAQ : Méthode & pricing", href: "/faq#methode-pricing" },
   ],
   pillarLink: { label: "Découvrir l'automatisation", href: "/automatisation" },
 };
@@ -613,7 +613,7 @@ const combienCouteAgentIaPme: Article = {
     {
       term: "Workflow",
       definition:
-        "Chaîne d'actions automatisées qu'exécute l'agent — exemple : lire un mail → qualifier l'intention → rédiger une réponse → mettre à jour le CRM.",
+        "Chaîne d'actions automatisées qu'exécute l'agent. Exemple : lire un mail → qualifier l'intention → rédiger une réponse → mettre à jour le CRM.",
     },
   ],
   sections: [
@@ -622,7 +622,7 @@ const combienCouteAgentIaPme: Article = {
       anchor: "facteurs-prix",
       content: (
         <p>
-          Trois leviers déterminent l&apos;essentiel du budget. <strong>Le nombre de workflows :</strong> chaque enchaînement d&apos;actions (trier les mails, qualifier un lead, préparer un devis) représente un bloc à concevoir, tester et valider. Un agent Démarrage couvre 1-2 workflows ; un agent Complet en orchestre 6 à 15. <strong>Les intégrations :</strong> brancher Gmail ou Notion prend 2-5 jours ; connecter un ERP propriétaire ou un outil sans API publique multiplie le temps d&apos;intégration par 3 à 5. <strong>La gouvernance :</strong> logs d&apos;audit structurés, permissions par rôle (RBAC), pipeline de validation humaine sur les actions sensibles — indispensable en environnement réglementé, optionnel pour un premier déploiement interne. Ces trois paramètres expliquent pourquoi deux PME avec des besoins similaires peuvent recevoir des devis très différents : ce sont les détails du terrain réel qui font la différence.
+          Trois leviers déterminent l&apos;essentiel du budget. <strong>Le nombre de workflows :</strong> chaque enchaînement d&apos;actions (trier les mails, qualifier un lead, préparer un devis) représente un bloc à concevoir, tester et valider. Un agent Démarrage couvre 1-2 workflows ; un agent Complet en orchestre 6 à 15. <strong>Les intégrations :</strong> brancher Gmail ou Notion prend 2-5 jours ; connecter un ERP propriétaire ou un outil sans API publique multiplie le temps d&apos;intégration par 3 à 5. <strong>La gouvernance :</strong> logs d&apos;audit structurés, permissions par rôle (RBAC), pipeline de validation humaine sur les actions sensibles, indispensable en environnement réglementé, optionnel pour un premier déploiement interne. Ces trois paramètres expliquent pourquoi deux PME avec des besoins similaires peuvent recevoir des devis très différents : ce sont les détails du terrain réel qui font la différence.
         </p>
       ),
     },
@@ -631,10 +631,10 @@ const combienCouteAgentIaPme: Article = {
       anchor: "couts-caches",
       content: (
         <ol className="ml-5 list-decimal space-y-2">
-          <li><strong>Tokens API LLM :</strong> chaque conversation traitée consomme des tokens facturés par le fournisseur LLM. 500 conversations/mois sur Claude EU ou Mistral représentent typiquement 30-150 € de tokens selon la longueur des échanges — inclus dans le run mensuel, pas de surprise en fin de mois.</li>
-          <li><strong>Maintenance des prompts :</strong> votre métier évolue — nouvelles procédures, nouveaux produits, changements réglementaires. Compter 1-4 h/mois de mise à jour des règles métier en régime de croisière (inclus dans le run).</li>
+          <li><strong>Tokens API LLM :</strong> chaque conversation traitée consomme des tokens facturés par le fournisseur LLM. 500 conversations/mois sur Claude EU ou Mistral représentent typiquement 30-150 € de tokens selon la longueur des échanges, inclus dans le run mensuel, sans surprise en fin de mois.</li>
+          <li><strong>Maintenance des prompts :</strong> votre métier évolue (nouvelles procédures, nouveaux produits, changements réglementaires). Compter 1-4 h/mois de mise à jour des règles métier en régime de croisière (inclus dans le run).</li>
           <li><strong>Évolutions fonctionnelles :</strong> ajouter un workflow après la livraison initiale est facturé séparément, typiquement 500-3 000 € selon la complexité. Définir le bon périmètre dès le premier échange évite ces surcoûts.</li>
-          <li><strong>Accompagnement au démarrage :</strong> 2-4 h de formation sont nécessaires pour ancrer les nouveaux gestes dans votre équipe. Ce poste est souvent sous-estimé — c&apos;est pourtant lui qui conditionne l&apos;adoption réelle au-delà des 30 premiers jours.</li>
+          <li><strong>Accompagnement au démarrage :</strong> 2-4 h de formation sont nécessaires pour ancrer les nouveaux gestes dans votre équipe. Ce poste est souvent sous-estimé : c&apos;est pourtant lui qui conditionne l&apos;adoption réelle au-delà des 30 premiers jours.</li>
         </ol>
       ),
     },
@@ -643,7 +643,7 @@ const combienCouteAgentIaPme: Article = {
       anchor: "demarrer-budget",
       content: (
         <p>
-          La règle est simple : commencer par 1 ou 2 workflows à fort levier, mesurer le gain réel sur 30 jours, puis élargir. Un agent Démarrage (800-2 500 € build) sur le cas d&apos;usage le plus chronophage de votre équipe — triage inbox, qualification leads, notes de réunion automatisées — livre des résultats mesurables avant d&apos;engager un budget plus conséquent. Cette approche par étapes courtes réduit le risque : si le premier workflow ne tient pas ses promesses (rare, mais possible), on ajuste avant d&apos;aller plus loin. Elle évite aussi l&apos;erreur classique : acheter trop de fonctionnalités d&apos;un coup, sans avoir validé les cas d&apos;usage de base avec vos vraies données et vos vrais utilisateurs. Les projets IA qui échouent le font presque toujours parce que le terrain réel n&apos;a jamais été audité en amont — c&apos;est précisément ce que l&apos;audit initial (45 min, gratuit) permet d&apos;éviter.
+          La règle est simple : commencer par 1 ou 2 workflows à fort levier, mesurer le gain réel sur 30 jours, puis élargir. Un agent Démarrage (800-2 500 € build) sur le cas d&apos;usage le plus chronophage de votre équipe (triage inbox, qualification leads, notes de réunion automatisées) livre des résultats mesurables avant d&apos;engager un budget plus conséquent. Cette approche par étapes courtes réduit le risque : si le premier workflow ne tient pas ses promesses (rare, mais possible), on ajuste avant d&apos;aller plus loin. Elle évite aussi l&apos;erreur classique : acheter trop de fonctionnalités d&apos;un coup, sans avoir validé les cas d&apos;usage de base avec vos vraies données et vos vrais utilisateurs. Les projets IA qui échouent le font presque toujours parce que le terrain réel n&apos;a jamais été audité en amont : c&apos;est précisément ce que l&apos;audit initial (45 min, gratuit) permet d&apos;éviter.
         </p>
       ),
     },
@@ -652,7 +652,7 @@ const combienCouteAgentIaPme: Article = {
       anchor: "surmesure-vs-saas",
       content: (
         <p>
-          Les solutions SaaS d&apos;agent IA (Intercom, Drift, Monday AI, Zapier AI) démarrent souvent entre 50 et 500 €/mois pour des workflows prédéfinis. Avantage apparent : pas de phase de build. Limites réelles : (1) vous adaptez vos processus à l&apos;outil, pas l&apos;inverse ; (2) les intégrations sont standardisées — si votre CRM est Axonaut ou votre ERP est propriétaire, les connecteurs natifs sont rares ; (3) la gouvernance reste celle de l&apos;éditeur — hébergement EU, conformité RGPD, audit ne sont pas toujours garantis. À 18-24 mois, une PME qui a payé 300-500 €/mois de SaaS (soit 5 000-12 000 € dépensés) n&apos;est toujours pas autonome sur ses cas d&apos;usage spécifiques. Un agent sur mesure au niveau Intermédiaire (2 500-8 000 € build + 800-2 000 €/mois run) livre la même couverture fonctionnelle sur votre terrain réel, hébergé en UE, avec vos règles métier — et peut évoluer sans changer d&apos;outil.
+          Les solutions SaaS d&apos;agent IA (Intercom, Drift, Monday AI, Zapier AI) démarrent souvent entre 50 et 500 €/mois pour des workflows prédéfinis. Avantage apparent : pas de phase de build. Limites réelles : (1) vous adaptez vos processus à l&apos;outil, pas l&apos;inverse ; (2) les intégrations sont standardisées (si votre CRM est Axonaut ou votre ERP est propriétaire, les connecteurs natifs sont rares) ; (3) la gouvernance reste celle de l&apos;éditeur : hébergement EU, conformité RGPD, audit ne sont pas toujours garantis. À 18-24 mois, une PME qui a payé 300-500 €/mois de SaaS (soit 5 000-12 000 € dépensés) n&apos;est toujours pas autonome sur ses cas d&apos;usage spécifiques. Un agent sur mesure au niveau Intermédiaire (2 500-8 000 € build + 800-2 000 €/mois run) livre la même couverture fonctionnelle sur votre terrain réel, hébergé en UE, avec vos règles métier, et peut évoluer sans changer d&apos;outil.
         </p>
       ),
     },
@@ -667,20 +667,20 @@ const combienCouteAgentIaPme: Article = {
     ],
   },
   sources: [
-    { label: "BPI France — Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
-    { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
-    { label: "Gartner — IA, automatisation et PME", url: "https://www.gartner.com/" },
+    { label: "BPI France : Guide transformation digitale PME", url: "https://www.bpifrance.fr/" },
+    { label: "McKinsey : State of AI 2024", url: "https://www.mckinsey.com/" },
+    { label: "Gartner : IA, automatisation et PME", url: "https://www.gartner.com/" },
   ],
   faq: [
     {
       question: "Peut-on démarrer un agent IA avec moins de 1 000 € ?",
       answer:
-        "Oui. Le niveau Démarrage commence à 800 € build pour 1-2 workflows ciblés avec 1 intégration standard (Gmail, Notion, HubSpot). À ce stade, l'agent prend en charge votre cas d'usage à plus fort levier — et le run mensuel (300-800 €) est souvent couvert par le temps libéré si vous valorisez votre heure à 80 €+.",
+        "Oui. Le niveau Démarrage commence à 800 € build pour 1-2 workflows ciblés avec 1 intégration standard (Gmail, Notion, HubSpot). À ce stade, l'agent prend en charge votre cas d'usage à plus fort levier, et le run mensuel (300-800 €) est souvent couvert par le temps libéré si vous valorisez votre heure à 80 €+.",
     },
     {
       question: "Le run mensuel inclut-il les coûts d'API LLM ?",
       answer:
-        "Oui. Le run mensuel inclut les coûts de modèles IA (tokens LLM), l'hébergement souverain UE, le monitoring 24/7 et les hotfixes sous 24 h. Le forfait est calibré sur votre usage estimé — pas de surprises en fin de mois selon le volume traité.",
+        "Oui. Le run mensuel inclut les coûts de modèles IA (tokens LLM), l'hébergement souverain UE, le monitoring 24/7 et les hotfixes sous 24 h. Le forfait est calibré sur votre usage estimé, sans surprises en fin de mois selon le volume traité.",
     },
     {
       question: "Quel ROI peut-on attendre d'un agent IA PME ?",
@@ -690,13 +690,13 @@ const combienCouteAgentIaPme: Article = {
     {
       question: "Comment se passe le chiffrage lors du premier échange ?",
       answer:
-        "Le premier échange (45 min, gratuit) se déroule en 3 temps : (1) audit rapide du terrain réel — quels outils, quels gestes chronophages, quelles données disponibles ; (2) identification des 1-3 cas d'usage à plus fort levier ; (3) fourchette de build et run personnalisée. Un devis indicatif est transmis sous 48 h, sans engagement.",
+        "Le premier échange (45 min, gratuit) se déroule en 3 temps : (1) audit rapide du terrain réel (quels outils, quels gestes chronophages, quelles données disponibles) ; (2) identification des 1-3 cas d'usage à plus fort levier ; (3) fourchette de build et run personnalisée. Un devis indicatif est transmis sous 48 h, sans engagement.",
     },
   ],
   relatedLinks: [
-    { label: "Agents IA — présentation complète", href: "/agents-ia" },
-    { label: "Automatisation — workflows et pipelines", href: "/automatisation" },
-    { label: "FAQ — Méthode & pricing", href: "/faq#methode-pricing" },
+    { label: "Agents IA : présentation complète", href: "/agents-ia" },
+    { label: "Automatisation : workflows et pipelines", href: "/automatisation" },
+    { label: "FAQ : Méthode & pricing", href: "/faq#methode-pricing" },
   ],
   pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },
 };
@@ -707,7 +707,7 @@ const agentIaVsChatbot: Article = {
   description:
     "Agent IA vs chatbot : différences concrètes, tableau comparatif, quand le chatbot suffit et quand l'agent s'impose. Guide décision PME 2026, exemple inclus.",
   tldr:
-    "Un chatbot répond à des questions selon des scripts prédéfinis — utile pour la FAQ et la qualification entrante. Un agent IA agit : il trie les mails, met à jour le CRM, prépare les devis, enchaîne des actions entre vos outils. Si votre besoin est informatif et stable, un chatbot suffit. Si vous avez besoin d'actions automatisées entre outils, il vous faut un agent.",
+    "Un chatbot répond à des questions selon des scripts prédéfinis, utile pour la FAQ et la qualification entrante. Un agent IA agit : il trie les mails, met à jour le CRM, prépare les devis, enchaîne des actions entre vos outils. Si votre besoin est informatif et stable, un chatbot suffit. Si vous avez besoin d'actions automatisées entre outils, il vous faut un agent.",
   category: "Agents IA",
   publishedAt: "2026-07-03",
   keywords: [
@@ -732,7 +732,7 @@ const agentIaVsChatbot: Article = {
     {
       term: "Function calling",
       definition:
-        "Capacité d'un LLM à invoquer des fonctions externes typées — la brique technique qui permet à un agent IA d'agir dans vos outils (CRM, email, agenda).",
+        "Capacité d'un LLM à invoquer des fonctions externes typées : la brique technique qui permet à un agent IA d'agir dans vos outils (CRM, email, agenda).",
     },
   ],
   sections: [
@@ -741,7 +741,7 @@ const agentIaVsChatbot: Article = {
       anchor: "chatbot-definition",
       content: (
         <p>
-          Un chatbot est un programme conversationnel. Sa promesse : répondre aux questions fréquentes, guider un visiteur dans un tunnel, qualifier une demande entrante. Les chatbots modernes (Intercom, Crisp, Zendesk Bot) s&apos;appuient sur des scripts arborescents ou des règles LLM légères pour générer des réponses fluides. Ils restent dans la fenêtre de la conversation : ils n&apos;envoient pas d&apos;e-mail, ne mettent pas à jour votre CRM, ne planifient pas de rendez-vous. Leur force est leur simplicité — déployable en quelques heures, maintenable sans compétences techniques — et leur coût limité (30-300 €/mois). Leur limite est structurelle : ils répondent, ils n&apos;agissent pas.
+          Un chatbot est un programme conversationnel. Sa promesse : répondre aux questions fréquentes, guider un visiteur dans un tunnel, qualifier une demande entrante. Les chatbots modernes (Intercom, Crisp, Zendesk Bot) s&apos;appuient sur des scripts arborescents ou des règles LLM légères pour générer des réponses fluides. Ils restent dans la fenêtre de la conversation : ils n&apos;envoient pas d&apos;e-mail, ne mettent pas à jour votre CRM, ne planifient pas de rendez-vous. Leur force est leur simplicité (déployable en quelques heures, maintenable sans compétences techniques) et leur coût limité (30-300 €/mois). Leur limite est structurelle : ils répondent, ils n&apos;agissent pas.
         </p>
       ),
     },
@@ -750,8 +750,8 @@ const agentIaVsChatbot: Article = {
       anchor: "agent-ia-definition",
       content: (
         <ol className="ml-5 list-decimal space-y-2">
-          <li><strong>Il connaît votre contexte :</strong> branché sur vos documents via RAG, il répond avec vos données réelles — pas avec ce que le LLM a mémorisé à l&apos;entraînement.</li>
-          <li><strong>Il raisonne sous contraintes :</strong> règles métier explicites, seuils de confiance, validation par conditions — il n&apos;hallucine pas sur des cas critiques, il escalade au bon humain.</li>
+          <li><strong>Il connaît votre contexte :</strong> branché sur vos documents via RAG, il répond avec vos données réelles, pas avec ce que le LLM a mémorisé à l&apos;entraînement.</li>
+          <li><strong>Il raisonne sous contraintes :</strong> règles métier explicites, seuils de confiance, validation par conditions. Sur les cas critiques, il n&apos;hallucine pas : il escalade au bon humain.</li>
           <li><strong>Il agit dans vos outils :</strong> via function calling, il écrit un e-mail, crée une opportunité dans HubSpot, bloque un créneau dans Google Calendar, prépare un devis dans Pennylane.</li>
           <li><strong>Il est supervisé :</strong> chaque action est loggée, chaque décision est traçable. Un humain peut reprendre la main à tout moment selon un seuil de confiance configurable.</li>
         </ol>
@@ -762,7 +762,7 @@ const agentIaVsChatbot: Article = {
       anchor: "quand-chatbot-suffit",
       content: (
         <p>
-          Soyons directs : un chatbot suffit dans plusieurs cas courants. Si votre objectif se limite à répondre aux questions FAQ de votre site (horaires, tarifs, procédures), à qualifier un visiteur entrant avec 3-5 questions et transmettre ses coordonnées à un commercial, ou à guider un utilisateur dans un formulaire complexe — un chatbot bien configuré fait le travail pour 50-300 €/mois, sans infrastructure complexe. Inutile de sur-engineer une solution agent IA si le besoin est statique et purement informatif. Cette honnêteté est précisément ce qui construit la confiance : un bon prestataire vous dit quand vous n&apos;avez pas besoin de lui.
+          Soyons directs : un chatbot suffit dans plusieurs cas courants. Si votre objectif se limite à répondre aux questions FAQ de votre site (horaires, tarifs, procédures), à qualifier un visiteur entrant avec 3-5 questions et transmettre ses coordonnées à un commercial, ou à guider un utilisateur dans un formulaire complexe : un chatbot bien configuré fait le travail pour 50-300 €/mois, sans infrastructure complexe. Inutile de sur-engineer une solution agent IA si le besoin est statique et purement informatif. Cette honnêteté est précisément ce qui construit la confiance : un bon prestataire vous dit quand vous n&apos;avez pas besoin de lui.
         </p>
       ),
     },
@@ -771,7 +771,7 @@ const agentIaVsChatbot: Article = {
       anchor: "quand-agent-ia",
       content: (
         <p>
-          L&apos;agent s&apos;impose dès que vous avez besoin d&apos;actions, pas seulement de réponses. Exemples concrets : (a) <strong>Support client :</strong> classer les demandes, résoudre les cas courants, escalader les complexes avec résumé — sans que votre équipe touche à l&apos;inbox ; (b) <strong>Commercial :</strong> qualifier les leads entrants, les enrichir depuis LinkedIn, créer l&apos;opportunité dans le CRM, envoyer l&apos;e-mail de suivi personnalisé ; (c) <strong>Opérations :</strong> lire les comptes-rendus de réunion, extraire les actions, les attribuer dans votre outil de suivi, relancer les retardataires ; (d) <strong>Finance :</strong> extraire les données d&apos;une facture reçue, valider contre vos règles métier, imputer en comptabilité. Dans ces cas, un chatbot ne peut que prendre note — seul un agent ferme la boucle.
+          L&apos;agent s&apos;impose dès que vous avez besoin d&apos;actions, pas seulement de réponses. Exemples concrets : (a) <strong>Support client :</strong> classer les demandes, résoudre les cas courants, escalader les complexes avec résumé, sans que votre équipe touche à l&apos;inbox ; (b) <strong>Commercial :</strong> qualifier les leads entrants, les enrichir depuis LinkedIn, créer l&apos;opportunité dans le CRM, envoyer l&apos;e-mail de suivi personnalisé ; (c) <strong>Opérations :</strong> lire les comptes-rendus de réunion, extraire les actions, les attribuer dans votre outil de suivi, relancer les retardataires ; (d) <strong>Finance :</strong> extraire les données d&apos;une facture reçue, valider contre vos règles métier, imputer en comptabilité. Dans ces cas, un chatbot ne peut que prendre note. Seul un agent ferme la boucle.
         </p>
       ),
     },
@@ -780,7 +780,7 @@ const agentIaVsChatbot: Article = {
       anchor: "combinaison",
       content: (
         <p>
-          La configuration la plus efficace pour une PME : un chatbot sur le site pour la qualification entrante (rapide, économique, disponible immédiatement) + un agent IA en back-office pour les processus métier (plus complexe, plus puissant, coût justifié par le temps libéré). Exemple concret d&apos;un cabinet de conseil de 12 personnes : le chatbot du site répond aux questions générales et collecte les coordonnées des prospects. L&apos;agent IA, lui, enrichit la fiche dans HubSpot, analyse le contexte de la demande, prépare un briefing pour le commercial concerné et bloque un créneau de démo dans son agenda — sans intervention humaine. Le commercial arrive en rendez-vous avec un dossier préparé, pas un formulaire à lire.
+          La configuration la plus efficace pour une PME : un chatbot sur le site pour la qualification entrante (rapide, économique, disponible immédiatement) + un agent IA en back-office pour les processus métier (plus complexe, plus puissant, coût justifié par le temps libéré). Exemple concret d&apos;un cabinet de conseil de 12 personnes : le chatbot du site répond aux questions générales et collecte les coordonnées des prospects. L&apos;agent IA, lui, enrichit la fiche dans HubSpot, analyse le contexte de la demande, prépare un briefing pour le commercial concerné et bloque un créneau de démo dans son agenda, sans intervention humaine. Le commercial arrive en rendez-vous avec un dossier préparé, pas un formulaire à lire.
         </p>
       ),
     },
@@ -798,9 +798,9 @@ const agentIaVsChatbot: Article = {
     ],
   },
   sources: [
-    { label: "Gartner — IA et automatisation du support", url: "https://www.gartner.com/" },
-    { label: "McKinsey — State of AI 2024", url: "https://www.mckinsey.com/" },
-    { label: "CNIL — Position agentic AI 2025", url: "https://www.cnil.fr/" },
+    { label: "Gartner : IA et automatisation du support", url: "https://www.gartner.com/" },
+    { label: "McKinsey : State of AI 2024", url: "https://www.mckinsey.com/" },
+    { label: "CNIL : Position agentic AI 2025", url: "https://www.cnil.fr/" },
   ],
   faq: [
     {
@@ -811,17 +811,17 @@ const agentIaVsChatbot: Article = {
     {
       question: "Quel est le coût d'un agent IA vs un chatbot pour une PME ?",
       answer:
-        "Un chatbot coûte 30-300 €/mois en abonnement SaaS. Un agent IA sur mesure : 800-2 500 € build + 300-800 €/mois pour un niveau Démarrage. La différence de coût se justifie si l'agent économise 5-10 h/semaine à votre équipe — le ROI positif est atteint en 2-4 mois dans la majorité des cas.",
+        "Un chatbot coûte 30-300 €/mois en abonnement SaaS. Un agent IA sur mesure : 800-2 500 € build + 300-800 €/mois pour un niveau Démarrage. La différence de coût se justifie si l'agent économise 5-10 h/semaine à votre équipe : le ROI positif est atteint en 2-4 mois dans la majorité des cas.",
     },
     {
-      question: "Mon équipe craint que l'agent IA remplace des postes — que répondre ?",
+      question: "Mon équipe craint que l'agent IA remplace des postes : que répondre ?",
       answer:
-        "Un agent IA prend en charge les gestes répétitifs (tri inbox, mise à jour CRM, notes de réunion, relances) pour libérer du temps sur ce qui compte vraiment. Les retours terrain montrent des gains nets : moins de temps administratif, plus de temps sur le cœur de métier, moins d'erreurs de saisie. La communication interne autour du changement est aussi importante que l'outil — un agent imposé sans explication génère de la résistance, pas de la performance.",
+        "Un agent IA prend en charge les gestes répétitifs (tri inbox, mise à jour CRM, notes de réunion, relances) pour libérer du temps sur ce qui compte vraiment. Les retours terrain montrent des gains nets : moins de temps administratif, plus de temps sur le cœur de métier, moins d'erreurs de saisie. La communication interne autour du changement est aussi importante que l'outil : un agent imposé sans explication génère de la résistance, pas de la performance.",
     },
   ],
   relatedLinks: [
-    { label: "Agents IA — présentation complète", href: "/agents-ia" },
-    { label: "RAG — mémoire sur vos données", href: "/rag" },
+    { label: "Agents IA : présentation complète", href: "/agents-ia" },
+    { label: "RAG : mémoire sur vos données", href: "/rag" },
     { label: "Combien coûte un agent IA pour une PME ?", href: "/articles/combien-coute-agent-ia-pme-2026" },
   ],
   pillarLink: { label: "Découvrir les agents IA", href: "/agents-ia" },

@@ -76,7 +76,7 @@ const capabilities = [
   {
     title: "Qui grandit avec vous",
     description:
-      "On démarre par l'essentiel. Quand votre besoin évolue, on ajoute des fonctions — sans tout refaire à zéro.",
+      "On démarre par l'essentiel. Quand votre besoin évolue, on ajoute des fonctions, sans tout refaire à zéro.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -312,7 +312,7 @@ export function ApplicationsPage() {
           <PremiumFlowPanel
             label="Comment je travaille"
             title="De votre quotidien à l'outil qui tourne, en quatre étapes."
-            description="Que vous partiez de zéro ou d'un outil existant à reprendre, je suis la même méthode — adaptée à votre point de départ."
+            description="Que vous partiez de zéro ou d'un outil existant à reprendre, je suis la même méthode, adaptée à votre point de départ."
             steps={methodFlow}
             accent="125, 211, 252"
           />
@@ -327,7 +327,7 @@ export function ApplicationsPage() {
             Parlez-moi de ce qui vous prend du <span className="text-gradient-strong">temps</span>.
           </>
         }
-        description="Premier échange gratuit, sans engagement. Je vous dis franchement si une application peut vous aider — et si oui, ce que ça implique, simplement."
+        description="Premier échange gratuit, sans engagement. Je vous dis franchement si une application peut vous aider. Et si oui, ce que ça implique, simplement."
         primaryLabel="Premier échange gratuit"
       />
     </>

@@ -8,7 +8,7 @@ import {
 import { AutomatisationPage } from "./AutomatisationPage";
 
 export const metadata: Metadata = {
-  title: "Automatisation sur mesure — vos tâches répétitives se font seules",
+  title: "Automatisation sur mesure : vos tâches répétitives se font seules",
   description:
     "Je relie vos logiciels pour supprimer ressaisies, relances et transferts manuels. Exemple réel : appels de prospection → fiches clients. Échange gratuit.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/automatisation" },
   openGraph: {
-    title: "Automatisation — ce qui se répète peut se faire tout seul",
+    title: "Automatisation : ce qui se répète peut se faire tout seul",
     description:
       "Je relie vos logiciels entre eux pour supprimer ressaisies et relances manuelles. Premier échange gratuit.",
     url: "/automatisation",
