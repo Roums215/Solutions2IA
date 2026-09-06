@@ -1,22 +1,13 @@
 "use client";
 
 import { useState, useEffect, createContext, useContext, useRef, useCallback } from "react";
-import dynamic from "next/dynamic";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/shared/PageTransition";
 import { LoadingScreen } from "@/components/shared/LoadingScreen";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { startFpsGuard } from "@/lib/animation/fpsGuard";
-
-// MouseParticles chargé uniquement côté client + uniquement si shouldDegrade=false.
-// Évite le téléchargement du bundle sur low-end / reduced-motion / save-data.
-const MouseParticles = dynamic(
-  () => import("@/components/shared/MouseParticles").then((m) => m.MouseParticles),
-  { ssr: false },
-);
 
 interface LoadingContextType {
   isLoading: boolean;
@@ -76,9 +67,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     setHideHeaderLogo(false);
   }, []);
 
-  const { mounted, shouldHideBackgroundDecor } = usePerformanceMode();
-  const decor = mounted && !shouldHideBackgroundDecor;
-
   // Garde FPS : démarre une fois le LoadingScreen terminé (warm-up interne
   // de 2,5 s en plus). Idempotent — ratchet via sessionStorage.
   useEffect(() => {
@@ -92,7 +80,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div
           className={`${showContent ? "app-content-visible" : "app-content-hidden"} flex min-h-screen flex-col`}
         >
-          {decor && <MouseParticles />}
           <Header />
           <main className="flex-1">
             <PageTransition>{children}</PageTransition>

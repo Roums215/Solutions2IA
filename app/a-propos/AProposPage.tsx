@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionParticles } from "@/components/shared/SectionParticles";
@@ -71,7 +70,6 @@ export function AProposPage() {
   return (
     <>
       <PageAtmosphere preset="about" />
-      <FluidMouseField preset="about" />
       <PageHero
         label="Qui je suis"
         title={<>Moi, c&apos;est <span className="text-gradient-strong">Iulian</span></>}

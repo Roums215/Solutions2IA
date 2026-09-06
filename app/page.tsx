@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/hero/HeroSection";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
 import { deliveryFlow } from "@/components/sections/home/homeDeliveryFlow";
@@ -38,7 +37,6 @@ export default function Home() {
     <>
       <JsonLd schema={howToSchema} id="ld-home-howto" />
       <PageAtmosphere preset="home" />
-      <FluidMouseField intensity={1} />
 
       {/* ── C'est quoi : la promesse ───────────────────────────────────── */}
       <HeroSection />

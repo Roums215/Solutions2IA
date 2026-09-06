@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import type { Article } from "@/lib/content/articles/types";
 
@@ -15,7 +14,6 @@ export function ArticleLayout({ article }: { article: Article }) {
   return (
     <>
       <PageAtmosphere preset="services" />
-      <FluidMouseField preset="services" />
 
       <article className="relative">
         {/* Header */}

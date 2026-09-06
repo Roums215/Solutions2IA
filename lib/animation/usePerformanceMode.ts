@@ -40,7 +40,7 @@ export interface PerformanceMode {
   shouldDegrade: boolean;
   /**
    * Cache les couches purement décoratives de fond (particles, orbs animés,
-   * FluidMouseField, MouseParticles, dividers néons). Dérivé : tier !== 'full'
+   * dividers néons). Dérivé : tier !== 'full'
    * — table de vérité identique à l'ancienne en statique, et s'étend
    * automatiquement quand le FPS guard rétrograde.
    */

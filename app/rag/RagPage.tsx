@@ -2,7 +2,6 @@
 
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { RagMemoryFlow } from "@/components/sections/rag/RagMemoryFlow";
 import { RagPainLoss } from "@/components/sections/rag/RagPainLoss";
@@ -25,7 +24,6 @@ export function RagPage() {
   return (
     <>
       <PageAtmosphere preset="automation" />
-      <FluidMouseField preset="automation" />
 
       <PageHero
         label="La mémoire de votre entreprise"

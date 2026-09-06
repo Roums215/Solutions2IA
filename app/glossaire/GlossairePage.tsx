@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import {
   GLOSSAIRE_PAGE_ENTRIES,
@@ -14,7 +13,6 @@ export function GlossairePage() {
   return (
     <>
       <PageAtmosphere preset="services" />
-      <FluidMouseField preset="services" />
 
       <PageHero
         label="Glossaire"

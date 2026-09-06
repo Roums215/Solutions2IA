@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { Button } from "@/components/ui/Button";
 import { SectionParticles } from "@/components/shared/SectionParticles";
 import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
@@ -103,7 +102,6 @@ export function ContactPage() {
   return (
     <>
       <PageAtmosphere preset="contact" />
-      <FluidMouseField preset="contact" />
       <PageHero
         label="Parlons-en"
         title={<>Dites-moi ce qui vous <span className="text-gradient-strong">prend du temps</span></>}

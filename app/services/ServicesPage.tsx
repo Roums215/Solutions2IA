@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
@@ -102,7 +101,6 @@ export function ServicesPage() {
   return (
     <>
       <PageAtmosphere preset="services" />
-      <FluidMouseField preset="services" />
       <PageHero
         label="Ce que je fais"
         title={<>Cinq façons de vous faire <span className="text-gradient-strong">gagner du temps</span></>}

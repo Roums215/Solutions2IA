@@ -2,7 +2,6 @@
 
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { FAQ_CATEGORIES, FAQ_ITEMS } from "@/lib/content/faqData";
 
@@ -10,7 +9,6 @@ export function FaqPage() {
   return (
     <>
       <PageAtmosphere preset="services" />
-      <FluidMouseField preset="services" />
 
       <PageHero
         label="FAQ"

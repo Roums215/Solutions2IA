@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 
 // Scène hero lazy : le chunk n'est jamais téléchargé sur mobile/minimal
@@ -23,7 +22,6 @@ export function SitesWebPage() {
   return (
     <>
       <PageAtmosphere preset="web" />
-      <FluidMouseField preset="web" />
       <PageHero
         label="Sites web"
         title={

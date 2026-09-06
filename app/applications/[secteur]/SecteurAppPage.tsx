@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -21,7 +20,6 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
   return (
     <>
       <PageAtmosphere preset="apps" />
-      <FluidMouseField preset="apps" />
 
       <PageHero
         label={`Applications · ${sector.name}`}

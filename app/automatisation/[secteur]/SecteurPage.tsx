@@ -2,7 +2,6 @@
 
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { CTABand } from "@/components/shared/CTABand";
 import { RelatedServices } from "@/components/shared/RelatedServices";
 import { AutomationPipeline } from "@/components/sections/automation/AutomationPipeline";
@@ -16,7 +15,6 @@ export function SecteurPage({ sector }: SecteurPageProps) {
   return (
     <>
       <PageAtmosphere preset="automation" />
-      <FluidMouseField preset="automation" />
 
       <PageHero
         label={`Automatisation · ${sector.name}`}

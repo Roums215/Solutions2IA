@@ -4,7 +4,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbSchema } from "@/lib/seo/schema";
 import { ARTICLES } from "@/lib/content/articles/articles";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { PageHero } from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
@@ -25,7 +24,6 @@ export default function ArticlesIndexPage() {
   return (
     <>
       <PageAtmosphere preset="services" />
-      <FluidMouseField preset="services" />
 
       <JsonLd
         schema={buildBreadcrumbSchema([

@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
@@ -75,7 +74,6 @@ export function AutomatisationPage() {
   return (
     <>
       <PageAtmosphere preset="automation" />
-      <FluidMouseField preset="automation" />
       <PageHero
         label="Automatisation"
         title={<>Ce qui se répète peut se faire <span className="text-gradient-strong">tout seul</span></>}

@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
-import { FluidMouseField } from "@/components/shared/FluidMouseField";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { CTABand } from "@/components/shared/CTABand";
@@ -156,7 +155,6 @@ export function ApplicationsPage() {
   return (
     <>
       <PageAtmosphere preset="apps" />
-      <FluidMouseField preset="apps" />
 
       <PageHero
         label="Applications sur mesure"
