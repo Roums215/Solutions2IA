@@ -11,7 +11,6 @@ type LegalPageProps = {
   title: string;
   description: string;
   updatedAt?: string;
-  notice?: string;
   sections: LegalSection[];
 };
 
@@ -19,7 +18,6 @@ export function LegalPage({
   title,
   description,
   updatedAt = "15 mai 2026",
-  notice,
   sections,
 }: LegalPageProps) {
   return (
@@ -48,12 +46,6 @@ export function LegalPage({
             </p>
             <p className="mt-5 text-xs text-text-tertiary">Dernière mise à jour : {updatedAt}</p>
           </div>
-
-          {notice && (
-            <div className="mt-10 rounded-2xl border border-amber-300/20 bg-amber-300/[0.045] p-5 text-sm leading-relaxed text-text-secondary">
-              {notice}
-            </div>
-          )}
 
           <div className="mt-12 space-y-5 lg:mt-16">
             {sections.map((section, index) => (

@@ -13,7 +13,6 @@ export default function Page() {
     <LegalPage
       title="Politique de confidentialité"
       description="Cette politique explique comment Solutions 2IA traite les données personnelles collectées via son site vitrine et ses échanges commerciaux."
-      notice="Cette page doit être ajustée si de nouveaux outils sont ajoutés : analytics, CRM, chat, newsletter, pixels publicitaires, prise de rendez-vous ou paiement en ligne."
       sections={[
         {
           title: "Responsable du traitement",

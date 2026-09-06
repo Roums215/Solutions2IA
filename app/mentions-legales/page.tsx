@@ -13,7 +13,6 @@ export default function Page() {
     <LegalPage
       title="Mentions légales"
       description="Informations d'identification de l'éditeur du site Solutions 2IA et conditions générales d'utilisation du site vitrine."
-      notice="À compléter avant publication : les mentions légales doivent contenir les informations administratives exactes de l'entreprise et de l'hébergeur. Les champs marqués “à compléter” ne doivent pas rester en production."
       sections={[
         {
           title: "Éditeur du site",

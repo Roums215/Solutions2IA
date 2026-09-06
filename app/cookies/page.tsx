@@ -13,7 +13,6 @@ export default function Page() {
     <LegalPage
       title="Politique cookies"
       description="Cette page précise les règles applicables aux cookies et traceurs susceptibles d'être utilisés sur le site Solutions 2IA."
-      notice="Si un outil d'analytics, de publicité, de chat, de replay session ou de tracking est ajouté, il faudra mettre en place un bandeau de consentement conforme et mettre cette page à jour."
       sections={[
         {
           title: "Qu'est-ce qu'un cookie ?",

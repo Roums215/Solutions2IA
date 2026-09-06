@@ -13,7 +13,6 @@ export default function Page() {
     <LegalPage
       title="Conditions générales de vente"
       description="Conditions applicables aux prestations de services digitales proposées par Solutions 2IA, sauf conditions particulières convenues par écrit."
-      notice="Ces CGV sont une base contractuelle à faire relire et ajuster selon ta forme juridique, ton modèle de facturation, tes délais, tes garanties, ton médiateur et tes modalités commerciales exactes."
       sections={[
         {
           title: "Champ d'application",
