@@ -49,3 +49,11 @@ test-results/
 .claude.bak*/
 .agents/
 .codex/
+
+# Captures d'écran de QA (garder hors du dépôt : 130+ Mo accumulés en 2026)
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/docs/**/*.png
+!/public/**
