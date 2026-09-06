@@ -1,3 +1,9 @@
+> [!NOTE]
+> Brief rédigé pendant la refonte de **juin 2026**. Il reste la référence de cette page,
+> mais il cite des composants aujourd'hui **supprimés** (`TransformationCard`, `WebGalaxyShowcase`),
+> des pages jamais créées (`/realisations`) et des docs déplacées (`PLAYBOOK.md` → `docs/archives/2026-06-playbook-design.md`,
+> `ROADMAP.md` n'existe pas). Les règles en vigueur sont dans `docs/` et `CLAUDE.md`.
+
 # Brief — Page `/rag` : le cerveau documentaire privé
 
 > À déposer dans `docs/pages/rag.md`. Réf : `PLAYBOOK.md` + `ROADMAP.md`.

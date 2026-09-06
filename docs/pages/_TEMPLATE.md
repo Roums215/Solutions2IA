@@ -1,7 +1,8 @@
 # Brief page — `/<route>`  ·  *(rôle court)*
 
 > Fichier lu **en premier** par `/refonte-page <route>` (avant tout audit). Donne à l'agent
-> la précision page-spécifique que les règles génériques (CLAUDE.md / PLAYBOOK.md) ne donnent pas.
+> la précision page-spécifique que les règles génériques (`CLAUDE.md`, `docs/anatomie-page.md`,
+> `docs/contenu-copy.md`) ne donnent pas.
 > Dupliquer ce template par page, le remplir, le placer dans `docs/pages/<route>.md`.
 
 ## 1. Rôle unique (1 phrase)
@@ -34,7 +35,7 @@ Renvoi à `STRUCTURE.md`. Lister l'ordre des sections et le composant de chaque
 Renvoi à `copy-writer-fr`. Promesse principale, mots-clés, ton, formules à bannir.
 
 ## 8. Contraintes techniques
-Renvoi à `CLAUDE.md` + `PLAYBOOK.md`. Rappel ciblé : tokens only, transform/opacity/clip-path,
+Renvoi à `CLAUDE.md` + `docs/anatomie-page.md`. Rappel ciblé : tokens only, transform/opacity/clip-path,
 `reduced-motion`, `whileInView once`, lazy si lourd, 0 `<img>`.
 
 ## 9. Definition of Done  *(checklist auditeurs)*
@@ -42,7 +43,7 @@ Renvoi à `CLAUDE.md` + `PLAYBOOK.md`. Rappel ciblé : tokens only, transform/op
 - [ ] `a11y-reviewer` : reduced-motion + ARIA + hiérarchie titres OK
 - [ ] `performance-auditor` : 60fps desktop **et** mobile, pas de chunk hors budget
 - [ ] Rendu vérifié **desktop + iPhone**
-- [ ] Mécanique signature distincte des autres pages (pas de `TransformationCard` recyclé)
+- [ ] Mécanique signature distincte des autres pages (pas de composant d'une autre page recyclé)
 
 ## 10. NE PAS toucher
 Logo, header, preset global, composants partagés hors scope.

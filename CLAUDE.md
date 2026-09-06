@@ -1,236 +1,260 @@
-# CLAUDE.md — Solutions 2IA
+# CLAUDE.md · Solutions 2IA
 
-Site vitrine multi-pages premium (Next.js 15) — sites web, apps, agents IA, automatisation, UI/UX, motion, 3D/Remotion.
+Site vitrine multi-pages premium (Next.js 15) : sites web, applications métier, agents IA,
+mémoire d'entreprise (RAG), automatisation. Développeur indépendant français, solo.
 
-## Stack
-**Core** : Next.js 15 App Router · TS strict · Tailwind v4 (`@theme` dans `globals.css`) · pnpm
-**Anim 2D** : `motion` (micro/reveal/parallax) · `gsap` + ScrollTrigger (séquences/scroll storytelling) — jamais sur le même élément
-**3D / WebGL** : `three` · `@react-three/fiber` · `@react-three/drei`
-**Vidéo programmatique** : `remotion` + `@remotion/{player,three,noise,paths,shapes,motion-blur,media-utils,google-fonts}`
-**FX** : `@tsparticles/react` · `lottie-web` / `@lottiefiles/react-lottie-player` · `pixi.js`
-**Couleurs** : `chroma-js` · `culori` (OKLCH)
+> **Documentation complète dans `docs/`.** Avant de coder une page, lire
+> **[`docs/anatomie-page.md`](docs/anatomie-page.md)** : c'est le document de référence.
+
+| Besoin | Document |
+|---|---|
+| Comment une page est faite (contenu + design) | `docs/anatomie-page.md` |
+| Tokens, presets, composants, props | `docs/design-system.md` |
+| Ton, glossaire, règles de copy | `docs/contenu-copy.md` |
+| Metadata, JSON-LD, sitemap, llms.txt, GSC | `docs/seo-geo.md` |
+| Tiers de perf, animations, LCP | `docs/performance.md` |
+| Stack réelle, arborescence, env, déploiement | `docs/architecture.md` |
+| Brief d'une page précise | `docs/pages/` |
+| Dernier audit complet | `docs/audits/` (dont l'audit de conversion page par page) |
+
+---
+
+## Stack réelle
+
+**Core** : Next.js 15 App Router · React 19 · TS strict · Tailwind v4 (`@theme` dans `globals.css`) · pnpm
+**Animation** : `motion` v12 uniquement (88 fichiers)
+**UI** : `radix-ui` + `cva` + `tailwind-merge` · `lucide-react` · `sonner`
+**Email** : `resend` (formulaire de contact + rapport SEO)
+**Mesure** : `@vercel/analytics` · `@vercel/speed-insights`
+**Vidéo hors site** : `remotion` + `chroma-js` (dossier `remotion/` seulement)
 **Tests** : Playwright
 
-## Routes & scènes & presets
-| Route | Preset bg | Forme 3D | Scène contenu |
+> ⚠️ **Ni GSAP, ni Three.js / R3F, ni tsparticles, ni Lottie, ni Pixi, ni culori.**
+> Ces libs ont longtemps été annoncées dans la doc, elles n'ont jamais été installées.
+> Toutes les « scènes 3D » (`components/scenes/**`) sont du **SVG + CSS + motion**.
+> Ne pas en ajouter sans décision explicite : ça pèse lourd et le site tient son LCP sans.
+
+---
+
+## Routes, presets et scènes
+
+| Route | Preset | Scène de hero | Note |
 |---|---|---|---|
-| `/` | `home` | `blob` (morph) | HeroVisual (multi-panels parallax) |
-| `/services` | `services` | `crystal` | — |
-| `/sites-web` | `web` | `browser` | WebScene |
-| `/applications` | `apps` | `device` | AppScene |
-| `/agents-ia` | `ai` | `neural` | AIBrainScene (la + futuriste) |
-| `/automatisation` | `automation` | `hex` | AutomationScene |
-| `/studio-visuel` | `studio` | `prism` | StudioScene |
-| `/a-propos` | `about` | `halo` | — |
-| `/contact` | `contact` | `plasma` | — |
+| `/` | `home` | `HeroVisual` | Server Component, sections en `dynamic()` |
+| `/services` | `services` | — | `OfferCatalog` JSON-LD |
+| `/sites-web` | `web` | `WebScene` | |
+| `/applications` | `apps` | `AppScene` | |
+| `/applications/[secteur]` | `apps` | — | 6 verticaux |
+| `/agents-ia` | `ai` | `AIBrainScene` | la plus futuriste |
+| `/automatisation` | `automation` | `AutomationScene` | |
+| `/automatisation/[secteur]` | `automation` | — | 5 secteurs |
+| `/rag` | `automation` | — | mémoire d'entreprise |
+| `/faq` | `services` | — | 30 Q/R, `FAQPage` |
+| `/glossaire` | `services` | — | 15 termes, `DefinedTermSet` |
+| `/articles` + `/articles/[slug]` | `services` | — | 7 articles |
+| `/a-propos` | `about` | — | |
+| `/contact` | `contact` | — | formulaire → Resend |
+| `/cgv` `/confidentialite` `/cookies` `/mentions-legales` | — | — | `LegalPage` mutualisé |
+| `/felicationbebelove` | — | — | privée, `noindex`, hors nav et sitemap |
+
+`/studio-visuel` a été **supprimée** (juin 2026) : redirection 308 vers `/services`
+dans `next.config.ts`. Le preset `studio` existe encore mais n'est plus utilisé.
+
+---
 
 ## Arborescence
+
 ```
-app/<route>/{page.tsx (Server+metadata), <Name>Page.tsx (Client)}
+app/<route>/{page.tsx (Server + metadata + JSON-LD), <Nom>Page.tsx (Client)}
+app/api/{contact,seo-report}/route.ts
 components/
-  ui/         Button, GlowCard, SectionHeading, SpotlightCard
-  layout/     Header, Footer
-  shared/     PageHero, CTABand, FluidMouseField, PageAtmosphere,
-              MouseParticles, NeonDivider, DepthDivider, TransformationCard,
-              SectionParticles, AppShell, LoadingScreen, PageTransition
-  hero/       HeroSection, HeroVisual (parallax 3D context)
-  sections/   Services|Benefits|Expertise|Process|ShowcaseSection
-  scenes/{ai,automation,web,mobile,studio}/
-  visuals/    (réservé fx/3D mutualisés)
-remotion/     index.ts + Root.tsx + compositions/
-lib/{animation,utils,content}/
-remotion.config.ts
+  ui/       Button · SectionHeading · SpotlightCard · ToolBadge · TermeExplique + primitives radix
+  layout/   Header · Footer
+  shared/   AppShell · PageHero · PageAtmosphere · CTABand
+            PageTransition · LoadingScreen · SectionParticles
+            PremiumFlowPanel · RelatedServices
+  hero/     HeroSection · HeroVisual
+  scenes/   ai · web · mobile · automation   (SVG animé, pas de WebGL)
+  sections/ home · sites-web · applications · agents-ia · automation · rag
+  legal/    LegalPage        seo/ JsonLd
+lib/
+  seo/      constants.ts (source de vérité) · schema.ts (11 builders) · report/
+  content/  faqData · glossaire · glossairePage · navigation · articles/
+  animation/ usePerformanceMode · fpsGuard · inViewPause · parallaxField · variants
+remotion/   index.ts · Root.tsx · compositions/   (hors site)
+docs/       toute la documentation
 ```
+
+---
 
 ## Pattern de page
-1. `page.tsx` Server Component → metadata
-2. `<Name>Page.tsx` Client Component → rendu
-3. **Background** : `<PageAtmosphere preset="X" />` + `<FluidMouseField preset="X" />` (X = preset domaine)
-4. `<PageHero label/title/desc/visual/CTAs />` → sections (`SectionHeading` + `SpotlightCard`) → `<CTABand />`
 
-## Composants clés
+1. `page.tsx` **Server Component** : `metadata` + `<JsonLd>` + rendu du composant client. Jamais `"use client"`.
+2. `<Nom>Page.tsx` **Client Component** : le rendu.
+3. **Fond** : `<PageAtmosphere preset="X" />` (décor **statique**, aucun suivi de souris).
+4. **Corps** : `<PageHero>` → sections (`SectionHeading` + `SpotlightCard`) → `<CTABand>`.
+5. **Ordre du contenu, imposé** : c'est quoi · ce que ça vous apporte · comment ça marche · pour qui · l'étape suivante. **Un seul CTA par page.**
 
-### `FluidMouseField` — fond fluide réactif souris (toutes pages)
-- 3 calques parallaxés (halo principal lent, halo opposé inverse, focus rapide)
-- Formes 3D flottantes parallaxées par `depth` (14→46), tilt rotateX/Y
-- 9 presets (palette + forme + grille/scan) — 1 par domaine
-- Props : `preset` · `intensity?`
-- GPU only · `prefers-reduced-motion` géré · oscillation autonome sur tactile
+Détail complet et exemples : `docs/anatomie-page.md`.
 
-### `SpotlightCard` — carte premium (grids des pages)
-- Spotlight 380px qui suit la souris (radial gradient)
-- Tilt 3D `rotateX/Y` driven par spring
-- Bordure conique réactive révélée au hover (mask composite)
-- Halo central pulsant optionnel (`pulse`)
-- Props : `glow` (rgb sans alpha) · `tilt` · `pulse` · `className`
-- Utiliser `style={{ transform: "translateZ(Npx)" }}` sur les enfants pour profondeur
+---
 
-### `HeroVisual` — composition home avec parallax 3D
-- `ParallaxContext` propage la position souris à chaque `FloatingPanel`
-- Container `perspective: 1400px` + `transformStyle: preserve-3d`
-- Chaque panel a un `depth` propre (14→32) → vrai parallax
-- Springs lents (stiffness 70, mass 0.8)
+## Design tokens
 
-### `PageAtmosphere` — couche statique décorative par page
-- Coexiste avec `FluidMouseField` (statique en fond, dynamique au-dessus)
-- Décor unique par preset (neural net, circuits, formes flottantes, halos)
+```
+Fonds     bg-bg-{primary,secondary,tertiary,card,card-hover}
+Texte     text-text-{primary,secondary,tertiary} · text-accent-light
+Bordures  border-border-{subtle,medium,accent}
+Accents   bg-accent-{primary,light,dark,glow,glow-strong} · bg-cyan{,-glow}
+Effets    .text-gradient[-strong] · .glow-line · .bg-grid · .bg-radial-top
+          .card-shine · .surface-card · .metric-tile · .section-intro-panel
+Shells    .section-shell · .section-shell-tight · .section-shell-compact
+Largeurs  .section-container · .section-container-narrow
+```
 
-## Design tokens (Tailwind classes)
-- BG : `bg-bg-{primary,secondary,card,card-hover,tertiary}`
-- Texte : `text-text-{primary,secondary,tertiary}` · `text-accent-light`
-- Bordures : `border-border-{subtle,medium,accent}`
-- Accents : `bg-accent-{primary,light,dark,glow,glow-strong}` · `bg-cyan{,-glow}`
-- Effets : `.text-gradient[-strong]` · `.glow-line` · `.bg-grid` · `.bg-radial-top` · `.card-shine` · `.bg-noise` · `.section-vignette`
-- Surfaces : `.surface-card` · `.metric-tile` · `.section-intro-panel`
+Une couleur en dur est un écart, sauf : `SpotlightCard glow="r,g,b"`,
+`PremiumFlowPanel accent="r, g, b"`, les couleurs de marques tierces (`brandLogos.tsx`),
+et `app/icon.tsx` / `apple-icon.tsx` (rendu `next/og`, pas de variables CSS).
 
-## Spacings (`globals.css`)
-- `.section-shell` : `clamp(6rem, 9vw, 9rem)` (généreux)
-- `.section-shell-tight` : `clamp(4.5rem, 7vw, 6.5rem)`
-- `.section-shell-compact` : `clamp(3.5rem, 5vw, 5rem)`
-- `.section-stack > * + *` : `clamp(2.5rem, 4vw, 4rem)` (rythme vertical)
-- Auto-margin SectionHeading→grids/flex/space-y : `clamp(3rem, 5vw, 4.5rem)`
+---
 
 ## Règles code
-- `"use client"` que si nécessaire · pages = Server, rendus = Client
-- Mobile-first (`sm: lg: xl:`) · `next/link` interne
-- GSAP en import dynamique (lazy) · `prefers-reduced-motion` global
-- Pas de `<img>` brut → `next/image` (lazy + optim)
-- Vidéos : `<video>` + `preload="metadata"` + `poster`, ou `<Player>` Remotion
-- Three.js : monter via `<Suspense>` + `dynamic(import, { ssr: false })`
+
+- `"use client"` seulement si nécessaire : `page.tsx` = Server, `<Nom>Page.tsx` = Client
+- Mobile-first (`sm: lg: xl:`) · `next/link` en interne · alias `@/`, jamais `../../..`
+- Pas de `<img>` brut : `next/image`
+- Séparer données et rendu : le contenu d'une grosse section va dans un `xxxData.ts` voisin
+- `prefers-reduced-motion` géré globalement via le tier de performance
+- Vidéos : `<video preload="metadata" poster>` ou `<Player>` Remotion en lazy
 
 ## Règles visuelles
-- Tout en CSS + SVG + React + motion (pas d'images de décor)
-- Glow layers en fond (`blur-[80-120px]`)
-- Panels flottants `motion.div` (`y:[0,-6,0]` 5-9s)
-- Connexions SVG via `pathLength` animé
-- Springs > durations fixes pour les interactions
-- Toujours `transform`/`opacity` (jamais `width`/`height`/`top`/`left` en animation)
-- Préférer `useMotionValue`/`useTransform` (0 re-render) à `useState` pour le mouvement souris
 
-## Règles Remotion (intégré au projet)
-- `remotion/Root.tsx` enregistre les compositions · `remotion.config.ts` à la racine
-- Toujours `useCurrentFrame()` + `interpolate(... { extrapolateRight: "clamp" })`
-- 3D dans Remotion = `ThreeCanvas` de `@remotion/three` (jamais `Canvas` R3F brut)
-- `spring({stiffness:80, damping:12})` pour entrées/sorties
-- Couleurs via `chroma.scale()` · shaders GLSL pour FX GPU
-- Lecture web : `<Player>` de `@remotion/player` (lazy + `dynamic ssr:false`)
+- Tout en CSS + SVG + React + motion. Pas d'images de décor.
+- Halos de fond en `blur-[80-120px]` · panneaux flottants `y:[0,-6,0]` sur 5 à 9 s
+- Connexions SVG animées via `pathLength`
+- Ressorts plutôt que durées fixes pour les interactions
+- **Toujours `transform` / `opacity`**, jamais `width` / `height` / `top` / `left`
+- Préférer `useMotionValue` / `useTransform` (0 re-render) à `useState` pour la souris
 
 ## Performance (priorité absolue)
-- Lazy : `dynamic()` pour Three/Remotion/Pixi/Lottie · `Suspense` partout
-- Images : `next/image` + `priority` que sur LCP · formats AVIF/WebP (configurés dans `next.config.ts`)
-- Vidéos : `preload="metadata"`, `poster`, fallback `<img>`
-- Anims : `transform`/`opacity` only · `will-change` ciblé · `contain: strict` sur les fonds fixed
-- Bundle : pas de barrel imports lourds, `optimizePackageImports` configuré pour motion/drei/tsparticles/chroma/culori
-- `transpilePackages` : `three`, `@react-three/{fiber,drei}`
 
-## Commandes
-```
-pnpm dev | build | lint
-pnpm remotion:studio        # Remotion Studio
-pnpm remotion:render        # rendu MP4 (composition Hero par défaut)
-pnpm exec playwright test   # tests E2E
-```
+- Trois tiers automatiques : `<html data-perf="full | reduced | minimal">` (voir `docs/performance.md`)
+- Lazy : `dynamic()` pour les scènes et les méga-sections · `Suspense` partout
+- `optimizePackageImports` configuré pour `motion`, `lucide-react`, `radix-ui`, `@vercel/*`
+- **Ne pas casser le LCP** : `PageHero` peint son `h1` en CSS pur (`.hero-enter`) avant
+  l'hydratation, et `PageTransition` a `initial={false}`. Y remettre un `opacity: 0` animé
+  en JS fait remonter le LCP de 1,8 s à ~8 s.
+
+---
 
 ## Règle de copy (demande explicite du client)
-- **Jamais de tiret cadratin « — » dans le contenu visible** (pages, metadata, titres, FAQ, articles, emails, llms.txt) : ça « fait IA ». Remplacer par deux-points, virgule, parenthèses, point médian « · » (titres/labels) ou « X à Y » (fourchettes). Les commentaires de code peuvent en garder.
+
+- **« je », jamais « nous »** : freelance solo.
+- **Zéro preuve inventée** : pas de client fictif, pas de stat non sourçable.
+- **Jamais de tiret cadratin « — » dans le contenu visible** (pages, metadata, titres, FAQ,
+  articles, emails, `llms.txt`) : ça « fait IA ». Remplacer par deux-points, virgule,
+  parenthèses, point médian « · » ou « X à Y ». *Les commentaires de code peuvent en garder.*
+- **Le jargon ne reste jamais seul** : le remplacer par le mot simple, ou l'expliquer
+  (`lib/content/glossaire.ts`).
+- **Interdits** : « solutions innovantes », « révolutionner », « à l'ère de l'IA »,
+  « libérez votre potentiel », « dans un monde où… ».
+
+Détail : `docs/contenu-copy.md`.
+
+---
+
+## SEO / GEO
+
+Toute nouvelle page doit avoir : `title` sous 60 caractères **suffixe ` · Solutions 2IA` compris**,
+`description` de 150 à 160 caractères, **`alternates: { canonical: "/ma-route" }`** (sans quoi
+la page hérite du canonical `/` du layout), `openGraph`, un JSON-LD via `combineSchemas`,
+un seul `<h1>`, une entrée dans `app/sitemap.ts`, et au moins 2 liens internes sortants.
+
+Domaine officiel : **`https://solutions2ia.fr`** (défini une seule fois dans
+`lib/seo/constants.ts`). Le `.com` est mort : ne jamais le réintroduire.
+
+Détail et checklist : `docs/seo-geo.md`.
+
+---
+
+## Signature de marque (NE PAS traiter comme du slop)
+
+Intentionnels, à ne jamais supprimer ni signaler comme erreur :
+`.text-gradient[-strong]` sur les titres · les halos flous en fond · la palette indigo/cyan
+(`#6366f1` / `#22d3ee`) · `SpotlightCard` (spotlight + tilt + bordure conique).
+
+Registre = **« marque »** (vitrine premium), pas « produit ». Un outil anti-slop doit
+distinguer le bruit **non intentionnel** (doublons de particules, sections lourdes redondantes,
+incohérences de tokens) de cette signature voulue.
+
+---
+
+## Commandes
+
+```
+pnpm dev              # port 4000
+pnpm build | lint
+npx tsc --noEmit      # ✅ à préférer pendant le dev
+pnpm exec playwright test
+pnpm remotion:studio | remotion:render
+```
+
+> ⚠️ **Ne jamais lancer `pnpm build` pendant que `pnpm dev` tourne** : le build écrase
+> le `.next` du serveur de dev et casse le site en local.
+
+---
 
 ## Façon de travailler
-- Lire l'existant avant de modifier · réutiliser `SpotlightCard` / `FluidMouseField` plutôt que recréer
-- Chaque page garde sa personnalité visuelle (preset domaine) dans l'identité globale
-- Logo (LoadingScreen + Header) **jamais touché** sans demande explicite
-- Plan bref avant grosse modif → exécution directe → résumé court
-- Build/lint quand pertinent
 
-### `WebGalaxyShowcase` — galaxie interactive de domaines (`sections/`)
-- Canvas starfield : ~180 étoiles scintillantes via `requestAnimationFrame`
-- Orbites elliptiques (ratio Y = 0.42) pour effet 3D/profondeur — 3 rayons : 220/340/440px
-- Planètes triées par `cy` (depth sort) · chaque planète = couleur + emoji + speed propre
-- Hover → scale + glow pulsant · Clic → verrouillage (`lockedDomain`)
-- Panneau droit : chrome navigateur macOS + `WebPreview` fidèle au secteur
-- `AnimatePresence mode="wait"` pour transition entre previews
-- Pills filtre en bas pour switcher sans la galaxie
-- `angleRefs` = `useRef<Record<string,number>>` (0 re-render) · pas de state pour les positions d'orbite
-## Signature de marque (NE PAS traiter comme du slop)
-Les éléments suivants sont une signature de marque ASSUMÉE et INTENTIONNELLE, pas du slop IA. Ne jamais les supprimer ni les flagger comme erreur :
-- `.text-gradient` / `.text-gradient-strong` sur les titres
-- glow layers en fond (`blur-[80-120px]`, `bg-accent-glow`, `shadow-accent-glow`)
-- palette indigo/cyan (#6366f1 / #22d3ee), dark mode à accents lumineux
-- SpotlightCard (spotlight + tilt + bordure conique) et cartes premium
+- Lire l'existant avant de modifier. Réutiliser `SpotlightCard`, `PageHero`, `PageAtmosphere`
+  plutôt que recréer.
+- Chaque page garde sa personnalité visuelle (son preset) dans l'identité globale.
+- Le **logo** (`LoadingScreen`, `Header`) : jamais touché sans demande explicite.
+- Les **schémas pédagogiques animés** : jamais supprimés sèchement, refaits en mieux si besoin.
+- Plan bref avant grosse modif → exécution directe → résumé court.
+- `npx tsc --noEmit` + `pnpm lint` quand c'est pertinent.
 
-Registre = "brand" (site vitrine premium), pas "product". Un outil anti-slop doit distinguer le slop NON-INTENTIONNEL (doublons de particules, sections lourdes redondantes, incohérences de tokens) — ça, on corrige — de cette signature voulue — ça, on garde.
-## Agents Claude Code (`.claude/agents/`)
+---
 
-Sept agents principaux + trois en bonus, calibrés sur l'archi Solutions 2IA.
+## Agents (`.claude/agents/`)
 
-### Read-only (audit, perf, a11y, tokens) — Haiku
-| Agent | Quand l'utiliser |
+### Lecture seule (Haiku)
+| Agent | Quand |
 |---|---|
-| `site-auditor` | Début de session ou avant gros refactor. Scan archi, presets, drift. |
-| `tokens-guardian` | Avant chaque PR. Détecte couleurs/spacings hard-codés hors `@theme`. |
-| `performance-auditor` | Avant chaque PR ou après changement lourd. Lighthouse + bundle + grep anti-patterns. |
-| `a11y-reviewer` | Avant chaque PR. Vérifie reduced-motion, ARIA, alt, hiérarchie h1-h3. |
+| `site-auditor` | début de session, avant gros refactor : structure, presets, dérive |
+| `tokens-guardian` | avant PR : couleurs et spacings hors `@theme` |
+| `performance-auditor` | avant PR ou après changement lourd : Lighthouse, bundle, anti-patterns |
+| `a11y-reviewer` | avant PR : reduced-motion, ARIA, alt, hiérarchie h1-h3 |
 
-### Création / refactor — Sonnet
-| Agent | Quand l'utiliser |
+### Création / refactor (Sonnet)
+| Agent | Quand |
 |---|---|
-| `section-designer` | Créer ou refondre une section. Propose 2-3 variantes avant de coder. |
-| `motion-specialist` | Toute interaction, scroll storytelling, mouse parallax, GSAP timeline. |
-| `r3f-3d-specialist` | Nouvelle scène Three.js / R3F. Respecte le preset du domaine. |
-| `component-splitter` | Refactor d'un fichier > 250 LOC en sous-modules sans régression. |
-| `copy-writer-fr` | Hero, CTAs, descriptions, SEO metadata en français premium. |
+| `section-designer` | créer ou refondre une section (propose 2-3 variantes avant de coder) |
+| `motion-specialist` | interactions, scroll storytelling, parallax souris |
+| `r3f-3d-specialist` | scènes visuelles de hero (⚠️ nom historique : pas de Three.js dans le projet) |
+| `component-splitter` | découper un fichier > 250 LOC sans régression |
+| `copy-writer-fr` | hero, CTA, descriptions, metadata SEO |
 
-### Assets — Haiku + MCP
-| Agent | Quand l'utiliser |
+### Assets (Haiku + MCP)
+| Agent | Quand |
 |---|---|
-| `visual-asset-generator` | Hero vidéos, backgrounds, portraits via Higgsfield. Toujours estim. credits + confirmation. |
+| `visual-asset-generator` | visuels via Higgsfield. Toujours estimer les crédits + confirmer. |
 
 ## Slash commands (`.claude/commands/`)
-- `/refonte-page <route>` — pipeline complet (audit → propositions → impl → assets → QA)
-- `/audit-pr` — 4 auditeurs en parallèle sur les fichiers modifiés
-- `/split-composant <path>` — découpe un composant lourd
 
-## MCPs configurés (`.mcp.json`)
+- `/refonte-page <route>` : pipeline complet (audit → propositions → implémentation → QA)
+- `/audit-pr` : 4 auditeurs en parallèle sur les fichiers modifiés
+- `/split-composant <path>` : découpe un composant lourd
+
+## MCP (`.mcp.json`)
+
 | MCP | Usage |
 |---|---|
-| `context7` | Doc à jour Next 15 / React 19 / Tailwind v4 / motion v12. **Ajouter `use context7`** sur toute lib externe. |
-| `higgsfield` | Génération image/vidéo on-brand. |
-| `magic` (21st.dev) | `/ui` pour générer 3 variantes d'un composant. |
-| `magicui` | 150+ composants animés MIT compatibles motion. |
-| `shadcn` | Composants radix-based. |
-| `chrome-devtools` + `playwright` | QA visuel + Lighthouse. |
-| `firecrawl` | Scrape sites d'inspiration pour `section-designer`. |
+| `context7` | doc à jour Next 15 / React 19 / Tailwind v4 / motion v12. **Ajouter `use context7`** pour toute lib externe. |
+| `magicui` | 150+ composants animés MIT compatibles motion |
+| `chrome-devtools` + `playwright` | QA visuelle + Lighthouse |
+| `firecrawl` | scraping de sites d'inspiration |
+| `higgsfield` · `magic` · `shadcn` | configurés mais en échec d'authentification à ce jour |
 
-## Workflows recommandés
-
-### Refonte d'une page complète
-```
-/refonte-page /agents-ia
-```
-
-### Création d'une nouvelle section
-```
-Use section-designer to propose 3 lighter variants of a "comparaison avant/après" section for /automatisation, leveraging SpotlightCard and our tokens. Ne code pas.
-```
-
-### Animation à fixer
-```
-Use motion-specialist to refactor the animate={{ width }} found in components/sections/X.tsx into a scaleX-based equivalent.
-```
-
-### Avant PR
-```
-/audit-pr
-```
-
-## Modèles et coûts
-- **Haiku** sur les agents read-only → audits rapides et peu chers
-- **Sonnet** sur les agents de création
-- **Opus** uniquement quand on lance `/model opusplan` pour architecturer une refonte multi-pages
-
-## Variables d'environnement à exporter (avant `claude`)
-```bash
-export CONTEXT7_API_KEY="..."
-export HIGGSFIELD_API_KEY="..."
-export TWENTY_FIRST_API_KEY="..."
-export FIRECRAWL_API_KEY="..."   # facultatif
-```
+Variables à exporter avant `claude` :
+`CONTEXT7_API_KEY` · `HIGGSFIELD_API_KEY` · `TWENTY_FIRST_API_KEY` · `FIRECRAWL_API_KEY`
