@@ -2,6 +2,7 @@
 
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
+import Link from "next/link";
 import { CTABand } from "@/components/shared/CTABand";
 import { FAQ_CATEGORIES, FAQ_ITEMS } from "@/lib/content/faqData";
 
@@ -14,12 +15,12 @@ export function FaqPage() {
         label="FAQ"
         title={
           <>
-            Les vraies questions qu&apos;on nous pose en{" "}
+            Les vraies questions qu&apos;on me pose en{" "}
             <span className="text-gradient-strong">premier rendez-vous</span>.
           </>
         }
-        description="30 réponses structurées, sourcées et chiffrées sur les agents IA, les applications métier sur mesure, le RAG, la sécurité RGPD et notre méthode dérisquée. Aucun buzzword."
-        primaryCta={{ label: "Réserver un audit gratuit", href: "/contact" }}
+        description={`${FAQ_ITEMS.length} réponses courtes sur les agents IA, les applications sur mesure, la mémoire d'entreprise (RAG), la sécurité de vos données, la méthode et les prix. Sans jargon.`}
+        primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
         secondaryCta={{ label: "Voir les services", href: "/services" }}
       />
 
@@ -53,7 +54,7 @@ export function FaqPage() {
           </nav>
 
           {/* Questions */}
-          <div className="space-y-12">
+          <div className="min-w-0 max-w-[46rem] space-y-16">
             {FAQ_CATEGORIES.map((cat) => {
               const items = FAQ_ITEMS.filter((it) => it.category === cat.slug);
               return (
@@ -86,9 +87,9 @@ export function FaqPage() {
                             <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-subtle bg-bg-card text-[10px] font-mono text-text-tertiary group-open:border-accent-primary/40 group-open:text-accent-light">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <span className="min-w-0 flex-1 text-[15px] font-semibold leading-snug text-text-primary">
+                            <h3 className="min-w-0 flex-1 text-[15px] font-semibold leading-snug text-text-primary">
                               {it.question}
-                            </span>
+                            </h3>
                             <svg
                               aria-hidden
                               className="mt-1 h-4 w-4 shrink-0 text-text-tertiary transition-transform duration-300 group-open:rotate-180"
@@ -100,13 +101,22 @@ export function FaqPage() {
                               <polyline points="6 9 12 15 18 9" />
                             </svg>
                           </summary>
-                          <div className="border-t border-border-subtle/60 px-5 py-4 text-[14px] leading-[1.75] text-text-secondary">
+                          <div className="border-t border-border-subtle/60 px-5 py-5 text-[14px] leading-[1.8] text-text-secondary">
                             {it.answer}
                           </div>
                         </details>
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-6 text-sm text-text-secondary">
+                    <span className="text-text-tertiary">Pour aller plus loin : </span>
+                    <Link
+                      href={cat.seeAlso.href}
+                      className="font-medium text-accent-light underline-offset-4 transition-colors duration-200 hover:text-text-primary hover:underline"
+                    >
+                      {cat.seeAlso.label} →
+                    </Link>
+                  </p>
                 </section>
               );
             })}
@@ -117,11 +127,12 @@ export function FaqPage() {
       <CTABand
         title={
           <>
-            Une autre question ? <span className="text-gradient-strong">Demandez-nous.</span>
+            Une autre question ? <span className="text-gradient-strong">Demandez-moi.</span>
           </>
         }
-        description="45 minutes d'audit gratuit pour qualifier votre projet et identifier les premiers gains concrets."
-        primaryLabel="Réserver mon audit"
+        description="Un premier échange de 45 minutes, gratuit et sans engagement, pour cerner votre projet et repérer les premiers gains concrets."
+        primaryLabel="Premier échange gratuit"
+        secondary={null}
       />
     </>
   );

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo/constants";
+import { ARTICLES as ARTICLE_DATA } from "@/lib/content/articles/articles";
 
 const lastModified = new Date();
 
@@ -81,7 +82,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const articleRoutes: MetadataRoute.Sitemap = ARTICLES.map((slug) => ({
     url: `${SITE_URL}/articles/${slug}`,
-    lastModified,
+    lastModified: (() => {
+      const a = ARTICLE_DATA.find((x) => x.slug === slug);
+      return a ? new Date(a.updatedAt ?? a.publishedAt) : lastModified;
+    })(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

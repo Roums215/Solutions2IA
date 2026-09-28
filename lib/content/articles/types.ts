@@ -43,7 +43,10 @@ export type ArticleComparisonTable = {
 
 export type Article = {
   slug: string;
+  /** H1 de l'article (peut être long). */
   title: string;
+  /** Titre SERP court (< 44 car. : le layout ajoute « · Solutions 2IA »). Sinon `title`. */
+  seoTitle?: string;
   /** Meta description (150-160 char). */
   description: string;
   /** TL;DR de 40-60 mots affiché en tête (boost LLM extraction). */

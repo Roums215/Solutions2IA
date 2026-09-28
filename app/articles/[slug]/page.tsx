@@ -23,13 +23,14 @@ export async function generateMetadata(
     return { title: "Article introuvable" };
   }
   const url = `/articles/${article.slug}`;
+  const seoTitle = article.seoTitle ?? article.title;
   return {
-    title: article.title,
+    title: seoTitle,
     description: article.description,
     keywords: article.keywords,
     alternates: { canonical: url },
     openGraph: {
-      title: article.title,
+      title: seoTitle,
       description: article.description,
       url,
       type: "article",
@@ -40,7 +41,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
+      title: seoTitle,
       description: article.description,
     },
   };

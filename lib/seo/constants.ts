@@ -7,17 +7,18 @@ export const SITE_URL = "https://solutions2ia.fr";
 export const SITE_NAME = "Solutions 2IA";
 export const SITE_TAGLINE = "Applications IA, agents IA, sites web et automatisation sur mesure";
 export const SITE_DESCRIPTION =
-  "Applications métier, agents IA souverains (RAG, hébergement UE), sites web premium et automatisation sur mesure. Développeur indépendant français. Premier échange gratuit.";
+  "Sites web, applications métier, automatisations et assistants IA sur mesure pour les PME. Développeur indépendant, données hébergées en Europe. Échange gratuit.";
 
 export const SITE_LOCALE = "fr_FR";
 export const SITE_LANG = "fr";
 export const SITE_COUNTRY = "FR";
 
+// Aligné sur @theme dans app/globals.css (source de vérité des couleurs).
 export const BRAND = {
-  primary: "#7c3aed",
+  primary: "#6366f1",
   cyan: "#22d3ee",
-  bg: "#06070d",
-  card: "#10111c",
+  bg: "#05060b",
+  card: "#111424",
   text: "#f5f7ff",
 };
 

@@ -7,14 +7,14 @@ import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
 import { PageHero } from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
-  title: "Articles Solutions 2IA : audit app métier, agent IA RGPD, RAG, Chorus Pro",
+  title: "Guides : IA, applications, automatisation",
   description:
     "Guides ultra-optimisés : audit application métier, agent IA souverain France/UE, RAG vs fine-tuning, automatiser tri mails PME, facture électronique 2026.",
   alternates: { canonical: "/articles" },
   openGraph: {
     title: "Articles : Guides IA, applications métier, automatisation",
     description:
-      "5 guides experts pour les PME françaises : audit, IA souveraine, RAG, tri mails, Chorus Pro.",
+      "7 guides pour les PME : audit d'application, IA souveraine, RAG, tri des mails, facture électronique 2026, coût d'un agent IA, agent IA ou chatbot.",
     url: "/articles",
     type: "website",
   },
@@ -37,7 +37,7 @@ export default function ArticlesIndexPage() {
         label="Articles"
         title={
           <>
-            Cinq guides experts pour <span className="text-gradient-strong">décider sereinement</span>.
+            Sept guides pour <span className="text-gradient-strong">décider sereinement</span>.
           </>
         }
         description="Audit d'application métier, agent IA souverain UE, RAG vs fine-tuning, automatiser le tri des mails, facture électronique 2026 : sources chiffrées, tableaux comparatifs et FAQ structurée pour chaque sujet."

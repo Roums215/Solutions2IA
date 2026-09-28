@@ -1,5 +1,5 @@
 /**
- * 5 articles satellites ultra-optimisés SEO/GEO.
+ * 7 articles satellites optimisés SEO/GEO.
  * Chaque article : H1 unique, TL;DR 40-60 mots (BLUF), 4-6 H2 = questions PAA,
  * glossaire termes techniques, tableau comparatif, sources externes, FAQ schema,
  * interlinking topical authority.
@@ -10,8 +10,9 @@ import type { Article } from "./types";
 const auditApplicationMetier: Article = {
   slug: "audit-application-metier-par-ou-commencer",
   title: "Audit d'application métier : par où commencer ? Méthode 2026",
+  seoTitle: "Auditer une application métier : méthode",
   description:
-    "Audit d'application métier : 5 étapes pour cartographier l'existant, chiffrer la dette technique et décider entre refonte ciblée et reconstruction.",
+    "Audit d'application métier : 5 étapes pour cartographier l'existant, chiffrer la dette technique et décider entre refonte ciblée et reconstruction. Guide PME.",
   tldr:
     "Un audit d'application métier en 5 étapes : (1) cartographie du code et des données, (2) parcours utilisateurs réels, (3) friction et dette technique chiffrée, (4) arbitrage refonte ciblée vs reconstruction, (5) trajectoire de migration sans coupure. Méthode par sprints courts, premier échange gratuit.",
   category: "Applications",
@@ -127,6 +128,7 @@ const auditApplicationMetier: Article = {
 const agentIaRgpdSouverain: Article = {
   slug: "agent-ia-rgpd-souverain-france-ue",
   title: "Agent IA souverain en France : RGPD, hébergement UE, Mistral vs Claude",
+  seoTitle: "Agent IA souverain : RGPD, hébergement UE",
   description:
     "Agent IA RGPD compatible et hébergé en France ou UE : panorama Mistral vs Claude EU, garanties DPA, isolation par client, audit possible. Guide PME 2026.",
   tldr:
@@ -241,8 +243,9 @@ const agentIaRgpdSouverain: Article = {
 const ragVsFineTuning: Article = {
   slug: "rag-vs-fine-tuning-quoi-choisir-entreprise",
   title: "RAG vs fine-tuning : que choisir pour votre entreprise en 2026 ?",
+  seoTitle: "RAG ou fine-tuning : que choisir ?",
   description:
-    "RAG vs fine-tuning : différences techniques, coûts, cas d'usage, ROI. Quand choisir la mémoire d'entreprise (RAG), et dans quels cas niche le ré-entraînement du modèle s'impose.",
+    "RAG ou fine-tuning : différences, coûts, cas d'usage, retour sur investissement. Quand choisir la mémoire d'entreprise (RAG), quand le ré-entraînement s'impose.",
   tldr:
     "La mémoire d'entreprise (RAG) convient à la grande majorité des cas : la base de connaissances change tous les jours, RAG permet la mise à jour temps réel et la traçabilité des sources. Le ré-entraînement du modèle est pertinent dans les cas niche (génération code propriétaire, ton de marque très spécifique, contraintes latence extrêmes). Coût RAG typique : 100-1 000 €/mois selon volume et corpus. Coût ré-entraînement : 2 000-15 000 € par cycle selon la qualité du jeu de données. Prix indicatifs variables selon la complexité.",
   category: "RAG",
@@ -356,6 +359,7 @@ const ragVsFineTuning: Article = {
 const automatiserTriMails: Article = {
   slug: "automatiser-tri-mails-pme-2026",
   title: "Comment automatiser le tri des mails pour une PME française en 2026",
+  seoTitle: "Automatiser le tri des mails d'une PME",
   description:
     "Tri automatique des mails pour PME : agent IA Gmail/Outlook qui range par urgence, répond aux FAQ, escalade au bon humain. Gains, coûts, intégrations.",
   tldr:
@@ -472,10 +476,11 @@ const automatiserTriMails: Article = {
 const factureElectroniqueChorusPro: Article = {
   slug: "facture-electronique-chorus-pro-2026-obligation",
   title: "Facture électronique obligatoire 2026 : Chorus Pro, PDP, Factur-X. Guide PME",
+  seoTitle: "Facture électronique 2026 : guide PME",
   description:
-    "Facture électronique 2026 : qui est concerné, quand, comment se mettre en conformité avec Chorus Pro, PDP agréée et format Factur-X. Calendrier officiel, sanctions, automatisation.",
+    "Facture électronique 2026 : qui est concerné, quand, et comment se conformer (Chorus Pro, plateforme agréée, Factur-X). Calendrier officiel, automatisation.",
   tldr:
-    "Septembre 2026 : toutes les entreprises françaises doivent pouvoir recevoir des factures électroniques. Émission obligatoire à partir de septembre 2027 (grandes entreprises) puis septembre 2028 (PME et TPE). Trois options : Portail Public de Facturation (PPF), Plateforme de Dématérialisation Partenaire (PDP) agréée, ou solution opérateur de dématérialisation (OD).",
+    "Depuis le 1er septembre 2026, toutes les entreprises françaises assujetties à la TVA doivent pouvoir recevoir des factures électroniques, et les grandes entreprises comme les ETI doivent déjà les émettre. Pour les PME et TPE, l'émission devient obligatoire le 1er septembre 2027. Les factures transitent par une plateforme agréée par l'État (PA, anciennement PDP), directement ou via un logiciel de facturation relié à l'une d'elles.",
   category: "Automatisation",
   publishedAt: "2026-06-08",
   keywords: [
@@ -509,7 +514,7 @@ const factureElectroniqueChorusPro: Article = {
       anchor: "calendrier",
       content: (
         <p>
-          Toutes les entreprises françaises sont concernées, avec un calendrier en plusieurs vagues. <strong>1er septembre 2026 :</strong> obligation de réception pour toutes les entreprises, quelle que soit leur taille. <strong>1er septembre 2027 :</strong> obligation d&apos;émission pour les grandes entreprises et ETI. <strong>1er septembre 2028 :</strong> obligation d&apos;émission pour les PME et TPE. Source : article 153 de la loi de finances 2020 modifié par la loi de finances 2024.
+          Toutes les entreprises françaises sont concernées, avec un calendrier en plusieurs vagues. <strong>1er septembre 2026 :</strong> obligation de réception pour toutes les entreprises, quelle que soit leur taille, et obligation d&apos;émission pour les grandes entreprises et ETI. <strong>1er septembre 2027 :</strong> obligation d&apos;émission pour les PME, TPE et micro-entreprises. Source : article 153 de la loi de finances 2020 modifié par la loi de finances 2024.
         </p>
       ),
     },
@@ -585,6 +590,7 @@ const factureElectroniqueChorusPro: Article = {
 const combienCouteAgentIaPme: Article = {
   slug: "combien-coute-agent-ia-pme-2026",
   title: "Combien coûte un agent IA pour une PME en 2026 ?",
+  seoTitle: "Combien coûte un agent IA pour une PME",
   description:
     "Agent IA PME 2026 : 3 niveaux de prix chiffrés (800-20 000 € build), coûts cachés à anticiper, sur-mesure vs SaaS comparé. Premier échange gratuit 45 min.",
   tldr:
@@ -704,6 +710,7 @@ const combienCouteAgentIaPme: Article = {
 const agentIaVsChatbot: Article = {
   slug: "agent-ia-vs-chatbot-quelle-difference",
   title: "Agent IA vs chatbot : quelle différence, lequel choisir ?",
+  seoTitle: "Agent IA ou chatbot : quelle différence ?",
   description:
     "Agent IA vs chatbot : différences concrètes, tableau comparatif, quand le chatbot suffit et quand l'agent s'impose. Guide décision PME 2026, exemple inclus.",
   tldr:

@@ -249,6 +249,23 @@ export function ArticleLayout({ article }: { article: Article }) {
                 </li>
               ))}
             </ul>
+
+            {/* Le service pilier lié : la passerelle de conversion de l'article */}
+            <Link
+              href={article.pillarLink.href}
+              className="group mt-10 flex flex-col gap-2 rounded-2xl border border-accent-primary/30 bg-bg-card/60 px-6 py-5 transition-colors duration-300 hover:border-border-accent sm:flex-row sm:items-center sm:justify-between"
+            >
+              <span>
+                <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                  Le service qui va avec ce guide
+                </span>
+                <span className="mt-1 block text-[15px] font-semibold text-text-primary">{article.pillarLink.label}</span>
+                {article.pillarLink.description && (
+                  <span className="mt-1 block text-sm text-text-secondary">{article.pillarLink.description}</span>
+                )}
+              </span>
+              <span className="shrink-0 text-accent-light transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
           </div>
         </section>
       </article>

@@ -12,9 +12,9 @@ import {
 import { GlossairePage } from "./GlossairePage";
 
 export const metadata: Metadata = {
-  title: "Glossaire : agent IA, RAG, automatisation expliqués simplement",
+  title: "Glossaire : l'IA expliquée simplement",
   description:
-    "Agent IA, RAG, workflow, API, RGPD, hébergement souverain : les termes de l'IA et de l'automatisation expliqués en français simple, avec des exemples concrets de PME.",
+    "Agent IA, RAG, workflow, API, RGPD, facture électronique : les termes de l'IA et de l'automatisation expliqués en français simple, avec des exemples de PME.",
   keywords: [
     "définition agent IA",
     "qu'est-ce que le RAG",

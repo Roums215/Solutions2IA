@@ -7,6 +7,8 @@ export type FaqCategory = {
   slug: string;
   label: string;
   description: string;
+  /** Une sortie par catégorie : la page qui approfondit. */
+  seeAlso: { label: string; href: string };
 };
 
 export type FaqItem = {
@@ -20,26 +22,31 @@ export const FAQ_CATEGORIES: FaqCategory[] = [
     slug: "agents-ia",
     label: "Agents IA",
     description: "Comment fonctionne un agent IA fiable, et comment l'évaluer.",
+    seeAlso: { label: "Voir ce qu'un assistant IA ferait chez vous", href: "/agents-ia" },
   },
   {
     slug: "applications-metier",
     label: "Applications métier",
-    description: "Sur mesure, audit, méthode et stack technique.",
+    description: "Sur mesure ou refonte, méthode, outils utilisés.",
+    seeAlso: { label: "Découvrir les applications sur mesure", href: "/applications" },
   },
   {
     slug: "rag-memoire",
     label: "RAG & mémoire métier",
     description: "Comment l'IA répond sur vos vraies données, sans inventer.",
+    seeAlso: { label: "Interroger vos propres documents", href: "/rag" },
   },
   {
     slug: "securite-rgpd",
     label: "Sécurité & RGPD",
-    description: "Hébergement souverain UE, isolation, audit.",
+    description: "Où vont vos données, qui y accède, ce que dit la loi.",
+    seeAlso: { label: "Voir où vont vos données", href: "/rag#vos-donnees" },
   },
   {
     slug: "methode-pricing",
     label: "Méthode & pricing",
     description: "Démarrage, tarifs, premiers échanges gratuits, suivi.",
+    seeAlso: { label: "Voir les prix et les délais", href: "/services" },
   },
 ];
 
@@ -49,7 +56,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "agents-ia",
     question: "Qu'est-ce qu'un agent IA et en quoi diffère-t-il d'un chatbot ?",
     answer:
-      "Un agent IA est une chaîne d'exécution contrôlée : il sait (une IA branchée sur vos documents), il raisonne (contraint par règles métier), il agit (Email, CRM, Calendar, Slack, ERP) et il est supervisé (logs, taux de confiance, alertes). Un chatbot se contente de générer du texte. Un agent ferme la boucle jusqu'à l'action déclenchée dans vos outils, avec idempotence et traçabilité. C'est ce niveau d'autonomie et de contrôle qui distingue un agent d'un simple chatbot.",
+      "Un chatbot répond à une question avec du texte, et s'arrête là. Un agent IA va plus loin : il connaît vos documents, suit vos règles, et agit dans vos outils (mail, fichier clients, agenda, facturation). Exemple : une demande arrive par mail, l'agent la lit, crée la fiche client, prépare la réponse et vous la soumet. Chaque action est notée et vérifiable, et une même demande n'est jamais traitée deux fois. C'est cette capacité à finir le travail, sous contrôle, qui fait la différence.",
   },
   {
     category: "agents-ia",
@@ -61,7 +68,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "agents-ia",
     question: "Mon agent IA va-t-il remplacer mes équipes ?",
     answer:
-      "Non. Un agent IA prend en charge les gestes répétitifs (tri inbox, notes de réunion, qualification leads, recherche documentaire) pour libérer votre temps sur ce qui compte vraiment. Les retours terrain montrent des gains concrets : moins de temps passé à l'administratif, plus de temps sur le cœur de métier. Un point souvent sous-estimé : la communication interne autour du changement compte autant que l'outil lui-même. Un agent imposé sans explication génère de la résistance, pas de la performance.",
+      "Non. Un agent IA prend en charge les gestes répétitifs (tri de la boîte mail, notes de réunion, qualification des demandes, recherche dans les documents) pour libérer du temps sur ce qui compte : la relation client, le conseil, la décision. Le gain se mesure chez vous, pendant le pilote de 30 jours, sur des tâches choisies ensemble ; je ne promets pas de chiffre avant. Un point souvent sous-estimé : expliquer à l'équipe ce que fait l'agent et ce qu'il ne fait pas compte autant que l'outil. Un agent imposé sans explication crée de la résistance, pas de la performance.",
   },
   {
     category: "agents-ia",
@@ -104,7 +111,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "applications-metier",
     question: "Combien de secteurs sont déjà couverts ?",
     answer:
-      "Six secteurs avec un cockpit métier dédié : Santé (cabinet 4 praticiens, agenda RDV, no-show 6,4 %, télétransmission 98,2 %), Retail/E-commerce (marketplace 3 canaux, AOV, funnel, top produits, stock critique), Industrie (atelier 4 lignes, OEE par ligne, TRS, MTBF, OF), Services pro/Conseil (cabinet 12 collaborateurs, billable rate, pipeline facturation, dossiers actifs), Logistique/Transport (tournées 18 véhicules, OTD, ETA, ePOD), Immobilier/BTP (multi-chantiers 7 sites, marge, pointage temps réel). Chaque dashboard est conçu avec le vocabulaire et les KPIs propres au métier.",
+      "Six secteurs ont aujourd'hui une page dédiée, avec des maquettes de tableau de bord : santé (agenda, dossier patient, téléconsultation), commerce et e-commerce (un seul stock pour tous les canaux), industrie (production en direct, maintenance), cabinets et conseil (temps, facturation, documents), transport et logistique (tournées, preuves de livraison), immobilier et BTP (mandats, chantiers, marges). Les chiffres affichés sur ces maquettes sont des exemples, pas des résultats clients : les objectifs réels se fixent avec vous au démarrage. Votre secteur n'y est pas ? La démarche est la même : on part de vos outils et de ce qui coince.",
   },
   {
     category: "applications-metier",
@@ -117,6 +124,12 @@ export const FAQ_ITEMS: FaqItem[] = [
     question: "Que se passe-t-il après la mise en production ?",
     answer:
       "Run avec monitoring continu : tableau de bord d'usage temps réel, taux de confiance par décision (si IA), alertes proactives, A/B testing de prompts versionnés, ajout de nouveaux cas d'usage à la demande. Six indicateurs de suivi par défaut : adoption utilisateur > 85 %, temps gagné mesurable par opération, disponibilité 99,9 %, temps de réponse P95 < 250 ms, taux d'erreur métier < 0,5 %, lead time feature → prod < 5 jours.",
+  },
+  {
+    category: "applications-metier",
+    question: "Mon application sera-t-elle prête pour la facture électronique ?",
+    answer:
+      "Oui, c'est prévu dès la conception. Le calendrier officiel : depuis le 1er septembre 2026, toutes les entreprises assujetties à la TVA doivent pouvoir recevoir des factures électroniques, et les grandes entreprises et ETI doivent en émettre ; les PME, TPE et micro-entreprises devront en émettre à partir du 1er septembre 2027. Concrètement, votre application produit des factures au format attendu (Factur-X) et les transmet par une plateforme agréée par l'État. Vous n'avez rien à ressaisir, et vous n'aurez pas à changer d'outil dans un an.",
   },
   // ─── RAG & mémoire métier ───
   {
@@ -147,7 +160,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     category: "rag-memoire",
     question: "Le RAG fonctionne-t-il sur des documents juridiques sourcés ?",
     answer:
-      "Oui, c'est même l'un des cas d'usage les plus solides. Un cabinet d'avocat indexe jurisprudence, doctrine, contrats-types, dossiers contentieux. L'agent répond avec citations sources exactes (article, paragraphe), refus contrôlé si la donnée n'est pas dans le corpus. Sans base documentaire propre, les IA généralistes inventent des références juridiques (phénomène documenté dans la littérature spécialisée). Avec une base bien construite, le taux d'erreur sur les réponses sourcées descend sous 0,5 %.",
+      "Oui, c'est même l'un des usages les plus solides. Un cabinet d'avocats indexe jurisprudence, doctrine, contrats types et dossiers. L'assistant répond en citant la source exacte (article, paragraphe) et refuse de répondre quand l'information n'est pas dans la base. Sans base documentaire propre, les IA généralistes inventent des références juridiques : c'est un phénomène documenté. Avec une base bien construite, chaque réponse est vérifiable en un clic ; le taux d'erreur acceptable se fixe avec vous avant le démarrage et se mesure pendant le pilote, il n'est pas promis à l'avance.",
   },
   {
     category: "rag-memoire",
@@ -192,13 +205,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer:
       "Oui, c'est inclus dans chaque mission. Mon DPA-type couvre les obligations Article 28 RGPD : finalités traitées, catégories de personnes concernées, mesures techniques et organisationnelles, sous-traitants ultérieurs (liste annexée), audit par le responsable de traitement. Possibilité d'amender pour spécificités sectorielles (HDS santé, secret professionnel avocat/expert-comptable). Délai de signature typique : 5-10 jours ouvrés.",
   },
-  // ─── Méthode & pricing ───
-  {
-    category: "methode-pricing",
-    question: "Comment se déroule le premier mois après le build ?",
-    answer:
-      "Une fois le build terminé, vous démarrez 30 jours d'usage réel avec votre équipe sur les cas concrets identifiés en audit. Je mesure avec vous l'adoption et les gains réels (temps économisé, erreurs évitées, cas traités). Si les indicateurs ne correspondent pas aux objectifs fixés ensemble, on ajuste : c'est l'intérêt d'un suivi serré sur cette période. Beaucoup de projets IA ne tiennent pas leurs promesses parce que les données et processus n'ont jamais été audités en amont : c'est précisément ce que cette méthode par étapes courtes évite.",
-  },
+  // ─── Méthode & prix ───
   {
     category: "methode-pricing",
     question: "Combien coûte un agent IA sur mesure ?",
@@ -213,15 +220,27 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     category: "methode-pricing",
-    question: "Pratiquez-vous le paiement à la performance ?",
+    question: "Et si ça ne me convient pas ?",
     answer:
-      "Oui, en option. Modèle hybride : base fixe (couvrant les coûts d'infrastructure et de monitoring) + variable lié à la performance (par lead qualifié, par ticket résolu autonomement ou par économie de temps mesurée). L'avantage : alignement parfait entre risque et valeur délivrée. Conditions négociées au cas par cas après le premier échange.",
+      "Pour un assistant IA, vous démarrez par un pilote de 30 jours satisfait ou remboursé : vous arrêtez quand vous voulez, sans frais, et vos données vous sont restituées. Pour un site ou une application, rien n'est engagé avant la proposition, et le prix est fixé avant de commencer. À chaque étape, vous voyez ce qui est livré avant de payer la suite. Vous décidez en connaissance de cause, jamais sous pression.",
+  },
+  {
+    category: "methode-pricing",
+    question: "Comment se déroule le premier mois après le build ?",
+    answer:
+      "Une fois le build terminé, vous démarrez 30 jours d'usage réel avec votre équipe sur les cas concrets identifiés en audit. Je mesure avec vous l'adoption et les gains réels (temps économisé, erreurs évitées, cas traités). Si les indicateurs ne correspondent pas aux objectifs fixés ensemble, on ajuste : c'est l'intérêt d'un suivi serré sur cette période. Beaucoup de projets IA ne tiennent pas leurs promesses parce que les données et processus n'ont jamais été audités en amont : c'est précisément ce que cette méthode par étapes courtes évite.",
   },
   {
     category: "methode-pricing",
     question: "Quels indicateurs prouvez-vous au bout de 30 jours ?",
     answer:
       "Adoption utilisateur (cible > 85 % de l'équipe utilise quotidiennement), temps gagné par opération (mesure avant/après sur les gestes métier les plus fréquents), taux d'erreur métier (cible < 0,5 %), disponibilité (cible SLA 99,9 %), satisfaction qualitative (NPS interne ≥ 7/10). Ces indicateurs sont définis ensemble avant de démarrer, pas imposés après coup. À J+30, on fait le point ensemble et on ajuste ou on passe en run mensuel avec amélioration continue.",
+  },
+  {
+    category: "methode-pricing",
+    question: "Pratiquez-vous le paiement à la performance ?",
+    answer:
+      "Oui, en option. Modèle hybride : base fixe (couvrant les coûts d'infrastructure et de monitoring) + variable lié à la performance (par lead qualifié, par ticket résolu autonomement ou par économie de temps mesurée). L'avantage : alignement parfait entre risque et valeur délivrée. Conditions négociées au cas par cas après le premier échange.",
   },
   {
     category: "methode-pricing",

@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
   title: "Politique cookies",
-  description: "Politique cookies de Solutions 2IA : traceurs nécessaires, mesure d'audience, consentement et gestion des préférences.",
+  description: "Politique cookies de Solutions 2IA : traceurs strictement nécessaires et mesure d'audience, ce qu'ils enregistrent, votre consentement et comment le modifier.",
   alternates: { canonical: "/cookies" },
   robots: { index: true, follow: true },
 };

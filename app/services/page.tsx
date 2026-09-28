@@ -9,7 +9,7 @@ import {
 import { ServicesPage } from "./ServicesPage";
 
 export const metadata: Metadata = {
-  title: "Mes services : sites web, applications, automatisations, assistant IA",
+  title: "Mes services : site, application, IA",
   description:
     "Sites web, applications sur mesure, automatisations et IA pour PME : cinq façons de remplacer ce qui vous prend du temps. Prix clairs, premier échange gratuit.",
   keywords: [

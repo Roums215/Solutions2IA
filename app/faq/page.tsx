@@ -5,13 +5,13 @@ import { FAQ_ITEMS } from "@/lib/content/faqData";
 import { FaqPage } from "./FaqPage";
 
 export const metadata: Metadata = {
-  title: "FAQ Solutions 2IA : agents IA, applications métier, RAG, RGPD, pricing",
+  title: "FAQ : agents IA, applications, RAG, prix",
   description:
-    "30 questions structurées : comment un agent IA évite les hallucinations, RAG vs fine-tuning, hébergement souverain UE, pilote 30 jours, coûts, secteurs couverts.",
+    "32 questions : comment un agent IA évite d'inventer, RAG ou fine-tuning, hébergement en Europe, pilote 30 jours, prix et délais. Réponses courtes et chiffrées.",
   alternates: { canonical: "/faq" },
   openGraph: {
-    title: "FAQ : 30 questions sur agents IA, apps métier, RAG, RGPD, pricing",
-    description: "Réponses concrètes et sourcées sur l'IA enterprise française.",
+    title: "FAQ : 32 questions sur les agents IA, les applications, le RAG et les prix",
+    description: "Réponses courtes et chiffrées d'un développeur indépendant, sans jargon.",
     url: "/faq",
     type: "website",
   },

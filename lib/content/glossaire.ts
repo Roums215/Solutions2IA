@@ -107,6 +107,42 @@ export const GLOSSAIRE = {
     definition:
       "Tout ce qui aide votre site à apparaître dans Google quand vos clients cherchent ce que vous faites.",
   },
+  geo: {
+    terme: "visibilité dans les IA",
+    simple: "être cité par ChatGPT ou Perplexity",
+    definition:
+      "Apparaître dans les réponses que donnent ChatGPT, Claude, Perplexity ou Google IA quand un client pose une question sur votre métier.",
+  },
+  declencheur: {
+    terme: "déclencheur",
+    simple: "signal de départ",
+    definition:
+      "L'événement qui lance une automatisation : un mail reçu, un formulaire rempli, un devis signé.",
+  },
+  "facture-electronique": {
+    terme: "facture électronique",
+    simple: "facture au format officiel",
+    definition:
+      "Une facture au format structuré, transmise par une plateforme agréée par l'État. Réception obligatoire pour toutes les entreprises assujetties à la TVA depuis septembre 2026.",
+  },
+  "core-web-vitals": {
+    terme: "Core Web Vitals",
+    simple: "critères de vitesse de Google",
+    definition:
+      "Les trois mesures de vitesse et de stabilité que Google utilise pour juger un site : temps d'affichage, réactivité, stabilité de la page.",
+  },
+  wcag: {
+    terme: "WCAG",
+    simple: "normes d'accessibilité",
+    definition:
+      "Les règles internationales pour qu'un site soit utilisable par tout le monde, y compris au clavier ou avec un lecteur d'écran.",
+  },
+  "fiche-google": {
+    terme: "fiche Google",
+    simple: "votre fiche établissement",
+    definition:
+      "La fiche qui apparaît dans Google Maps et dans les résultats locaux : horaires, avis, photos, itinéraire. Gratuite, et décisive pour un commerce ou un artisan.",
+  },
 } as const satisfies Record<string, TermeGlossaire>;
 
 export type GlossaireKey = keyof typeof GLOSSAIRE;
