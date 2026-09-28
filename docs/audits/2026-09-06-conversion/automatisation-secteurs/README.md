@@ -171,6 +171,15 @@ Quatre blocs à ajouter, tous réutilisables d'une page à l'autre avec le conte
 
 **Note projetée : 57 → environ 76.** Contenu 52 → ~72, conversion 54 → ~76.
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Page réécrite en 5 blocs : hero à accent bénéfice (« le pré-devis prêt avant le concurrent »), « Ce que ça change » (3 tuiles temps · argent · clients, sans chiffre inventé), schéma (`#comment-ca-marche`), « Est-ce fait pour vous ? » (3 conditions, limite honnête, outils compatibles), CTA en « je » (plus de « Câblons »).
+- Échéance réelle sur `cabinet-comptable` (facture électronique).
+- 5 `seoTitle` < 60 caractères suffixe compris, 5 descriptions 150 à 160, sans le mot « pipeline » seul.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

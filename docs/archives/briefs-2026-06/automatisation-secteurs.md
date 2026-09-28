@@ -44,17 +44,26 @@ mission passée (ça vit sur `/realisations`). RGPD = « hébergé en UE ».
 Un nouveau secteur = **une entrée dans le tableau `SECTORS`** de `sectorsData.tsx`.
 La route dynamique, la grille, le SEO et le rendu sont automatiques.
 
-Champs à remplir :
+Champs à remplir (modèle enrichi le 7 septembre 2026, voir `SecteurPage.tsx`) :
 ```ts
 {
   slug, name, icon,            // identité
   problem, benefit,            // copy double lecture (1 phrase, 0 % inventé)
+  heroAccent,                  // accent du h1 : un bénéfice (« le pré-devis prêt avant le concurrent »)
+  gains: [3 × { title, text }],// « Ce que ça change » : temps · argent · clients, sans chiffre inventé
+  forWho: [3 conditions],      // « Est-ce fait pour vous ? »
+  notForYou,                   // la limite honnête (quand ce n'est pas la bonne solution)
+  deadline?,                   // échéance légale réelle (cabinet-comptable : facture électronique)
   nodes, edges,                // le pipeline du secteur
   details: { trigger, processing, write, reliability },  // accordion
-  stack,                       // ToolBadge (exemples d'outils)
-  seoTitle, seoDescription,    // SEO distinct
+  stack,                       // ToolBadge + « Compatible avec vos outils »
+  seoTitle (< 44 car.), seoDescription (150 à 160 car.),
 }
 ```
+
+Ordre de la page rendue : hero (c'est quoi) → « Ce que ça change » (3 tuiles + échéance) →
+schéma `AutomationPipeline` (`id="comment-ca-marche"`) → « Est-ce fait pour vous ? » (conditions,
+limite, outils) → `RelatedServices` → `CTABand` (un seul bouton).
 
 ---
 

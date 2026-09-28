@@ -36,6 +36,21 @@ de contenu visible. La dérive documentaire, elle, est résolue par cette sessio
 Côté technique, rien ne bloque : le site est indexable, cohérent et rapide.
 Le seul point vraiment urgent est juridique, pas informatique.
 
+### État au 7 septembre 2026
+
+| # | Statut | Ce qui a été fait |
+|---|---|---|
+| **0** | 🔴 **ouvert** | Les 12 champs « à compléter » de `/mentions-legales` attendent les informations de l'entreprise (forme juridique, SIREN, siège, hébergeur, directeur de publication). Les notes de conseil visibles par les visiteurs ont été retirées des 4 pages légales. |
+| 1 | ✅ | ` \| Solutions 2IA` retiré des 5 `seoTitle` secteurs ; titres ramenés sous 60 caractères suffixe compris |
+| 2 | ✅ | Titres des 14 pages et des 11 pages secteurs sous 60 caractères (`layout` : titre par défaut 54) |
+| 3 | ✅ | Descriptions entre 150 et 160 caractères sur les pages piliers, la FAQ, le glossaire, les 6 verticaux applications et les 5 secteurs automatisation |
+| 4 | ✅ | `BRAND.primary` = `#6366f1` |
+| 5 | ✅ | « Sept guides » sur `/articles`, « Cinq services » sur l'accueil (h2 + `aria-label`) |
+| 6 | ✅ | `pillarLink` rendu dans `ArticleLayout` (« Le service qui va avec ce guide ») ; dates `lastModified` du sitemap lues depuis les articles |
+| 4.2 | ✅ | Ancre `#connected-constellation` supprimée ; `/faq` a une sortie par catégorie ; `/rag` a un sommaire et 4 sections de moins ; `TermeExplique` branché (`facture-electronique`, `geo`, `core-web-vitals`, `wcag`, `fiche-google`, `declencheur`) |
+
+Le détail page par page est dans [`2026-09-06-conversion/README.md`](2026-09-06-conversion/README.md#mise-en-œuvre--7-septembre-2026).
+
 ---
 
 ## 1. Vue d'ensemble

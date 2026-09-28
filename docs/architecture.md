@@ -54,11 +54,13 @@ app/                              5 200 LOC · 44 fichiers
 components/                      21 200 LOC · 105 fichiers
 ├── layout/       Header · Footer
 ├── shared/       AppShell · PageHero · PageAtmosphere · CTABand
+│                 mockup/AppMockup (boîte à outils « maquette d'application », surface papier)
 │                 PageTransition · LoadingScreen · SectionParticles
 │                 PremiumFlowPanel · RelatedServices (+ data)
 ├── ui/           Button · SectionHeading · SpotlightCard · ToolBadge · TermeExplique
 │                 + primitives radix (accordion, dialog, tabs, sheet… )
-├── hero/         HeroSection · HeroVisual (parallax 3D CSS)
+├── hero/         HeroSection · HeroFilm · HeroVisual (ancien visuel, plus monté)
+├── film/         SolutionsFilm : film hero de l'accueil (7 chapitres, SVG + CSS, horloge rAF)
 ├── scenes/       ai · web · mobile · automation  (visuels de hero, SVG animé)
 ├── sections/     un dossier par page : home/ sites-web/ applications/ agents-ia/
 │                 automation/ rag/  (composant + fichier de données séparés)
@@ -97,7 +99,7 @@ C'est ce qui permet de réécrire la copy sans toucher au composant.
 
 | Route | Type | Preset | Visuel de hero |
 |---|---|---|---|
-| `/` | statique | `home` | `HeroVisual` |
+| `/` | statique | `home` | `SolutionsFilm` (via `HeroFilm`) |
 | `/services` | statique | `services` | — |
 | `/sites-web` | statique | `web` | `WebScene` |
 | `/applications` | statique | `apps` | `AppScene` |
@@ -146,16 +148,18 @@ Deux crons : rapport SEO hebdomadaire (lundi 8 h UTC) et mensuel (1er du mois 8 
 ### Commandes
 
 ```bash
-pnpm dev              # serveur de dev sur le port 4000
+pnpm dev              # serveur de dev sur le port 4500
 pnpm build            # build de production
 pnpm lint             # ESLint
 npx tsc --noEmit      # typecheck (à préférer au build en cours de dev)
 pnpm exec playwright test
-pnpm remotion:studio  # studio Remotion (hors site)
-pnpm remotion:render  # rendu MP4 de la composition Hero
+pnpm remotion:studio  # studio Remotion sur :4520 (hors site)
+pnpm remotion:render  # rendu MP4 de la composition Hero (serveur interne :4530)
 ```
 
 > ⚠️ **Ne jamais lancer `pnpm build` pendant que `pnpm dev` tourne** : le build écrase le `.next` du serveur de dev et casse le site en local. Pour vérifier, `npx tsc --noEmit` + `pnpm lint`.
+
+Ports : plage réservée `4500`–`4549` (`:4500` dev, `:4501` start, `:4510` dev de repli, `:4520` Remotion Studio, `:4530` rendu Remotion). Détail et voisins du poste : [`ports-et-processus.md`](ports-et-processus.md).
 
 ---
 

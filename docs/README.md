@@ -4,6 +4,18 @@ Toute la documentation du projet. Un fichier = un sujet, pas de doublon.
 
 ---
 
+## Comment c'est rangé
+
+| Dossier | Ce qu'on y trouve | Durée de vie |
+|---|---|---|
+| racine de `docs/` | les six documents de référence : anatomie d'une page, design system, copy, SEO, performance, architecture | permanent, mis à jour quand une règle change |
+| [`pages/`](pages/) | une fiche par route : la page telle qu'elle est en ligne | permanent, mis à jour à chaque modification de la page |
+| [`chantiers/`](chantiers/) | ce qui est en train de changer, avec le journal des décisions | le temps du chantier, puis archivé |
+| [`audits/`](audits/) | des constats datés, avec des notes | figé : un audit ne se réécrit pas, on en refait un |
+| [`archives/`](archives/) | les traces de décision passées | figé, ne fait plus loi |
+
+---
+
 ## 👉 Commencer ici
 
 ### [`anatomie-page.md`](anatomie-page.md) : comment une page fonctionne
@@ -23,12 +35,25 @@ les briques de design, la checklist SEO, et la marche à suivre pour créer une 
 | [`seo-geo.md`](seo-geo.md) | metadata, 11 schémas JSON-LD, checklist par page, leviers GEO, activation Search Console, rapport de score automatique |
 | [`performance.md`](performance.md) | trois tiers automatiques, règles d'animation, ce qui protège le LCP, fichiers lourds à surveiller |
 | [`architecture.md`](architecture.md) | stack réelle, arborescence, 35 URL, layout racine, configuration, variables d'environnement |
+| [`ports-et-processus.md`](ports-et-processus.md) | ports du projet (`4500`–`4549`), processus, voisins du poste à ne pas arrêter |
 
 ## Par page
 
-[`pages/`](pages/) : un brief détaillé par route (rôle unique, promesse, mécanique signature,
-sections, desktop/iPhone, copy, definition of done). Lu en premier par `/refonte-page <route>`.
-Dupliquer [`pages/_TEMPLATE.md`](pages/_TEMPLATE.md) pour une nouvelle page.
+[`pages/`](pages/) : **une fiche par route, qui décrit la page telle qu'elle est en ligne** :
+rôle, promesse affichée, structure section par section, schémas, cartes et surfaces, appel à
+l'action, design détaillé, comportement sur téléphone, SEO, performance, état du moment.
+
+C'est le premier fichier lu par `/refonte-page <route>`, et le fichier à mettre à jour quand
+une page change. Dupliquer [`pages/_TEMPLATE.md`](pages/_TEMPLATE.md) pour une nouvelle route.
+
+## Chantiers en cours
+
+[`chantiers/`](chantiers/) : les travaux en cours, avec leur journal de décisions et leur
+état d'avancement page par page. À la différence des audits (un constat daté) et des fiches
+(l'état réel), un chantier décrit **ce qui est en train de changer**.
+
+- [`2026-09-17-cartes-verre.md`](chantiers/2026-09-17-cartes-verre.md) : passage des cartes
+  au verre dépoli et reprise des schémas, page par page.
 
 ## Audits
 

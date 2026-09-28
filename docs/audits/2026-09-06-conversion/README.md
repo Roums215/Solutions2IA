@@ -256,6 +256,55 @@ Il faut le dire aussi, parce que c'est ce sur quoi il faut construire.
 
 ---
 
+## Mise en œuvre · 7 septembre 2026
+
+Les 10 actions ont été traitées, sans sous-agents (budget épuisé) : édition directe,
+`tsc` vert, build de production vérifié dans un vrai navigateur (hydratation, footer cliquable,
+aucune erreur console hors scripts Vercel absents en local).
+
+| # | Action | Statut | Où |
+|---|---|---|---|
+| 1 | Requalifier les KPI inventés | ✅ | `appSectorVerticals.ts` : « visé », « objectif », « Prêt 2027 » ; section « Ce qu'on vise » ; maquettes de tableau de bord étiquetées « Maquette » avec légende |
+| 2 | Remonter le pilote 30 jours | ✅ | `note` sous les boutons du hero (`/agents-ia`), `trustItems` du `CTABand`, FAQ « Et si ça ne me convient pas ? », contact |
+| 3 | Corriger les 2 compteurs faux | ✅ | « Cinq services », « Sept guides » |
+| 4 | Chiffrer les gains, en calcul avec le client | ✅ partiel | calculateurs sur `/automatisation` et `/rag` (`RagSearchTime`), « pertes à compter vous-même » sur `/sites-web`, « Ce que ça change » (temps · argent · clients) sur les 5 secteurs automatisation, prix dans les hero (`note`) de `/services`, `/sites-web`, `/applications/[secteur]` |
+| 5 | Remonter la facture électronique 2026 | ✅ | `HomeDeadlineBand` sur l'accueil, `ChorusProSection` au bon calendrier, `deadline` sur `/automatisation/cabinet-comptable`, FAQ applications |
+| 6 | Afficher `pillarLink` | ✅ | `ArticleLayout` |
+| 7 | Lier la FAQ aux pages de service | ✅ | `FAQ_CATEGORIES[].seeAlso` + « Pour aller plus loin » |
+| 8 | Doubler les sigles d'un mot simple | ✅ | modules des 6 secteurs applications (cartes et pages), fondations de `/sites-web`, garde-fous de `/agents-ia`, réponses FAQ |
+| 9 | Simulateur de gain | ✅ partiel | `/automatisation` et `/rag` ; pas encore sur `/agents-ia` ni `/services` |
+| 10 | Étoffer les 5 pages secteurs automatisation | ✅ | page réécrite en 5 blocs : hero à bénéfice, 3 gains, schéma, « Est-ce fait pour vous ? » (conditions, limite honnête, outils compatibles), CTA en « je » |
+
+### Ce qui a changé, page par page
+
+| Page | Changements |
+|---|---|
+| Accueil | prix réels dans le hero, KPI inventés retirés de `HeroVisual` (panneau « Rapport d'intervention »), bandeau facture électronique, « Cinq services », un seul bouton final |
+| Services | fourchettes de prix par service, « Ces prix sont ceux d'un indépendant qui démarre », `note` hero, titre court |
+| Sites web | prix dès 500 € dans le hero, ancre morte supprimée, **5 pertes à compter soi-même** (au lieu de 7 non mesurées), fondations sans sigle seul, sous-bloc redondant retiré, titre 57 car. |
+| Applications | douleurs sans statistique non sourcée, modules lisibles, badge « Maquette » + légende, panneau « Anatomie » retiré, 4 tuiles tableau de bord, barres en `scaleX`, exemple télécoms aéré |
+| Applications par secteur | objectifs « visés » en position 2, modules renommés (bénéfice puis sigle), section « Pour qui, et à quel prix », prix dans le hero, un seul CTA, titres et descriptions SEO calibrés, calendrier facture électronique corrigé |
+| Assistant IA | pilote dans le hero et le CTA, section « Capacités » retirée (redite), profils : chiffres avec statut (« objectif à 30 jours », « ordre de grandeur : source »), maquettes signalées, 4 garde-fous en langage simple, 3 sections désormais rendues côté serveur (SEO) |
+| Automatisation | lignes de calcul, calendrier Chorus Pro exact, `note` hero, un seul bouton, schéma « Mon propre flux » |
+| Automatisation par secteur | page réécrite (voir action 10), titres < 60, descriptions 150 à 160 |
+| Mémoire d'entreprise | sommaire, calculateur de temps de recherche, 4 sections retirées, ancres stables |
+| FAQ | 4 réponses requalifiées (plus de chiffre sans statut), 2 questions ajoutées (facture électronique, « Et si ça ne me convient pas ? »), prix en premier, sortie par catégorie, questions en `h3`, colonne de lecture bornée, un seul CTA |
+| Glossaire | 18 termes groupés en 4 thèmes formulés en questions, « Pour vous » et flux en 3 étapes par terme, « nos échanges » corrigé, un seul CTA |
+| Articles | « Sept guides », lien pilier sous chaque article, calendrier corrigé |
+| À propos | engagements en « je », repères vérifiables, lien vers les prix |
+| Contact | FAQ de contact (prix, délai, « pas technique », « et si ça ne me convient pas »), 45 minutes, description 157 car. |
+
+### Ce qui reste
+
+- **Re-noter les 14 pages avec la grille** (`conversion-auditor`) : les notes du 6 septembre
+  ci-dessus décrivent l'état *avant* ces changements. Ne pas les mettre à jour à la main.
+- Simulateur de gain sur `/agents-ia` et `/services` (action 9).
+- `/mentions-legales` : 12 champs à compléter avec les informations de l'entreprise.
+- Couleurs `green-400` encore en dur dans les scènes hero (`HeroVisual`, `AppScene`, `AutomationScene`,
+  `WebScene`, `AIBrainScene`, `Footer`, `PageHero`) : à passer sur le token `success` lors d'une passe `tokens-guardian`.
+
+---
+
 ## Comment lire ce dossier
 
 ```

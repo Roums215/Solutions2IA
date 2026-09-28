@@ -29,3 +29,13 @@ Pour les règles en vigueur : [`../README.md`](../README.md) et [`../../CLAUDE.m
 - Les chiffres de performance « avant » : le chantier a été mené, voir
   [`../performance.md`](../performance.md).
 - Les métadonnées manquantes listées dans `audit-phase-0/a11y-seo.md` : toutes posées depuis.
+
+## `briefs-2026-06/`
+
+Les quatre briefs de page écrits en juin 2026 (`sites-web`, `rag`, `automatisation`,
+`automatisation-secteurs`), déplacés ici le 18 septembre 2026. Ils décrivaient une intention
+de refonte, pas l'état du site, et citaient des composants depuis supprimés
+(`TransformationCard`, `WebGalaxyShowcase`) ainsi qu'une page jamais créée (`/realisations`).
+
+Leur remplacement vit dans [`../pages/`](../pages/) : une fiche par route, qui décrit la page
+telle qu'elle est réellement en ligne.

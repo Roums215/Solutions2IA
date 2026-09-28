@@ -71,8 +71,8 @@ Un moteur génératif ne « classe » pas : il **extrait** et **cite**. Ce qui s
 1. **Une réponse en tête de bloc** (BLUF). Chaque article ouvre sur un `TL;DR` de 40 à 60 mots : c'est le passage le plus repris.
 2. **Des H2 formulés comme des questions réelles**, avec une ancre stable (`#quand-auditer`). Une ancre = un extrait citable.
 3. **Des tableaux comparatifs.** Un tableau est nettement plus repris qu'un paragraphe équivalent.
-4. **Des définitions.** `/glossaire` + `DefinedTermSet` : 15 termes en français simple. C'est le contenu le plus « copiable » du site.
-5. **Des FAQ structurées** : `/faq` (30 questions, 5 catégories, réponses de 60 à 180 mots, ton déclaratif) + une FAQ par article, toutes remontées en `FAQPage`.
+4. **Des définitions.** `/glossaire` + `DefinedTermSet` : 18 termes en français simple, groupés en 4 thèmes formulés en questions. C'est le contenu le plus « copiable » du site.
+5. **Des FAQ structurées** : `/faq` (32 questions, 5 catégories, réponses de 60 à 180 mots, ton déclaratif, une sortie « Pour aller plus loin » par catégorie) + une FAQ par article, toutes remontées en `FAQPage`.
 6. **Des sources externes citées** dans les articles.
 7. **Des chiffres et des fourchettes de prix explicites** plutôt que « sur devis ».
 8. **`llms.txt`** : le résumé du site en Markdown, à la racine publique, écrit pour être lu par une IA.
@@ -182,18 +182,18 @@ Les points ouverts, du plus rentable au moins urgent :
 |---|---|
 | **P0** | **`/mentions-legales` contient 13 champs « à compléter » en production** : obligation légale LCEN non remplie, et signal de confiance manquant pour Google comme pour les moteurs génératifs |
 | P1 | `pillarLink` est renseigné sur les 7 articles mais jamais rendu par `ArticleLayout` : 7 liens vers les pages piliers perdus |
-| P1 | Deux compteurs faux à l'écran : `/articles` annonce « Cinq guides » (il y en a 7), la home annonce « Six services » (il y en a 5, h2 **et** `aria-label`) |
+| ✅ | ~~Deux compteurs faux à l'écran~~ : corrigés depuis, `/articles` annonce « Sept guides » et l'accueil « Cinq services » (h2 et `aria-label`) |
 | P1 | Les 5 `seoTitle` de `/automatisation/[secteur]` contiennent déjà `\| Solutions 2IA`, et le template du layout ajoute ` · Solutions 2IA` : **la marque apparaît deux fois** dans le `<title>` |
 | P1 | **29 titres sur 33** dépassent 60 caractères une fois le suffixe de marque ajouté (jusqu'à 102) : troncature en SERP |
 | P1 | **11 meta descriptions** dépassent 160 caractères (jusqu'à 186) |
 | P2 | `/a-propos` n'a aucun JSON-LD : un `Person` + `AboutPage` renforcerait l'entité auteur (levier E-E-A-T et GEO) |
 | P2 | `/contact` n'a aucun JSON-LD : `ContactPage` + `ContactPoint` |
 | P2 | `/articles` n'a qu'un fil d'Ariane : ajouter `Blog` + `ItemList` |
-| P2 | `app/sitemap.ts` met la date du build sur toutes les URL : utiliser les vraies dates des articles |
-| P2 | `BRAND.primary` vaut `#7c3aed` dans `lib/seo/constants.ts` alors que l'accent réel du site est `#6366f1` : le `theme-color` du navigateur et le manifest affichent la mauvaise couleur |
+| ✅ | ~~`app/sitemap.ts` met la date du build sur toutes les URL~~ Les articles portent maintenant leur vraie date (7 septembre 2026) |
+| ✅ | ~~`BRAND.primary` vaut `#7c3aed`~~ Aligné sur `#6366f1` le 7 septembre 2026 |
 | P3 | Pas de `llms-full.txt` (version longue pour les IA) |
 | P3 | Une seule image OG pour tout le site : des OG par page amélioreraient le CTR social |
 | P3 | Les 9 chemins audités par le rapport SEO n'incluent ni `/glossaire`, ni `/articles`, ni `/a-propos` |
-| P2 | `/faq` n'a que 2 liens sortants (`/contact`, `/services`) malgré 30 réponses couvrant tous les piliers. `/glossaire` en a 8 grâce à ses `seeAlso` : appliquer le même motif |
-| P2 | Ancre morte `#connected-constellation` sur `/sites-web` (`WebOpportunityFlow.tsx:158`), vestige de `WebGalaxyShowcase` |
+| ✅ | `/faq` n'avait que 2 liens sortants : depuis le 7 septembre 2026, chaque catégorie a un `seeAlso` (« Pour aller plus loin ») vers la page pilier |
+| ✅ | Ancre morte `#connected-constellation` sur `/sites-web` : paragraphe supprimé le 7 septembre 2026 |
 | P3 | Mentions textuelles Belgique / Suisse / Luxembourg : le schema cible FR/BE/CH/LU mais aucun contenu ne les nomme |

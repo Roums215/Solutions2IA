@@ -165,6 +165,14 @@ Une ligne sous le formulaire : *« Pour un assistant IA, le pilote de 30 jours e
 
 **Note projetée : 76 → environ 84.** Conversion 74 → ~86 (V4 de 3 à 12).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- FAQ de contact : « Combien ça coûte ? » (fourchettes), « En combien de temps ? », « Je ne suis pas du tout technique », « Et si ça ne me convient pas ? » (pilote 30 jours), « Et après la mise en ligne ? ».
+- Étape « On s'appelle 45 minutes » ; description 157 caractères.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

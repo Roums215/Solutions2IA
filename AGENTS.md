@@ -17,7 +17,8 @@ sites web, applications métier, agents IA, mémoire d'entreprise (RAG), automat
 | Metadata, JSON-LD, sitemap, GEO | [`docs/seo-geo.md`](docs/seo-geo.md) |
 | Animation, LCP, tiers de performance | [`docs/performance.md`](docs/performance.md) |
 | Stack, arborescence, env, déploiement | [`docs/architecture.md`](docs/architecture.md) |
-| Brief d'une page précise | [`docs/pages/`](docs/pages/) |
+| Fiche d'une page (état réel : contenu, CTA, schémas, design) | [`docs/pages/`](docs/pages/) |
+| Chantier en cours | [`docs/chantiers/`](docs/chantiers/) |
 | Dernier audit du site | [`docs/audits/`](docs/audits/) |
 
 ## Les cinq réflexes

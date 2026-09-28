@@ -166,6 +166,13 @@ Le schema.org les cible déjà, aucun texte visible ne les nomme. C'est la page 
 
 **Note projetée : 62 → environ 72.** Conversion 53 → ~68 (V4 de 2 à 10).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Engagements en « je » (« Un prix clair, dès le départ » avec lien vers `/services`, « Réponse sous 24 h »), repères vérifiables (formation, projets DFT et Ramsay Santé, zone).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

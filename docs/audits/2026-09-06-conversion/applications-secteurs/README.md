@@ -202,6 +202,16 @@ Traduit ici : au lieu de « 6,4 % de no-show constaté », écrire **« le table
 
 C'est la plus forte progression possible du site pour une heure de travail.
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- KPI requalifiés en **objectifs visés**, section « Ce qu'on vise » remontée en position 2 (ce que ça apporte).
+- Modules renommés : bénéfice d'abord, sigle entre parenthèses (24 cartes).
+- Nouvelle section « Pour qui, et à quel prix » : audience, fourchette 1 500 à 15 000 €, conformité.
+- `note` hero avec le prix ; un seul CTA (« Premier échange gratuit ») ; titres < 60 et descriptions 150 à 160 ; intros corrigées (calendrier facture électronique, sigles TRS/OF expliqués, « last-mile à 53 % » retiré).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

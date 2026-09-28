@@ -176,6 +176,16 @@ Ajouter un `SectionHeading` avant `PremiumFlowPanel`, ou donner une prop de nive
 **Note projetée après ces quatre actions : 63 → environ 80.**
 Le contenu passerait de 58 à ~76 (chiffrage + règles), la conversion de 56 à ~80 (chiffres, urgence, risque).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Hero : prix réels (« sites dès 500 € », « applications dès 1 500 € ») et un seul bouton final « Demander un premier échange gratuit ».
+- `HeroVisual` : KPI inventés retirés, panneau « Rapport d'intervention » (projet réel télécoms).
+- `HomeDeadlineBand` : bandeau facture électronique (réception obligatoire depuis le 1er septembre 2026, émission PME/TPE au 1er septembre 2027) vers `/automatisation#facture-electronique-2026`.
+- « Cinq services » (h2 + `aria-label`), label « Ce que je propose » (plus de « Notre gamme »), espace après le `<br />` du h1 pour les lecteurs d'écran.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

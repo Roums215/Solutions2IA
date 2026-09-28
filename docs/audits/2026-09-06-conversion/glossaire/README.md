@@ -156,6 +156,14 @@ Le composant existe (112 LOC, accessible, focus clavier, cible tactile ≥ 44 px
 
 **Note projetée : 58 → environ 70.** Conversion 46 → ~64 (V3 de 3 à 12, V5 de 6 à 10).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- 18 termes groupés en 4 thèmes formulés en questions (h2), termes en h3, « Pour vous : … » et flux en 3 étapes par terme, sommaire par thème.
+- « dans nos échanges » corrigé ; titre 53, description 156 ; un seul CTA.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

@@ -179,6 +179,17 @@ Sur l'accueil : l'histoire. Ici : les chiffres et les écrans.
 
 **Note projetée : 73 → environ 85.** Contenu 73 → ~84 (lisibilité), conversion 69 → ~84 (chiffres + urgence).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Titre 56 caractères, description 156.
+- Cartes secteurs : douleurs sans statistique non sourcée (plus de « 70 % d'abandon panier »), modules en clair (« Dossier patient unique (DPI) »).
+- Tableaux de bord : badge « Maquette » (au lieu de « Live »), légende « chiffres d'exemple, pas des résultats clients », 4 tuiles (« Fiabilité » et « Évolutions » retirées), barres animées en `scaleX`.
+- Panneau « Anatomie » retiré (redite avec le schéma de dématérialisation) ; exemple télécoms sur un shell généreux et en tokens `success`.
+- `AppDigitizationPipeline` rendu côté serveur (plus de section vide avant montage).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

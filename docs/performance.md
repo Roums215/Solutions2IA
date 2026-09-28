@@ -91,7 +91,7 @@ La réalité utilisateur, et **CrUX (ce que Google utilise réellement pour clas
 
 | Règle | Application |
 |---|---|
-| Scènes de hero en `dynamic()` | `AIBrainScene`, `WebScene`, `AppScene`, `AutomationScene` |
+| Scènes de hero en `dynamic()` | `AIBrainScene`, `WebScene`, `AppScene`, `AutomationScene`, et le film de l'accueil (`SolutionsFilm`, `ssr: false`) |
 | Méga-sections en `dynamic()` avec `ssr: true` | home, `/applications`, `/agents-ia` |
 | `optimizePackageImports` | `motion`, `lucide-react`, `radix-ui`, `@vercel/*` |
 | Images | `next/image` obligatoire, AVIF/WebP, `priority` uniquement sur le LCP |
@@ -99,6 +99,32 @@ La réalité utilisateur, et **CrUX (ce que Google utilise réellement pour clas
 | Cache | un an immuable sur `/_next/static`, 30 jours sur `/branding` |
 
 ---
+
+## 4 bis. Le film du hero de l'accueil
+
+Ajouté le 16 septembre 2026. Il n'utilise **ni `motion` ni WebGL** : une seule horloge
+`requestAnimationFrame` pilote un seul arbre React, mis à l'échelle depuis un plan de
+1 920 × 1 080 (`components/film/film-runtime.tsx`).
+
+| Situation | Comportement |
+|---|---|
+| Hors écran, ou onglet masqué | la tête de lecture n'avance plus, plus aucun rendu |
+| Bouton pause du visiteur | idem, l'image reste figée (obligation d'accessibilité pour une animation en boucle) |
+| `prefers-reduced-motion` ou tier `minimal` | image fixe, horloge jamais démarrée |
+| Tier `reduced` (mobile, PC modeste) | un seul chapitre joué, le plus lisible |
+| Largeur du cadre | sous 1 040 px, un seul chapitre ; au-delà, trois ; le film complet demande 1 380 px |
+| Économie de données, réseau lent | le chunk n'est jamais téléchargé |
+| Mobile (sous 768 px) | le film n'est pas monté du tout |
+
+Le LCP n'est pas touché : le titre et le sous-titre sont peints en CSS pur avant
+l'hydratation, le film arrive après, dans son propre chunk.
+
+## 4 ter. Le coût du verre
+
+`backdrop-filter` est l'effet le plus cher du site. Les trois classes (`.glass-surface`,
+`.glass-bubble`, `.glass-card`) coupent le flou en tier `reduced` et `minimal` et basculent
+sur un fond presque opaque. Deux règles : pas de verre sur les petites tuiles répétées, et
+un halo derrière le verre sinon l'effet ne se voit pas.
 
 ## 5. Résultats mesurés (juillet 2026, mobile)
 
@@ -119,7 +145,7 @@ Les composants les plus lourds du dépôt. Toute évolution y coûte cher :
 | Fichier | LOC |
 |---|---|
 | `components/sections/agents-ia/OneAgentManyNeedsPipeline.tsx` | 1 045 |
-| `components/sections/applications/sectorDashboards.tsx` | 1 042 |
+| `components/sections/applications/sectorDashboards.tsx` | 823 |
 | `components/sections/applications/AppDigitizationPipeline.tsx` | 1 033 |
 | `components/sections/rag/RagUsageSchema.tsx` | 761 |
 | `components/scenes/ai/AIBrainScene.tsx` | 708 |

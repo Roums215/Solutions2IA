@@ -166,6 +166,17 @@ Huit piliers après cinq grosses sections, c'est une section de trop. Passer à 
 
 **Note projetée : 68 → environ 82.** Contenu 64 → ~78, conversion 61 → ~80.
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Titre 57 caractères ; `note` hero : « Site vitrine dès 500 €, site connecté de 2 500 à 5 000 €… ».
+- Paragraphe à ancre morte (`#connected-constellation`) supprimé.
+- « Sept pertes non mesurées » remplacées par **5 pertes à compter soi-même** (visites vs contacts, minutes de tri par demande, appels qui posent la même question…).
+- Fondations : chaque sigle doublé d'un mot simple (« vitesse mesurée par Google (Core Web Vitals) », « norme d'accessibilité (WCAG 2.2) »…).
+- Sous-bloc « Tous les canaux n'ont pas le même poids » retiré (redite, air).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

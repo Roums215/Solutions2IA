@@ -83,17 +83,18 @@ home (`HomeApproachSplit`, volet technique).
 `lib/content/glossaire.ts` est la **source unique** des définitions : une clé stable
 en kebab-case, le terme affiché, le mot simple de remplacement, la définition en une phrase.
 
-15 termes : `ia` · `agent-ia` · `rag` · `automatisation` · `workflow` · `webhook` ·
+21 termes : `ia` · `agent-ia` · `rag` · `automatisation` · `workflow` · `webhook` ·
 `api` · `crm` · `n8n` · `dashboard` · `hebergement-souverain` · `rgpd` · `llm` ·
-`site-connecte` · `seo`.
+`site-connecte` · `seo` · `geo` · `declencheur` · `facture-electronique` ·
+`core-web-vitals` · `wcag` · `fiche-google` (les six derniers ajoutés le 7 septembre 2026).
 
 `lib/content/glossairePage.ts` ajoute, pour la page `/glossaire`, un paragraphe détaillé
 et un lien de maillage (`seeAlso`) vers le service concerné. Fort levier GEO : les IA citent
 les définitions, et ces `seeAlso` donnent à `/glossaire` **8 routes sortantes**.
 
-> C'est le modèle à copier. `/faq`, avec ses 30 réponses sur les agents IA, le RAG, le RGPD,
-> les applications et l'automatisation, n'a que **2 liens sortants** (`/contact`, `/services`)
-> et ne renvoie vers aucune page pilier. Ajouter un `seeAlso` par catégorie de FAQ est le gain
+> C'est le modèle à copier, et `/faq` l'applique depuis le 7 septembre 2026 : chaque catégorie
+> (`FAQ_CATEGORIES[].seeAlso`) se termine par « Pour aller plus loin » vers la page pilier.
+> Avant cela, la FAQ n'avait que 2 liens sortants (`/contact`, `/services`) ; ce `seeAlso` était le gain
 > de maillage interne le plus rapide du site.
 
 > Le composant `components/ui/TermeExplique.tsx` (tooltip pédagogique accessible :
@@ -109,9 +110,9 @@ Le contenu est séparé du rendu : on réécrit un texte sans toucher au composa
 
 | Fichier | Contenu |
 |---|---|
-| `lib/content/faqData.ts` | 30 questions, 5 catégories, réponses de 60 à 180 mots |
-| `lib/content/glossaire.ts` | 15 définitions courtes (source des tooltips) |
-| `lib/content/glossairePage.ts` | versions longues + maillage, pour `/glossaire` |
+| `lib/content/faqData.ts` | 32 questions, 5 catégories (chacune avec `seeAlso`), réponses de 60 à 180 mots |
+| `lib/content/glossaire.ts` | 20 définitions courtes (source des tooltips `TermeExplique`) |
+| `lib/content/glossairePage.ts` | 18 entrées longues (thème, « Pour vous », flux, `seeAlso`) pour `/glossaire` |
 | `lib/content/articles/articles.tsx` | 7 articles complets (gabarit typé) |
 | `lib/content/navigation.ts` | menu principal et pied de page |
 | `components/sections/*/xxxData.ts` | le contenu de chaque section, par page |
@@ -119,6 +120,19 @@ Le contenu est séparé du rendu : on réécrit un texte sans toucher au composa
 | `public/llms.txt` | le résumé du site pour les IA |
 
 ---
+
+## 5 bis. Les faits à garder identiques sur tout le site
+
+| Fait | Valeur unique |
+|---|---|
+| Durée du premier échange | **45 minutes** (gratuit, sans engagement) |
+| Pilote assistant IA | **30 jours, satisfait ou remboursé**, sortie sans frais, données restituées |
+| Facture électronique | réception obligatoire pour toutes les entreprises assujetties à la TVA depuis le **1er septembre 2026** ; émission obligatoire depuis le 1er septembre 2026 pour les grandes entreprises et ETI, à partir du **1er septembre 2027** pour les PME et TPE |
+| Nombre de services | **cinq** (sites web, applications, agents IA, automatisation, mémoire d'entreprise) |
+| Nombre d'articles | **sept** |
+| Prix publiés | site vitrine simple ≈ 500 € · vitrine premium 1 000 à 2 500 € · site relié aux outils 2 500 à 5 000 € · application 1 500 à 15 000 € · automatisation et assistant IA : sur devis |
+
+Toute page qui contredit une de ces valeurs est en faute, pas le tableau.
 
 ## 6. Le vocabulaire de marque
 
@@ -142,9 +156,9 @@ Le contenu est séparé du rendu : on réécrit un texte sans toucher au composa
 - [ ] Chaque terme technique est soit remplacé, soit expliqué
 - [ ] La page suit l'ordre des cinq questions
 - [ ] Un seul appel à l'action
-- [ ] **Les compteurs affichés correspondent à la réalité.** Deux erreurs vivent actuellement
-      en ligne : `/articles` annonce « Cinq guides » pour 7 articles, et la home annonce
-      « Six services » pour 5 (dans le `h2` **et** dans l'`aria-label`)
+- [ ] **Les compteurs affichés correspondent à la réalité.** Les deux erreurs signalées en
+      septembre 2026 sont corrigées : `/articles` annonce bien « Sept guides » et l'accueil
+      « Cinq services » (`h2` et `aria-label`). Revérifier à chaque ajout d'article ou de service
 - [ ] `title` sous 60 caractères suffixe compris, `description` de 150 à 160
 
 Vérification rapide des tirets cadratins dans le contenu visible :

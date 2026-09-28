@@ -11,12 +11,12 @@ mémoire d'entreprise (RAG), sites web et automatisation. Développeur indépend
 
 ```bash
 pnpm install
-pnpm dev          # http://localhost:4000
+pnpm dev          # http://localhost:4500
 ```
 
 | Commande | Ce qu'elle fait |
 |---|---|
-| `pnpm dev` | serveur de développement (port 4000) |
+| `pnpm dev` | serveur de développement (port 4500, voir [`docs/ports-et-processus.md`](docs/ports-et-processus.md)) |
 | `pnpm build` | build de production |
 | `pnpm lint` | ESLint |
 | `npx tsc --noEmit` | typecheck |
@@ -45,8 +45,9 @@ couches de fond, l'ordre imposé du contenu, les briques de design et la checkli
 | Metadata, JSON-LD, sitemap, Search Console | [`docs/seo-geo.md`](docs/seo-geo.md) |
 | Tiers de performance, animations, LCP | [`docs/performance.md`](docs/performance.md) |
 | Stack, arborescence, variables d'environnement | [`docs/architecture.md`](docs/architecture.md) |
-| Brief détaillé par page | [`docs/pages/`](docs/pages/) |
-| Audits | [`docs/audits/`](docs/audits/) |
+| Fiche détaillée par page (contenu, CTA, schémas, design) | [`docs/pages/`](docs/pages/) |
+| Chantiers en cours | [`docs/chantiers/`](docs/chantiers/) |
+| Audits datés | [`docs/audits/`](docs/audits/) |
 
 `CLAUDE.md` et `AGENTS.md` à la racine sont les règles destinées aux assistants de code.
 

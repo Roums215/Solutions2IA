@@ -182,6 +182,17 @@ Même une démonstration sur données fictives, clairement annoncée comme telle
 
 **Note projetée : 73 → environ 87.** Contenu 73 → ~84, conversion 69 → ~90 (V3 de 7 à 17, V4 de 4 à 10, V5 déjà au maximum).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Titre 57 caractères ; pilote 30 jours en `note` sous les boutons du hero et dans les `trustItems` du CTA (un seul bouton).
+- Section « Capacités » (6 cartes) retirée : redite avec « Huit tâches » et le schéma.
+- Profils : « Avec assistant · objectif à 30 jours » (statut explicite), « ordre de grandeur : source » sur les constats, chiffre US non pertinent retiré, en-tête « · maquette ».
+- Garde-fous : 4 cartes (le pilote est dans le hero), détails en langage simple (plus de « hand-off », « override », « logs structurés »).
+- `AgentAnatomyDiagram`, `ProfileCarousel`, `OneAgentManyNeedsPipeline` rendus côté serveur (contenu présent dans le HTML, animations après montage).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

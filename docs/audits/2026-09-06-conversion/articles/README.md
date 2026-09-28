@@ -155,6 +155,13 @@ Une bande en tête : « Échéance septembre 2026 : ce qui change pour vous. »
 
 **Note projetée : 48 → environ 67.** Contenu 47 → ~62, conversion 40 → ~62.
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- « Sept guides » (titre, hero, OG) ; lien pilier « Le service qui va avec ce guide » sous chaque article ; calendrier facture électronique corrigé dans l'article Chorus Pro.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

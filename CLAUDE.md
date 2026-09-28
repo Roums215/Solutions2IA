@@ -14,7 +14,9 @@ mémoire d'entreprise (RAG), automatisation. Développeur indépendant français
 | Metadata, JSON-LD, sitemap, llms.txt, GSC | `docs/seo-geo.md` |
 | Tiers de perf, animations, LCP | `docs/performance.md` |
 | Stack réelle, arborescence, env, déploiement | `docs/architecture.md` |
-| Brief d'une page précise | `docs/pages/` |
+| Ports et processus du projet, voisins du poste | `docs/ports-et-processus.md` |
+| Fiche d'une page (état réel : contenu, CTA, schémas, design) | `docs/pages/` |
+| Chantier en cours (ce qui est en train de changer) | `docs/chantiers/` |
 | Dernier audit complet | `docs/audits/` (dont l'audit de conversion page par page) |
 
 ---
@@ -40,14 +42,14 @@ mémoire d'entreprise (RAG), automatisation. Développeur indépendant français
 
 | Route | Preset | Scène de hero | Note |
 |---|---|---|---|
-| `/` | `home` | `HeroVisual` | Server Component, sections en `dynamic()` |
+| `/` | `home` | `SolutionsFilm` (film hero) | Server Component, sections en `dynamic()` |
 | `/services` | `services` | — | `OfferCatalog` JSON-LD |
-| `/sites-web` | `web` | `WebScene` | |
-| `/applications` | `apps` | `AppScene` | |
+| `/sites-web` | `web` | `WebHeroScene` | refonte 09/2026, hero clair |
+| `/applications` | `apps` | `AppHeroScene` | refonte 09/2026 |
 | `/applications/[secteur]` | `apps` | — | 6 verticaux |
-| `/agents-ia` | `ai` | `AIBrainScene` | la plus futuriste |
-| `/automatisation` | `automation` | `AutomationScene` | |
-| `/automatisation/[secteur]` | `automation` | — | 5 secteurs |
+| `/agents-ia` | `ai` | `AiHeroScene` | V3 09/2026 : iPhone + dossier actif, 6 moments |
+| `/automatisation` | `flow` | `AutoHeroScene` | V3 09/2026 : film de 4 automatisations |
+| `/automatisation/[secteur]` | `automation` | — | 5 secteurs, ancien design |
 | `/rag` | `automation` | — | mémoire d'entreprise |
 | `/faq` | `services` | — | 30 Q/R, `FAQPage` |
 | `/glossaire` | `services` | — | 15 termes, `DefinedTermSet` |
@@ -69,13 +71,21 @@ app/<route>/{page.tsx (Server + metadata + JSON-LD), <Nom>Page.tsx (Client)}
 app/api/{contact,seo-report}/route.ts
 components/
   ui/       Button · SectionHeading · SpotlightCard · ToolBadge · TermeExplique + primitives radix
-  layout/   Header · Footer
-  shared/   AppShell · PageHero · PageAtmosphere · CTABand
+  layout/   Header · Footer · headerSurface (useLightHeaderZone : en-tête lisible sur section claire)
+  shared/   AppShell · PageHero · PageAtmosphere · CTABand (prop `compact` opt-in)
+            SectionFluidBackdrop (nappes et trajectoires SVG par section, une variante par page)
+            mockup/AppMockup (maquettes d'application sur surface papier)
             PageTransition · LoadingScreen · SectionParticles
             PremiumFlowPanel · RelatedServices
-  hero/     HeroSection · HeroVisual
-  scenes/   ai · web · mobile · automation   (SVG animé, pas de WebGL)
+  hero/     HeroSection · HeroFilm (coupe du film selon largeur et tier) · HeroVisual (plus monté)
+  film/     SolutionsFilm · film-runtime · film-core · film-chapters-a/b · filmFonts
+            (film hero 1920×1080 mis à l'échelle, horloge rAF propre, pas de motion ;
+             source : design_handoff_hero_film/README.md)
+  scenes/   ai · web · mobile · automation   (anciennes scènes SVG, débranchées des pages refondues)
   sections/ home · sites-web · applications · agents-ia · automation · rag
+            chaque page refondue a son hero dans sections/<page>/ :
+            <X>HeroSection (texte LCP en CSS) · <X>HeroScene (≥ md, plan fixe mis à l'échelle)
+            · <X>HeroSceneMobile (narration verticale) · <x>HeroScene{Data,Parts}
   legal/    LegalPage        seo/ JsonLd
 lib/
   seo/      constants.ts (source de vérité) · schema.ts (11 builders) · report/
@@ -90,12 +100,29 @@ docs/       toute la documentation
 ## Pattern de page
 
 1. `page.tsx` **Server Component** : `metadata` + `<JsonLd>` + rendu du composant client. Jamais `"use client"`.
-2. `<Nom>Page.tsx` **Client Component** : le rendu.
+2. `<Nom>Page.tsx` : le rendu. **Client Component** sur les pages historiques ; sur les pages refondues
+   (`/sites-web`, `/applications`, `/agents-ia`, `/automatisation`), Server Component qui charge ses
+   sections client en `dynamic()` (seul le hero est dans le bundle initial).
 3. **Fond** : `<PageAtmosphere preset="X" />` (décor **statique**, aucun suivi de souris).
 4. **Corps** : `<PageHero>` → sections (`SectionHeading` + `SpotlightCard`) → `<CTABand>`.
 5. **Ordre du contenu, imposé** : c'est quoi · ce que ça vous apporte · comment ça marche · pour qui · l'étape suivante. **Un seul CTA par page.**
 
 Détail complet et exemples : `docs/anatomie-page.md`.
+
+### Scènes de hero « film » (pages refondues en septembre 2026)
+
+`/sites-web`, `/applications`, `/agents-ia` et `/automatisation` n'utilisent plus `PageHero` :
+leur hero est un `<X>HeroSection` qui peint titre et sous-titre en `.hero-enter` (LCP) et monte
+la scène en `dynamic(..., { ssr: false })` seulement dès `md`. Règles communes :
+
+- plan fixe (ex. 860 × 560) mis à l'échelle en CSS pur `[scale:tan(atan2(100cqw,860px))]` dans un `@container` ;
+- horloge à phases en `setTimeout` (pas de rAF maison), `PauseOffscreen`, pause au clic et onglet masqué ;
+- `transform` et `opacity` seulement ; reduced = transitions simples ; minimal et reduced-motion = image finale fixe ;
+- version téléphone propre (`<X>HeroSceneMobile`), jamais la scène ordinateur réduite ;
+- données d'exemple signalées (« Maquette · données d'exemple », « Exemple de workflow »), aucune métrique inventée ;
+- attribut `data-ai-phase` / `data-auto-phase` sur le plan : les scripts de capture s'y synchronisent.
+
+Captures et vidéos de QA : `review/<page>/` avec leur script `.capture.cjs`, **hors dépôt** (`.gitignore`).
 
 ---
 
@@ -107,14 +134,20 @@ Texte     text-text-{primary,secondary,tertiary} · text-accent-light
 Bordures  border-border-{subtle,medium,accent}
 Accents   bg-accent-{primary,light,dark,glow,glow-strong} · bg-cyan{,-glow}
 Effets    .text-gradient[-strong] · .glow-line · .bg-grid · .bg-radial-top
-          .card-shine · .surface-card · .metric-tile · .section-intro-panel
+          .card-shine · .surface-card · .glass-card (+ .glass-light) · .metric-tile · .section-intro-panel
 Shells    .section-shell · .section-shell-tight · .section-shell-compact
-Largeurs  .section-container · .section-container-narrow
+Largeurs  .section-container · .section-container-narrow · .section-container-reading
+          · .section-container-wide (hero de l'accueil seulement)
+États     text-success · text-warning · text-danger · bg-{success,warning,danger}/15 (jamais green-400 / amber-400 / red-400 en dur)
+Papier    bg-paper{,-2,-3} · text-ink{,-2,-3} · border-paper-line · text-{success,warning,danger}-ink
+          (surface claire des maquettes d'application, ex. sectorDashboards)
+Film      bg-film-bg · --color-film-{blue,cyan,ink,glow} · .film-cta (CTA « Parler de mon besoin » du hero)
 ```
 
 Une couleur en dur est un écart, sauf : `SpotlightCard glow="r,g,b"`,
 `PremiumFlowPanel accent="r, g, b"`, les couleurs de marques tierces (`brandLogos.tsx`),
-et `app/icon.tsx` / `apple-icon.tsx` (rendu `next/og`, pas de variables CSS).
+`app/icon.tsx` / `apple-icon.tsx` (rendu `next/og`, pas de variables CSS), et les modules du film
+hero `components/film/*` (palette interne figée du handoff, rendu en px du plan 1920×1080).
 
 ---
 
@@ -192,12 +225,17 @@ incohérences de tokens) de cette signature voulue.
 ## Commandes
 
 ```
-pnpm dev              # port 4000
+pnpm dev              # port 4500 (plage du projet : 4500-4549)
 pnpm build | lint
 npx tsc --noEmit      # ✅ à préférer pendant le dev
 pnpm exec playwright test
-pnpm remotion:studio | remotion:render
+pnpm remotion:studio | remotion:render   # ports 4520 | 4530, fixés dans remotion.config.ts
 ```
+
+> ⚠️ **Ports** : le projet n'ouvre rien hors de `4500`–`4549`. `:4000`–`:4299` appartient à
+> Studio Video, `:3000`–`:3202` à AgentAI et BuildingPartnersOS. Port pris par un autre :
+> décaler le nôtre (`pnpm exec next dev -p 4510`), jamais tuer le voisin.
+> Détail : `docs/ports-et-processus.md`.
 
 > ⚠️ **Ne jamais lancer `pnpm build` pendant que `pnpm dev` tourne** : le build écrase
 > le `.next` du serveur de dev et casse le site en local.
@@ -216,29 +254,70 @@ pnpm remotion:studio | remotion:render
 
 ---
 
+## Skill `frontend-design` (`.claude/skills/frontend-design/`)
+
+**À charger avant toute modification visible** : section, hero, carte, CTA, texte affiché,
+mise en page, animation. Y compris pour « améliore cette section » ou « rends ça plus accrocheur ».
+
+Il porte trois choses :
+
+| Fichier | Contenu |
+|---|---|
+| `SKILL.md` | la boucle en 12 étapes, les 4 règles de contrôle, la checklist de fin |
+| `references/direction-artistique.md` | ce qui donne envie d'écrire : chiffre du visiteur, exemple concret, dosage technique, CTA unique, signature visuelle, interdits |
+| `references/boucle-navigateur.md` | démarrer le site, retrouver le composant React depuis un élément affiché, les deux largeurs 1440 / 390 |
+
+La boucle : comprendre → localiser le composant exact → **regarder la page réelle** →
+proposer 2-3 variantes → **STOP, le client choisit** → diff minimal → vérifier à 1440 et
+390 px → `tsc` + `lint` → `tokens-guardian` → **STOP**.
+
+Le second STOP est la règle la plus importante : pas de refonte élargie, pas de fichier
+déplacé, pas de dépendance ajoutée, pas de documentation spontanée.
+
+Astuce vérifiée (dev uniquement) : sélectionner un élément dans DevTools puis remonter
+`__reactFiber$` donne le composant qui le rend (`h1` → `HeroSection`, une carte →
+`TransformationCard` → `HomeTransformationFlows`). Snippet dans `references/boucle-navigateur.md`.
+
+---
+
 ## Agents (`.claude/agents/`)
 
-### Lecture seule (Haiku)
+Treize agents calibrés sur le projet réel. Chacun connaît les pièges vécus ici.
+
+### Audit, lecture seule
 | Agent | Quand |
 |---|---|
 | `site-auditor` | début de session, avant gros refactor : structure, presets, dérive |
-| `tokens-guardian` | avant PR : couleurs et spacings hors `@theme` |
+| `conversion-auditor` | **noter une page sur 100** en contenu, design et conversion. Répond à « est-ce que ça ramène un client ? ». Grille dans `docs/audits/2026-09-06-conversion/METHODE.md` |
+| `tokens-guardian` | avant PR : couleurs et espacements hors `@theme` |
 | `performance-auditor` | avant PR ou après changement lourd : Lighthouse, bundle, anti-patterns |
-| `a11y-reviewer` | avant PR : reduced-motion, ARIA, alt, hiérarchie h1-h3 |
+| `a11y-reviewer` | avant PR : hiérarchie des titres, ARIA, focus, reduced-motion |
 
-### Création / refactor (Sonnet)
+### Création et refonte
 | Agent | Quand |
 |---|---|
-| `section-designer` | créer ou refondre une section (propose 2-3 variantes avant de coder) |
-| `motion-specialist` | interactions, scroll storytelling, parallax souris |
-| `r3f-3d-specialist` | scènes visuelles de hero (⚠️ nom historique : pas de Three.js dans le projet) |
-| `component-splitter` | découper un fichier > 250 LOC sans régression |
-| `copy-writer-fr` | hero, CTA, descriptions, metadata SEO |
+| `section-designer` | créer ou refondre une section (propose 2 à 3 variantes avant de coder) |
+| `card-designer` | **toute carte, tuile, panneau ou grille**. Possède `SpotlightCard`, la règle de profondeur `translateZ`, et la règle sur les chiffres affichés |
+| `motion-specialist` | animations, reveals, parallax du hero, flux SVG. `motion` v12 uniquement |
+| `scene-3d-specialist` | **profondeur et scènes de hero en CSS 3D + SVG**. Remplace `r3f-3d-specialist` : le projet n'a ni Three.js ni WebGL |
+| `component-splitter` | découper un fichier lourd sans régression |
+| `copy-writer-fr` | tout texte visible. Voix « je », zéro preuve inventée, zéro tiret cadratin |
 
-### Assets (Haiku + MCP)
+### Exploitation
 | Agent | Quand |
 |---|---|
-| `visual-asset-generator` | visuels via Higgsfield. Toujours estimer les crédits + confirmer. |
+| `vercel-deployer` | **mise en production**. Contrôles avant vol, build vert obligatoire, commits atomiques, push sur `main`, vérification post-déploiement dans un vrai navigateur |
+| `repo-structurer` | tenir le dépôt GitHub propre : structure, `.gitignore`, hygiène de commits, CI, modèles de PR |
+
+### Agents supprimés le 7 septembre 2026
+- `r3f-3d-specialist` : annonçait `three` 0.183, R3F 9 et drei 10, **jamais installés**.
+  Remplacé par `scene-3d-specialist`.
+- `visual-asset-generator` : dépendait du MCP Higgsfield (en échec d'authentification) et
+  contredisait la règle « tout en CSS et SVG, pas d'images de décor ».
+
+> **Deux agents maximum par demande.** S'il en faut trois, c'est que la demande n'a pas été
+> découpée. `section-designer` et `card-designer` ont accès à `chrome-devtools` : ils
+> regardent la page réelle avant de proposer.
 
 ## Slash commands (`.claude/commands/`)
 

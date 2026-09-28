@@ -172,6 +172,15 @@ La déplacer en deuxième position, juste après le hero, ou ajouter un bandeau 
 
 **Note projetée : 76 → environ 88.** Conversion 74 → ~88 (V3 de 8 à 17, V4 de 13 à 15, V5 de 11 à 14).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Lignes de calcul dans les cas d'usage, calendrier Chorus Pro exact (`ChorusProSection`, `TermeExplique k="facture-electronique"`).
+- `note` hero (« Premier échange de 45 minutes… le prix est fixé avec vous avant de démarrer »), un seul bouton final.
+- Schéma « Mon propre flux » (`AutomationPipeline id="mon-flux"`).
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

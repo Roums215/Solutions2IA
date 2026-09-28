@@ -159,6 +159,15 @@ Quand une réponse parle de RAG, lier `/rag`. C'est le comportement attendu et i
 
 **Note projetée : 69 → environ 78.** Conversion 65 → ~78 (V6 de 9 à 14).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- 4 réponses requalifiées : plus de « retours terrain », de « no-show 6,4 % », de « sous 0,5 % » sans statut ; première réponse sans « idempotence ».
+- 2 questions ajoutées (32) : « Mon application sera-t-elle prête pour la facture électronique ? », « Et si ça ne me convient pas ? » ; prix en premier dans « Méthode & prix ».
+- Sortie par catégorie (`seeAlso`, « Pour aller plus loin ») ; questions en `h3` ; colonne de lecture bornée (46 rem) ; compteur dynamique ; un seul CTA ; titre 56, description 159.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

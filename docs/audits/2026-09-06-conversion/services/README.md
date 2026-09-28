@@ -169,6 +169,15 @@ Le chiffre vient du visiteur : il est vrai par construction, et il ne viole aucu
 
 **Note projetée : 70 → environ 84.** Design 69 → ~82 (le schéma manquant), conversion 66 → ~85 (gain chiffré + garantie).
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Fourchettes de prix par service (vitrine ≈ 500 €, premium 1 000 à 2 500 €, relié 2 500 à 5 000 €, application 1 500 à 15 000 €, automatisation et IA chiffrées après le premier échange).
+- `note` sous les boutons du hero : « Sites web dès 500 €, applications dès 1 500 €. Le premier échange dure 45 minutes, sans engagement. »
+- « Ces prix sont ceux d'un indépendant qui démarre » assumé. Titre ramené à 53 caractères.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

@@ -191,6 +191,15 @@ Vers `/agents-ia` (l'assistant qui exploite cette mémoire) et `/automatisation`
 
 **Note projetée : 64 → environ 79.** Design 70 → ~80 (D4 de 6 à 13), conversion 57 → ~75.
 
+
+## Mise en œuvre (7 septembre 2026)
+
+- Sommaire (`RagSommaire`) et ancres stables (`#ce-que-ca-change`, `#comment-ca-marche`, `#usages`, `#installation`, `#pour-qui`, `#vos-donnees`, `#limites`).
+- Calculateur « Combien de temps vos équipes passent-elles à chercher ? » (`RagSearchTime`, calcul du visiteur).
+- 4 sections retirées (Replaces, Avoids, RealExamples, DailyUsage) : 13 h2 au lieu de 17.
+
+> Les notes ci-dessus décrivent la page **avant** ces changements. À re-noter avec la grille (`conversion-auditor`).
+
 ---
 
 *Grille : [`../METHODE.md`](../METHODE.md) · Benchmark : [`../BENCHMARK.md`](../BENCHMARK.md) · Synthèse : [`../README.md`](../README.md)*

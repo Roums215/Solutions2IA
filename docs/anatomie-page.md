@@ -137,7 +137,8 @@ C'est la règle de contenu la plus importante du site. **Chaque page raconte dan
 Exemple réel, la home (`app/page.tsx`) :
 
 ```
-HeroSection                  → 1. c'est quoi (la promesse)
+HeroSection                  → 1. c'est quoi (la promesse) + le film
+HomeDeadlineBand             → pourquoi maintenant (échéance légale réelle)
 HomeServicesConstellation    → 1. les 5 domaines
 HomeTransformationFlows      → 2. les transformations concrètes
 HomeProofTelecom             → 2. une preuve : un projet réel
@@ -146,6 +147,12 @@ HomeApproachSplit            → 3. ce qui guide le travail
 HomeProfileMatrix            → 4. pour qui
 CTABand                      → 5. l'étape suivante
 ```
+
+> **Le cas de l'accueil.** Depuis le 16 septembre 2026, `HeroSection` n'affiche plus une
+> composition de panneaux flottants mais un **film** (`HeroFilm` → `SolutionsFilm`) : sept
+> chapitres qui racontent chaque service par un objet concret. Il est monté en
+> `dynamic({ ssr: false })`, donc il ne pèse pas sur le LCP, et la coupe jouée dépend de la
+> largeur disponible et du tier de performance. Détail dans `docs/pages/accueil.md`.
 
 ### Règles d'écriture (non négociables)
 
@@ -197,8 +204,8 @@ Le motif se répète partout. Trois briques : un **shell** (l'espacement), un **
 
 | Classe | Respiration verticale | Quand |
 |---|---|---|
-| `.section-shell` | `clamp(6rem, 9vw, 9rem)` | section principale, généreuse |
-| `.section-shell-tight` | `clamp(4.5rem, 7vw, 6.5rem)` | section secondaire |
+| `.section-shell` | `clamp(6.5rem, 10vw, 10rem)` | section principale, généreuse |
+| `.section-shell-tight` | `clamp(5rem, 7.5vw, 7rem)` | section secondaire |
 | `.section-shell-compact` | `clamp(3.5rem, 5vw, 5rem)` | encart court, transition |
 
 ### Choisir son container
@@ -206,14 +213,15 @@ Le motif se répète partout. Trois briques : un **shell** (l'espacement), un **
 | Classe | Largeur | Quand |
 |---|---|---|
 | `.section-container` | large | grilles, schémas, cartes |
-| `.section-container-narrow` | étroite | texte long (articles, légal) |
+| `.section-container-narrow` | étroite (72 rem) | pages denses en texte |
+| `.section-container-reading` | colonne de lecture (48 rem) | texte long (articles, FAQ, légal) |
+| `.section-container-wide` | jusqu'à 1 552 px | **hero de l'accueil uniquement** : le film a besoin de la plus grande colonne possible |
 
 Le titre (`SectionHeading`) prend automatiquement sa marge basse vers la grille qui suit : **ne pas ajouter de `mt-*` à la main.**
 
 > ⚠️ **Hiérarchie des titres.** `PageHero` rend le `h1`, `SectionHeading` rend un `h2`,
-> `PremiumFlowPanel` rend un `h3`. Une section qui n'utilise que `PremiumFlowPanel`, sans
-> `SectionHeading` avant, saute du `h1` au `h3` : c'est le cas aujourd'hui sur `/`, `/services`,
-> `/applications`, `/agents-ia`, `/a-propos` et `/contact`. Toujours poser un `h2` avant.
+> `PremiumFlowPanel` rend un `h2` par défaut (il est presque toujours seul dans sa section).
+> S'il suit un `SectionHeading`, lui passer `headingLevel="h3"` pour ne pas doubler le `h2`.
 
 ---
 
@@ -227,6 +235,7 @@ Texte     text-text-primary · text-text-secondary · text-text-tertiary · text
 Bordures  border-border-subtle · border-border-medium · border-border-accent
 Accents   bg-accent-primary (#6366f1) · bg-accent-light · bg-accent-dark
           bg-accent-glow · bg-accent-glow-strong · bg-cyan (#22d3ee) · bg-cyan-glow
+États     text-success · bg-success/10 · text-danger · bg-danger/10 (jamais green-400 / red-400 en dur)
 ```
 
 Tout est défini dans `app/globals.css`, bloc `@theme`. **Une couleur écrite en dur dans un composant est un bug**, sauf dans les deux cas prévus par l'API : `SpotlightCard glow="99, 102, 241"` et `PremiumFlowPanel accent="99, 102, 241"` (format `r, g, b` sans alpha, volontaire).
@@ -246,12 +255,12 @@ Tout est défini dans `app/globals.css`, bloc `@theme`. **Une couleur écrite en
 
 | Composant | Rôle | Props utiles |
 |---|---|---|
-| `PageHero` | le haut de page (h1 unique) | `label` `title` `description` `primaryCta` `secondaryCta` `visual` `mobileSteps` |
-| `SectionHeading` | titre de section (h2) | `label` `title` `description` `centered` |
+| `PageHero` | le haut de page (h1 unique) | `label` `title` `description` `primaryCta` `secondaryCta` `visual` `mobileSteps` `note` (réassurance sous les boutons) |
+| `SectionHeading` | titre de section (h2) | `label` `title` `description` (ReactNode) `centered` `id` |
 | `SpotlightCard` | carte premium | `glow="r, g, b"` `tilt` `pulse` `className` |
 | `Button` | bouton / lien | `variant` (`primary`/`secondary`) `size` `href` |
-| `CTABand` | bande finale d'appel | `title` `description` `primaryLabel` `primaryHref` |
-| `PremiumFlowPanel` | flux d'étapes numérotées (rend un **h3**) | `label` `title` `description` `steps` `accent` |
+| `CTABand` | bande finale d'appel | `title` `description` `primaryLabel` `primaryHref` `secondary` (`null` = un seul bouton) `trustItems` |
+| `PremiumFlowPanel` | flux d'étapes numérotées | `label` `title` `description` `steps` `accent` `headingLevel` (**h2** par défaut, `h3` sous un `SectionHeading`) |
 | `RelatedServices` | maillage vers 2 services voisins | `current` (clé de route) |
 | `SectionParticles` | particules légères d'ambiance | `variant` |
 
