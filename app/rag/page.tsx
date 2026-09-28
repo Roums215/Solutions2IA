@@ -8,9 +8,9 @@ import {
 import { RagPage } from "./RagPage";
 
 export const metadata: Metadata = {
-  title: "Mémoire d'entreprise (RAG) : l'IA qui répond avec vos documents",
+  title: "Mémoire d'entreprise (RAG), sources citées",
   description:
-    "Connectez vos procédures, contrats et PDF : une IA qui répond avec vos propres documents et cite ses sources, hébergée en UE. Premier échange gratuit.",
+    "Une IA reliée à vos procédures, contrats et PDF : elle répond à vos équipes et cite le document exact. Données hébergées en Europe. Premier échange gratuit.",
   keywords: [
     "mémoire d'entreprise IA",
     "RAG entreprise France",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mémoire d'entreprise (RAG) : une IA qui cite vos documents",
     description:
-      "Une IA branchée sur vos documents internes, qui répond aux questions métier et cite ses sources. Hébergée en UE.",
+      "Une IA branchée sur vos documents internes, qui répond aux questions métier et cite ses sources. Données hébergées en Europe.",
     url: "/rag",
     type: "website",
   },
@@ -33,7 +33,7 @@ export default function Page() {
     buildServiceSchema({
       name: "Mémoire d'entreprise (RAG)",
       description:
-        "Une IA reliée à vos documents internes (procédures, contrats, PDF) qui répond aux questions métier et cite ses sources. Hébergement souverain UE.",
+        "Une IA reliée à vos documents internes (procédures, contrats, PDF) qui répond aux questions métier et cite ses sources. Données hébergées en Europe.",
       url: "/rag",
       serviceType: "RAG / Mémoire d'entreprise",
       audience: "PME et ETI",

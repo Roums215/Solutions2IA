@@ -16,7 +16,7 @@ export function RagUsagesTabs() {
   const activeUsage = RAG_USAGES.find((u) => u.key === active) ?? RAG_USAGES[0];
 
   return (
-    <section className="section-shell">
+    <section id="usages" className="section-shell scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Quatre usages, un seul moteur"

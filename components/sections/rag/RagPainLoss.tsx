@@ -60,7 +60,7 @@ export function RagPainLoss() {
   const itemVariants = staticRender ? undefined : fadeInUp;
 
   return (
-    <section className="section-shell">
+    <section id="ce-que-ca-change" className="section-shell scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Le coût silencieux"

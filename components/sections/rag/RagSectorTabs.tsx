@@ -17,7 +17,7 @@ export function RagSectorTabs() {
     RAG_SECTORS.find((s) => s.key === activeKey) ?? RAG_SECTORS[0];
 
   return (
-    <section className="section-shell">
+    <section id="pour-qui" className="section-shell scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Adaptation métier"

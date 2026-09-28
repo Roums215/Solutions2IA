@@ -7,32 +7,32 @@ export const RAG_GUARANTEES: RagGuarantee[] = [
   {
     title: "Sources vérifiables",
     detail:
-      "Chaque réponse peut afficher ses sources, cliquables jusqu'au document, à la page, à l'extrait. La traçabilité est intégrée, jamais une promesse vague.",
+      "Chaque réponse peut afficher ses sources, jusqu'au document, à la page, à l'extrait.",
   },
   {
-    title: "Permissions respectées",
+    title: "Droits d'accès respectés",
     detail:
-      "La mémoire ne montre que ce que l'utilisateur a déjà le droit de voir. Vos droits d'accès Drive / SharePoint / Notion / CRM s'appliquent intégralement.",
+      "La mémoire ne montre que ce que la personne a déjà le droit de voir dans Drive, SharePoint, Notion ou votre fichier clients.",
   },
   {
-    title: "Hébergé en UE",
+    title: "Hébergée en Europe",
     detail:
-      "Données stockées en France ou en Europe, jamais ailleurs. Conformes RGPD, jamais réutilisées pour entraîner un modèle public.",
+      "Données stockées en France ou en Europe, conformes aux règles européennes de protection des données (RGPD), jamais réutilisées pour entraîner un modèle public.",
   },
   {
-    title: "Journalisation",
+    title: "Chaque question est tracée",
     detail:
-      "Chaque requête tracée, datée, auditable a posteriori. Conformité RGPD et traçabilité métier intégrées au moteur.",
+      "Qui a demandé quoi, quand, avec quelle réponse : l'historique est consultable en cas d'audit.",
   },
   {
     title: "Documents à jour",
     detail:
-      "Les nouvelles versions de vos documents sont reprises automatiquement. Les anciennes versions restent traçables et consultables.",
+      "Une nouvelle version est reprise automatiquement, l'ancienne reste consultable.",
   },
   {
     title: "Validation humaine possible",
     detail:
-      "Vos équipes peuvent corriger, approuver ou rejeter une réponse avant qu'elle ne soit diffusée : la mémoire reste sous contrôle humain.",
+      "Vos équipes peuvent corriger, approuver ou rejeter une réponse avant diffusion.",
   },
 ];
 

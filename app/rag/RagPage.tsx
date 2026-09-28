@@ -3,22 +3,20 @@
 import { PageHero } from "@/components/shared/PageHero";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
 import { CTABand } from "@/components/shared/CTABand";
-import { RagMemoryFlow } from "@/components/sections/rag/RagMemoryFlow";
-import { RagPainLoss } from "@/components/sections/rag/RagPainLoss";
+import { RelatedServices } from "@/components/shared/RelatedServices";
+import { RagSommaire } from "@/components/sections/rag/RagSommaire";
 import { RagContrastClassicVsRag } from "@/components/sections/rag/RagContrastClassicVsRag";
-import { RagReplaces } from "@/components/sections/rag/RagReplaces";
-import { RagAvoids } from "@/components/sections/rag/RagAvoids";
+import { RagPainLoss } from "@/components/sections/rag/RagPainLoss";
+import { RagSearchTime } from "@/components/sections/rag/RagSearchTime";
+import { RagMemoryFlow } from "@/components/sections/rag/RagMemoryFlow";
 import { RagUsagesTabs } from "@/components/sections/rag/RagUsagesTabs";
-import { RagSizing } from "@/components/sections/rag/RagSizing";
-import { RagRealExamples } from "@/components/sections/rag/RagRealExamples";
-import { RagSectorTabs } from "@/components/sections/rag/RagSectorTabs";
-import { RagDecisionWizard } from "@/components/sections/rag/RagDecisionWizard";
 import { RagInstallSteps } from "@/components/sections/rag/RagInstallSteps";
-import { RagDailyUsage } from "@/components/sections/rag/RagDailyUsage";
 import { RagEnrichmentStatic } from "@/components/sections/rag/RagEnrichmentStatic";
+import { RagSectorTabs } from "@/components/sections/rag/RagSectorTabs";
+import { RagSizing } from "@/components/sections/rag/RagSizing";
+import { RagDecisionWizard } from "@/components/sections/rag/RagDecisionWizard";
 import { RagDataControl } from "@/components/sections/rag/RagDataControl";
 import { RagHonestLimits } from "@/components/sections/rag/RagHonestLimits";
-import { RelatedServices } from "@/components/shared/RelatedServices";
 
 export function RagPage() {
   return (
@@ -26,36 +24,47 @@ export function RagPage() {
       <PageAtmosphere preset="automation" />
 
       <PageHero
-        label="La mémoire de votre entreprise"
+        label="Mémoire d'entreprise (RAG)"
         title={
           <>
             Une IA qui répond avec{" "}
-            <span className="text-gradient-strong">vos documents</span>, pas
-            avec du vent.
+            <span className="text-gradient-strong">vos documents</span> et cite
+            sa source.
           </>
         }
-        description="Vos procédures, contrats et dossiers contiennent déjà les réponses. Je connecte une IA à ces documents : vos équipes posent une question, elles obtiennent la bonne réponse en citant le document exact. Plus besoin de déranger la personne qui sait."
+        description="Vos procédures, contrats et dossiers contiennent déjà les réponses. Je relie une IA à ces documents : une question, la bonne réponse, le document exact qui la justifie. Plus besoin de déranger la personne qui sait."
         primaryCta={{
           label: "Premier échange gratuit",
           href: "/contact",
         }}
-        secondaryCta={{ label: "Tous les services", href: "/services" }}
+        secondaryCta={{
+          label: "Voir la mémoire en action",
+          href: "#comment-ca-marche",
+        }}
         glowColor="bg-cyan/5"
       />
 
-      <RagPainLoss />
-      <RagMemoryFlow />
+      <RagSommaire />
+
+      {/* 1. C'est quoi */}
       <RagContrastClassicVsRag />
-      <RagReplaces />
-      <RagAvoids />
+
+      {/* 2. Ce que ça vous apporte */}
+      <RagPainLoss />
+      <RagSearchTime />
+
+      {/* 3. Comment ça marche */}
+      <RagMemoryFlow />
       <RagUsagesTabs />
-      <RagSizing />
-      <RagRealExamples />
-      <RagSectorTabs />
-      <RagDecisionWizard />
       <RagInstallSteps />
-      <RagDailyUsage />
       <RagEnrichmentStatic />
+
+      {/* 4. Pour qui */}
+      <RagSectorTabs />
+      <RagSizing />
+      <RagDecisionWizard />
+
+      {/* Objections : vos données, les limites */}
       <RagDataControl />
       <RagHonestLimits />
 
@@ -68,9 +77,10 @@ export function RagPage() {
             <span className="text-gradient-strong">mémoire</span> à votre entreprise.
           </>
         }
-        description="On part de vos vrais documents, je connecte l'IA, et on vérifie ensemble que les réponses sont justes. Vos données restent en Europe, vous gardez la main."
+        description="Je pars de vos vrais documents, on vérifie ensemble les réponses sur 20 questions de vos équipes, et vos données restent en Europe."
         primaryLabel="Premier échange gratuit"
         primaryHref="/contact"
+        secondary={null}
       />
     </>
   );

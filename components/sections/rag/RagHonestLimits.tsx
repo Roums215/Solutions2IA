@@ -44,7 +44,7 @@ export function RagHonestLimits() {
   const itemVariants = staticRender ? undefined : fadeInUp;
 
   return (
-    <section className="section-shell-tight">
+    <section id="limites" className="section-shell-tight scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Honnêteté"

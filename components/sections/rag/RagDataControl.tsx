@@ -23,7 +23,7 @@ export function RagDataControl() {
   const itemVariants = staticRender ? undefined : fadeInUp;
 
   return (
-    <section className="section-shell">
+    <section id="vos-donnees" className="section-shell scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Garanties"

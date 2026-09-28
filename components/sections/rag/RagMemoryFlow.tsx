@@ -91,7 +91,7 @@ export function RagMemoryFlow() {
   const itemVariants = staticRender ? undefined : fadeInUp;
 
   return (
-    <section className="section-shell">
+    <section id="comment-ca-marche" className="section-shell scroll-mt-24">
       <div className="section-container">
         <SectionHeading
           label="Mémoire métier"
