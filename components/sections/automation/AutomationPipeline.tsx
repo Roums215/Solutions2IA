@@ -17,6 +17,10 @@ export interface AutomationPipelineProps {
   details?: SectorDetails;
   heading?: ReactNode;
   intro?: ReactNode;
+  /** Petit label au-dessus du titre. Défaut : « Flux en direct · tourne 24/7 » (vrai sur le pilier, où c'est mon propre flux). */
+  eyebrow?: string;
+  /** Ancre de section (ex. `mon-flux` sur /automatisation). */
+  id?: string;
   loopMs?: number;
   className?: string;
 }
@@ -130,7 +134,7 @@ function PipelineNodeCard({
           status === "active"
             ? "border-cyan/40 bg-bg-card"
             : status === "done"
-            ? "border-green-400/30 bg-bg-card"
+            ? "border-success/30 bg-bg-card"
             : "border-border-subtle bg-bg-card/40 opacity-55",
         ].join(" ")}
         style={{
@@ -148,7 +152,7 @@ function PipelineNodeCard({
           )}
           {status === "done" && !isSent && (
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" strokeWidth="3"
-              className="flex-shrink-0 stroke-green-400" aria-hidden>
+              className="flex-shrink-0 stroke-success" aria-hidden>
               <polyline points="20 6 9 17 4 12" />
             </svg>
           )}
@@ -520,6 +524,8 @@ export function AutomationPipeline({
   details = DEFAULT_DETAILS,
   heading,
   intro,
+  eyebrow = "Flux en direct · tourne 24/7",
+  id,
   loopMs = 6500,
   className,
 }: AutomationPipelineProps) {
@@ -577,14 +583,14 @@ export function AutomationPipeline({
   if (!mounted) return null;
 
   return (
-    <section className={["section-shell", className].filter(Boolean).join(" ")}>
+    <section id={id} className={["section-shell", id ? "scroll-mt-24" : "", className].filter(Boolean).join(" ")}>
       {/* Heading */}
       <div className="text-center mb-10 sm:mb-12">
         <motion.p className="text-xs font-semibold uppercase tracking-widest text-accent-light mb-3"
           initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: ease4 }}>
-          Flux en direct · tourne 24/7
+          {eyebrow}
         </motion.p>
         <motion.h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gradient"
           initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }}

@@ -10,12 +10,24 @@ export type SectorDetails = {
   reliability: SectorDetailItem;
 };
 
+export type SectorGain = { title: string; text: string };
+
 export type Sector = {
   slug: string;
   name: string;
   icon: ReactNode;
   problem: string;
   benefit: string;
+  /** Accent (dégradé) du h1 : un bénéfice, jamais un mot technique. */
+  heroAccent: string;
+  /** Ce que ça change dans la semaine : 3 tuiles, sans chiffre inventé. */
+  gains: SectorGain[];
+  /** Est-ce fait pour vous : 3 conditions courtes. */
+  forWho: string[];
+  /** Une phrase honnête : quand ce n'est pas la bonne solution. */
+  notForYou: string;
+  /** Échéance légale réelle (urgence authentique), facultative. */
+  deadline?: string;
   nodes: PipelineNode[];
   edges: PipelineEdge[];
   stack: string[];
@@ -139,6 +151,18 @@ export const SECTORS: Sector[] = [
       "Vos leads SeLoger et Leboncoin se perdent entre une boîte mail et un tableur : quand vous rappelez, l'agence d'à côté a déjà décroché.",
     benefit:
       "Chaque demande qualifiée arrive en quelques minutes dans le CRM, avec un SMS au commercial qui peut rappeler avant tout le monde.",
+    heroAccent: "rappeler avant l'agence d'à côté",
+    gains: [
+      { title: "Du temps", text: "Plus de tri manuel des demandes SeLoger et Leboncoin : chaque lead arrive déjà lu, classé et rangé dans votre CRM. Comptez le temps passé chaque jour à recopier des demandes : c'est ce temps-là qui revient." },
+      { title: "De l'argent", text: "Un lead chaud rappelé dans l'heure a plus de chances de signer que le lendemain. Le SMS au commercial part dès que la demande est enregistrée, soirs et week-ends compris." },
+      { title: "Vos clients", text: "Aucun acquéreur ne reste sans réponse. Chaque demande garde sa source, son budget et sa zone : le commercial rappelle en connaissant déjà le dossier." },
+    ],
+    forWho: [
+      "Vous recevez des demandes SeLoger, Leboncoin ou depuis votre site",
+      "Vous utilisez un CRM (HubSpot, Pipedrive ou le vôtre), ou voulez en avoir un",
+      "Vos commerciaux rappellent parfois trop tard, faute d'avoir vu la demande",
+    ],
+    notForYou: "Si vous recevez moins d'une demande par semaine, un simple transfert de mail suffit : je vous le dirai.",
     nodes: [
       { id: "jobphoning",   tool: "jobphoning", label: "SeLoger",   sublabel: "lead reçu" },
       { id: "n8n-clean",    tool: "n8n",        label: "n8n",       sublabel: "qualification" },
@@ -157,9 +181,9 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["SeLoger", "Leboncoin", "n8n", "Claude", "CRM", "SMS"],
     seoTitle:
-      "Automatisation immobilier : leads SeLoger/Leboncoin qualifiés en CRM | Solutions 2IA",
+      "Automatisation immobilier : leads en CRM",
     seoDescription:
-      "Pipeline d'automatisation pour agences immobilières : chaque lead SeLoger ou Leboncoin est qualifié par IA, enrichi et poussé dans votre CRM avec alerte SMS au commercial. Hébergé en UE.",
+      "Automatisation pour agences immobilières : le lead SeLoger ou Leboncoin est lu, qualifié et rangé dans votre CRM, avec un SMS au commercial. Hébergé en Europe.",
     details: {
       trigger: {
         label: "Déclencheur",
@@ -187,6 +211,19 @@ export const SECTORS: Sector[] = [
       "Factures, relevés, reçus s'accumulent : vos collaborateurs trient et relancent au lieu d'analyser.",
     benefit:
       "Chaque pièce arrive, est lue et classée sans ressaisie. Le dossier se construit seul. Le collaborateur se concentre sur l'analyse.",
+    heroAccent: "les pièces classées sans ressaisie",
+    gains: [
+      { title: "Du temps", text: "Factures, relevés et reçus sont lus et classés à leur arrivée, dans le bon dossier. Vos collaborateurs ne trient plus : ils vérifient et analysent." },
+      { title: "De l'argent", text: "Les relances de pièces manquantes partent seules, aux bonnes dates. Moins de dossiers en retard à la clôture, moins d'heures non facturables passées à courir après les clients." },
+      { title: "Vos clients", text: "Le client dépose ses pièces par mail, WhatsApp ou Drive, comme il en a l'habitude. Il reçoit un accusé et sait ce qu'il manque : moins d'allers-retours, une relation plus calme." },
+    ],
+    forWho: [
+      "Vous tenez des dossiers sur Pennylane, Sage, Quadra ou un outil équivalent",
+      "Vos collaborateurs passent une partie de la journée à trier et relancer",
+      "Vous voulez garder la validation humaine sur chaque écriture",
+    ],
+    notForYou: "Si votre logiciel de production fait déjà la collecte automatique et que vos clients l'utilisent, l'écart sera faible : on le vérifie ensemble avant de démarrer.",
+    deadline: "depuis le 1er septembre 2026, toutes les entreprises assujetties à la TVA doivent pouvoir recevoir des factures électroniques, et vos clients PME et TPE devront en émettre à partir du 1er septembre 2027. Un flux de collecte déjà prêt pour ce format vous évite de tout refaire dans un an.",
     nodes: [
       {
         id: "sources", tool: "jobphoning",
@@ -227,9 +264,9 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Gmail", "Drive", "OCR", "Claude", "n8n", "Pennylane"],
     seoTitle:
-      "Automatisation cabinet comptable : collecte et écriture sans ressaisie | Solutions 2IA",
+      "Automatisation comptable : zéro ressaisie",
     seoDescription:
-      "Pipeline IA pour experts-comptables : collecte multicanal, lecture OCR, export Pennylane, Sage ou Quadra, relances automatiques. Hébergé en UE.",
+      "Automatisation pour cabinets comptables : chaque pièce est lue et classée dans Pennylane, Sage ou Quadra, relances automatiques incluses. Hébergé en Europe.",
     details: {
       trigger: {
         label: "Déclencheur",
@@ -257,6 +294,18 @@ export const SECTORS: Sector[] = [
       "Un client envoie des photos et une description WhatsApp : le devis part trois jours plus tard, quand le concurrent l'a déjà signé.",
     benefit:
       "Chaque demande chantier génère un pré-devis structuré dans Tolteck ou Obat, avec une notification à l'artisan dès la mise en attente.",
+    heroAccent: "le pré-devis prêt avant le concurrent",
+    gains: [
+      { title: "Du temps", text: "Photos et description WhatsApp deviennent un pré-devis structuré dans Tolteck, Obat ou Batappli. Vous relisez et ajustez au lieu de tout saisir le soir." },
+      { title: "De l'argent", text: "Le devis qui part le jour même a plus de chances d'être signé que celui qui part trois jours après. La relance automatique à J+3 rattrape ceux qui allaient s'oublier." },
+      { title: "Vos clients", text: "Chaque demande reçoit une réponse rapide et un devis lisible. Le client sait où il en est, sans avoir à vous rappeler." },
+    ],
+    forWho: [
+      "Vous faites vos devis sur Tolteck, Obat, Batappli ou un outil équivalent",
+      "Les demandes arrivent par WhatsApp, mail ou téléphone, souvent avec des photos",
+      "Vous perdez des chantiers parce que le devis part trop tard",
+    ],
+    notForYou: "Si chaque chantier exige une visite avant tout chiffrage, le flux prépare le dossier mais ne remplace pas le métré : on cadre ensemble ce qu'il peut faire.",
     nodes: [
       {
         id: "sources", tool: "jobphoning",
@@ -297,9 +346,9 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Tolteck", "Obat", "Batappli", "Claude", "n8n"],
     seoTitle:
-      "Automatisation BTP : devis et relances auto | Solutions 2IA",
+      "Automatisation BTP : devis et relances",
     seoDescription:
-      "Pipeline IA pour artisans BTP : demande analysée, pré-devis généré dans Tolteck ou Obat, relance auto J+3 si sans réponse. Hébergé en UE.",
+      "Automatisation pour artisans du BTP : la demande WhatsApp devient un pré-devis dans Tolteck ou Obat, relance automatique à J+3 sans réponse. Hébergé en Europe.",
     details: {
       trigger: {
         label: "Déclencheur",
@@ -327,6 +376,18 @@ export const SECTORS: Sector[] = [
       "Les réservations arrivent sur Instagram, WhatsApp et le site en même temps : une table promise deux fois, une soirée pleine qui se vide d'un coup.",
     benefit:
       "Chaque demande est lue, la disponibilité vérifiée et la réservation posée dans Zenchef ou TheFork avant que vous ayez vu le message.",
+    heroAccent: "chaque réservation posée sans vous",
+    gains: [
+      { title: "Du temps", text: "Instagram, WhatsApp, site : chaque demande est lue, la disponibilité vérifiée et la réservation posée dans Zenchef ou TheFork. Vous n'êtes plus au téléphone pendant le service." },
+      { title: "De l'argent", text: "Le rappel de la veille réduit les tables réservées puis oubliées. Une table libérée à temps est une table remise en vente, pas une perte sèche." },
+      { title: "Vos clients", text: "Réponse en quelques minutes, même à 23 h, avec votre ton. Plus de table promise deux fois, plus de message resté sans réponse." },
+    ],
+    forWho: [
+      "Vous prenez des réservations sur Zenchef, TheFork ou Google Calendar",
+      "Les demandes arrivent en même temps sur plusieurs canaux",
+      "Les tables réservées puis oubliées vous coûtent des soirées",
+    ],
+    notForYou: "Si vous ne prenez pas de réservation, ou si une seule personne gère un seul canal sans difficulté, ce flux n'apportera pas grand-chose : je vous le dirai franchement.",
     nodes: [
       {
         id: "sources", tool: "jobphoning",
@@ -367,9 +428,9 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Zenchef", "TheFork", "Google Calendar", "Claude", "SMS"],
     seoTitle:
-      "Automatisation restaurant : résa et no-show | Solutions 2IA",
+      "Automatisation restaurant : réservations",
     seoDescription:
-      "Pipeline IA pour restaurants : demandes multicanal traitées, réservation posée dans Zenchef ou TheFork, rappel J-1 anti no-show automatique. Hébergé en UE.",
+      "Automatisation pour restaurants : demandes Instagram, WhatsApp et site traitées, réservation posée dans Zenchef ou TheFork, rappel la veille. Hébergé en Europe.",
     details: {
       trigger: {
         label: "Déclencheur",
@@ -397,6 +458,18 @@ export const SECTORS: Sector[] = [
       "Un prospect CPF remplit le formulaire un vendredi : sans relance sous 48 h, il signe ailleurs et le dossier de financement n'existe plus.",
     benefit:
       "Chaque lead est qualifié, le programme adapté à son profil et le dossier d'inscription envoyé à la signature sans intervention manuelle.",
+    heroAccent: "le dossier signé avant le week-end",
+    gains: [
+      { title: "Du temps", text: "Chaque demande CPF ou OPCO est qualifiée, le bon programme proposé et le dossier créé dans Digiforma ou Dendreo. Vous validez, vous ne ressaisissez pas." },
+      { title: "De l'argent", text: "Un prospect relancé dans l'heure signe plus souvent que celui relancé le lundi. La convention part à la signature Yousign sans attendre." },
+      { title: "Vos clients", text: "Le stagiaire reçoit une réponse claire et un dossier complet, du premier contact à la signature. Moins de relances, moins de dossiers de financement abandonnés." },
+    ],
+    forWho: [
+      "Vous gérez vos sessions sur Digiforma, Dendreo ou un outil équivalent",
+      "Vos demandes CPF ou OPCO arrivent par formulaire et par mail",
+      "Le dossier de financement traîne parfois jusqu'à la perte du prospect",
+    ],
+    notForYou: "Si vous formez uniquement en intra pour quelques grands comptes, la qualification automatique apporte peu : la valeur est alors dans la préparation des dossiers, pas dans le tri.",
     nodes: [
       {
         id: "sources", tool: "jobphoning",
@@ -437,9 +510,9 @@ export const SECTORS: Sector[] = [
     ],
     stack: ["Digiforma", "Dendreo", "Yousign", "Claude", "n8n"],
     seoTitle:
-      "Automatisation organisme formation : CPF et OPCO | Solutions 2IA",
+      "Automatisation formation : CPF et OPCO",
     seoDescription:
-      "Pipeline IA pour organismes de formation : lead CPF ou OPCO qualifié, programme sélectionné, dossier Digiforma ou Dendreo, signature Yousign. Hébergé en UE.",
+      "Automatisation pour organismes de formation : lead CPF ou OPCO qualifié, dossier créé dans Digiforma ou Dendreo, signature Yousign. Hébergé en Europe.",
     details: {
       trigger: {
         label: "Déclencheur",

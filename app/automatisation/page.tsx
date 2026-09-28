@@ -8,20 +8,21 @@ import {
 import { AutomatisationPage } from "./AutomatisationPage";
 
 export const metadata: Metadata = {
-  title: "Automatisation sur mesure : vos tâches répétitives se font seules",
+  title: "Automatisation : vos tâches se font seules",
   description:
-    "Je relie vos logiciels pour supprimer ressaisies, relances et transferts manuels. Exemple réel : appels de prospection → fiches clients. Échange gratuit.",
+    "Je relie vos logiciels entre eux : ressaisies, relances et transferts se font seuls. Mon propre flux de prospection en exemple. Premier échange gratuit.",
   keywords: [
     "automatisation tâches répétitives PME",
     "relier ses logiciels entre eux",
     "automatisation ressaisie CRM facturation",
     "automatisation workflow entreprise France",
+    "facture électronique 2026 automatisation",
   ],
   alternates: { canonical: "/automatisation" },
   openGraph: {
     title: "Automatisation : ce qui se répète peut se faire tout seul",
     description:
-      "Je relie vos logiciels entre eux pour supprimer ressaisies et relances manuelles. Premier échange gratuit.",
+      "Je relie vos logiciels entre eux : ressaisies, relances et transferts se font seuls. Mon propre flux de prospection en exemple. Premier échange gratuit.",
     url: "/automatisation",
     type: "website",
   },
@@ -32,7 +33,7 @@ export default function Page() {
     buildServiceSchema({
       name: "Automatisation sur mesure",
       description:
-        "Connexion de vos logiciels pour supprimer ressaisies, relances et transferts manuels entre CRM, facturation, mails et tableurs.",
+        "Connexion de vos logiciels pour supprimer ressaisies, relances et transferts manuels entre CRM, facturation, mails et tableurs. Facture électronique 2026 : génération, transmission et suivi automatisés.",
       url: "/automatisation",
       serviceType: "Automatisation",
       audience: "PME et ETI",

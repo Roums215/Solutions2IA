@@ -57,7 +57,7 @@ function PipelineStep({ label, status, icon, delay, loopActive }: {
   return (
     <motion.div
       className={`flex items-center gap-2.5 px-3 py-2 rounded-lg border transition-all ${
-        status === "done" ? "border-green-400/20 bg-green-400/5" :
+        status === "done" ? "border-success/20 bg-success/5" :
         status === "active" ? "border-cyan/30 bg-cyan/5" :
         "border-border-subtle bg-bg-tertiary/20"
       }`}
@@ -66,7 +66,7 @@ function PipelineStep({ label, status, icon, delay, loopActive }: {
       transition={{ delay, duration: 0.5, ease }}
     >
       <div className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 ${
-        status === "done" ? "bg-green-400/15 text-green-400" :
+        status === "done" ? "bg-success/15 text-success" :
         status === "active" ? "bg-cyan/15 text-cyan" :
         "bg-bg-tertiary/40 text-text-tertiary"
       }`}>
@@ -84,7 +84,7 @@ function PipelineStep({ label, status, icon, delay, loopActive }: {
         }`}>{label}</span>
       </div>
       {status === "done" && (
-        <span className="text-[8px] text-green-400/60 font-mono ml-auto">0.2s</span>
+        <span className="text-[8px] text-success/60 font-mono ml-auto">0.2s</span>
       )}
     </motion.div>
   );
@@ -206,9 +206,9 @@ function AutomationSceneInner() {
             </div>
             <div className="space-y-1.5">
               <PipelineStep label="Réception webhook" status="done" delay={0.9} loopActive={loopActive} icon={<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12" /></svg>} />
-              <div className="ml-2.5 w-px h-3 bg-gradient-to-b from-green-400/30 to-cyan/20" />
+              <div className="ml-2.5 w-px h-3 bg-gradient-to-b from-success/30 to-cyan/20" />
               <PipelineStep label="Transformation IA" status="done" delay={1.1} loopActive={loopActive} icon={<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12" /></svg>} />
-              <div className="ml-2.5 w-px h-3 bg-gradient-to-b from-green-400/30 to-cyan/20" />
+              <div className="ml-2.5 w-px h-3 bg-gradient-to-b from-success/30 to-cyan/20" />
               <PipelineStep label="Validation automatique" status="active" delay={1.3} loopActive={loopActive} icon={null} />
               <div className="ml-2.5 w-px h-3 bg-gradient-to-b from-cyan/20 to-transparent" />
               <PipelineStep label="Push CRM + Slack" status="pending" delay={1.5} loopActive={loopActive} icon={<div className="w-1.5 h-1.5 rounded-full bg-text-tertiary/30" />} />
@@ -229,7 +229,7 @@ function AutomationSceneInner() {
             <span className="text-[9px] text-text-tertiary uppercase tracking-[0.15em] font-semibold block mb-3">Métriques live</span>
             {[
               { label: "Tâches/heure", value: "1,247", color: "text-cyan", bar: "w-[85%] bg-cyan/30" },
-              { label: "Latence moy.", value: "0.3s", color: "text-green-400", bar: "w-[15%] bg-green-400/30" },
+              { label: "Latence moy.", value: "0.3s", color: "text-success", bar: "w-[15%] bg-success/30" },
               { label: "Succès", value: "99.98%", color: "text-accent-light", bar: "w-[99%] bg-accent-primary/30" },
               { label: "Files actives", value: "24", color: "text-cyan", bar: "w-[60%] bg-cyan/20" },
             ].map((m, i) => (
@@ -271,11 +271,11 @@ function AutomationSceneInner() {
             <span className="text-[8px] text-text-tertiary uppercase tracking-wider block mb-2 text-center">Intégrations connectées</span>
             <div className="flex items-center gap-2">
               {[
-                { name: "Slack", color: "border-green-400/20 bg-green-400/5" },
+                { name: "Slack", color: "border-success/20 bg-success/5" },
                 { name: "CRM", color: "border-cyan/20 bg-cyan/5" },
                 { name: "Email", color: "border-accent-primary/20 bg-accent-glow" },
                 { name: "API", color: "border-cyan/20 bg-cyan/5" },
-                { name: "DB", color: "border-green-400/20 bg-green-400/5" },
+                { name: "DB", color: "border-success/20 bg-success/5" },
                 { name: "S3", color: "border-accent-primary/20 bg-accent-glow" },
               ].map((node, i) => (
                 <motion.div

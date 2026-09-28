@@ -73,7 +73,7 @@ export function SectorCard({
           <div style={{ transform: "translateZ(15px)" }}>
             <svg
               viewBox={`0 0 ${MINI_PIPELINE_WIDTH} 24`}
-              className="h-6 w-full text-green-400"
+              className="h-6 w-full text-success"
               role="img"
               aria-label={`Pipeline ${sector.name} en ${sector.nodes.length} étapes`}
             >
