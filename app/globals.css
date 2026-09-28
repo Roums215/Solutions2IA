@@ -30,6 +30,37 @@
   --color-cyan: #22d3ee;
   --color-cyan-glow: rgba(34, 211, 238, 0.18);
 
+  /* États (remplacent green-400 / red-400 posés en dur) */
+  --color-success: #4ade80;
+  --color-success-glow: rgba(74, 222, 128, 0.12);
+  --color-danger: #f87171;
+  --color-danger-glow: rgba(248, 113, 113, 0.12);
+  --color-warning: #f59e0b;
+  --color-warning-glow: rgba(245, 158, 11, 0.14);
+
+  /* Surface claire « papier » : maquettes d'application (tableaux de bord) posées sur le site sombre */
+  --color-paper: #ffffff;
+  --color-paper-2: #f3f5fb;
+  --color-paper-3: #e9ecf5;
+  --color-paper-line: rgba(20, 24, 51, 0.09);
+  /* Filet lisible des schémas : les liaisons doivent se voir sans peser (LOT 4G). */
+  --color-paper-line-strong: rgba(20, 24, 51, 0.2);
+  --color-ink: #141833;
+  --color-ink-2: #4a5170;
+  --color-ink-3: #8a90ab;
+  /* Versions lisibles sur papier des états (le vert/rouge clairs ne passent pas sur blanc) */
+  --color-success-ink: #15803d;
+  --color-warning-ink: #b45309;
+  --color-danger-ink: #b91c1c;
+
+  /* Film hero de l'accueil (components/film) : fond du plan et CTA « Parler de mon besoin ».
+     Le film garde sa palette interne en dur (module de rendu fermé, comme SpotlightCard glow). */
+  --color-film-bg: #04050d;
+  --color-film-blue: #5a89ff;
+  --color-film-cyan: #38cfff;
+  --color-film-ink: #04122c;
+  --color-film-glow: rgba(70, 150, 255, 0.9);
+
   /* Typography */
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -124,6 +155,60 @@ body {
   background-clip: text;
 }
 
+/* Matière fluide dans le texte (LOT 4G) : le dégradé se déplace lentement à
+   l'intérieur des lettres. Un seul mot par écran, jamais un titre entier.
+   Le texte est peint dès le premier rendu (aucun opacity: 0) : le LCP est intact,
+   seule la position du dégradé bouge, et elle se fige en reduced-motion. */
+@keyframes text-flow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.text-gradient-fluid {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent-light) 0%,
+    var(--color-cyan) 24%,
+    color-mix(in oklab, var(--color-accent-light) 62%, var(--color-accent-dark)) 46%,
+    var(--color-accent-light) 68%,
+    var(--color-cyan) 88%,
+    var(--color-accent-light) 100%
+  );
+  background-size: 200% auto;
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: text-flow 16s linear infinite;
+}
+
+/* Sur papier blanc, le même mouvement avec des encres assombries (même logique
+   que .surface-light .text-gradient-strong : la version claire ne passe pas). */
+.surface-light .text-gradient-fluid {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-accent-dark) 0%,
+    var(--color-accent-primary) 22%,
+    color-mix(in oklab, var(--color-cyan) 58%, var(--color-accent-dark)) 46%,
+    var(--color-accent-primary) 70%,
+    var(--color-accent-dark) 100%
+  );
+}
+
+html[data-perf="minimal"] .text-gradient-fluid {
+  animation: none;
+  background-position: 22% center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-fluid {
+    animation: none;
+    background-position: 22% center;
+  }
+}
+
 .glow-accent {
   box-shadow: 0 0 20px var(--color-accent-glow), 0 0 60px var(--color-accent-glow);
 }
@@ -200,13 +285,13 @@ body {
 .section-shell {
   position: relative;
   overflow: visible;
-  padding-block: clamp(6rem, 9vw, 9rem);
+  padding-block: clamp(6.5rem, 10vw, 10rem);
 }
 
 .section-shell-tight {
   position: relative;
   overflow: visible;
-  padding-block: clamp(4.5rem, 7vw, 6.5rem);
+  padding-block: clamp(5rem, 7.5vw, 7rem);
 }
 
 .section-shell-compact {
@@ -234,11 +319,19 @@ body {
   margin-top: clamp(2.5rem, 4vw, 4rem);
 }
 
-/* Espacement standardisé sous un SectionHeading */
-.section-shell > .section-container > * + .grid,
-.section-shell > .section-container > * + .flex,
-.section-shell > .section-container > * + [class*="space-y"] {
-  margin-top: clamp(3rem, 5vw, 4.5rem);
+/* Espacement standardisé sous un SectionHeading (tous les shells, tous les containers) */
+:is(.section-shell, .section-shell-tight, .section-shell-compact)
+  > :is(.section-container, .section-container-narrow, .section-container-reading)
+  > * + :is(.grid, .flex, [class*="space-y"]) {
+  margin-top: clamp(3.5rem, 6vw, 5rem);
+}
+
+/* Colonne de lecture (texte long, FAQ, articles) */
+.section-container-reading {
+  position: relative;
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
 }
 
 .section-surface {
@@ -261,6 +354,23 @@ body {
   padding-inline: clamp(1rem, 4vw, 1.5rem);
 }
 
+/* Hero de l'accueil : contenu jusqu'à 1552 px (97rem) pour laisser au film la plus grande
+   colonne possible (ses textes suivent l'échelle largeur / 1920). Dès xl, gouttière
+   progressive (24 px à 1280, 56 px dès 1520) puis centrage : continu, sans saut au resize. */
+.section-container-wide {
+  position: relative;
+  max-width: 100rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+}
+
+@media (min-width: 80rem) {
+  .section-container-wide {
+    max-width: none;
+    padding-inline: max(clamp(1.5rem, 12.5vw - 8.5rem, 3.5rem), calc((100% - 97rem) / 2));
+  }
+}
+
 .section-intro-panel {
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -270,6 +380,193 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 20px 60px rgba(0, 0, 0, 0.22);
   backdrop-filter: blur(16px);
+}
+
+/* Carte « verre » : fond très transparent, reflet haut, lumières lentes derrière.
+ * Les lumières (.glass-light) n'animent que transform (compositor) ; elles sont
+ * figées en tier reduced et retirées en tier minimal. */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.015) 55%,
+    rgba(255, 255, 255, 0.035)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+    0 24px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px) saturate(1.25);
+  transition: border-color 0.4s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Reflet de vitre sur le tiers haut */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 42%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass-light {
+  position: absolute;
+  z-index: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(56px);
+  opacity: 0.6;
+  will-change: transform;
+  animation: glass-drift 18s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.glass-light-cyan {
+  background: radial-gradient(circle, var(--color-cyan) 0%, transparent 70%);
+}
+
+.glass-light-indigo {
+  background: radial-gradient(circle, var(--color-accent-primary) 0%, transparent 70%);
+  animation-duration: 26s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes glass-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(14%, -12%, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(-10%, 10%, 0) scale(0.92);
+  }
+}
+
+/* Matière « verre » à composer (variante A, validée le 17 septembre 2026).
+   Contrairement à .glass-card, elle ne pose ni bordure ni rayon ni overflow : la carte
+   garde les siens, donc ses états de survol continuent de fonctionner. */
+.glass-surface {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.055),
+    rgba(255, 255, 255, 0.018) 55%,
+    rgba(255, 255, 255, 0.04)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.02),
+    0 24px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px) saturate(1.25);
+  transition: background 0.4s ease;
+}
+
+.glass-surface:hover {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.028) 55%,
+    rgba(255, 255, 255, 0.055)
+  );
+}
+
+/* Bulle de verre : la même matière, pour un nœud posé SUR un schéma (constellation).
+   Un peu plus dense que .glass-surface (des traits lumineux passent dessous) et dotée
+   d'un reflet en haut à gauche, qui donne la courbure. */
+.glass-bubble {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      120% 80% at 22% 8%,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.03) 46%,
+      transparent 72%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.03) 55%,
+      rgba(255, 255, 255, 0.055)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -14px 26px -20px rgba(155, 165, 255, 0.5),
+    0 22px 50px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(14px) saturate(1.3);
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.glass-bubble:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -14px 26px -20px rgba(155, 165, 255, 0.6),
+    0 26px 60px rgba(0, 0, 0, 0.38),
+    0 0 40px -18px rgba(34, 211, 238, 0.55);
+}
+
+/* Repli sans flou : tier reduced, tier minimal, et navigateur sans backdrop-filter.
+   Indispensable : sans lui, le texte se retrouverait posé sur le décor brut. */
+html[data-perf="reduced"] .glass-surface,
+html[data-perf="minimal"] .glass-surface,
+html[data-perf="reduced"] .glass-surface:hover,
+html[data-perf="minimal"] .glass-surface:hover {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(23, 27, 48, 0.94), rgba(14, 17, 32, 0.94));
+}
+
+/* La bulle est posée sur un schéma : son repli est franchement opaque, sinon les
+   traits passeraient à travers le texte. */
+html[data-perf="reduced"] .glass-bubble,
+html[data-perf="minimal"] .glass-bubble {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(26, 30, 54, 0.97), rgba(15, 18, 34, 0.97));
+}
+
+@supports not (backdrop-filter: blur(4px)) {
+  .glass-surface,
+  .glass-card {
+    background: linear-gradient(160deg, rgba(23, 27, 48, 0.94), rgba(14, 17, 32, 0.94));
+  }
+
+  .glass-bubble {
+    background: linear-gradient(160deg, rgba(26, 30, 54, 0.97), rgba(15, 18, 34, 0.97));
+  }
+}
+
+html[data-perf="reduced"] .glass-card {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(23, 27, 48, 0.94), rgba(14, 17, 32, 0.94));
+}
+
+html[data-perf="reduced"] .glass-light {
+  animation: none;
+}
+
+html[data-perf="minimal"] .glass-card {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(23, 27, 48, 0.94), rgba(14, 17, 32, 0.94));
+}
+
+html[data-perf="minimal"] .glass-light {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-light {
+    animation: none;
+  }
 }
 
 .surface-card {
@@ -289,6 +586,134 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 18px 44px rgba(0, 0, 0, 0.16);
   border-radius: 1.25rem;
+}
+
+/* ─── Finition LOT 4G : contraste, profondeur, délimitations ────────────────
+ * Une carte se lit comme un objet fini : un contour visible, un dessus éclairé,
+ * une ombre portée, et des sous-zones (en-tête, pied) séparées par un filet de
+ * lumière plutôt que par une bordure de plus. Rien ne bouge, rien ne brille :
+ * seule la matière change.
+ */
+
+/* Grande carte posée sur une section sombre. */
+.panel-card {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(
+    180deg,
+    rgba(28, 32, 58, 0.88) 0%,
+    rgba(17, 20, 37, 0.88) 48%,
+    rgba(10, 12, 23, 0.9) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 26px 52px -30px rgba(0, 0, 0, 0.95);
+}
+
+/* En-tête interne : plus clair que le corps, refermé par un filet lumineux. */
+.panel-head {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.012));
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.09);
+}
+
+/* Zone basse interne : plus sombre que le corps, ouverte par un filet lumineux. */
+.panel-foot {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.34));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+/* Grande carte posée sur une surface claire : même grammaire, encre au lieu de lumière. */
+.paper-card {
+  position: relative;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 13%, transparent);
+  background: linear-gradient(
+    180deg,
+    var(--color-paper) 0%,
+    color-mix(in oklab, var(--color-accent-primary) 4%, var(--color-paper)) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 2px color-mix(in oklab, var(--color-ink) 7%, transparent),
+    0 26px 50px -32px color-mix(in oklab, var(--color-ink) 45%, transparent);
+}
+
+/* Sous-carte claire : bleu très pâle, relief léger, jamais un aplat gris. */
+.paper-sub {
+  border: 1px solid color-mix(in oklab, var(--color-ink) 11%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--color-accent-primary) 4%, var(--color-paper)) 0%,
+    color-mix(in oklab, var(--color-accent-primary) 8%, var(--color-paper)) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Bulle de verre discrète pour UNE sous-zone (réassurance du CTA, légende du hero).
+ * Volontairement rare : la page n'est pas en verre, un composant l'est. */
+.glass-inset {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.075),
+    rgba(255, 255, 255, 0.025) 58%,
+    rgba(255, 255, 255, 0.05)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22),
+    0 14px 30px -20px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px) saturate(1.2);
+}
+
+html[data-perf="reduced"] .glass-inset,
+html[data-perf="minimal"] .glass-inset {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(26, 30, 52, 0.9), rgba(16, 19, 34, 0.9));
+}
+
+@supports not (backdrop-filter: blur(4px)) {
+  .glass-inset {
+    background: linear-gradient(160deg, rgba(26, 30, 52, 0.9), rgba(16, 19, 34, 0.9));
+  }
+}
+
+/* Bouton principal : dégradé bleu-violet, épaisseur douce, ombre portée colorée.
+ * Ni glow envahissant, ni relief de dessin animé : une pastille nette qui appelle
+ * le clic. Le mouvement reste en transform (compositor). */
+.btn-premium {
+  /* Deux couches : un reflet de vitre sur la moitié haute, puis le dégradé de marque.
+     C'est le reflet qui donne l'épaisseur, pas une ombre de plus. */
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 48%),
+    linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--color-accent-light) 42%, var(--color-accent-primary)) 0%,
+      var(--color-accent-primary) 46%,
+      var(--color-accent-dark) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.16),
+    0 10px 22px -12px var(--color-accent-glow-strong),
+    0 22px 44px -26px rgba(79, 70, 229, 0.72);
+  transition:
+    transform 0.35s var(--ease-premium),
+    box-shadow 0.35s var(--ease-premium),
+    filter 0.35s var(--ease-premium);
+}
+
+.btn-premium:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.16),
+    0 14px 26px -12px var(--color-accent-glow-strong),
+    0 28px 54px -26px rgba(79, 70, 229, 0.85);
+}
+
+.btn-premium:active {
+  transform: translateY(0) scale(0.99);
 }
 
 .reading-copy {
@@ -363,6 +788,66 @@ body {
 .hero-enter-fade {
   animation: hero-fade 1s ease backwards;
   animation-delay: var(--enter-delay, 0s);
+}
+
+/* CTA du film hero (design_handoff_hero_film, chapitre final) : pilule dégradé
+   bleu → cyan, capitales en mono espacées. Focus : outline (le box-shadow est pris). */
+.film-cta {
+  font-family: var(--font-film-mono, "JetBrains Mono"), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform 0.35s var(--ease-premium),
+    box-shadow 0.35s var(--ease-premium),
+    filter 0.35s var(--ease-premium);
+  color: var(--color-film-ink);
+  background: linear-gradient(140deg, var(--color-film-blue), var(--color-film-cyan));
+  box-shadow:
+    0 26px 50px -20px var(--color-film-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.film-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+  box-shadow:
+    0 32px 60px -20px var(--color-film-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.film-cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Surface claire posée sur le site sombre : hero de l'accueil, et le menu tant qu'il
+   passe au-dessus (components/layout/headerSurface.ts). Les tokens sémantiques sont
+   réaffectés au papier et à l'encre pour les enfants : text-text-primary, les bordures
+   et les cartes restent lisibles sans variante. Contrastes sur blanc : primaire 16:1,
+   secondaire 8:1, tertiaire 5:1 (ink-3 seul tomberait à 3:1). */
+.surface-light {
+  --color-text-primary: var(--color-ink);
+  --color-text-secondary: var(--color-ink-2);
+  --color-text-tertiary: color-mix(in oklab, var(--color-ink-2) 85%, var(--color-paper));
+  --color-border-subtle: var(--color-paper-line);
+  --color-border-medium: color-mix(in oklab, var(--color-ink) 14%, transparent);
+  --color-border-accent: color-mix(in oklab, var(--color-accent-primary) 40%, transparent);
+  --color-bg-primary: var(--color-paper);
+  --color-bg-card: var(--color-paper);
+  --color-accent-light: var(--color-accent-primary);
+  color: var(--color-text-primary);
+}
+
+/* Le dégradé de titre, assombri pour le blanc (l'original est calibré pour le noir). */
+.surface-light .text-gradient-strong {
+  background-image: linear-gradient(
+    120deg,
+    var(--color-accent-dark),
+    var(--color-accent-primary) 50%,
+    color-mix(in oklab, var(--color-cyan) 55%, var(--color-accent-dark))
+  );
 }
 
 /* Reduced motion : sans delay, la règle globale (duration 0.01ms) saute
@@ -540,12 +1025,14 @@ body {
  * Volontairement minimal côté CSS : les nuances par composant (particles ≤ 4,
  * orbs statiques, parallax off…) vivent dans React via le tier — un masquage
  * CSS global entrerait en conflit avec ces branches intermédiaires. */
+/* Pas de -webkit-backdrop-filter manuel : Lightning CSS (Tailwind v4) supprime alors
+ * la propriété non préfixée et Chrome ignore la version préfixée. Il génère lui-même
+ * le préfixe à partir de la déclaration standard. */
 html[data-perf="reduced"] .backdrop-blur-lg,
 html[data-perf="reduced"] .backdrop-blur-xl,
 html[data-perf="reduced"] .backdrop-blur-2xl,
 html[data-perf="reduced"] .backdrop-blur-3xl {
   backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 html[data-perf="reduced"] .glow-accent-strong {
@@ -562,7 +1049,6 @@ html[data-perf="minimal"] .backdrop-blur-2xl,
 html[data-perf="minimal"] .backdrop-blur-3xl,
 html[data-perf="minimal"] [class*="backdrop-blur"] {
   backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
 }
 
 html[data-perf="minimal"] *,

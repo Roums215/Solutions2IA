@@ -11,8 +11,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        primary:
-          "bg-gradient-to-r from-accent-primary to-accent-dark text-white shadow-lg shadow-accent-glow hover:shadow-accent-glow-strong hover:brightness-110",
+        // `.btn-premium` (globals.css) porte le dégradé, le reflet et l'ombre colorée.
+        // Il vit hors des couches Tailwind : il gagne la cascade sans `!`.
+        primary: "btn-premium text-white",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
         secondary:

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     // Version courte pour la SERP (~60 car.) — la tagline complète reste sur l'OG.
-    default: `${SITE_NAME} · Sites web, applications, agents IA sur mesure`,
+    default: `${SITE_NAME} · Sites web, applications, IA sur mesure`,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -116,7 +116,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 
   return (
-    <html lang="fr" className={cn("font-sans", geist.variable)}>
+    // suppressHydrationWarning : le script ci-dessous pose data-perf sur <html> avant
+    // l'hydratation (voulu, pour peindre le bon tier dès le premier rendu). React ne doit
+    // pas signaler cet attribut absent du HTML serveur. Ne masque que ce niveau.
+    <html lang="fr" className={cn("font-sans", geist.variable)} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: PERF_TIER_INLINE_SCRIPT }} />
       </head>

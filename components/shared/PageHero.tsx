@@ -20,6 +20,8 @@ interface PageHeroProps {
   glowColor?: string;
   /** Mobile-only preview steps (3 items expected). Falls back to Signal/Analyse/Action if omitted. */
   mobileSteps?: HeroMobileStep[];
+  /** Ligne de réassurance sous les boutons (prix de départ, pilote, garantie). Entrée CSS pure, sans coût LCP. */
+  note?: React.ReactNode;
 }
 
 const DEFAULT_MOBILE_STEPS: HeroMobileStep[] = [
@@ -64,9 +66,9 @@ function MobileHeroPreview({
           </span>
           <span className="mt-1 block truncate text-sm font-semibold text-text-primary">{label}</span>
         </div>
-        <div className="flex items-center gap-1.5 rounded-full border border-green-400/20 bg-green-400/10 px-2.5 py-1 text-[10px] font-medium text-green-300">
+        <div className="flex items-center gap-1.5 rounded-full border border-success/20 bg-success/10 px-2.5 py-1 text-[10px] font-medium text-success">
           <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-green-300"
+            className="h-1.5 w-1.5 rounded-full bg-success"
             animate={reduceMotion ? undefined : { opacity: [0.45, 1, 0.45], scale: [0.9, 1.2, 0.9] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -115,6 +117,7 @@ export function PageHero({
   visual,
   glowColor = "bg-accent-primary/5",
   mobileSteps = DEFAULT_MOBILE_STEPS,
+  note,
 }: PageHeroProps) {
   const { isMobile, shouldReduceMotion, tier, disableContentMotion } = usePerformanceMode();
   // full/reduced desktop : scène montée (elle se statifie elle-même en reduced).
@@ -202,6 +205,15 @@ export function PageHero({
                   </Button>
                 )}
               </div>
+            )}
+
+            {note && (
+              <p
+                className={`hero-enter mt-5 text-sm text-text-tertiary ${!hasVisual ? "mx-auto max-w-xl" : "max-w-xl"}`}
+                style={{ "--enter-delay": "0.4s" } as React.CSSProperties}
+              >
+                {note}
+              </p>
             )}
           </div>
 

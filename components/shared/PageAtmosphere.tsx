@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
-type Preset = "home" | "services" | "web" | "apps" | "ai" | "automation" | "studio" | "about" | "contact";
+type Preset = "home" | "services" | "web" | "apps" | "ai" | "automation" | "flow" | "studio" | "about" | "contact";
 
 interface PageAtmosphereProps {
   preset: Preset;
@@ -155,163 +155,14 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
       )}
 
       {/* ═══════════ AI ═══════════ */}
-      {preset === "ai" && (
-        <>
-          <GlowOrb x="25%" y="25%" size={700} color="accent" />
-          <GlowOrb x="75%" y="60%" size={600} color="cyan" delay={2} />
-          <GlowOrb x="50%" y="40%" size={450} color="mixed" delay={4} duration={10} />
-          {/* Neural network background */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-            {/* Neurons */}
-            {Array.from({ length: 30 }, (_, i) => {
-              const x = 40 + (i % 6) * 200 + ((i % 3) * 25);
-              const y = 60 + Math.floor(i / 6) * 150 + ((i % 2) * 35);
-              return (
-                <motion.circle
-                  key={`n${i}`}
-                  cx={x} cy={y} r="3"
-                  fill="var(--color-accent-light)"
-                  style={{ transformBox: "fill-box", transformOrigin: "center" }}
-                  animate={{ opacity: [0.08, 0.25, 0.08], scale: [1, 1.33, 1] }}
-                  transition={{ duration: 4 + (i % 3), delay: i * 0.2, repeat: Infinity }}
-                />
-              );
-            })}
-            {/* Connections */}
-            {Array.from({ length: 25 }, (_, i) => {
-              const x1 = 50 + (i % 5) * 220;
-              const y1 = 80 + (i % 4) * 160;
-              const x2 = x1 + 160 + (i % 3) * 50;
-              const y2 = y1 + (i % 2 === 0 ? 100 : -70);
-              return (
-                <motion.line
-                  key={`l${i}`}
-                  x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke="var(--color-accent-primary)" strokeWidth="0.5"
-                  animate={{ opacity: [0.03, 0.12, 0.03] }}
-                  transition={{ duration: 3 + (i % 4), delay: i * 0.25, repeat: Infinity }}
-                />
-              );
-            })}
-          </svg>
-          {/* Pulsing halos — larger and more visible */}
-          {[
-            { x: "20%", y: "30%", size: 120 },
-            { x: "75%", y: "25%", size: 100 },
-            { x: "35%", y: "70%", size: 90 },
-            { x: "65%", y: "60%", size: 110 },
-          ].map((h, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                left: h.x, top: h.y, width: h.size, height: h.size,
-                transform: "translate(-50%, -50%)",
-                background: `radial-gradient(circle, ${i % 2 === 0 ? "rgba(99,102,241,0.06)" : "rgba(34,211,238,0.05)"} 0%, transparent 70%)`,
-              }}
-              animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 5, delay: i * 1.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-        </>
-      )}
+      {/* Refonte agents-ia V2 : plus de neurones, de points ni de halos qui clignotent.
+          Un fond « système » statique : grille très légère, grandes courbes fines,
+          arcs concentriques et quelques croisements marqués. Contraste très faible,
+          aucune boucle d'animation (le fond ne concurrence jamais le texte). */}
+      {preset === "ai" && <AiSystemField />}
 
-      {/* ═══════════ AUTOMATION ═══════════ */}
-      {preset === "automation" && (
-        <>
-          <GlowOrb x="25%" y="30%" size={650} color="cyan" />
-          <GlowOrb x="70%" y="60%" size={550} color="accent" delay={2} />
-          {/* Circuit traces — more visible */}
-          <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 800">
-            {Array.from({ length: 10 }, (_, i) => {
-              const y = 40 + i * 75;
-              const off = (i % 2) * 80;
-              return (
-                <motion.path
-                  key={i}
-                  d={`M0 ${y} L${120 + off} ${y} L${170 + off} ${y + 25} L${450 + off} ${y + 25} L${500 + off} ${y} L1200 ${y}`}
-                  stroke="var(--color-cyan)" strokeWidth="0.8" fill="none"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: [0, 1, 0], opacity: [0, 0.08, 0] }}
-                  transition={{ duration: 8, delay: i * 1, repeat: Infinity }}
-                />
-              );
-            })}
-            {/* Junction nodes */}
-            {Array.from({ length: 20 }, (_, i) => (
-              <motion.rect
-                key={`jn${i}`}
-                x={60 + (i % 10) * 110}
-                y={35 + Math.floor(i / 10) * 380 + (i % 4) * 95}
-                width="5" height="5" rx="1"
-                fill="var(--color-cyan)"
-                animate={{ opacity: [0.05, 0.2, 0.05] }}
-                transition={{ duration: 3, delay: i * 0.3, repeat: Infinity }}
-              />
-            ))}
-          </svg>
-          {/* Electric sparks */}
-          {Array.from({ length: 6 }, (_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1.5 h-1.5 rounded-full"
-              style={{
-                left: `${15 + i * 14}%`,
-                top: `${20 + (i * 11) % 60}%`,
-                background: "rgba(34,211,238,0.5)",
-                boxShadow: "0 0 10px rgba(34,211,238,0.4), 0 0 20px rgba(34,211,238,0.2)",
-              }}
-              animate={{ scale: [0, 1.8, 0], opacity: [0, 1, 0] }}
-              transition={{ duration: 2.5, delay: i * 1, repeat: Infinity }}
-            />
-          ))}
-        </>
-      )}
-
-      {/* ═══════════ STUDIO ═══════════ */}
-      {preset === "studio" && (
-        <>
-          <GlowOrb x="70%" y="20%" size={600} color="accent" />
-          <GlowOrb x="30%" y="70%" size={550} color="cyan" delay={2} />
-          <GlowOrb x="55%" y="45%" size={300} color="mixed" delay={4} duration={12} />
-          {/* Creative shapes */}
-          {[
-            { x: "10%", y: "22%", size: 90, rotate: 12 },
-            { x: "85%", y: "15%", size: 70, rotate: -18 },
-            { x: "7%", y: "65%", size: 60, rotate: 25 },
-            { x: "80%", y: "70%", size: 80, rotate: -8 },
-            { x: "42%", y: "42%", size: 50, rotate: 35 },
-          ].map((s, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-2xl border border-accent-primary/[0.06]"
-              style={{ left: s.x, top: s.y, width: s.size, height: s.size * 0.65 }}
-              animate={{
-                rotate: [s.rotate, s.rotate + 8, s.rotate],
-                opacity: [0.03, 0.08, 0.03],
-                y: [0, -8, 0],
-              }}
-              transition={{ duration: 9, delay: i * 1.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-          {/* Color accent dots */}
-          {[
-            { x: "18%", y: "28%", color: "rgba(99,102,241,0.15)" },
-            { x: "72%", y: "18%", color: "rgba(34,211,238,0.12)" },
-            { x: "25%", y: "72%", color: "rgba(74,222,128,0.1)" },
-            { x: "82%", y: "58%", color: "rgba(165,180,252,0.12)" },
-            { x: "45%", y: "85%", color: "rgba(250,204,21,0.06)" },
-          ].map((d, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full"
-              style={{ left: d.x, top: d.y, width: 8, height: 8, background: d.color, boxShadow: `0 0 12px ${d.color}` }}
-              animate={{ scale: [1, 2, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 4, delay: i * 0.8, repeat: Infinity }}
-            />
-          ))}
-        </>
-      )}
+      {/* /automatisation (V3) : des systèmes reliés, pas un cyberespace. */}
+      {preset === "flow" && <FlowSystemField />}
 
       {/* ═══════════ ABOUT ═══════════ */}
       {preset === "about" && (
@@ -350,5 +201,65 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
         </>
       )}
     </div>
+  );
+}
+
+/** Fond de /agents-ia : un réseau de trajectoires, pas un ciel étoilé (ni croix ni points). SVG statique, tokens uniquement. */
+function AiSystemField() {
+  const curves = [
+    "M -80 620 C 260 520, 520 700, 860 560 C 1100 460, 1300 520, 1540 440",
+    "M -80 300 C 300 220, 560 380, 900 300 C 1160 240, 1320 300, 1540 250",
+    "M 200 -60 C 320 220, 560 420, 780 520 C 1000 620, 1180 760, 1300 960",
+    "M -80 820 C 360 760, 700 820, 1000 740 C 1220 680, 1380 700, 1540 660",
+  ];
+  return (
+    <>
+      <div className="absolute inset-0 bg-radial-top opacity-70" />
+      <div className="absolute -top-32 left-[18%] h-[36rem] w-[36rem] rounded-full bg-accent-primary/[0.06] blur-[120px]" />
+      <div className="absolute bottom-[-10rem] right-[8%] h-[32rem] w-[32rem] rounded-full bg-cyan/[0.045] blur-[120px]" />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="ai-grid" width="72" height="72" patternUnits="userSpaceOnUse">
+            <path d="M 72 0 L 0 0 0 72" fill="none" stroke="var(--color-accent-light)" strokeOpacity="0.05" strokeWidth="0.6" />
+          </pattern>
+          <radialGradient id="ai-grid-fade" cx="62%" cy="38%" r="60%">
+            <stop offset="0%" stopColor="white" stopOpacity="1" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </radialGradient>
+          <mask id="ai-grid-mask">
+            <rect width="1440" height="900" fill="url(#ai-grid-fade)" />
+          </mask>
+        </defs>
+        <rect width="1440" height="900" fill="url(#ai-grid)" mask="url(#ai-grid-mask)" />
+        {curves.map((d, i) => (
+          <path key={d} d={d} fill="none" stroke={i % 2 ? "var(--color-cyan)" : "var(--color-accent-light)"} strokeOpacity={0.075} strokeWidth={1} />
+        ))}
+        {[220, 330, 440].map((r, i) => (
+          <circle key={r} cx="1180" cy="760" r={r} fill="none" stroke="var(--color-accent-light)" strokeOpacity={0.06 - i * 0.012} strokeWidth={0.9} />
+        ))}
+      </svg>
+    </>
+  );
+}
+
+/** Fond de /automatisation (V3) : grandes trajectoires et lignes de réseau, nappes très
+ *  faibles. Ni points, ni carrés flottants, ni particules. SVG statique, tokens uniquement. */
+function FlowSystemField() {
+  const curves = [
+    "M -80 260 C 280 200, 560 320, 900 250 C 1160 200, 1320 240, 1540 200",
+    "M -80 520 C 320 460, 620 600, 960 500 C 1200 430, 1360 470, 1540 430",
+    "M -80 760 C 360 700, 720 780, 1040 700 C 1260 640, 1400 660, 1540 620",
+  ];
+  return (
+    <>
+      <div className="absolute inset-0 bg-radial-top opacity-60" />
+      <div className="absolute -top-40 right-[12%] h-[34rem] w-[34rem] rounded-full bg-cyan/[0.045] blur-[120px]" />
+      <div className="absolute bottom-[-12rem] left-[10%] h-[30rem] w-[30rem] rounded-full bg-accent-primary/[0.05] blur-[120px]" />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        {curves.map((d, i) => (
+          <path key={d} d={d} fill="none" stroke={i === 1 ? "var(--color-cyan)" : "var(--color-accent-light)"} strokeOpacity={0.07} strokeWidth={1} />
+        ))}
+      </svg>
+    </>
   );
 }

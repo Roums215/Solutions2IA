@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { mainNav } from "@/lib/content/navigation";
 import { cn } from "@/lib/utils/cn";
 import { useLoadingState } from "@/components/shared/AppShell";
+import { useHeaderOnLight } from "@/components/layout/headerSurface";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
@@ -20,6 +21,9 @@ export function Header() {
   const dropdownTimeout = useRef<NodeJS.Timeout>(undefined);
   const pathname = usePathname();
   const { hideHeaderLogo, registerLogoRef } = useLoadingState();
+  // Au-dessus d'une section claire (hero de l'accueil) : `.surface-light` passe les
+  // tokens de texte à l'encre pour tout le menu, logo compris, sans toucher à son code.
+  const onLight = useHeaderOnLight();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -95,8 +99,11 @@ export function Header() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          onLight && "surface-light",
           scrolled
-            ? "bg-bg-primary/82 backdrop-blur-2xl border-b border-border-subtle shadow-lg shadow-black/15"
+            ? onLight
+              ? "bg-paper/85 backdrop-blur-2xl border-b border-paper-line shadow-lg shadow-ink/5"
+              : "bg-bg-primary/82 backdrop-blur-2xl border-b border-border-subtle shadow-lg shadow-black/15"
             : "bg-transparent"
         )}
       >

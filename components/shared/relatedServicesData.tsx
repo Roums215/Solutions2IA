@@ -43,7 +43,7 @@ const L = {
 export const RELATED: Record<string, RelatedLink[]> = {
   "sites-web": [
     { ...L.applications, hook: "Quand un site ne suffit plus : un vrai outil pour votre métier." },
-    { ...L.automatisation, hook: "Reliez votre site à vos outils : les demandes arrivent toutes seules." },
+    { ...L.automatisation, hook: "Une fois le site en place : chaque demande se range et se relance toute seule." },
   ],
   applications: [
     { ...L.automatisation, hook: "Faites dialoguer votre application avec vos autres logiciels." },
@@ -54,8 +54,8 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { ...L.applications, hook: "Besoin d'un outil complet ? Une application sur mesure pour votre métier." },
   ],
   "agents-ia": [
-    { ...L.rag, hook: "Donnez-lui une mémoire : il répond avec vos documents." },
-    { ...L.automatisation, hook: "Automatisez ce qui l'entoure pour qu'il travaille en autonomie." },
+    { ...L.automatisation, hook: "Ce qui ne demande aucun jugement peut simplement s'enchaîner tout seul." },
+    { ...L.applications, hook: "Besoin d'un vrai outil pour votre métier, où l'assistant travaillera ?" },
   ],
   rag: [
     { ...L["agents-ia"], hook: "Un assistant qui s'appuie sur cette mémoire pour vous répondre." },

@@ -16,6 +16,8 @@ interface PremiumFlowPanelProps {
   steps: PremiumFlowStep[];
   accent?: string;
   className?: string;
+  /** Niveau du titre. `h2` par défaut (le panneau est presque toujours seul dans sa section) ; passer `h3` s'il suit un SectionHeading. */
+  headingLevel?: "h2" | "h3";
 }
 
 export function PremiumFlowPanel({
@@ -25,7 +27,9 @@ export function PremiumFlowPanel({
   steps,
   accent = "99, 102, 241",
   className,
+  headingLevel = "h2",
 }: PremiumFlowPanelProps) {
+  const Heading = headingLevel;
   const reduceMotion = useReducedMotion();
 
   return (
@@ -62,9 +66,9 @@ export function PremiumFlowPanel({
           >
             {label}
           </span>
-          <h3 className="mt-5 max-w-2xl text-2xl font-semibold tracking-[-0.03em] text-text-primary sm:text-3xl lg:text-4xl">
+          <Heading className="mt-5 max-w-2xl text-2xl font-semibold tracking-[-0.03em] text-text-primary sm:text-3xl lg:text-4xl">
             {title}
-          </h3>
+          </Heading>
           <p className="mt-4 max-w-xl text-sm leading-7 text-text-secondary sm:text-base">
             {description}
           </p>

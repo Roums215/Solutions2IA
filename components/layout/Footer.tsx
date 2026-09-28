@@ -38,7 +38,7 @@ export function Footer() {
               Belgique, Suisse et Luxembourg.
             </p>
             <div className="mt-6 flex items-center gap-2 text-xs text-text-tertiary">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              <div className="w-1.5 h-1.5 rounded-full bg-success" />
               <span>Disponible pour de nouveaux projets</span>
             </div>
           </motion.div>
