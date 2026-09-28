@@ -41,7 +41,7 @@ export function HomeProfileMatrix() {
 
   return (
     <section
-      className="section-shell"
+      className="-fonce section-shell"
       aria-labelledby="home-profiles-heading"
     >
       <div className="section-container">
@@ -107,7 +107,7 @@ function ProfileCard({
     >
       <Link
         href={profile.bridge.href}
-        className="flex h-full min-h-[200px] flex-col rounded-2xl border border-border-subtle bg-bg-card/50 px-5 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-bg-card-hover focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2 sm:px-6 sm:py-6"
+        className="glass-surface flex h-full min-h-[200px] flex-col rounded-2xl border border-border-subtle px-5 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/40 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2 sm:px-6 sm:py-6"
         aria-label={`Profil ${profile.label}`}
       >
         {/* Icône en haut */}

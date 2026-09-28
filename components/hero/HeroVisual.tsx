@@ -66,7 +66,7 @@ function DataBar({ width, delay, color = "accent" }: { width: string; delay: num
   const gradients = {
     accent: "from-accent-primary/50 to-accent-light/20",
     cyan: "from-cyan/40 to-cyan/10",
-    green: "from-green-400/40 to-green-400/10",
+    green: "from-success/40 to-success/10",
   };
   return (
     <motion.div
@@ -218,13 +218,6 @@ function HeroVisualContent() {
           animate={{ pathLength: 1, opacity: 0.4 }}
           transition={{ duration: 1.2, delay: 1.5 }}
         />
-        <motion.path
-          d="M120 400 C190 460, 250 560, 300 620"
-          stroke="url(#grad2)" strokeWidth="1"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.3 }}
-          transition={{ duration: 1.5, delay: 1.7 }}
-        />
 
         {/* Data flow particle on path — SMIL + motion opacity loop, both gated */}
         {!staticMode && !paused && (
@@ -263,8 +256,8 @@ function HeroVisualContent() {
         <div className="w-56 sm:w-64 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400 shadow-sm shadow-green-400/50" />
-              <span className="text-[10px] text-text-tertiary uppercase tracking-[0.15em] font-medium">Dashboard IA</span>
+              <div className="w-2 h-2 rounded-full bg-success shadow-sm shadow-success/50" />
+              <span className="text-[10px] text-text-tertiary uppercase tracking-[0.15em] font-medium">Tableau de bord</span>
             </div>
             <motion.div
               animate={staticMode || paused ? undefined : { opacity: [0.4, 1, 0.4] }}
@@ -281,35 +274,36 @@ function HeroVisualContent() {
             <DataBar width="95%" delay={0.9} color="accent" />
             <DataBar width="45%" delay={1.0} color="green" />
           </div>
+          {/* États d'interface, pas des résultats : rien n'est promis ici */}
           <div className="flex justify-between pt-3 border-t border-border-subtle">
             <div>
-              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Tâches auto.</span>
+              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Demandes</span>
               <motion.span
                 className="text-sm font-semibold text-accent-light font-mono"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2 }}
               >
-                2,847
+                À jour
               </motion.span>
             </div>
             <div className="text-right">
-              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Gain temps</span>
+              <span className="text-[9px] text-text-tertiary uppercase tracking-wider block">Rapports</span>
               <motion.span
-                className="text-sm font-semibold text-green-400 font-mono"
+                className="text-sm font-semibold text-success font-mono"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.3 }}
               >
-                +73%
+                Envoyés
               </motion.span>
             </div>
           </div>
         </div>
       </FloatingPanel>
 
-      {/* Mobile App — top right */}
-      <FloatingPanel className="absolute top-8 right-0 sm:top-12 sm:right-0 lg:top-[150px] lg:right-0" delay={0.6} duration={8.5} amplitude={18} rotate={-0.6} depth={32}>
+      {/* Mobile App — top right (remonté depuis que le widget Performance est parti) */}
+      <FloatingPanel className="absolute top-8 right-0 sm:top-12 sm:right-0 lg:top-10 lg:right-0" delay={0.6} duration={8.5} amplitude={18} rotate={-0.6} depth={32}>
         <div className="w-[140px] sm:w-[156px] rounded-2xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-2.5 px-0.5">
             <span className="text-[8px] text-text-tertiary font-medium">9:41</span>
@@ -318,7 +312,7 @@ function HeroVisualContent() {
                 <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M8.53 16.11a6 6 0 016.95 0M12 20h.01" />
               </svg>
               <div className="w-4 h-2 rounded-sm border border-text-tertiary/40 relative">
-                <div className="absolute inset-0.5 rounded-xs bg-green-400/60" />
+                <div className="absolute inset-0.5 rounded-xs bg-success/60" />
               </div>
             </div>
           </div>
@@ -333,10 +327,11 @@ function HeroVisualContent() {
             <div className="h-1 w-[50%] rounded bg-white/5" />
           </div>
 
+          {/* Entrées de menu sans compteur : aucun chiffre sans statut dans le hero */}
           {[
-            { label: "Notifications", count: "12", active: true },
-            { label: "Automatisations", count: "8", active: false },
-            { label: "Rapports IA", count: "3", active: false },
+            { label: "Rendez-vous", active: true },
+            { label: "Devis", active: false },
+            { label: "Messages", active: false },
           ].map((item, i) => (
             <motion.div
               key={item.label}
@@ -349,7 +344,7 @@ function HeroVisualContent() {
               <div className="flex-1 min-w-0">
                 <div className="text-[8px] text-text-secondary truncate">{item.label}</div>
               </div>
-              <span className="text-[8px] font-mono text-accent-light">{item.count}</span>
+              <span aria-hidden className="text-[9px] text-text-tertiary">›</span>
             </motion.div>
           ))}
 
@@ -364,7 +359,8 @@ function HeroVisualContent() {
         </div>
       </FloatingPanel>
 
-      {/* AI Agent Panel — bottom center */}
+      {/* Rapport d'intervention — bottom center. Illustre le seul projet réel
+          raconté plus bas (HomeProofTelecom) : rien d'autre que ce qui y est dit. */}
       <FloatingPanel className="absolute bottom-0 left-1/2 -translate-x-1/2 sm:bottom-2" delay={0.8} duration={6.5} amplitude={16} rotate={0.3} depth={14}>
         <div className="w-[260px] sm:w-[280px] rounded-xl border border-border-accent bg-bg-card/90 backdrop-blur-xl p-4 shadow-2xl shadow-accent-glow/10 card-shine">
           <div className="flex items-center gap-3 mb-4">
@@ -384,24 +380,24 @@ function HeroVisualContent() {
               </svg>
             </motion.div>
             <div>
-              <span className="text-xs font-semibold text-text-primary block">Agent IA Solutions 2IA</span>
+              <span className="text-xs font-semibold text-text-primary block">Rapport d&apos;intervention</span>
               <div className="flex items-center gap-1.5">
                 <motion.div
-                  className="w-1.5 h-1.5 rounded-full bg-green-400"
+                  className="w-1.5 h-1.5 rounded-full bg-success"
                   animate={staticMode || paused ? undefined : { scale: [1, 1.3, 1] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 />
-                <span className="text-[10px] text-green-400 font-medium">En traitement</span>
+                <span className="text-[10px] text-success font-medium">En cours</span>
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
             {[
-              { done: true, text: "Analyse des données terminée", delay: 1.4 },
-              { done: true, text: "3 workflows automatisés créés", delay: 1.6 },
-              { done: true, text: "Rapport de performance généré", delay: 1.8 },
-              { done: false, text: "Optimisation IA en cours...", delay: 2.0 },
+              { done: true, text: "Rapport saisi depuis le terrain", delay: 1.4 },
+              { done: true, text: "Rapport validé", delay: 1.6 },
+              { done: true, text: "Vu par le responsable", delay: 1.8 },
+              { done: false, text: "Envoi au client par mail...", delay: 2.0 },
             ].map((line) => (
               <motion.div
                 key={line.text}
@@ -411,7 +407,7 @@ function HeroVisualContent() {
                 transition={{ delay: line.delay, duration: 0.5, ease: premiumEase }}
               >
                 {line.done ? (
-                  <div className="w-4 h-4 rounded-full bg-green-400/15 flex items-center justify-center flex-shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-success/15 flex items-center justify-center flex-shrink-0">
                     <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
@@ -430,16 +426,16 @@ function HeroVisualContent() {
             ))}
           </div>
 
-          {/* Progress bar */}
+          {/* Barre d'étape (état 3 / 4, pas un score) : width statique, scaleX animé */}
           <div className="mt-3 pt-3 border-t border-border-subtle">
             <div className="flex justify-between mb-1.5">
-              <span className="text-[9px] text-text-tertiary">Progression globale</span>
-              <span className="text-[9px] text-accent-light font-mono">78%</span>
+              <span className="text-[9px] text-text-tertiary">Étape</span>
+              <span className="text-[9px] text-accent-light font-mono">3 / 4</span>
             </div>
             <div className="h-1 rounded-full bg-bg-tertiary overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-accent-primary to-cyan"
-                style={{ width: "78%", transformOrigin: "left center" }}
+                style={{ width: "75%", transformOrigin: "left center" }}
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ delay: 2.2, duration: 1.2, ease: premiumEase }}
@@ -453,9 +449,9 @@ function HeroVisualContent() {
       <FloatingPanel className="absolute top-[44%] left-0 sm:top-[46%] sm:left-0 lg:top-[42%] lg:left-0 hidden sm:block" delay={1.0} duration={7.5} amplitude={13} rotate={-0.5} depth={22}>
         <div className="w-52 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center gap-1.5 mb-2.5">
-            <div className="w-2 h-2 rounded-full bg-red-400/80" />
-            <div className="w-2 h-2 rounded-full bg-yellow-400/80" />
-            <div className="w-2 h-2 rounded-full bg-green-400/80" />
+            <div className="w-2 h-2 rounded-full bg-danger/80" />
+            <div className="w-2 h-2 rounded-full bg-warning/80" />
+            <div className="w-2 h-2 rounded-full bg-success/80" />
             <span className="ml-2 text-[8px] text-text-tertiary font-mono">agent.ts</span>
           </div>
           <div className="font-mono text-[9px] space-y-1.5 leading-relaxed">
@@ -463,7 +459,7 @@ function HeroVisualContent() {
               <span className="text-accent-light">const</span> <span className="text-text-primary">agent</span> <span className="text-text-tertiary">=</span> <span className="text-cyan">new</span> <span className="text-accent-light">IA</span><span className="text-text-tertiary">();</span>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>
-              <span className="text-accent-light">await</span> <span className="text-text-primary">agent</span><span className="text-text-tertiary">.</span><span className="text-cyan">analyze</span><span className="text-text-tertiary">(</span><span className="text-green-400">data</span><span className="text-text-tertiary">);</span>
+              <span className="text-accent-light">await</span> <span className="text-text-primary">agent</span><span className="text-text-tertiary">.</span><span className="text-cyan">analyze</span><span className="text-text-tertiary">(</span><span className="text-success">data</span><span className="text-text-tertiary">);</span>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9 }}>
               <span className="text-accent-light">await</span> <span className="text-text-primary">agent</span><span className="text-text-tertiary">.</span><span className="text-cyan">automate</span><span className="text-text-tertiary">();</span>
@@ -472,10 +468,10 @@ function HeroVisualContent() {
               <span className="text-accent-light">await</span> <span className="text-text-primary">agent</span><span className="text-text-tertiary">.</span><span className="text-cyan">optimize</span><span className="text-text-tertiary">();</span>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.3 }}>
-              <span className="text-green-400/70">{"// → +73% efficacité"}</span>
+              <span className="text-success/70">{"// → +73% efficacité"}</span>
             </motion.div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.5 }}>
-              <span className="text-green-400/70">{"// → 2.847 tâches/jour"}</span>
+              <span className="text-success/70">{"// → 2.847 tâches/jour"}</span>
             </motion.div>
           </div>
         </div>
@@ -486,7 +482,7 @@ function HeroVisualContent() {
         <div className="w-48 rounded-xl border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
           <div className="flex items-center justify-between mb-2.5">
             <span className="text-[9px] text-text-tertiary uppercase tracking-[0.12em] font-medium">Performance</span>
-            <span className="text-[8px] text-green-400 font-mono">▲ 24%</span>
+            <span className="text-[8px] text-success font-mono">▲ 24%</span>
           </div>
           <div className="flex items-end gap-[3px] h-10">
             {[35, 55, 40, 70, 52, 82, 65, 90, 72, 95, 80, 88].map((h, i) => (
@@ -510,11 +506,11 @@ function HeroVisualContent() {
       {/* Automation status — middle-bottom right */}
       <FloatingPanel className="absolute top-[62%] right-0 md:top-[58%] lg:top-[58%] lg:right-0 hidden md:block" delay={1.1} duration={8} amplitude={12} rotate={-0.4} depth={30}>
         <div className="w-40 rounded-lg border border-border-subtle bg-bg-card/90 backdrop-blur-xl p-3 shadow-2xl card-shine">
-          <span className="text-[9px] text-text-tertiary uppercase tracking-[0.12em] font-medium block mb-2">Workflows</span>
+          <span className="text-[9px] text-text-tertiary uppercase tracking-[0.12em] font-medium block mb-2">Automatisations</span>
           {[
-            { name: "Emails", status: "actif", color: "bg-green-400" },
-            { name: "CRM sync", status: "actif", color: "bg-green-400" },
-            { name: "Reporting", status: "pause", color: "bg-yellow-400" },
+            { name: "Demandes", status: "actif", color: "bg-success" },
+            { name: "Relances", status: "actif", color: "bg-success" },
+            { name: "Rapport client", status: "envoyé", color: "bg-cyan" },
           ].map((wf, i) => (
             <motion.div
               key={wf.name}

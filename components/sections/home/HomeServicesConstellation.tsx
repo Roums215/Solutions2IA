@@ -60,34 +60,39 @@ export function HomeServicesConstellation() {
 
   return (
     <section
-      className="section-shell"
+      className="-fonce section-shell"
       aria-labelledby="home-services-heading"
     >
       <div className="section-container">
         <SectionHeading
-          label="Notre gamme"
+          label="Ce que je propose"
           title={
             <>
-              Six services,{" "}
+              Cinq services,{" "}
               <span className="text-gradient-strong">un seul système</span>.
             </>
           }
           description="Chaque service répond à une couche du système. Ils s'articulent entre eux pour accompagner votre activité."
         />
 
-        {/* ─── DESKTOP — Constellation hexagone ─────────────────────────── */}
-        <div className="relative mx-auto hidden max-w-[900px] lg:block">
+        {/* ─── DESKTOP — Constellation pentagone ────────────────────────── */}
+        {/* Le parent porte les variants : sans lui, le tracé des lignes et
+            l'apparition des bulles ne se déclenchaient jamais. */}
+        <motion.div
+          className="relative mx-auto hidden max-w-[900px] lg:block"
+          {...parentProps}
+        >
           <DesktopConstellation
             services={HOME_SERVICES}
             itemVariants={itemVariants}
             lineVariants={lineVariants}
           />
-        </div>
+        </motion.div>
 
         {/* ─── MOBILE / TABLET — Grille 2×3 ─────────────────────────────── */}
         <motion.ul
           role="list"
-          aria-label="Six services Solutions 2IA"
+          aria-label="Cinq services Solutions 2IA"
           className="mx-auto grid max-w-[680px] grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:hidden"
           {...parentProps}
         >
@@ -144,6 +149,19 @@ function DesktopConstellation({
 
   return (
     <div className="relative aspect-[5/4] w-full">
+      {/* Lumière derrière le réseau : c'est elle que les bulles réfractent.
+          Sans elle, le verre ne se lit pas dans cette zone très sombre de la page. */}
+      <div
+        aria-hidden
+        data-decor="halo"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[62%] w-[72%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-primary/20 blur-[90px]"
+      />
+      <div
+        aria-hidden
+        data-decor="halo"
+        className="pointer-events-none absolute left-[18%] top-[62%] h-[38%] w-[42%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/12 blur-[80px]"
+      />
+
       {/* SVG lines (de chaque nœud vers le centre) */}
       <svg
         aria-hidden
@@ -164,7 +182,7 @@ function DesktopConstellation({
           </linearGradient>
         </defs>
 
-        {/* 6 lignes hexagonales périmétriques (nœud i → nœud i+1) */}
+        {/* Périmètre : chaque service relié à ses deux voisins */}
         {positions.map((pos, i) => {
           const next = positions[(i + 1) % positions.length];
           return (
@@ -179,6 +197,29 @@ function DesktopConstellation({
               vectorEffect="non-scaling-stroke"
               style={{ strokeWidth: "1px" }}
               strokeDasharray="3 3"
+              variants={lineVariants}
+            />
+          );
+        })}
+
+        {/* Diagonales : chaque service relié aux deux qui ne lui sont pas voisins.
+            Avec le périmètre, les cinq services sont donc tous reliés entre eux.
+            Trait plus fin et plus discret : le réseau se lit, il ne domine pas. */}
+        {positions.map((pos, i) => {
+          const far = positions[(i + 2) % positions.length];
+          return (
+            <motion.line
+              key={`cross-${i}`}
+              x1={pos.x}
+              y1={pos.y}
+              x2={far.x}
+              y2={far.y}
+              stroke="url(#constellation-perim)"
+              strokeOpacity={0.6}
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+              style={{ strokeWidth: "0.85px" }}
+              strokeDasharray="2 4"
               variants={lineVariants}
             />
           );
@@ -219,7 +260,7 @@ function DesktopConstellation({
         variants={itemVariants}
         className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
       >
-        <div className="flex flex-col items-center gap-1 rounded-2xl border border-cyan/50 bg-bg-card/95 px-5 py-3 shadow-[0_0_30px_rgba(34,211,238,0.2)] backdrop-blur-sm">
+        <div className="glass-bubble flex flex-col items-center gap-1 rounded-[28px] border border-cyan/50 px-5 py-3 shadow-[0_0_30px_rgba(34,211,238,0.2)]">
           <span className="text-[9px] font-semibold uppercase tracking-[0.32em] text-cyan">
             {HOME_SERVICES_CENTER.label}
           </span>
@@ -245,10 +286,10 @@ function DesktopConstellation({
           >
             <Link
               href={service.href}
-              className="group flex w-[170px] flex-col items-center gap-1.5 rounded-xl border border-border-subtle bg-bg-card/90 px-3 py-3 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/50 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2"
+              className="group glass-bubble flex w-[170px] flex-col items-center gap-1.5 rounded-[26px] border border-border-subtle px-3 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/50 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2"
               aria-label={`Service ${service.title}`}
             >
-              <div className="grid h-9 w-9 place-items-center rounded-lg border border-border-subtle bg-bg-card text-cyan transition-colors duration-300 group-hover:border-cyan/40">
+              <div className="grid h-9 w-9 place-items-center rounded-full border border-border-subtle bg-bg-card/70 text-cyan transition-colors duration-300 group-hover:border-cyan/40">
                 <ServiceIconRender icon={service.icon} />
               </div>
               <span className="text-center text-[13px] font-semibold leading-tight text-text-primary">
@@ -281,7 +322,7 @@ function ServiceCard({
     >
       <Link
         href={service.href}
-        className="flex h-full min-h-[140px] flex-col gap-2 rounded-xl border border-border-subtle bg-bg-card/60 px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/40 hover:bg-bg-card-hover focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2"
+        className="glass-surface flex h-full min-h-[140px] flex-col gap-2 rounded-xl border border-border-subtle px-4 py-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan/40 focus-visible:outline-2 focus-visible:outline-cyan/60 focus-visible:outline-offset-2"
         aria-label={`Service ${service.title}`}
       >
         <div className="grid h-10 w-10 place-items-center rounded-lg border border-border-subtle bg-bg-card text-cyan transition-colors duration-300 group-hover:border-cyan/40">
@@ -358,15 +399,6 @@ function ServiceIconRender({ icon }: { icon: ServiceIcon }) {
           <path d="M3 6c2-1 5-1 7 0v13c-2-1-5-1-7 0V6z" />
           <path d="M21 6c-2-1-5-1-7 0v13c2-1 5-1 7 0V6z" />
           <path d="M10 19c0-1.5 1-2 2-2s2 0.5 2 2" />
-        </svg>
-      );
-    case "studio":
-      // Triangle de couleurs (RGB → fusion)
-      return (
-        <svg {...common}>
-          <circle cx="12" cy="7" r="3" />
-          <circle cx="7" cy="16" r="3" />
-          <circle cx="17" cy="16" r="3" />
         </svg>
       );
   }

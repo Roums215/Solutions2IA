@@ -1,36 +1,49 @@
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/hero/HeroSection";
+import { HomeDeadlineBand } from "@/components/sections/home/HomeDeadlineBand";
 import { PageAtmosphere } from "@/components/shared/PageAtmosphere";
 import { CTABand } from "@/components/shared/CTABand";
-import { PremiumFlowPanel } from "@/components/shared/PremiumFlowPanel";
-import { deliveryFlow } from "@/components/sections/home/homeDeliveryFlow";
+import { HOME_METHOD_STEPS } from "@/components/sections/home/homeMethodData";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildHowToSchema } from "@/lib/seo/schema";
 
+// Le title passe par le template du layout : « … · Solutions 2IA » (56 caractères).
+// Ne pas déclarer openGraph ici : la clé remplacerait celle du layout (image OG perdue).
+export const metadata: Metadata = {
+  title: "Sites web, applications et IA sur mesure",
+  description:
+    "Sites web, applications, automatisations et assistants IA sur mesure pour les PME. Un seul interlocuteur, site vitrine dès 500 €, premier échange gratuit.",
+};
+
 // Sections sous la fold : chunks séparés, hydration différée. ssr:true (défaut)
 // → le contenu reste dans le HTML (SEO intact), seul le JS arrive plus tard.
-const HomeServicesConstellation = dynamic(() =>
-  import("@/components/sections/home/HomeServicesConstellation").then((m) => m.HomeServicesConstellation),
+// HomeServicesConstellation et HomeTransformationFlows sont débranchés depuis le LOT 2 :
+// remplacés par HomeDailyFriction et HomeSolutionsRail. Fichiers conservés le temps de la
+// validation, candidats au nettoyage ensuite.
+const HomeDailyFriction = dynamic(() =>
+  import("@/components/sections/home/HomeDailyFriction").then((m) => m.HomeDailyFriction),
 );
-const HomeTransformationFlows = dynamic(() =>
-  import("@/components/sections/home/HomeTransformationFlows").then((m) => m.HomeTransformationFlows),
-);
-const HomeProfileMatrix = dynamic(() =>
-  import("@/components/sections/home/HomeProfileMatrix").then((m) => m.HomeProfileMatrix),
+const HomeSolutionsRail = dynamic(() =>
+  import("@/components/sections/home/HomeSolutionsRail").then((m) => m.HomeSolutionsRail),
 );
 const HomeProofTelecom = dynamic(() =>
   import("@/components/sections/home/HomeProofTelecom").then((m) => m.HomeProofTelecom),
 );
-const HomeApproachSplit = dynamic(() =>
-  import("@/components/sections/home/HomeApproachSplit").then((m) => m.HomeApproachSplit),
+// HomeApproachSplit, le PremiumFlowPanel du déroulé et HomeProfileMatrix sont débranchés
+// depuis le LOT 3 : une seule section raconte désormais la méthode. Fichiers conservés le
+// temps de la validation, candidats au nettoyage ensuite (avec homeDeliveryFlow.ts et
+// homeProfilesData.ts, qui ne servaient qu'à eux).
+const HomeMethodPath = dynamic(() =>
+  import("@/components/sections/home/HomeMethodPath").then((m) => m.HomeMethodPath),
 );
 
 export default function Home() {
   const howToSchema = buildHowToSchema({
     name: "Comment je travaille : du premier échange à l'outil en production",
     description:
-      "Méthode en quatre étapes pour créer un site web, une application ou une automatisation sur mesure : échange gratuit, proposition chiffrée, construction, mise en ligne et suivi.",
-    steps: deliveryFlow.map((s) => ({ name: s.title, text: s.description })),
+      "Méthode en quatre étapes pour créer un site web, une application ou une automatisation sur mesure : échange gratuit, proposition chiffrée, outil branché sur vos outils, puis ajustements après la mise en ligne.",
+    steps: HOME_METHOD_STEPS.map((s) => ({ name: s.title, text: s.text })),
   });
 
   return (
@@ -38,41 +51,33 @@ export default function Home() {
       <JsonLd schema={howToSchema} id="ld-home-howto" />
       <PageAtmosphere preset="home" />
 
-      {/* ── C'est quoi : la promesse ───────────────────────────────────── */}
+      {/* ── C'est quoi : la promesse (hero clair, scène narrative) ───────── */}
       <HeroSection />
 
-      {/* ── C'est quoi : les domaines (constellation 5 services) ──────── */}
-      <HomeServicesConstellation />
-
-      {/* ── Ce que ça vous apporte : transformations concrètes ────────── */}
-      <HomeTransformationFlows />
-
-      {/* ── Preuve : un projet réel raconté simplement ────────────────── */}
+      {/* ── Preuve : un projet réel, première section sombre ──────────────── */}
       <HomeProofTelecom />
 
-      {/* ── Comment ça marche : la méthode ─────────────────────────────── */}
-      <section className="section-shell-tight">
-        <div className="section-container">
-          <PremiumFlowPanel
-            label="Comment je travaille"
-            title="Quatre étapes, sans jargon, sans surprise."
-            description="Du premier échange à l'outil qui tourne : vous savez toujours où en est le projet et ce que vous payez."
-            steps={deliveryFlow}
-            accent="99, 102, 241"
-          />
-        </div>
-      </section>
+      {/* ── Le problème : les situations du quotidien (surface claire) ── */}
+      <HomeDailyFriction />
 
-      {/* ── Ce qui guide le travail ────────────────────────────────────── */}
-      <HomeApproachSplit />
+      {/* ── La réponse : les cinq familles d'outils ────────────────────── */}
+      <HomeSolutionsRail />
 
-      {/* ── Pour qui ───────────────────────────────────────────────────── */}
-      <HomeProfileMatrix />
+      {/* ── Note réglementaire : échéance légale réelle (aside, pas de h2) ── */}
+      <HomeDeadlineBand />
 
-      {/* ── L'étape suivante : un seul CTA ─────────────────────────────── */}
+      {/* ── Comment ça marche : une seule section, quatre étapes ───────── */}
+      <HomeMethodPath />
+
+      {/* ── L'étape suivante : un seul CTA, court ──────────────────────── */}
+      {/* LOT 4G : aucun prix ici. L'accueil promet et rassure, la page /services chiffre. */}
       <CTABand
-        title={<>On regarde ensemble ce qui vous <span className="text-gradient-strong">prend du temps</span> ?</>}
-        description="Premier échange gratuit, sans engagement. Vous repartez au minimum avec un regard neuf sur votre façon de travailler."
+        title={<>Vous avez un processus à <span className="text-gradient-fluid">simplifier</span> ?</>}
+        description="Expliquez-moi ce qui vous prend du temps aujourd'hui. Je vous dis simplement ce qu'il est possible d'automatiser ou de mieux connecter."
+        primaryLabel="Parler de mon besoin"
+        secondary={null}
+        trustItems={["Premier échange sans engagement", "Réponse sous 24 h"]}
+        framed
       />
     </>
   );

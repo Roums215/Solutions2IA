@@ -1,89 +1,66 @@
 "use client";
 
-import { motion } from "motion/react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useLightHeaderZone } from "@/components/layout/headerSurface";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
+import { HeroSceneMobile } from "./HeroSceneMobile";
+import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 
-// Composition hero lazy : chunk jamais téléchargé sur mobile/minimal.
-const HeroVisual = dynamic(
-  () => import("./HeroVisual").then((m) => m.HeroVisual),
-  { ssr: false, loading: () => <div aria-hidden className="h-[460px] sm:h-[560px] lg:h-[620px] xl:h-[680px]" /> },
-);
-
-const premiumEase = [0.16, 1, 0.3, 1] as const;
+// Scène 2.5D : chunk client seul, monté après l'hydratation et seulement dès md.
+// Jamais dans le chemin du LCP (le h1 et le sous-titre sont peints en CSS avant le JS),
+// jamais téléchargé sur téléphone, où HeroSceneMobile raconte la même histoire.
+const HeroScene = dynamic(() => import("./HeroScene").then((m) => m.HeroScene), {
+  ssr: false,
+  loading: () => null,
+});
 
 export function HeroSection() {
-  const { isMobile, shouldReduceMotion, tier } = usePerformanceMode();
+  const sectionRef = useRef<HTMLElement>(null);
+  // Hero clair sur un site sombre : le menu passe à l'encre tant qu'il est au-dessus.
+  useLightHeaderZone(sectionRef);
+  const { mounted, isMobile } = usePerformanceMode();
 
   return (
-    <section className="relative flex items-center overflow-hidden">
-      {/* Multi-layer background */}
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute inset-0 bg-radial-top" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[700px] bg-accent-primary/4 rounded-full blur-[160px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan/3 rounded-full blur-[120px]" />
-      <div className="absolute top-1/4 left-0 w-[300px] h-[400px] bg-accent-dark/4 rounded-full blur-[100px]" />
-      <motion.div
+    <section
+      ref={sectionRef}
+      className="surface-light relative isolate overflow-hidden rounded-b-[2rem] bg-paper lg:rounded-b-[3.5rem]"
+    >
+      {/* Décor statique : papier, grille très fine autour de la scène, deux halos */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-paper via-paper to-paper-2" />
+      <div
         aria-hidden
-        className="absolute left-1/2 top-[18%] h-[38rem] w-[38rem] -translate-x-1/2 rounded-full border border-accent-light/[0.06]"
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, delay: 0.2, ease: premiumEase }}
+        data-decor="grid"
+        className="absolute inset-0 bg-grid opacity-70 [mask-image:radial-gradient(ellipse_62%_58%_at_72%_46%,black,transparent)]"
       />
-      <motion.div
-        aria-hidden
-        className="absolute right-[-10%] top-[16%] h-64 w-64 rounded-full border border-cyan/[0.08]"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 0.75, scale: 1 }}
-        transition={{ duration: 1.2, delay: 0.45, ease: premiumEase }}
-      />
+      {/* Nappe fluide : elle relie le téléphone à l'application (LOT 4D). */}
+      <SectionFluidBackdrop variant="hero" />
 
-      {/* Decorative horizontal lines */}
-      <motion.div
-        className="absolute top-[25%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.5 }}
-      />
-      <motion.div
-        className="absolute top-[75%] left-0 right-0 h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, delay: 0.7 }}
-      />
-
-      <div className="section-container relative z-10 pt-24 pb-14 lg:pt-32 lg:pb-18 w-full">
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center">
-          {/* Text content */}
+      {/* Dès xl, espacements resserrés : à 1280 × 800 les trois repères tiennent au-dessus de la ligne de flottaison. */}
+      <div className="section-container-wide relative w-full pt-32 pb-16 lg:pt-36 lg:pb-24 xl:pt-[7.5rem] xl:pb-20">
+        <div className="grid items-center gap-12 md:gap-14 xl:grid-cols-[minmax(0,27rem)_minmax(0,1fr)] xl:gap-12">
           <div className="max-w-2xl">
-            {/* Status badge — entrée CSS (peinte avant hydration) */}
-            <div
-              className="hero-enter group inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_14px_40px_rgba(99,102,241,0.08)] transition duration-300 hover:border-border-accent hover:-translate-y-0.5"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
-              </span>
-              <span className="text-xs text-text-secondary font-medium tracking-wide">
-                Développeur indépendant · web & IA
-              </span>
-            </div>
+            {/* Intitulé éditorial : petites capitales espacées, aucune capsule, aucun
+                filet, aucun point (LOT 4G). Le texte tient tout seul. */}
+            <p className="hero-enter mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-accent-dark xl:mb-6">
+              Solutions 2IA · conception sur mesure
+            </p>
 
-            {/* Title */}
             <h1
-              className="hero-enter text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"
+              className="hero-enter text-4xl font-bold leading-[1.04] tracking-[-0.03em] text-balance sm:text-5xl lg:text-6xl xl:text-[4rem]"
               style={{ "--enter-delay": "0.12s" } as React.CSSProperties}
             >
-              Des outils qui travaillent
+              Des outils qui travaillent{" "}
               <br />
-              <span className="text-gradient-strong">pour vous</span>
+              <span className="text-gradient-fluid">pour vous</span>
             </h1>
 
-            {/* Subtitle — élément LCP : doit peindre sans attendre le JS */}
+            {/* Sous-titre : élément LCP, doit peindre sans attendre le JS */}
             <p
-              className="hero-enter mt-6 text-base sm:text-lg lg:text-[1.15rem] text-text-secondary leading-[1.85] max-w-2xl text-pretty"
+              className="hero-enter mt-6 max-w-2xl text-base leading-[1.85] text-text-secondary text-pretty sm:text-lg lg:text-[1.15rem] xl:mt-5 xl:leading-[1.75]"
               style={{ "--enter-delay": "0.24s" } as React.CSSProperties}
             >
               Je conçois des sites web, des applications et des automatisations
@@ -91,75 +68,51 @@ export function HeroSection() {
               je construis l&apos;outil qui s&apos;en charge.
             </p>
 
-            {/* CTAs */}
-            <div
-              className="hero-enter mt-10 flex flex-wrap gap-4"
-              style={{ "--enter-delay": "0.36s" } as React.CSSProperties}
-            >
-              <Button variant="primary" size="lg" href="/contact">
-                Premier échange gratuit
-                <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-0.5" />
+            {/* Zone d'action : le bouton, sa réassurance collée dessous, puis le lien
+                de parcours nettement plus bas et plus discret. Aucune métrique, aucun
+                prix : le hero promet, il ne tarife pas (LOT 4G). */}
+            <div className="hero-enter mt-10 xl:mt-9" style={{ "--enter-delay": "0.36s" } as React.CSSProperties}>
+              <Button
+                variant="primary"
+                size="lg"
+                href="/contact"
+                className="h-14 rounded-full px-9 text-[1.0625rem] font-semibold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-primary"
+              >
+                Parler de mon besoin
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-0.5" aria-hidden />
               </Button>
-              <Button variant="secondary" size="lg" href="/services">
-                Voir ce que je fais
-              </Button>
-            </div>
 
-            {/* Proof strip */}
-            <div
-              className="hero-enter-fade mt-12 flex flex-wrap items-start gap-x-8 gap-y-4"
-              style={{ "--enter-delay": "0.7s" } as React.CSSProperties}
-            >
-              {[
-                { label: "Agents intelligents", value: "IA", icon: (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-                    <rect x="3" y="11" width="18" height="10" rx="2" />
-                    <circle cx="9" cy="16" r="1" fill="currentColor" />
-                    <circle cx="15" cy="16" r="1" fill="currentColor" />
-                    <path d="M8 11V7a4 4 0 0 1 8 0v4" />
-                  </svg>
-                )},
-                { label: "Sites & applications", value: "Web", icon: (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-                    <rect x="2" y="3" width="20" height="14" rx="2" />
-                    <path d="M8 21h8M12 17v4" />
-                  </svg>
-                )},
-                { label: "Automatisation", value: "Auto", icon: (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-accent-light">
-                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                )},
-              ].map((item, i) => (
-                <div
-                  key={item.value}
-                  className="hero-enter group flex items-center gap-3 transition-transform duration-300 hover:-translate-y-[3px]"
-                  style={{ "--enter-delay": `${0.8 + i * 0.1}s` } as React.CSSProperties}
-                >
-                  <div className="w-8 h-8 rounded-lg bg-accent-glow border border-border-subtle flex items-center justify-center transition-colors duration-300 group-hover:border-border-accent group-hover:bg-accent-glow-strong">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <span className="text-sm font-bold text-text-primary block leading-tight">{item.value}</span>
-                    <span className="text-[11px] text-text-tertiary leading-tight">{item.label}</span>
-                  </div>
-                </div>
-              ))}
+              {/* La réassurance fait partie du bouton : jamais séparée de lui. */}
+              <p className="mt-3.5 pl-0.5 text-[0.8125rem] text-text-tertiary">
+                Premier échange gratuit · sans engagement
+              </p>
+
+              {/* Lien secondaire volontairement discret : un seul CTA visuel par page */}
+              <Link
+                href="/services"
+                className="group mt-8 inline-flex items-center gap-1.5 rounded-sm pl-0.5 text-[0.9rem] font-medium text-text-tertiary transition-colors duration-300 hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-primary xl:mt-7"
+              >
+                Voir les cinq services
+                <ArrowRight
+                  className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                  strokeWidth={1.75}
+                  aria-hidden
+                />
+              </Link>
             </div>
           </div>
 
-          {/* Visual composition — full/reduced desktop (HeroVisual se statifie
-              lui-même en reduced) ; minimal : hero texte seul. */}
-          {/* hidden lg:block : le SSR mobile n'embarque pas le placeholder vide de 460px */}
-          {!isMobile && !shouldReduceMotion && tier !== "minimal" && (
-            <div className="relative hidden lg:block lg:pl-4">
-              <HeroVisual />
+          {/* Scène 2.5D (≥ md). La boîte garde sa taille dès le SSR : aucun décalage au montage. */}
+          <div className="relative hidden md:block">
+            <div className="@container relative mx-auto aspect-[820/620] w-full max-w-[56rem]">
+              {mounted && !isMobile && <HeroScene />}
             </div>
-          )}
+          </div>
+
+          {/* Téléphone : la même histoire en quatre temps, lue de haut en bas */}
+          <HeroSceneMobile className="md:hidden" />
         </div>
       </div>
-
     </section>
   );
 }

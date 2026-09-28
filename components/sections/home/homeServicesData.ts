@@ -3,8 +3,7 @@ export type ServiceIcon =
   | "applications"
   | "agents-ia"
   | "automation"
-  | "rag"
-  | "studio";
+  | "rag";
 
 export type HomeService = {
   key: string;

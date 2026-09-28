@@ -8,21 +8,22 @@ import {
   HOME_TRANSFORMATIONS,
   HOME_TRANSFORMATIONS_CLOSING,
   type TransformationFlow,
+  type TransformationNode,
 } from "./homeTransformationsData";
 
 const PREMIUM_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
- * S4 V7.0 — Transformations en mini-flux (home).
+ * Transformations en mini-flux (home).
  *
- * 4 mini-schémas « avant → après » empilés. AVANT = 3 nœuds dispersés
- * désaturés. APRÈS = 3 nœuds reliés par flèches cyan fines.
+ * 4 cartes « verre » (.glass-card : fond très transparent, reflet, deux
+ * lumières lentes derrière la vitre, animées en transform uniquement).
+ * Chaque carte = AVANT (3 étapes dispersées, désaturées) → APRÈS (3 étapes
+ * reliées, cyan). Chaque étape porte une petite icône lucide.
  *
- * Distinction CG B1 : 3 nœuds maximum par état pour éviter de réutiliser
- * les grammaires sites-web (S1 fan-in 9 canaux, S2 flux vertical 9 stations).
- *
- * Motion Option B : pour chaque mini-flux, draw one-shot sur la flèche
- * centrale puis stagger des nœuds APRÈS. Reduced-motion → tout statique.
+ * Motion : draw one-shot de la flèche centrale puis stagger des étapes APRÈS.
+ * Reduced-motion / tier minimal → tout statique (les lumières sont retirées
+ * par globals.css).
  */
 export function HomeTransformationFlows() {
   const { mounted, disableContentMotion } = usePerformanceMode();
@@ -50,6 +51,13 @@ export function HomeTransformationFlows() {
         },
       };
 
+  const nodeVariants: Variants | undefined = staticRender
+    ? undefined
+    : {
+        hidden: { opacity: 0, y: 6 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: PREMIUM_EASE } },
+      };
+
   return (
     <section
       className="section-shell"
@@ -57,6 +65,7 @@ export function HomeTransformationFlows() {
     >
       <div className="section-container">
         <SectionHeading
+          id="home-transformations-heading"
           label="Ce qui change"
           title={
             <>
@@ -68,16 +77,17 @@ export function HomeTransformationFlows() {
         />
 
         <motion.div
-          className="mx-auto flex max-w-[1080px] flex-col gap-8 sm:gap-10"
+          className="mx-auto flex max-w-[1080px] flex-col gap-6 sm:gap-8"
           {...parentProps}
         >
           {HOME_TRANSFORMATIONS.map((flow, i) => (
-            <TransformationRow
+            <TransformationCard
               key={flow.key}
               flow={flow}
-              isLast={i === HOME_TRANSFORMATIONS.length - 1}
+              index={i}
               itemVariants={itemVariants}
               arrowVariants={arrowVariants}
+              nodeVariants={nodeVariants}
             />
           ))}
         </motion.div>
@@ -98,91 +108,121 @@ export function HomeTransformationFlows() {
 
 // ─── Sub-composants ────────────────────────────────────────────────────────
 
-function TransformationRow({
+function TransformationCard({
   flow,
-  isLast,
+  index,
   itemVariants,
   arrowVariants,
+  nodeVariants,
 }: {
   flow: TransformationFlow;
-  isLast: boolean;
+  index: number;
   itemVariants: typeof fadeInUp | undefined;
   arrowVariants: Variants | undefined;
+  nodeVariants: Variants | undefined;
 }) {
+  // Chaque carte décale ses lumières pour que les 4 ne respirent pas en phase.
+  const delay = `${-index * 5}s`;
+
   return (
-    <motion.div variants={itemVariants} className="relative">
-      {/* Label métier en header */}
-      <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-cyan/70">
-        {flow.label}
+    <motion.article
+      variants={itemVariants}
+      className="glass-card rounded-2xl px-5 py-6 sm:px-7 sm:py-7 lg:px-8"
+    >
+      {/* Lumières lentes derrière la vitre */}
+      <div
+        aria-hidden
+        className="glass-light glass-light-cyan -left-20 -top-28 h-72 w-72 lg:-left-24 lg:-top-40 lg:h-[26rem] lg:w-[26rem]"
+        style={{ animationDelay: delay }}
+      />
+      <div
+        aria-hidden
+        className="glass-light glass-light-indigo -bottom-32 -right-12 h-80 w-80 lg:-bottom-48 lg:right-[12%] lg:h-[28rem] lg:w-[28rem]"
+        style={{ animationDelay: delay }}
+      />
+
+      <div className="relative z-10">
+        {/* En-tête : numéro + label métier */}
+        <div className="mb-5 flex items-center gap-3">
+          <span className="font-mono text-[11px] text-text-tertiary">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="h-px w-6 bg-border-medium" aria-hidden />
+          <h3 className="text-[11px] font-semibold uppercase tracking-[0.32em] text-cyan/80">
+            {flow.label}
+          </h3>
+        </div>
+
+        {/* Desktop : AVANT | flèche | APRÈS · Mobile : empilé */}
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
+          <BeforeBlock nodes={flow.before.nodes} caption={flow.before.caption} />
+          <CenterArrow arrowVariants={arrowVariants} index={index} />
+          <AfterBlock
+            nodes={flow.after.nodes}
+            caption={flow.after.caption}
+            nodeVariants={nodeVariants}
+          />
+        </div>
       </div>
-
-      {/* Layout desktop : 2 colonnes AVANT/APRÈS + flèche centrale */}
-      {/* Layout mobile : stack vertical AVANT → APRÈS */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-6">
-        {/* AVANT */}
-        <BeforeBlock nodes={flow.before.nodes} caption={flow.before.caption} />
-
-        {/* Flèche centrale (desktop horizontale, mobile verticale) */}
-        <CenterArrow arrowVariants={arrowVariants} />
-
-        {/* APRÈS */}
-        <AfterBlock nodes={flow.after.nodes} caption={flow.after.caption} />
-      </div>
-
-      {/* Séparateur entre flux (sauf dernier) */}
-      {!isLast && (
-        <div
-          aria-hidden
-          className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-border-subtle to-transparent sm:mt-10"
-        />
-      )}
-    </motion.div>
+    </motion.article>
   );
 }
 
-function BeforeBlock({ nodes, caption }: { nodes: string[]; caption: string }) {
+function BeforeBlock({ nodes, caption }: { nodes: TransformationNode[]; caption: string }) {
   return (
     <div className="flex flex-col gap-3">
       <div className="text-[9px] font-semibold uppercase tracking-[0.32em] text-text-tertiary/80">
         Avant
       </div>
-      {/* 3 nœuds dispersés, en colonne, désaturés, sans connecteurs */}
-      <div className="flex flex-wrap gap-2 opacity-60">
-        {nodes.map((node) => (
-          <span
-            key={node}
-            className="rounded-md border border-border-subtle bg-bg-card/30 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-text-tertiary line-through decoration-text-tertiary/40"
+      {/* 3 étapes dispersées, désaturées, sans connecteurs */}
+      <ul className="flex flex-wrap gap-2 opacity-70" aria-label="Avant">
+        {nodes.map(({ label, icon: Icon }) => (
+          <li
+            key={label}
+            className="inline-flex items-center gap-1.5 rounded-md border border-border-subtle bg-bg-card/30 px-2.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-text-tertiary"
           >
-            {node}
-          </span>
+            <Icon size={13} strokeWidth={1.75} aria-hidden className="shrink-0 opacity-70" />
+            <span className="line-through decoration-text-tertiary/40">{label}</span>
+          </li>
         ))}
-      </div>
+      </ul>
       <p className="text-[13px] leading-relaxed text-text-tertiary">{caption}</p>
     </div>
   );
 }
 
-function AfterBlock({ nodes, caption }: { nodes: string[]; caption: string }) {
+function AfterBlock({
+  nodes,
+  caption,
+  nodeVariants,
+}: {
+  nodes: TransformationNode[];
+  caption: string;
+  nodeVariants: Variants | undefined;
+}) {
   return (
     <div className="flex flex-col gap-3">
       <div className="text-[9px] font-semibold uppercase tracking-[0.32em] text-cyan/80">
         Après
       </div>
-      {/* 3 nœuds reliés par flèches inline (text arrows) */}
-      <div className="flex flex-wrap items-center gap-1.5">
-        {nodes.map((node, i) => (
-          <span key={node} className="flex items-center gap-1.5">
-            <span className="rounded-md border border-cyan/30 bg-cyan/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan">
-              {node}
+      {/* 3 étapes reliées par des flèches */}
+      <ul className="flex flex-wrap items-center gap-1.5" aria-label="Après">
+        {nodes.map(({ label, icon: Icon }, i) => (
+          <motion.li key={label} variants={nodeVariants} className="flex items-center gap-1.5">
+            <span className="inline-flex items-center gap-1.5 rounded-md border border-cyan/30 bg-cyan/10 px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <span className="grid h-5 w-5 shrink-0 place-items-center rounded-sm bg-cyan/15">
+                <Icon size={13} strokeWidth={2} aria-hidden />
+              </span>
+              {label}
             </span>
             {i < nodes.length - 1 && (
               <span aria-hidden className="text-cyan/60">
                 →
               </span>
             )}
-          </span>
+          </motion.li>
         ))}
-      </div>
+      </ul>
       <p className="text-[13px] leading-relaxed text-text-secondary">{caption}</p>
     </div>
   );
@@ -190,28 +230,31 @@ function AfterBlock({ nodes, caption }: { nodes: string[]; caption: string }) {
 
 function CenterArrow({
   arrowVariants,
+  index,
 }: {
   arrowVariants: Variants | undefined;
+  index: number;
 }) {
+  // ids SVG uniques par carte (4 cartes sur la page)
+  const gradH = `tf-arrow-grad-h-${index}`;
+  const headH = `tf-arrow-head-h-${index}`;
+  const gradV = `tf-arrow-grad-v-${index}`;
+  const headV = `tf-arrow-head-v-${index}`;
+
   return (
     <div
       aria-hidden
-      className="flex shrink-0 items-center justify-center py-2 lg:px-2"
+      className="flex shrink-0 items-center justify-center py-1 lg:px-2"
     >
-      {/* Desktop : flèche horizontale large */}
-      <svg
-        width="80"
-        height="40"
-        viewBox="0 0 80 40"
-        className="hidden lg:block"
-      >
+      {/* Desktop : flèche horizontale */}
+      <svg width="80" height="40" viewBox="0 0 80 40" className="hidden lg:block">
         <defs>
-          <linearGradient id="arrow-grad-h" x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id={gradH} gradientUnits="userSpaceOnUse" x1="4" y1="20" x2="68" y2="20">
             <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.4" />
             <stop offset="100%" stopColor="var(--color-accent-primary)" stopOpacity="0.9" />
           </linearGradient>
           <marker
-            id="arrow-head-h"
+            id={headH}
             viewBox="0 0 10 10"
             refX="9"
             refY="5"
@@ -225,23 +268,23 @@ function CenterArrow({
         <motion.path
           d="M 4 20 L 68 20"
           fill="none"
-          stroke="url(#arrow-grad-h)"
+          stroke={`url(#${gradH})`}
           strokeWidth="2"
           strokeLinecap="round"
-          markerEnd="url(#arrow-head-h)"
+          markerEnd={`url(#${headH})`}
           variants={arrowVariants}
         />
       </svg>
 
-      {/* Mobile : flèche verticale ↓ */}
-      <svg width="40" height="48" viewBox="0 0 40 48" className="lg:hidden">
+      {/* Mobile : flèche verticale */}
+      <svg width="40" height="44" viewBox="0 0 40 44" className="lg:hidden">
         <defs>
-          <linearGradient id="arrow-grad-v" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={gradV} gradientUnits="userSpaceOnUse" x1="20" y1="4" x2="20" y2="34">
             <stop offset="0%" stopColor="var(--color-cyan)" stopOpacity="0.4" />
             <stop offset="100%" stopColor="var(--color-accent-primary)" stopOpacity="0.9" />
           </linearGradient>
           <marker
-            id="arrow-head-v"
+            id={headV}
             viewBox="0 0 10 10"
             refX="9"
             refY="5"
@@ -253,12 +296,12 @@ function CenterArrow({
           </marker>
         </defs>
         <motion.path
-          d="M 20 4 L 20 36"
+          d="M 20 4 L 20 34"
           fill="none"
-          stroke="url(#arrow-grad-v)"
+          stroke={`url(#${gradV})`}
           strokeWidth="2"
           strokeLinecap="round"
-          markerEnd="url(#arrow-head-v)"
+          markerEnd={`url(#${headV})`}
           variants={arrowVariants}
         />
       </svg>
