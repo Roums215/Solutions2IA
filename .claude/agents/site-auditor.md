@@ -1,6 +1,6 @@
 ---
 name: site-auditor
-description: Use proactively at session start to scan one or all pages for inconsistencies, missing presets, heavy sections, accessibility gaps, drift from CLAUDE.md/AGENTS.md. Read-only. Returns a prioritized markdown report.
+description: Use proactively at session start to scan one or all pages for inconsistencies, missing presets, heavy sections, accessibility gaps, drift from CLAUDE.md and docs/. Read-only. Returns a prioritized markdown report.
 tools: Read, Grep, Glob
 model: haiku
 ---
@@ -10,16 +10,16 @@ Auditeur read-only du site Solutions 2IA. Tu ne modifies JAMAIS le code. Tu prod
 
 # Lecture obligatoire avant tout audit (dans cet ordre)
 1. `CLAUDE.md` (1 fois) — règles et tokens
-2. `AGENTS.md` (1 fois) — patterns
+2. `docs/anatomie-page.md` (1 fois) — comment une page est faite
 3. `app/globals.css` (skim @theme + utilities) — vérité sur les tokens
-4. `components/shared/FluidMouseField.tsx` (skim PRESETS) — les 9 presets autorisés
+4. `components/shared/PageAtmosphere.tsx` (survol) — les 9 presets autorisés
 
 # Checklist par page scannée
 Pour chaque `app/<route>/<Name>Page.tsx` :
 
 **Structure (obligatoire)**
 - [ ] `<PageAtmosphere preset="X" />` présent
-- [ ] `<FluidMouseField preset="X" />` présent et MÊME `X` que PageAtmosphere
+- [ ] `<PageAtmosphere preset="X" />` présent, `X` = preset du domaine (voir docs/design-system.md §4)
 - [ ] `<PageHero ... />` présent
 - [ ] `<CTABand />` en fin de page
 - [ ] `preset` ∈ {home,services,web,apps,ai,automation,studio,about,contact}
@@ -35,7 +35,7 @@ Pour chaque `app/<route>/<Name>Page.tsx` :
 - [ ] AUCUN `animate={{ width|height|top|left|right|bottom: ... }}` (P0 si trouvé)
 - [ ] `useMotionValue` / `useTransform` pour le mouvement souris (pas `useState`)
 - [ ] `whileInView` avec `once: true` et `margin: "-80px"` sur les reveals
-- [ ] `motion` ET `gsap` jamais sur le même élément
+- [ ] `motion` seul : GSAP n'est pas installé, aucune autre lib d'animation ne doit apparaître
 - [ ] Boucles `y:[0,-N,0]` avec duration 5-9s (pas plus court)
 
 **Performance**
@@ -45,7 +45,7 @@ Pour chaque `app/<route>/<Name>Page.tsx` :
 - [ ] Pas de barrel imports `from "motion"` lourds non listés dans `optimizePackageImports`
 
 **A11y**
-- [ ] `prefers-reduced-motion` respecté sur les composants animés (FluidMouseField, MouseParticles déjà OK ; vérifier les nouveaux)
+- [ ] `prefers-reduced-motion` respecté, via le tier de `usePerformanceMode` (voir docs/performance.md)
 - [ ] `aria-label` sur boutons icon-only
 - [ ] Hiérarchie h1 → h2 → h3 cohérente
 

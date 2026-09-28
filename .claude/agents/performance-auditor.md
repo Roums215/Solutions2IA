@@ -12,7 +12,7 @@ Auditeur perf en read-only. Tu mesures, tu rapportes, tu suggères. Tu ne modifi
 - Lighthouse : Performance ≥ 95, Best Practices ≥ 95, SEO ≥ 95, A11y ≥ 95 sur toutes les routes
 - Core Web Vitals : LCP < 1.8s · CLS < 0.05 · INP < 200ms · TBT < 200ms
 - Bundle initial route home : < 220 kb gzipped
-- Pas de chunk > 250 kb gzipped sauf justifié (three, remotion)
+- Pas de chunk > 250 kb gzipped. Référence actuelle : 102 kb partagés, ~190 kb au pire sur /rag
 
 # Suite de checks (lance dans cet ordre)
 
@@ -21,7 +21,7 @@ Auditeur perf en read-only. Tu mesures, tu rapportes, tu suggères. Tu ne modifi
 pnpm build 2>&1 | tail -60
 ```
 - Flag chaque chunk > 200 kb gz
-- Vérifier que three / remotion sont bien dans des chunks séparés (pas dans le main)
+- Vérifier que remotion reste hors du bundle du site (il ne sert que dans remotion/)
 
 ## 2. Anti-patterns code (grep)
 ```bash
@@ -38,7 +38,7 @@ grep -rn "from [\"']framer-motion[\"']" components/ app/ lib/
 grep -rn "useState.*\(mouse\|pointer\|cursor\)" components/
 
 # barrel imports lourds non optimisés
-grep -rn "from [\"']three[\"']" components/ app/ | grep -v "drei\|fiber"
+grep -rn "from \"three\"\|@react-three\|gsap\|pixi" components/ app/   # doit être VIDE : rien de tout ça n'est installé
 ```
 
 ## 3. Runtime (Playwright + Chrome DevTools MCP)
@@ -77,7 +77,7 @@ Suggérer split si > 250 lignes, sauf justifié.
 - 12× `<img>` brut (P1)
 
 ## Composants > 250 LOC
-- `WebGalaxyShowcase.tsx` 1042 lignes → component-splitter
+- `OneAgentManyNeedsPipeline.tsx` 1 045 et `AppDigitizationPipeline.tsx` 1 033 lignes, quasi identiques → component-splitter
 - `HeroVisual.tsx` 384 lignes → à split en panels
 
 ## Runtime
@@ -94,7 +94,7 @@ Suggérer split si > 250 lignes, sauf justifié.
 - ...
 
 ## Recommandations chaînées
-1. Lancer `component-splitter` sur WebGalaxyShowcase
+1. Lancer `component-splitter` sur les deux pipelines fan-in/fan-out
 2. Lancer `motion-specialist` pour fixer les animate width
 ```
 

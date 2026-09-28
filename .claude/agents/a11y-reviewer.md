@@ -52,6 +52,33 @@ Reviewer a11y read-only. Tu identifies les manques, tu ne corriges pas. Sortie m
 - `<html lang="fr">` dans `app/layout.tsx`
 - Chaque page : metadata.title et metadata.description non vides
 
+# État connu au 7 septembre 2026
+
+Les points ouverts par l'audit de juin ont tous été traités : menu déroulant accessible
+au clavier (`aria-haspopup`, `aria-expanded`, fermeture par Échap), burger à 44 px avec
+`focus-visible`, accordéon FAQ de `/contact` avec `aria-expanded`, décors en `aria-hidden`,
+formulaire entièrement labellisé.
+
+**Deux défauts restent, vérifie-les en premier :**
+
+1. **Saut `h1` → `h3` sur six pages.** `components/shared/PremiumFlowPanel.tsx:65` rend son
+   titre en `<h3>` en dur. Le composant est correct sous un `SectionHeading` (qui rend le
+   `h2`), mais il est utilisé **seul, juste après le hero** sur `/`, `/services`,
+   `/applications` (deux fois), `/agents-ia`, `/a-propos` et `/contact`.
+   Correction propre : une prop de niveau de titre sur le composant, qui règle les sept
+   occurrences d'un coup.
+
+2. **`components/shared/SectionParticles.tsx`** n'a pas d'`aria-hidden` sur ses éléments
+   décoratifs.
+
+Autre point à surveiller : sur les pages qui composent leurs sections « à plat »
+(`/rag` avec 15 sections, `/sites-web`), vérifier que chaque `<section>` porte un
+`aria-labelledby` vers son `h2`.
+
+⚠️ **Ne conclus jamais depuis un `curl`.** Une page peut renvoyer 200 en SSR alors que
+l'arbre React ne monte pas côté client : aucun lien, aucun repère, et un audit
+d'accessibilité qui note du vide. Vérifie dans un vrai navigateur.
+
 # Format de sortie
 ```markdown
 # Audit a11y — <portée>
