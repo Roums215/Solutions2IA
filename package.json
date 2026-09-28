@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next dev -p 4500",
     "build": "next build",
-    "start": "next start -p 4000",
+    "start": "next start -p 4501",
     "lint": "next lint",
     "remotion:studio": "remotion studio",
     "remotion:render": "remotion render Hero out/hero.mp4 --codec=h264 --fps=60"

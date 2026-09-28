@@ -57,3 +57,8 @@ test-results/
 /*.webp
 /docs/**/*.png
 !/public/**
+
+# Captures et vidéos de QA par page (scripts .capture.cjs compris) : locales uniquement
+/review/
+# .DS_Store réintroduit par la règle !/public/** ci-dessus
+/public/**/.DS_Store
