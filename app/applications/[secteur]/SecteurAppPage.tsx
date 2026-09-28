@@ -32,14 +32,49 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
         description={vertical.intro}
         primaryCta={{ label: "Premier échange gratuit", href: "/contact" }}
         secondaryCta={{ label: "Toutes les applications", href: "/applications" }}
+        note="Application sur mesure de 1 500 à 15 000 € selon le périmètre. Prix fixé avant de démarrer, après un premier échange gratuit de 45 minutes."
         glowColor="bg-accent-primary/5"
       />
 
-      {/* Modules du cockpit */}
+      {/* KPIs */}
       <section className="section-shell">
         <div className="section-container">
           <SectionHeading
-            label="Le cockpit métier"
+            label="Ce qu'on vise"
+            title={
+              <>
+                Des objectifs posés ensemble,{" "}
+                <span className="text-gradient-strong">mesurés par l&apos;outil</span>
+              </>
+            }
+            description="Ces cibles se fixent avec vous au démarrage et se lisent ensuite dans le tableau de bord livré avec l'application. Ce ne sont pas des résultats constatés chez d'autres : ce sont les vôtres, à atteindre."
+          />
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-5"
+          >
+            {vertical.kpis.map((k) => (
+              <motion.div
+                key={k.label}
+                variants={fadeInUp}
+                className="metric-tile rounded-xl border border-border-subtle bg-bg-card/60 p-6 text-center card-shine"
+              >
+                <div className="text-3xl font-bold text-gradient-strong">{k.value}</div>
+                <div className="mt-1.5 text-sm font-semibold text-text-primary">{k.label}</div>
+                <div className="mt-1 text-xs leading-relaxed text-text-tertiary">{k.hint}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+      {/* Modules du cockpit */}
+      <section className="section-shell-tight">
+        <div className="section-container">
+          <SectionHeading
+            label="Comment ça marche"
             title={
               <>
                 Les modules qui font{" "}
@@ -77,46 +112,38 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
         </div>
       </section>
 
-      {/* KPIs */}
+      {/* Pour qui, et à quel prix */}
       <section className="section-shell-tight">
         <div className="section-container">
           <SectionHeading
-            label="Ce que ça change"
+            label="Pour qui, et à quel prix"
             title={
               <>
-                Des chiffres qui se{" "}
-                <span className="text-gradient-strong">constatent</span>, pas qui se promettent
+                Trois choses à savoir{" "}
+                <span className="text-gradient-strong">avant d&apos;appeler</span>
               </>
             }
-            description="Indicateurs issus de cockpits en production sur ce type de métier."
           />
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-5"
-          >
-            {vertical.kpis.map((k) => (
-              <motion.div
-                key={k.label}
-                variants={fadeInUp}
-                className="metric-tile rounded-xl border border-border-subtle bg-bg-card/60 p-6 text-center card-shine"
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[
+              { title: "Pour qui", text: vertical.audience },
+              {
+                title: "Ce que ça coûte",
+                text: "De 1 500 € pour un premier outil ciblé à 15 000 € pour une application complète multi-utilisateurs. Devis fixe après le premier échange, sans surprise en cours de route.",
+              },
+              { title: "Conformité", text: vertical.compliance },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="card-shine rounded-xl border border-border-subtle bg-bg-card/55 p-6"
               >
-                <div className="text-3xl font-bold text-gradient-strong">{k.value}</div>
-                <div className="mt-1.5 text-sm font-semibold text-text-primary">{k.label}</div>
-                <div className="mt-1 text-xs leading-relaxed text-text-tertiary">{k.hint}</div>
-              </motion.div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-light">
+                  {card.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-text-secondary">{card.text}</p>
+              </div>
             ))}
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mx-auto mt-8 max-w-2xl text-center text-sm text-text-tertiary"
-          >
-            {vertical.compliance}
-          </motion.p>
+          </div>
         </div>
       </section>
 
@@ -130,6 +157,8 @@ export function SecteurAppPage({ sector, vertical }: SecteurAppPageProps) {
           </>
         }
         description="Premier échange gratuit : vous décrivez vos outils actuels et ce qui coince, je vous dis honnêtement ce qu'une application sur mesure changerait et ce qu'elle coûterait."
+        primaryLabel="Premier échange gratuit"
+        secondary={null}
       />
     </>
   );

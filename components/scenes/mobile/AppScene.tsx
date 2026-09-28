@@ -77,7 +77,7 @@ function AppSceneInner() {
             <div className="rounded-xl bg-bg-tertiary/20 border border-border-subtle p-2.5">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-[7px] text-text-tertiary">Activité</span>
-                <span className="text-[7px] text-green-400 font-mono">+12%</span>
+                <span className="text-[7px] text-success font-mono">+12%</span>
               </div>
               <div className="flex items-end gap-[2px] h-10">
                 {[25, 40, 35, 60, 45, 75, 55, 80, 65, 90, 70, 85].map((h, i) => (
@@ -95,7 +95,7 @@ function AppSceneInner() {
 
             {/* List items */}
             {[
-              { title: "Analyse IA terminée", dot: "bg-green-400", badge: "Nouveau" },
+              { title: "Analyse IA terminée", dot: "bg-success", badge: "Nouveau" },
               { title: "3 automatisations actives", dot: "bg-accent-light", badge: "" },
               { title: "Rapport hebdomadaire", dot: "bg-cyan", badge: "" },
             ].map((item, i) => (
@@ -130,8 +130,8 @@ function AppSceneInner() {
         <motion.div animate={staticMode || paused ? undefined : { y: [0, -5, 0] }} transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}>
           <div className="rounded-xl border border-border-subtle bg-bg-card/85 backdrop-blur-xl p-4 shadow-2xl card-shine">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
-              <span className="text-[9px] text-green-400 font-medium">Synchronisé</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-success" />
+              <span className="text-[9px] text-success font-medium">Synchronisé</span>
             </div>
             <div className="rounded-lg bg-bg-tertiary/30 border border-border-subtle p-3 mb-3">
               <span className="text-[8px] text-text-tertiary block mb-1.5">Dashboard desktop</span>

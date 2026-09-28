@@ -435,7 +435,7 @@ function NodeCard({
           : status === "active"
           ? "border-cyan/45 bg-bg-card"
           : status === "done"
-          ? "border-green-400/35 bg-bg-card"
+          ? "border-success/35 bg-bg-card"
           : "border-border-subtle bg-bg-card/40 opacity-60",
       ].join(" ")}
       style={{
@@ -501,7 +501,7 @@ function NodeCard({
               viewBox="0 0 24 24"
               fill="none"
               strokeWidth="3"
-              className="stroke-green-400"
+              className="stroke-success"
               aria-hidden
             >
               <polyline points="20 6 9 17 4 12" />
@@ -872,12 +872,10 @@ export function AppDigitizationPipeline() {
     return () => clearInterval(id);
   }, [shouldReduceMotion]);
 
-  if (!mounted) {
-    return <section className="section-shell" aria-hidden />;
-  }
+  // Avant montage : la section est rendue (SEO, pas de saut de mise en page) ; seuls les tooltips attendent le client.
 
   // Désactive les tooltips sur les pointeurs tactiles (pas de hover natif)
-  const enableHover = !isCoarsePointer;
+  const enableHover = mounted && !isCoarsePointer;
 
   return (
     <section className="section-shell">

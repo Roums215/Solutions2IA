@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
+import { PauseOffscreen } from "@/lib/animation/inViewPause";
 import { SECTOR_DASHBOARDS } from "./sectorDashboards";
 
 // ─── KPIs transversaux (colonne gauche) ─────────────────────────────────────
@@ -34,16 +35,6 @@ const KPIS: KPI[] = [
     label: "Ce qui demande votre attention",
     detail: "Retards, anomalies, seuils dépassés : vous êtes prévenu au bon moment, pas après coup.",
   },
-  {
-    value: "Fiabilité",
-    label: "L'outil tient le coup",
-    detail: "Je surveille l'application en continu pour qu'elle reste disponible et rapide.",
-  },
-  {
-    value: "Évolutions",
-    label: "Ce qui s'améliore",
-    detail: "Les nouvelles fonctions arrivent vite, sans tout casser, au fil de vos besoins.",
-  },
 ];
 
 const ROTATION_MS = 6500;
@@ -66,12 +57,13 @@ export function PerformanceTracking() {
           description="Chaque application que je construis vient avec un tableau de bord clair : vous voyez d'un coup d'œil ce qui compte pour vous. Voici des exemples de ce qu'il peut suivre, métier par métier."
         />
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
-          <KPIGrid />
+        <div className="mx-auto max-w-[1080px]">
           <SectorDashboardCarousel />
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+        <KPIGrid />
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           {CHIPS.map((chip) => (
             <span
               key={chip}
@@ -94,21 +86,21 @@ function KPIGrid() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-60px" }}
-      className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5"
+      className="mx-auto mt-10 grid max-w-[1080px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
     >
       {KPIS.map((k) => (
         <motion.div
           key={k.label}
           variants={fadeInUp}
-          className="metric-tile px-5 py-6 sm:px-6 sm:py-7"
+          className="rounded-xl border border-border-subtle bg-bg-card/40 px-5 py-4"
         >
-          <span className="block text-[2rem] font-bold leading-none tracking-tight text-gradient-strong sm:text-[2.4rem]">
+          <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
             {k.value}
           </span>
-          <h3 className="mt-4 text-sm font-semibold tracking-tight text-text-primary">
+          <h3 className="mt-2 text-sm font-semibold tracking-tight text-text-primary">
             {k.label}
           </h3>
-          <p className="mt-1.5 text-xs leading-relaxed text-text-tertiary">
+          <p className="mt-1 text-xs leading-relaxed text-text-tertiary">
             {k.detail}
           </p>
         </motion.div>
@@ -120,9 +112,11 @@ function KPIGrid() {
 // ─── Carousel shell ─────────────────────────────────────────────────────────
 
 function SectorDashboardCarousel() {
-  const { shouldReduceMotion, mounted } = usePerformanceMode();
+  const { shouldReduceMotion, mounted, isCoarsePointer } = usePerformanceMode();
   const [activeIdx, setActiveIdx] = useState(0);
   const [isHover, setIsHover] = useState(false);
+  // Dès que le visiteur choisit un onglet, on arrête de faire défiler sous ses yeux.
+  const [userPicked, setUserPicked] = useState(false);
   const [cycleKey, setCycleKey] = useState(0);
   const inViewRef = useRef(true);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -138,37 +132,36 @@ function SectorDashboardCarousel() {
     return () => io.disconnect();
   }, [shouldReduceMotion]);
 
+  // Pas de défilement automatique sur tactile : la maquette est longue, on la lit en scrollant.
+  const autoplayActive = !shouldReduceMotion && !isHover && !userPicked && !isCoarsePointer;
+
   useEffect(() => {
-    if (shouldReduceMotion || isHover) return;
+    if (!autoplayActive) return;
     const id = setInterval(() => {
       if (!inViewRef.current) return;
       setActiveIdx((prev) => (prev + 1) % SECTOR_DASHBOARDS.length);
     }, ROTATION_MS);
     return () => clearInterval(id);
-  }, [shouldReduceMotion, isHover]);
+  }, [autoplayActive]);
 
   useEffect(() => {
     setCycleKey((k) => k + 1);
   }, [activeIdx]);
 
-  if (!mounted) {
-    return (
-      <div className="rounded-2xl border border-border-subtle bg-bg-card/50 p-6" aria-hidden />
-    );
-  }
-
+  // Avant montage : la première maquette est rendue statique côté serveur (pas de
+  // saut de mise en page) ; les animations ne démarrent qu'après hydratation.
+  const reduced = !mounted || shouldReduceMotion;
   const active = SECTOR_DASHBOARDS[activeIdx];
-  const autoplayActive = !shouldReduceMotion && !isHover;
 
   return (
     <div
       ref={containerRef}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      className="flex flex-col gap-3"
+      className="flex flex-col gap-4"
     >
       {/* Tabs */}
-      <div role="tablist" aria-label="Dashboard par secteur" className="flex flex-wrap gap-1.5">
+      <div role="tablist" aria-label="Tableau de bord par secteur" className="flex flex-wrap justify-center gap-2">
         {SECTOR_DASHBOARDS.map((d, i) => {
           const isActive = i === activeIdx;
           return (
@@ -177,9 +170,12 @@ function SectorDashboardCarousel() {
               role="tab"
               aria-selected={isActive}
               aria-controls={`dashboard-panel-${d.slug}`}
-              onClick={() => setActiveIdx(i)}
+              onClick={() => {
+                setActiveIdx(i);
+                setUserPicked(true);
+              }}
               className={[
-                "rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/60",
+                "rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan/60",
                 isActive
                   ? "border border-cyan/45 bg-bg-card text-cyan"
                   : "border border-border-subtle bg-bg-card/40 text-text-tertiary hover:border-border-medium hover:text-text-secondary",
@@ -225,20 +221,20 @@ function SectorDashboardCarousel() {
             key={active.slug}
             id={`dashboard-panel-${active.slug}`}
             role="tabpanel"
-            aria-label={`Cockpit ${active.short} : ${active.meta}`}
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 8, scale: 0.99 }}
-            animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-            exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8, scale: 0.99 }}
+            aria-label={`Maquette du tableau de bord ${active.short} : ${active.meta}`}
+            initial={reduced ? false : { opacity: 0, y: 8, scale: 0.99 }}
+            animate={reduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
+            exit={reduced ? undefined : { opacity: 0, y: -8, scale: 0.99 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-2xl border border-border-subtle bg-bg-card/55 backdrop-blur-xl"
-            style={{
-              boxShadow:
-                "0 24px 60px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04)",
-            }}
+            className="relative rounded-2xl"
+            style={{ boxShadow: "0 30px 80px rgba(0,0,0,0.45)" }}
           >
-            {active.render(shouldReduceMotion)}
+            <PauseOffscreen>{active.render(reduced)}</PauseOffscreen>
           </motion.article>
         </AnimatePresence>
+        <p className="mt-4 text-center text-[11px] leading-relaxed text-text-tertiary">
+          Maquette illustrative : les chiffres affichés sont des exemples, pas des résultats clients.
+        </p>
       </div>
     </div>
   );
