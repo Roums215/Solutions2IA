@@ -63,7 +63,7 @@ const GUARDRAILS: Guardrail[] = [
     objection: "« Et si l'agent se trompe devant mon client ? »",
     pitch: "Vous gardez la décision finale sur ce qui compte. L'agent prépare, vous validez.",
     detail:
-      "Seuil de confiance configurable, hand-off Slack ou e-mail, override audité, modes draft / auto / proactif.",
+      "Vous choisissez ce qu'il fait seul et ce qu'il vous soumet. En cas de doute, il vous passe la main par mail ou messagerie, et chaque reprise est notée.",
     icon: (
       <svg {...ICON} aria-hidden>
         <circle cx="9" cy="9" r="3" />
@@ -79,25 +79,11 @@ const GUARDRAILS: Guardrail[] = [
     objection: "« C'est une boîte noire. »",
     pitch: "Chaque décision est enregistrée et explicable. Vous voyez ce que l'assistant fait, en temps réel.",
     detail:
-      "Logs structurés, tableau de bord d'adoption, niveau de confiance par décision, consignes versionnées, audit RGPD complet.",
+      "Un journal de chaque action, un tableau de bord d'usage, le niveau de confiance de chaque décision, et des consignes que l'on peut relire et corriger.",
     icon: (
       <svg {...ICON} aria-hidden>
         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
         <circle cx="12" cy="12" r="3" />
-      </svg>
-    ),
-  },
-  {
-    id: "pilote",
-    title: "Pilote 30 j sans engagement",
-    objection: "« Et si ça ne convient pas à mon équipe ? »",
-    pitch: "30 jours satisfait ou remboursé. Vous arrêtez quand vous voulez.",
-    detail:
-      "Audit + mise en place + 1 mois d'usage. Indicateurs d'adoption documentés. Sortie sans frais, données restituées.",
-    icon: (
-      <svg {...ICON} aria-hidden>
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
       </svg>
     ),
   },
@@ -123,7 +109,7 @@ export function TrustGuardrails() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-5"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6"
         >
           {GUARDRAILS.map((g) => (
             <motion.article key={g.id} variants={fadeInUp} className="h-full">

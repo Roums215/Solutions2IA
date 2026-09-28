@@ -122,7 +122,7 @@ function StepIndicator({ status }: { status: StepStatus }) {
         />
       </motion.div>
       <motion.div
-        className="absolute inset-0 w-4 h-4 rounded-full bg-green-400/15 flex items-center justify-center"
+        className="absolute inset-0 w-4 h-4 rounded-full bg-success/15 flex items-center justify-center"
         animate={{ opacity: status === "done" ? 1 : 0 }}
         transition={{ duration: 0.3, ease }}
       >
@@ -303,7 +303,7 @@ type LineColor = "accent" | "cyan" | "green";
 const COLOR_CLASS: Record<LineColor, string> = {
   accent: "text-accent-light",
   cyan: "text-cyan",
-  green: "text-green-400",
+  green: "text-success",
 };
 
 const OUTPUT_POOL: { color: LineColor; text: string }[] = [
@@ -414,11 +414,11 @@ function AgentOutputCard() {
     >
       <div className="flex items-center gap-2 mb-3">
         <motion.div
-          className="w-2 h-2 rounded-full bg-green-400"
+          className="w-2 h-2 rounded-full bg-success"
           animate={staticMode || paused ? undefined : { scale: [1, 1.4, 1] }}
           transition={{ duration: 1.5, repeat: Infinity }}
         />
-        <span className="text-[10px] text-green-400 font-semibold">Sortie agent · Confiance : 97.4%</span>
+        <span className="text-[10px] text-success font-semibold">Sortie agent · Confiance : 97.4%</span>
       </div>
       <div className="rounded-lg bg-bg-primary/40 p-3 font-mono text-[9px] text-text-secondary leading-relaxed space-y-1.5 min-h-[68px]">
         {lines.map((l) => (

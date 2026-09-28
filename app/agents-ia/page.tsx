@@ -8,7 +8,7 @@ import {
 import { AgentsIAPage } from "./AgentsIAPage";
 
 export const metadata: Metadata = {
-  title: "Assistant IA sur mesure : un collègue numérique pour votre métier",
+  title: "Assistant IA sur mesure pour votre métier",
   description:
     "Un assistant IA qui trie vos mails, prépare vos devis et met à jour votre fichier clients. Le travail répétitif en moins, données en UE. Échange gratuit.",
   keywords: [

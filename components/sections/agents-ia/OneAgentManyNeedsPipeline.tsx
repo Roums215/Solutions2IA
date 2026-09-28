@@ -883,11 +883,9 @@ export function OneAgentManyNeedsPipeline() {
     return () => clearInterval(id);
   }, [shouldReduceMotion]);
 
-  if (!mounted) {
-    return <section className="section-shell" aria-hidden />;
-  }
+  // Avant montage : la section est rendue (SEO, pas de saut de mise en page) ; seuls les tooltips attendent le client.
 
-  const enableHover = !isCoarsePointer;
+  const enableHover = mounted && !isCoarsePointer;
 
   return (
     <section className="section-shell">

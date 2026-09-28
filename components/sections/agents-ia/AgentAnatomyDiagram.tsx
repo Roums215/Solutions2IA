@@ -273,8 +273,9 @@ function Arrow({ vertical, reduced }: { vertical: boolean; reduced: boolean }) {
 }
 
 export function AgentAnatomyDiagram() {
-  const { shouldReduceMotion, mounted } = usePerformanceMode();
-  if (!mounted) return <section className="section-shell" aria-hidden />;
+  const { shouldReduceMotion: reduceMotionPref, mounted } = usePerformanceMode();
+  // Avant montage : rendu statique (contenu présent dans le HTML), animations coupées.
+  const shouldReduceMotion = !mounted || reduceMotionPref;
 
   return (
     <section className="section-shell">
