@@ -35,13 +35,13 @@ function WebSceneInner() {
           {/* Chrome bar */}
           <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border-subtle bg-bg-tertiary/20">
             <div className="flex gap-1.5">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-danger/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-warning/80" />
+              <div className="w-2.5 h-2.5 rounded-full bg-success/80" />
             </div>
             <div className="flex-1 flex justify-center">
               <div className="px-4 py-1 rounded-lg bg-bg-primary/60 border border-border-subtle flex items-center gap-1.5">
-                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-success"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
                 <span className="text-[9px] text-text-tertiary font-mono">votresite.com</span>
               </div>
             </div>
@@ -79,7 +79,7 @@ function WebSceneInner() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 + i * 0.1, duration: 0.4, ease }}
                 >
-                  <div className={`w-6 h-6 rounded-md mb-2 ${i === 1 ? "bg-accent-glow" : i === 2 ? "bg-cyan-glow" : "bg-green-400/10"}`} />
+                  <div className={`w-6 h-6 rounded-md mb-2 ${i === 1 ? "bg-accent-glow" : i === 2 ? "bg-cyan-glow" : "bg-success/10"}`} />
                   <div className="w-full h-1.5 rounded bg-border-subtle mb-1" />
                   <div className="w-[65%] h-1 rounded bg-border-subtle" />
                 </motion.div>
@@ -113,7 +113,7 @@ function WebSceneInner() {
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.span
-                    className="text-lg font-bold text-green-400 font-mono"
+                    className="text-lg font-bold text-success font-mono"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.8 }}
@@ -124,9 +124,9 @@ function WebSceneInner() {
               </div>
               <div className="space-y-1">
                 {[
-                  { label: "Vitesse", score: "98", color: "text-green-400" },
-                  { label: "Accès", score: "100", color: "text-green-400" },
-                  { label: "Google", score: "100", color: "text-green-400" },
+                  { label: "Vitesse", score: "98", color: "text-success" },
+                  { label: "Accès", score: "100", color: "text-success" },
+                  { label: "Google", score: "100", color: "text-success" },
                 ].map((m) => (
                   <div key={m.label} className="flex items-center gap-1.5">
                     <span className="text-[8px] text-text-tertiary w-6">{m.label}</span>

@@ -7,8 +7,6 @@ import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import {
   OPPORTUNITY_SOURCES,
   SOURCE_GROUP_LABELS,
-  SOURCES_ADAPTIVE_LINES,
-  SOURCES_ADAPTIVE_CONCLUSION,
   SOURCES_CLOSING,
   SOURCES_BRIDGE_TO_BLUEPRINT,
   type OpportunitySource,
@@ -126,26 +124,6 @@ export function WebOpportunitySources() {
             </div>
           </div>
 
-          {/* Sous-bloc adaptatif (rappel P2) */}
-          <motion.div
-            variants={itemVariants}
-            className="mx-auto mt-8 max-w-[760px] rounded-2xl border border-border-subtle bg-bg-card/30 px-5 py-5 sm:px-7 sm:py-6"
-          >
-            <p className="text-sm font-semibold text-text-primary sm:text-[15px]">
-              Tous les canaux n&apos;ont pas le même poids pour vous.
-            </p>
-            <ul className="mt-3 space-y-1.5 text-xs leading-relaxed text-text-secondary sm:text-sm">
-              {SOURCES_ADAPTIVE_LINES.map((line) => (
-                <li key={line} className="flex gap-2">
-                  <span aria-hidden className="text-cyan/60">·</span>
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-xs italic leading-snug text-text-tertiary sm:text-sm">
-              {SOURCES_ADAPTIVE_CONCLUSION}
-            </p>
-          </motion.div>
         </motion.div>
 
         {/* Phrase fermante */}

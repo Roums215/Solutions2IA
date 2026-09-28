@@ -8,7 +8,7 @@ import {
 import { SitesWebPage } from "./SitesWebPage";
 
 export const metadata: Metadata = {
-  title: "Création de site web : un site qui vous amène des clients (dès 500 €)",
+  title: "Site web : des clients, pas juste du joli",
   description:
     "Sites web clairs, rapides et bien référencés sur Google : de la vitrine au site connecté (réservation, espace client, paiement). Dès 500 €, échange gratuit.",
   keywords: [

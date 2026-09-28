@@ -5,39 +5,29 @@ export type WebPain = {
 
 export const WEB_PAINS: WebPain[] = [
   {
-    title: "Perte d'opportunités",
+    title: "Des demandes qui n'arrivent jamais",
     detail:
-      "Un visiteur qualifié ne sait pas comment vous contacter. Il referme la page et appelle un concurrent.",
+      "Un visiteur intéressé cherche comment vous joindre, ne trouve pas, referme. Comptez vos visites du mois : combien vous ont réellement écrit ou appelé ?",
   },
   {
-    title: "Perte de confiance",
+    title: "Un doute avant le premier échange",
     detail:
-      "Le site ne ressemble pas à votre niveau. Avant même le premier échange, le doute s'installe.",
+      "Le site ne ressemble pas à votre niveau. Le client compare avec deux concurrents : celui qui inspire confiance décroche le rendez-vous.",
   },
   {
-    title: "Qualification inexistante",
+    title: "Des demandes à trier à la main",
     detail:
-      "Chaque demande tombe en vrac, à trier à la main. Aucun filtre, aucun contexte, aucune priorité.",
+      "Tout tombe en vrac dans la boîte mail : le sérieux et le curieux, l'urgent et le vague. Multipliez dix minutes de tri par demande, chaque semaine.",
   },
   {
-    title: "Temps perdu",
+    title: "Les mêmes explications, à chaque appel",
     detail:
-      "Vous répétez les mêmes explications à chaque appel. Le site ne fait pas son travail.",
+      "Horaires, tarifs, zone, délais : vous répétez au téléphone ce que le site devrait dire. Comptez les appels qui posent la même question.",
   },
   {
-    title: "Répétition",
+    title: "Des contacts qui s'oublient",
     detail:
-      "Les mêmes questions reviennent, jamais mémorisées. Aucune trace de ce qui a déjà été demandé.",
-  },
-  {
-    title: "Manque de suivi",
-    detail:
-      "Les contacts entrants ne sont nulle part. Oubliés sous 48 h, perdus pour de bon, ou récupérés par hasard.",
-  },
-  {
-    title: "Outils déconnectés",
-    detail:
-      "Site, agenda, messagerie, formulaires : tout vit en silos. Impossible de savoir où en est chaque demande.",
+      "Une demande lue le soir, oubliée le lendemain, perdue pour de bon. Agenda, mail et formulaire ne se parlent pas : personne ne sait où en est chaque demande.",
   },
 ];
 

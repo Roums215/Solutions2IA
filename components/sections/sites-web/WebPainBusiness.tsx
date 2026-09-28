@@ -38,14 +38,14 @@ export function WebPainBusiness() {
               .
             </>
           }
-          description="Sept pertes business que la plupart des dirigeants ne mesurent pas, et qui pèsent chaque mois sur l'activité."
+          description="Cinq pertes que vous pouvez compter vous-même, avec vos propres chiffres. Aucune statistique de marché : juste ce qui se passe chez vous chaque mois."
         />
 
         <motion.div
           className="mx-auto grid max-w-[1180px] gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12"
           {...parentProps}
         >
-          {/* Colonne gauche : 7 pertes */}
+          {/* Colonne gauche : 5 pertes */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col gap-3 sm:gap-3.5"

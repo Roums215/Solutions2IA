@@ -7,7 +7,6 @@ import { fadeInUp, staggerContainer } from "@/lib/animation/variants";
 import {
   OPPORTUNITY_STATIONS,
   OPPORTUNITY_CLOSING,
-  OPPORTUNITY_BRIDGE_TO_TOOLS,
   OPPORTUNITY_EDITORIAL_V64,
   type OpportunityIcon,
   type OpportunityStation,
@@ -144,22 +143,6 @@ export function WebOpportunityFlow() {
           className="mx-auto mt-6 max-w-[640px] text-center text-sm italic leading-relaxed text-text-secondary sm:text-base"
         >
           {OPPORTUNITY_EDITORIAL_V64}
-        </motion.p>
-
-        <motion.p
-          variants={itemVariants}
-          initial={staticRender ? false : "hidden"}
-          whileInView={staticRender ? undefined : "visible"}
-          viewport={{ once: true, margin: "-80px" }}
-          className="mx-auto mt-5 max-w-[640px] text-center text-xs italic text-text-tertiary sm:text-sm"
-        >
-          {OPPORTUNITY_BRIDGE_TO_TOOLS}{" "}
-          <a
-            href="#connected-constellation"
-            className="text-cyan/85 underline-offset-4 transition-colors duration-300 hover:text-cyan hover:underline"
-          >
-            Voir lesquels →
-          </a>
         </motion.p>
       </div>
     </section>
