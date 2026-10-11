@@ -4,16 +4,26 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { mainNav } from "@/lib/content/navigation";
+import { footerNav, mainNav } from "@/lib/content/navigation";
 import { cn } from "@/lib/utils/cn";
 import { useLoadingState } from "@/components/shared/AppShell";
 import { useHeaderOnLight } from "@/components/layout/headerSurface";
 
 const premiumEase = [0.16, 1, 0.3, 1] as const;
 
+/** Les pages atteignables depuis le menu et le pied de page (sans doublon). */
+const PREFETCH_ROUTES = [
+  ...new Set([
+    "/",
+    ...mainNav.flatMap((item) => [item.href, ...(item.children ?? []).map((child) => child.href)]),
+    ...footerNav.navigation.map((item) => item.href),
+  ]),
+];
+
 export function Header() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -43,6 +53,34 @@ export function Header() {
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  // Préchargement des pages du site (octobre 2026). Next ne précharge un lien que s'il est
+  // affiché : ceux du sous-menu « Services » et du menu téléphone ne sont montés qu'à
+  // l'ouverture, donc chaque clic attendait la page et son code (0,2 à 0,35 s mesurés).
+  // Une fois la page chargée puis calme (jamais en concurrence avec son propre chargement),
+  // on demande les pages du menu et du pied de page (~5 ko chacune, dédupliquées par le
+  // routeur) ; relancé à chaque page, le cache de Next expirant au bout de 5 min. Rien en
+  // mode économie de données.
+  useEffect(() => {
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    if (connection?.saveData) return;
+    let idle = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const run = () => {
+      for (const href of PREFETCH_ROUTES) if (href !== pathname) router.prefetch(href);
+    };
+    const schedule = () => {
+      if (typeof window.requestIdleCallback === "function") idle = window.requestIdleCallback(run, { timeout: 4000 });
+      else timer = setTimeout(run, 1500); // Safari : pas de requestIdleCallback
+    };
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+    return () => {
+      window.removeEventListener("load", schedule);
+      if (idle) window.cancelIdleCallback(idle);
+      clearTimeout(timer);
+    };
+  }, [pathname, router]);
 
   // Accessibilité : Escape ferme le menu mobile.
   useEffect(() => {
@@ -300,11 +338,18 @@ export function Header() {
             id="mobile-menu"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-2xl lg:hidden"
           >
-            <nav className="flex flex-col items-center justify-center h-full gap-6">
+            {/* Le menu se ferme dès le toucher d'un lien (retour visible immédiat), sans
+                attendre que la nouvelle page soit rendue. */}
+            <nav
+              onClick={(e) => {
+                if ((e.target as HTMLElement).closest("a")) setMobileOpen(false);
+              }}
+              className="flex flex-col items-center justify-center h-full gap-6"
+            >
               <Link href="/" className="text-2xl font-semibold text-text-primary tracking-tight">
                 Accueil
               </Link>

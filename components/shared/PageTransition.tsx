@@ -1,30 +1,35 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "motion/react";
+import { useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-// false au 1er chargement (SSR + 1re hydration) : le HTML doit arriver
-// visible — l'élément LCP ne peut pas attendre l'hydration pour être peint.
-// true ensuite : la transition de marque ne joue qu'en navigation client
-// (le key={pathname} remonte le composant à chaque changement de page).
-let hasNavigated = false;
-
+/**
+ * Changement de page : affichage immédiat, sans fondu (octobre 2026).
+ *
+ * L'ancienne version remontait la page (key={pathname}) depuis opacity 0 en 0,4 s :
+ * mesuré au téléphone, la nouvelle page restait invisible ~0,5 s après chaque clic,
+ * ressenti comme « le site ne change pas de page ». Le routeur a déjà la page
+ * préchargée : elle doit s'afficher dès qu'il la rend.
+ *
+ * Au premier changement de page, pose <html data-nav="client"> : l'entrée en cascade
+ * des heros (.hero-enter, globals.css) est réservée au premier chargement. Layout
+ * effect : l'attribut est posé avant la première peinture de la nouvelle page, son
+ * titre n'apparaît jamais à opacity 0.
+ *
+ * ⚠️ Si une transition revient un jour, elle ne part jamais de opacity 0 : ni au premier
+ * chargement (LCP de 1,8 s à ~8 s), ni en navigation (latence perçue).
+ */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  // Comparaison au chemin précédent (et non un drapeau « premier rendu ») : le double
+  // appel des effets en StrictMode ne doit pas poser l'attribut dès le chargement.
+  const previous = useRef(pathname);
 
-  useEffect(() => {
-    hasNavigated = true;
-  }, []);
+  useLayoutEffect(() => {
+    if (previous.current === pathname) return;
+    previous.current = pathname;
+    document.documentElement.setAttribute("data-nav", "client");
+  }, [pathname]);
 
-  return (
-    <motion.div
-      key={pathname}
-      initial={hasNavigated ? { opacity: 0, y: 8 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <>{children}</>;
 }
