@@ -128,7 +128,7 @@ export function SecteurPage({ sector }: SecteurPageProps) {
                 >
                   <span
                     aria-hidden
-                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-success/40 bg-success-glow text-[11px] text-success"
+                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-accent-primary/40 bg-accent-glow text-[11px] text-accent-light"
                   >
                     ✓
                   </span>

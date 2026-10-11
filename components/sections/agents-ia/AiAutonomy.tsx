@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Eye, History, LockKeyhole, type LucideIcon } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { cn } from "@/lib/utils/cn";
-import { AUTONOMY, CONTROL_FLOW, CONTROL_GATE, CONTROL_QUESTIONS, type ControlLevel } from "./aiPageData";
+import { StepStack } from "@/components/shared/StepStack";
+import { AUTONOMY, CONTROL_GATE, CONTROL_QUESTIONS, CONTROL_STACK, type ControlLevel } from "./aiPageData";
 
 /**
  * /agents-ia, « Vous gardez le contrôle » (sombre). Fusion V3 de l'autonomie et de la
- * confiance : UN schéma (demande → comprendre → préparer → décider → agir → tracer) et
- * un verrou humain qui se déplace dans ce même schéma selon le niveau choisi. Dessous,
+ * confiance : UN schéma (demande → comprendre → préparer → décider → agir → tracer), en
+ * plan coché et pile d'objets depuis octobre 2026 (StepStack, plus de frise à points), et
+ * un verrou humain qui se place dans ce même plan selon le niveau choisi. Dessous,
  * quatre questions en lignes sobres (accordéons natifs), pas six cartes.
  */
 
@@ -73,45 +75,16 @@ export function AiAutonomy() {
 
           {/* Le schéma : le même flux, le verrou change de place */}
           <div className="relative">
-            <Trajectory />
-            <LayoutGroup>
-              <ol className="relative flex flex-col gap-3 md:grid md:grid-cols-6 md:gap-2" aria-label={`Niveau ${level} : ${a.lock} à l'étape ${CONTROL_FLOW[gate].label}`}>
-                <span aria-hidden className="absolute bottom-5 left-[1.375rem] top-5 w-px bg-border-medium md:bottom-auto md:left-[8%] md:right-[8%] md:top-[4.875rem] md:h-px md:w-auto" />
-                {CONTROL_FLOW.map((s, i) => {
-                  const Icon = s.icon;
-                  const waits = level === 1 && i > gate;
-                  const here = i === gate;
-                  return (
-                    <li key={s.id} className="relative flex items-center gap-3 md:flex-col md:gap-2.5 md:pt-14">
-                      <span
-                        className={cn(
-                          "relative grid h-11 w-11 shrink-0 place-items-center rounded-full ring-1 transition-[opacity,background-color] duration-500",
-                          here ? "bg-accent-primary text-paper ring-accent-light" : "bg-bg-secondary text-cyan ring-border-medium",
-                          waits && "opacity-45",
-                        )}
-                        aria-hidden
-                      >
-                        <Icon size={18} strokeWidth={1.8} />
-                      </span>
-                      <span className={cn("text-[14.5px] font-semibold transition-opacity duration-500 md:text-center", waits && "opacity-45")}>
-                        {s.label}
-                        {waits && <span className="block text-[11.5px] font-normal text-text-tertiary">après votre accord</span>}
-                      </span>
-                      {here && (
-                        <motion.span
-                          layoutId="ai-control-lock"
-                          transition={{ type: "spring", bounce: 0.15, visualDuration: instant ? 0 : 0.55 }}
-                          className="ml-auto inline-flex w-max items-center gap-1.5 whitespace-nowrap rounded-full bg-paper px-3 py-1.5 text-[12.5px] font-semibold text-ink md:absolute md:inset-x-0 md:top-0 md:mx-auto"
-                        >
-                          <LockIcon size={13} strokeWidth={2.2} className="text-accent-dark" aria-hidden />
-                          {a.lock}
-                        </motion.span>
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
-            </LayoutGroup>
+            <StepStack
+              steps={CONTROL_STACK}
+              heading={`Niveau ${level} · ${a.title}`}
+              icon={LockIcon}
+              tone="dark"
+              stopAt={level === 1 ? gate : undefined}
+              lockAt={gate}
+              lockLabel={a.lock}
+              resetKey={level}
+            />
 
             <AnimatePresence initial={false} mode="wait">
               <motion.p
@@ -149,15 +122,5 @@ export function AiAutonomy() {
         </ul>
       </div>
     </section>
-  );
-}
-
-/** Une trajectoire fine qui passe derrière le schéma : le fil que suit chaque demande. */
-function Trajectory() {
-  return (
-    <svg aria-hidden className="pointer-events-none absolute -inset-x-6 -top-10 hidden h-[calc(100%+5rem)] w-[calc(100%+3rem)] md:block" viewBox="0 0 800 240" preserveAspectRatio="none">
-      <path d="M -20 170 C 140 60, 300 210, 420 120 C 540 30, 660 170, 820 70" fill="none" stroke="var(--color-accent-light)" strokeOpacity={0.14} strokeWidth={1} />
-      <path d="M -20 200 C 180 120, 320 230, 480 150 C 600 90, 700 180, 820 120" fill="none" stroke="var(--color-cyan)" strokeOpacity={0.08} strokeWidth={1} />
-    </svg>
   );
 }

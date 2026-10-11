@@ -31,7 +31,7 @@ const STAGE_STILL: Variants = { hidden: stage.hidden, visible: { opacity: 1, y: 
 const LINE_STILL: Variants = { hidden: line.hidden, visible: { opacity: 1, x: 0, transition: INSTANT } };
 
 const TONE: Record<string, string> = {
-  ok: "bg-success/15 text-success-ink",
+  ok: "bg-cyan/20 text-ink",
   info: "bg-accent-primary/12 text-accent-dark",
   warn: "bg-warning/18 text-warning-ink",
   neutral: "bg-paper-3 text-ink-2",

@@ -73,7 +73,7 @@ export function InputChip({ index }: { index: number }) {
 // ─── L'application ──────────────────────────────────────────────────────────
 
 const TONE: Record<RowTone, string> = {
-  ok: "bg-success/15 text-success-ink",
+  ok: "bg-cyan/20 text-ink",
   info: "bg-accent-primary/12 text-accent-dark",
   warn: "bg-warning/18 text-warning-ink",
   neutral: "bg-paper-3 text-ink-2",
@@ -204,7 +204,6 @@ export function AppWindow({
       {/* Pied : ce que l'outil fait déjà tout seul */}
       <div className="flex items-center justify-between gap-2 border-t border-paper-line bg-paper-2 px-4 py-2 text-[10px] text-ink-2">
         <span className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-success" aria-hidden />
           Synchronisé avec vos outils
         </span>
         <span className="font-semibold text-ink">{resolved ? "4 automatisations actives" : "Import en cours"}</span>

@@ -1,26 +1,22 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "motion/react";
-import { Check, Workflow } from "lucide-react";
+import { Check, ClipboardCheck, Workflow } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useLightHeaderZone } from "@/components/layout/headerSurface";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
-import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
-import { DELIVERABLES, METHOD } from "./autoPageData";
+import { StepStack } from "@/components/shared/StepStack";
+import { DELIVERABLES, METHOD_STACK } from "./autoPageData";
 
 /**
- * /automatisation, comment on démarre (claire, ancre #methode). Une trajectoire en quatre
- * temps, pas quatre grosses cartes, puis UNE carte « Votre automatisation » : ce qui est
- * livré avec chaque flux. La ligne se trace une fois à l'entrée dans l'écran.
+ * /automatisation, comment on démarre (claire, ancre #methode). Les quatre temps en plan de
+ * projet coché et en pile d'objets (StepStack, octobre 2026 : plus de frise à points), puis
+ * UNE carte « Votre automatisation » : ce qui est livré avec chaque flux.
  */
-
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function AutoMethod() {
   const sectionRef = useRef<HTMLElement>(null);
   useLightHeaderZone(sectionRef);
-  const { disableContentMotion: instant } = usePerformanceMode();
 
   return (
     <section
@@ -45,28 +41,8 @@ export function AutoMethod() {
         />
 
         <div>
-          <div className="relative">
-            <motion.span
-              aria-hidden
-              className="absolute bottom-3 left-[0.6875rem] top-3 w-px origin-top bg-cyan/60 md:bottom-auto md:left-3 md:right-3 md:top-[0.6875rem] md:h-px md:w-auto md:origin-left"
-              initial={instant ? false : { scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 1, ease: EASE }}
-            />
-            <ol className="relative grid gap-6 md:grid-cols-4 md:gap-8">
-              {METHOD.map((m) => (
-                <li key={m.n} className="relative pl-10 md:pl-0 md:pt-10">
-                  <span aria-hidden className="absolute left-0 top-0 grid h-[1.375rem] w-[1.375rem] place-items-center rounded-full bg-ink ring-4 ring-paper">
-                    <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
-                  </span>
-                  <p className="font-mono text-[12px] font-semibold text-accent-dark">{m.n}</p>
-                  <h3 className="mt-1 text-[18px] font-semibold tracking-tight">{m.title}</h3>
-                  <p className="mt-1 text-[14.5px] leading-relaxed text-text-secondary">{m.text}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+          {/* La méthode : plan de projet coché, et l'objet que produit chaque étape */}
+          <StepStack steps={METHOD_STACK} heading="Le déroulé" icon={ClipboardCheck} tone="light" />
 
           <div className="mt-12 overflow-hidden rounded-2xl bg-ink p-5 text-paper sm:p-7">
             <p className="flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-paper/80">

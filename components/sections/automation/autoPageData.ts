@@ -1,5 +1,9 @@
 import {
   Bell,
+  Eye,
+  FlaskConical,
+  Rocket,
+  Workflow,
   CalendarDays,
   ClipboardCheck,
   Contact,
@@ -21,6 +25,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import type { BrandKey } from "./brandLogos";
+import type { StackStep } from "@/components/shared/StepStack";
 
 /**
  * Contenu de /automatisation (V3). Aucune métrique inventée : exemples situés, signalés
@@ -271,6 +276,38 @@ export const METHOD: { n: string; title: string; text: string }[] = [
   { n: "02", title: "Dessiner le flux", text: "On décide ce qui déclenche quoi." },
   { n: "03", title: "Tester", text: "On le fait tourner sur de vrais cas." },
   { n: "04", title: "Déployer", text: "On élargit seulement si ça vous fait réellement gagner du temps." },
+];
+
+/** La méthode en plan de projet + pile d'objets (StepStack) : ce que chaque étape produit. */
+export const METHOD_STACK: StackStep[] = [
+  {
+    key: "observer",
+    title: "Observer",
+    text: "Vous me montrez où vous perdez du temps.",
+    gives: "la liste de ce qui se répète",
+    object: { icon: Eye, kind: "Notes", title: "Où le temps se perd", lines: [{ text: "Devis recopiés dans le logiciel" }, { text: "Relances faites à la main" }] },
+  },
+  {
+    key: "dessiner",
+    title: "Dessiner le flux",
+    text: "On décide ce qui déclenche quoi.",
+    gives: "le flux, écrit noir sur blanc",
+    object: { icon: Workflow, kind: "Le flux", title: "Ce qui déclenche quoi", lines: [{ text: "Un mail arrive" }, { text: "La fiche se crée" }, { text: "La relance est prévue" }] },
+  },
+  {
+    key: "tester",
+    title: "Tester",
+    text: "On le fait tourner sur de vrais cas.",
+    gives: "un flux qui marche sur vos cas",
+    object: { icon: FlaskConical, kind: "Essais", title: "Sur de vrais cas", lines: [{ text: "Cas 1 : conforme", done: true }, { text: "Cas 2 : conforme", done: true }, { text: "Cas 3 : ajusté", done: true }] },
+  },
+  {
+    key: "deployer",
+    title: "Déployer",
+    text: "On élargit seulement si ça vous fait réellement gagner du temps.",
+    gives: "un flux en service, avec son journal",
+    object: { icon: Rocket, kind: "En service", title: "Ça tourne", tone: "ink", lines: [{ text: "Journal activé", done: true }, { text: "Désactivable à tout moment", done: true }] },
+  },
 ];
 
 export const DELIVERABLES: { label: string; detail: string }[] = [

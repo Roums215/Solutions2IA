@@ -1,5 +1,7 @@
 import {
+  BarChart3,
   BookOpen,
+  CalendarDays,
   ClipboardCheck,
   ClipboardList,
   FileSearch,
@@ -12,10 +14,13 @@ import {
   Route,
   ShieldCheck,
   Undo2,
+  Send,
+  Target,
   Users,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
+import type { StackStep } from "@/components/shared/StepStack";
 
 /**
  * Contenu de la page /agents-ia (V3 : rôle, calcul, contrôle, pilote). Aucune preuve inventée : exemples
@@ -59,6 +64,16 @@ export const CONTROL_FLOW: { id: string; label: string; icon: LucideIcon }[] = [
   { id: "decider", label: "Décider", icon: Route },
   { id: "agir", label: "Agir", icon: Workflow },
   { id: "tracer", label: "Tracer", icon: History },
+];
+
+/** Le même flux en plan + pile : l'objet que produit chaque étape (exemple : une demande de devis). */
+export const CONTROL_STACK: StackStep[] = [
+  { key: "demande", title: "Demande", text: "Un mail, un appel, un formulaire arrive.", object: { icon: Inbox, kind: "Mail reçu", title: "« Pouvez-vous me faire un devis ? »", lines: [{ text: "Mme Leroy · 09:12" }] } },
+  { key: "comprendre", title: "Comprendre", text: "Il lit, retrouve le client et vos règles.", object: { icon: BookOpen, kind: "Il comprend", title: "Demande de devis", lines: [{ text: "Client déjà connu", done: true }, { text: "Vos tarifs retrouvés", done: true }] } },
+  { key: "preparer", title: "Préparer", text: "Il prépare la réponse ou le document.", object: { icon: ClipboardList, kind: "Brouillon", title: "Devis préparé", lines: [{ text: "Votre modèle", done: true }, { text: "Vos prix", done: true }] } },
+  { key: "decider", title: "Décider", text: "Envoyer, modifier, ou vous le soumettre.", object: { icon: Route, kind: "Décision", title: "Envoyer le devis ?", tone: "ink", lines: [{ text: "Valider" }, { text: "Modifier" }] } },
+  { key: "agir", title: "Agir", text: "Il envoie, classe, met à jour vos outils.", object: { icon: Send, kind: "Action", title: "Devis envoyé", lines: [{ text: "Fiche client à jour", done: true }] } },
+  { key: "tracer", title: "Tracer", text: "Tout est noté : ce qu'il a lu, proposé, fait.", object: { icon: History, kind: "Journal", title: "Tout est noté", lines: [{ text: "Lu · préparé · validé · envoyé" }] } },
 ];
 
 /** Index de l'étape que le verrou occupe : avant d'agir, après avoir agi, au journal. */
@@ -390,6 +405,50 @@ export const PILOT_PATH: { n: string; title: string; text: string }[] = [
   { n: "03", title: "30 jours réels", text: "Sur vos vrais cas, avec l'équipe concernée." },
   { n: "04", title: "Mesure", text: "Temps passé avant et après, sur vos chiffres." },
   { n: "05", title: "Vous décidez de la suite", text: "Arrêter, garder, ou ajouter une tâche." },
+];
+
+/** Le pilote en plan de projet + pile d'objets (StepStack) : ce que chaque étape produit. */
+export const PILOT_STACK: StackStep[] = [
+  {
+    key: "tache",
+    title: "Une tâche",
+    text: "Celle qui vous coûte le plus de temps.",
+    gives: "un périmètre écrit noir sur blanc",
+    object: { icon: Target, kind: "Périmètre", title: "La tâche choisie", lines: [{ text: "Celle qui coûte le plus de temps" }, { text: "Écrite avant de commencer", done: true }] },
+  },
+  {
+    key: "regles",
+    title: "Vos règles",
+    text: "Vos documents, vos outils, ce qu'il fait seul.",
+    gives: "ses règles, par écrit",
+    object: {
+      icon: ClipboardList,
+      kind: "Vos règles",
+      title: "Ce qu'il fait seul",
+      lines: [{ text: "Répondre aux questions simples", done: true }, { text: "Préparer les devis", done: true }, { text: "Une remise : vous décidez" }],
+    },
+  },
+  {
+    key: "pilote",
+    title: "30 jours réels",
+    text: "Sur vos vrais cas, avec l'équipe concernée.",
+    gives: "un pilote sur vos cas",
+    object: { icon: CalendarDays, kind: "Pilote", title: "30 jours sur vos vrais cas", badge: "satisfait ou remboursé", lines: [{ text: "Avec l'équipe concernée" }, { text: "Arrêt possible à tout moment" }] },
+  },
+  {
+    key: "mesure",
+    title: "Mesure",
+    text: "Temps passé avant et après, sur vos chiffres.",
+    gives: "vos chiffres, avant et après",
+    object: { icon: BarChart3, kind: "Mesure", title: "Avant / après", lines: [{ text: "Temps passé", done: true }, { text: "Erreurs", done: true }, { text: "Demandes traitées", done: true }] },
+  },
+  {
+    key: "decision",
+    title: "Vous décidez de la suite",
+    text: "Arrêter, garder, ou ajouter une tâche.",
+    gives: "une décision, sans engagement",
+    object: { icon: Route, kind: "Votre décision", title: "Et maintenant ?", tone: "ink", lines: [{ text: "Arrêter, sans frais" }, { text: "Garder" }, { text: "Ajouter une tâche" }] },
+  },
 ];
 
 export const PILOT_TERMS: { label: string; detail: string }[] = [
