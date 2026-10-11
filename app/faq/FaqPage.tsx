@@ -31,7 +31,7 @@ export function FaqPage() {
             aria-label="Sommaire FAQ"
             className="lg:sticky lg:top-28 lg:self-start lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto"
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
               Catégories
             </p>
             <ul className="mt-4 space-y-1.5">
@@ -65,7 +65,7 @@ export function FaqPage() {
                   className="scroll-mt-24"
                 >
                   <header className="mb-5 border-b border-border-subtle/60 pb-3">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                       {String(FAQ_CATEGORIES.indexOf(cat) + 1).padStart(2, "0")}
                     </p>
                     <h2
@@ -84,7 +84,7 @@ export function FaqPage() {
                       <li key={it.question}>
                         <details className="group rounded-xl border border-border-subtle bg-bg-card/50 backdrop-blur-sm transition-colors duration-300 hover:border-border-accent open:border-border-accent">
                           <summary className="flex cursor-pointer items-start gap-4 px-5 py-4 text-left list-none [&::-webkit-details-marker]:hidden">
-                            <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-subtle bg-bg-card text-[10px] font-mono text-text-tertiary group-open:border-accent-primary/40 group-open:text-accent-light">
+                            <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-subtle bg-bg-card text-[11px] font-mono text-text-tertiary group-open:border-accent-primary/40 group-open:text-accent-light">
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             <h3 className="min-w-0 flex-1 text-[15px] font-semibold leading-snug text-text-primary">

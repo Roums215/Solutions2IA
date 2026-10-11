@@ -7,6 +7,7 @@ import { useLightHeaderZone } from "@/components/layout/headerSurface";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { BENEFIT_GROUPS } from "./appsPageData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * /applications, section D (claire froide) : ce que l'outil apporte concrètement.
@@ -47,8 +48,10 @@ export function AppsBenefits() {
           description="Pas de promesse technique : ce que vous constatez une fois l'outil en place, à trois niveaux."
         />
 
-        <motion.div
-          className="grid gap-5 lg:grid-cols-3 lg:gap-6"
+        <MobileRail
+          as={motion.div}
+          label="Ce que l'outil apporte"
+          className="gap-5 lg:grid-cols-3 lg:gap-6"
           variants={instant ? { hidden: {}, visible: {} } : list}
           initial="hidden"
           {...(instant ? { animate: "visible" as const } : { whileInView: "visible" as const, viewport: { once: true, margin: "-80px" } })}
@@ -78,7 +81,7 @@ export function AppsBenefits() {
               </ul>
             </motion.article>
           ))}
-        </motion.div>
+        </MobileRail>
       </div>
     </section>
   );

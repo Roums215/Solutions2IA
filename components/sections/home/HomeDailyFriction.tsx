@@ -11,6 +11,7 @@ import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { SURFACE, EDGE } from "./homePalette";
 import { CHAIN_ICON } from "./homeDailyFrictionData";
 import { DAILY_FRICTIONS, DAILY_FRICTION_CLOSING, type DailyFriction } from "./homeDailyFrictionData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * Accueil, section 3 : le quotidien avant la technologie.
@@ -70,8 +71,10 @@ export function HomeDailyFriction() {
           description="Quatre situations très ordinaires. Si vous vous reconnaissez dans une seule, il y a déjà quelque chose à régler."
         />
 
-        <motion.ul
-          className="mx-auto max-w-[1040px]"
+        <MobileRail
+          as={motion.ul}
+          label="Quatre situations du quotidien"
+          className="mx-auto max-w-[1040px] md:gap-0"
           variants={instant ? LIST_STILL : list}
           initial="hidden"
           {...(instant
@@ -81,7 +84,7 @@ export function HomeDailyFriction() {
           {DAILY_FRICTIONS.map((item, i) => (
             <FrictionRow key={item.key} item={item} index={i} instant={instant} />
           ))}
-        </motion.ul>
+        </MobileRail>
 
         <p className="mx-auto mt-10 max-w-[1040px] text-[15px] leading-relaxed text-text-secondary sm:text-base">
           {DAILY_FRICTION_CLOSING}

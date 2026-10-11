@@ -16,8 +16,8 @@ export function Footer() {
         viewport={{ once: true }}
         className="max-w-7xl mx-auto px-6 pt-14 pb-3 lg:pt-16 lg:pb-3"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
-          <motion.div variants={fadeInUp} className="lg:col-span-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:gap-12 lg:grid-cols-12">
+          <motion.div variants={fadeInUp} className="col-span-2 md:col-span-1 lg:col-span-5">
             <Link href="/" className="flex items-center gap-2.5 mb-5 group">
               <div className="relative w-24 h-24 rounded-xl overflow-hidden transition-transform duration-300 group-hover:scale-105">
                 <Image
@@ -37,18 +37,15 @@ export function Footer() {
               agents IA et automatisation pour les entreprises en France,
               Belgique, Suisse et Luxembourg.
             </p>
-            <div className="mt-6 flex items-center gap-2 text-xs text-text-tertiary">
-              <div className="w-1.5 h-1.5 rounded-full bg-success" />
-              <span>Disponible pour de nouveaux projets</span>
-            </div>
+            <p className="mt-6 text-xs text-text-tertiary">Disponible pour de nouveaux projets</p>
           </motion.div>
 
           <motion.div variants={fadeInUp} className="lg:col-span-2">
             <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-text-tertiary mb-5">Navigation</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0.5">
               {footerNav.navigation.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-300">
+                  <Link href={link.href} className="inline-flex min-h-10 items-center text-sm text-text-secondary hover:text-text-primary transition-colors duration-300">
                     {link.label}
                   </Link>
                 </li>
@@ -58,10 +55,10 @@ export function Footer() {
 
           <motion.div variants={fadeInUp} className="lg:col-span-2">
             <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-text-tertiary mb-5">Services</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0.5">
               {footerNav.services.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-300">
+                  <Link href={link.href} className="inline-flex min-h-10 items-center text-sm text-text-secondary hover:text-text-primary transition-colors duration-300">
                     {link.label}
                   </Link>
                 </li>
@@ -69,16 +66,16 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="lg:col-span-3">
+          <motion.div variants={fadeInUp} className="col-span-2 md:col-span-1 lg:col-span-3">
             <h4 className="text-xs font-semibold tracking-[0.15em] uppercase text-text-tertiary mb-5">Contact</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-0.5">
               <li>
-                <a href="mailto:contact@solutions2ia.fr" className="text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
+                <a href="mailto:contact@solutions2ia.fr" className="inline-flex min-h-10 items-center text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
                   contact@solutions2ia.fr
                 </a>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
+                <Link href="/contact" className="inline-flex min-h-10 items-center text-sm text-text-secondary hover:text-accent-light transition-colors duration-300">
                   Démarrer un projet
                 </Link>
               </li>
@@ -88,10 +85,10 @@ export function Footer() {
 
         <motion.div variants={fadeInUp} className="mt-10 border-t border-border-subtle pt-6">
           <h4 className="sr-only">Informations légales</h4>
-          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:justify-start">
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-0 sm:justify-start">
             {footerNav.legal.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-xs text-text-tertiary transition-colors duration-300 hover:text-text-secondary">
+                <Link href={link.href} className="inline-flex min-h-10 items-center text-xs text-text-tertiary transition-colors duration-300 hover:text-text-secondary">
                   {link.label}
                 </Link>
               </li>

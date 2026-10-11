@@ -18,6 +18,7 @@ import {
   REPORT_FIELDS,
   type ProofStepId,
 } from "./homeProofTelecomData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * Première section sombre de l'accueil, juste sous le hero clair : un projet réel,
@@ -94,8 +95,10 @@ export function HomeProofTelecom() {
           </div>
 
           {/* Quatre cartes métier reliées par des flèches : pas de fil animé. */}
-          <motion.ol
-            className="mt-7 grid gap-3.5 sm:grid-cols-2 lg:mt-9 lg:grid-cols-4 lg:gap-5"
+          <MobileRail
+            as={motion.ol}
+            label="Les quatre étapes du projet"
+            className="mt-7 gap-3.5 md:grid-cols-2 lg:mt-9 lg:grid-cols-4 lg:gap-5"
             variants={instant ? LIST_STILL : list}
             initial="hidden"
             {...(instant
@@ -158,7 +161,7 @@ export function HomeProofTelecom() {
                 </motion.li>
               );
             })}
-          </motion.ol>
+          </MobileRail>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-border-subtle pt-6 sm:flex-row sm:items-center sm:justify-between">

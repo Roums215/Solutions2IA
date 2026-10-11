@@ -9,6 +9,7 @@ import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { SURFACE } from "@/components/sections/home/homePalette";
 import { COST_SITUATIONS, SITE_COST_COUNT, type CostSituation } from "./webCostData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * /sites-web, section 3 (claire) : ce qu'un site mal conçu vous coûte.
@@ -60,8 +61,10 @@ export function WebCostSituations() {
           description="Il ne coûte pas seulement son prix. Il coûte les demandes qui ne partent pas, celles qui arrivent à moitié, et celles qui se perdent en route."
         />
 
-        <motion.ul
-          className="grid gap-5 md:grid-cols-2 lg:gap-6"
+        <MobileRail
+          as={motion.ul}
+          label="Ce qu'un site mal conçu coûte"
+          className="gap-5 md:grid-cols-2 lg:gap-6"
           variants={instant ? LIST_STILL : list}
           initial="hidden"
           {...(instant
@@ -71,7 +74,7 @@ export function WebCostSituations() {
           {COST_SITUATIONS.map((item, i) => (
             <CostCard key={item.key} item={item} index={i} variants={instant ? still(card) : card} />
           ))}
-        </motion.ul>
+        </MobileRail>
 
         {/* Le chiffre vient du visiteur : on lui donne le calcul, pas un résultat. */}
         <div className="paper-sub mt-8 flex items-start gap-3.5 rounded-2xl px-5 py-4 lg:mt-10 lg:items-center lg:px-6">

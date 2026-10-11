@@ -19,10 +19,10 @@ export function ArticleLayout({ article }: { article: Article }) {
         {/* Header */}
         <header className="section-shell-tight">
           <div className="section-container-narrow">
-            <nav aria-label="Fil d'Ariane" className="mb-8 text-[11px] uppercase tracking-[0.22em] text-text-tertiary">
-              <Link href="/" className="hover:text-accent-light">Accueil</Link>
+            <nav aria-label="Fil d'Ariane" className="mb-6 flex flex-wrap items-center text-[11px] uppercase tracking-[0.22em] text-text-tertiary">
+              <Link href="/" className="inline-flex min-h-10 items-center hover:text-accent-light">Accueil</Link>
               <span className="mx-2 text-text-tertiary/50">/</span>
-              <Link href="/articles" className="hover:text-accent-light">Articles</Link>
+              <Link href="/articles" className="inline-flex min-h-10 items-center hover:text-accent-light">Articles</Link>
               <span className="mx-2 text-text-tertiary/50">/</span>
               <span className="text-text-secondary">{article.category}</span>
             </nav>
@@ -49,7 +49,7 @@ export function ArticleLayout({ article }: { article: Article }) {
               className="rounded-2xl border border-accent-primary/30 bg-bg-card/60 px-6 py-5 backdrop-blur-xl"
               style={{ boxShadow: "0 0 28px var(--color-accent-glow)" }}
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                 TL;DR
               </p>
               <p className="mt-2 text-[15px] leading-relaxed text-text-primary">
@@ -62,7 +62,7 @@ export function ArticleLayout({ article }: { article: Article }) {
         {/* Sommaire */}
         <section className="section-shell-tight pt-0">
           <div className="section-container-narrow">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-text-tertiary">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-text-tertiary">
               Sommaire
             </p>
             <ol className="mt-3 space-y-1.5">
@@ -72,7 +72,7 @@ export function ArticleLayout({ article }: { article: Article }) {
                     href={`#${s.anchor}`}
                     className="text-[14px] text-text-secondary transition-colors duration-200 hover:text-accent-light"
                   >
-                    <span className="font-mono text-[10px] text-text-tertiary">
+                    <span className="font-mono text-[11px] text-text-tertiary">
                       {String(i + 1).padStart(2, "0")}.
                     </span>{" "}
                     {s.heading}
@@ -88,7 +88,7 @@ export function ArticleLayout({ article }: { article: Article }) {
           <section className="section-shell-tight pt-0">
             <div className="section-container-narrow">
               <div className="rounded-2xl border border-border-subtle bg-bg-card/40 px-6 py-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                   Glossaire des termes
                 </p>
                 <dl className="mt-3 space-y-3">
@@ -130,7 +130,23 @@ export function ArticleLayout({ article }: { article: Article }) {
               <h2 className="text-xl font-bold tracking-tight text-text-primary sm:text-2xl">
                 {article.comparison.title}
               </h2>
-              <div className="mt-5 overflow-x-auto rounded-xl border border-border-subtle">
+              {/* Téléphone : une fiche par critère (un tableau large se lit mal sur 390 px). */}
+              <ul className="mt-5 space-y-3 sm:hidden">
+                {article.comparison.rows.map((row) => (
+                  <li key={row.label} className="rounded-xl border border-border-subtle bg-bg-card/60 px-4 py-3.5">
+                    <p className="text-[14px] font-semibold text-text-primary">{row.label}</p>
+                    <dl className="mt-2 space-y-1.5">
+                      {row.values.map((v, i) => (
+                        <div key={i} className="grid grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] gap-3 text-[13.5px]">
+                          <dt className="text-text-tertiary">{article.comparison!.columns[i + 1]}</dt>
+                          <dd className="text-text-secondary">{v}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 hidden overflow-x-auto rounded-xl border border-border-subtle sm:block">
                 <table className="w-full min-w-[480px] border-collapse text-left text-sm">
                   <thead>
                     <tr className="border-b border-border-subtle bg-bg-card/70">
@@ -203,7 +219,7 @@ export function ArticleLayout({ article }: { article: Article }) {
                 <li key={it.question}>
                   <details className="group rounded-xl border border-border-subtle bg-bg-card/50 backdrop-blur-sm">
                     <summary className="flex cursor-pointer items-start gap-4 px-5 py-4 list-none [&::-webkit-details-marker]:hidden">
-                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-subtle bg-bg-card text-[10px] font-mono text-text-tertiary">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-subtle bg-bg-card text-[11px] font-mono text-text-tertiary">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="min-w-0 flex-1 text-[14px] font-semibold leading-snug text-text-primary">
@@ -256,7 +272,7 @@ export function ArticleLayout({ article }: { article: Article }) {
               className="group mt-10 flex flex-col gap-2 rounded-2xl border border-accent-primary/30 bg-bg-card/60 px-6 py-5 transition-colors duration-300 hover:border-border-accent sm:flex-row sm:items-center sm:justify-between"
             >
               <span>
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                   Le service qui va avec ce guide
                 </span>
                 <span className="mt-1 block text-[15px] font-semibold text-text-primary">{article.pillarLink.label}</span>

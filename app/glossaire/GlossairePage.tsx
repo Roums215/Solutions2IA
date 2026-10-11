@@ -53,7 +53,7 @@ export function GlossairePage() {
             aria-label="Sommaire du glossaire"
             className="lg:sticky lg:top-28 lg:max-h-[calc(100vh-8rem)] lg:self-start lg:overflow-y-auto"
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
               {total} termes · {GLOSSAIRE_THEMES.length} thèmes
             </p>
             <ul className="mt-4 space-y-5">
@@ -100,7 +100,7 @@ export function GlossairePage() {
                   className="scroll-mt-24"
                 >
                   <header className="mb-8 border-b border-border-subtle/60 pb-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                       {String(i + 1).padStart(2, "0")} · {theme.label}
                     </p>
                     <h2

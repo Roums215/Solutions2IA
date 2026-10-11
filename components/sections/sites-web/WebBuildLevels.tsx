@@ -17,6 +17,7 @@ import {
   type BuildLevel,
   type BuildNode,
 } from "./webBuildData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * /sites-web, section 4 (claire froide) : du site vitrine au site réellement connecté.
@@ -134,7 +135,7 @@ export function WebBuildLevels() {
         </div>
 
         {/* Téléphone et tablette : les quatre paliers se suivent */}
-        <ol className="space-y-4 lg:hidden">
+        <MobileRail as="ol" label="Quatre paliers" className="gap-4 lg:hidden">
           {BUILD_LEVELS.map((lvl) => (
             <li key={lvl.id} className="paper-card overflow-hidden rounded-2xl">
               <LevelBody level={lvl} compact />
@@ -144,7 +145,7 @@ export function WebBuildLevels() {
               </p>
             </li>
           ))}
-        </ol>
+        </MobileRail>
 
         <p className="mt-8 max-w-3xl text-[13.5px] leading-relaxed text-text-tertiary lg:mt-10">{BUILD_PRICE_NOTE}</p>
       </div>

@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { METHOD_PRICE, METHOD_STARTS, METHOD_STEPS, METHOD_TRUST } from "./appsPageData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * /applications, section E (sombre) : comment je travaille. Cible du lien du hero.
@@ -42,8 +43,10 @@ export function AppsMethod() {
         />
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:gap-10">
-          <motion.ol
-            className="grid gap-4 sm:grid-cols-2"
+          <MobileRail
+            as={motion.ol}
+            label="Six étapes"
+            className="gap-4 md:grid-cols-2"
             variants={instant ? { hidden: {}, visible: {} } : list}
             initial="hidden"
             {...(instant ? { animate: "visible" as const } : { whileInView: "visible" as const, viewport: { once: true, margin: "-80px" } })}
@@ -72,7 +75,7 @@ export function AppsMethod() {
                 </motion.li>
               );
             })}
-          </motion.ol>
+          </MobileRail>
 
           <aside className="space-y-4 lg:self-start">
             <div className="panel-card rounded-2xl p-5">

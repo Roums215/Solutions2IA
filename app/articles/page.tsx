@@ -54,7 +54,7 @@ export default function ArticlesIndexPage() {
                   href={`/articles/${article.slug}`}
                   className="group flex h-full flex-col rounded-2xl border border-border-subtle bg-bg-card/55 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-border-accent hover:shadow-lg hover:shadow-accent-glow/10"
                 >
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-accent-light">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
                     {article.category}
                   </span>
                   <h2 className="mt-3 text-[17px] font-bold leading-snug tracking-tight text-text-primary group-hover:text-gradient-strong">

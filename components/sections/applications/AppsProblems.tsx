@@ -9,6 +9,7 @@ import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 import { SectionFluidBackdrop } from "@/components/shared/SectionFluidBackdrop";
 import { cn } from "@/lib/utils/cn";
 import { PROBLEM_CALC, PROBLEMS } from "./appsPageData";
+import { MobileRail } from "@/components/shared/MobileRail";
 
 /**
  * /applications, section B (claire) : les problèmes concrets.
@@ -54,8 +55,10 @@ export function AppsProblems() {
           description="Cochez ce que vous reconnaissez. Chaque friction semble petite. Mises bout à bout, elles prennent des heures, et parfois des clients."
         />
 
-        <motion.ul
-          className="grid gap-3 md:grid-cols-2 md:gap-x-5"
+        <MobileRail
+          as={motion.ul}
+          label="Les problèmes concrets"
+          className="gap-3 md:grid-cols-2 md:gap-x-5"
           variants={instant ? { hidden: {}, visible: {} } : list}
           initial="hidden"
           {...(instant ? { animate: "visible" as const } : { whileInView: "visible" as const, viewport: { once: true, margin: "-80px" } })}
@@ -96,7 +99,7 @@ export function AppsProblems() {
               </motion.li>
             );
           })}
-        </motion.ul>
+        </MobileRail>
 
         {/* La réponse de la section à ce que le visiteur a coché */}
         <p aria-live="polite" className="mt-5 min-h-[1.5rem] text-[15px] font-medium text-text-primary">
