@@ -197,7 +197,8 @@ body {
   );
 }
 
-html[data-perf="minimal"] .text-gradient-fluid {
+html[data-perf="minimal"] .text-gradient-fluid,
+html[data-perf="reduced"] .text-gradient-fluid {
   animation: none;
   background-position: 22% center;
 }
@@ -282,35 +283,42 @@ html[data-perf="minimal"] .text-gradient-fluid {
   transform: translateX(100%);
 }
 
-.section-shell {
-  position: relative;
-  overflow: visible;
-  padding-block: clamp(6.5rem, 10vw, 10rem);
-}
-
-.section-shell-tight {
-  position: relative;
-  overflow: visible;
-  padding-block: clamp(5rem, 7.5vw, 7rem);
-}
-
-.section-shell-compact {
-  position: relative;
-  overflow: visible;
-  padding-block: clamp(3.5rem, 5vw, 5rem);
-}
-
-@media (max-width: 767px) {
+/* Dans @layer components (octobre 2026) : hors couche, ces règles l'emportaient sur les
+   utilitaires. `overflow: visible` annulait `overflow-hidden` sur 41 sections (halos et
+   décors débordaient, la page s'élargissait jusqu'à 545 px sur téléphone) et `pt-0` des
+   articles n'était jamais appliqué. Les utilitaires reprennent la main quand ils sont là. */
+@layer components {
   .section-shell {
-    padding-block: clamp(4.5rem, 16vw, 6rem);
+    position: relative;
+    overflow: visible;
+    padding-block: clamp(6.5rem, 10vw, 10rem);
   }
 
   .section-shell-tight {
-    padding-block: clamp(3.75rem, 13vw, 5rem);
+    position: relative;
+    overflow: visible;
+    padding-block: clamp(5rem, 7.5vw, 7rem);
   }
 
   .section-shell-compact {
-    padding-block: clamp(3rem, 11vw, 4rem);
+    position: relative;
+    overflow: visible;
+    padding-block: clamp(3.5rem, 5vw, 5rem);
+  }
+
+  /* Téléphone (passe iPhone, octobre 2026) : marges resserrées, les pages étaient trop longues. */
+  @media (max-width: 767px) {
+    .section-shell {
+      padding-block: clamp(3.5rem, 13vw, 5rem);
+    }
+
+    .section-shell-tight {
+      padding-block: clamp(3rem, 11vw, 4.25rem);
+    }
+
+    .section-shell-compact {
+      padding-block: clamp(2.5rem, 9vw, 3.5rem);
+    }
   }
 }
 
@@ -569,6 +577,130 @@ html[data-perf="minimal"] .glass-light {
   }
 }
 
+/* Téléphone et machines modestes (tier reduced) : les halos locaux gardent leur couleur
+   mais avec un flou plus court, bien moins coûteux à peindre pendant le défilement. */
+html[data-perf="reduced"] [data-decor="halo"] {
+  filter: blur(56px);
+}
+
+/* Verre liquide (refonte /services, octobre 2026) : la bulle « à la Apple ». Plus de flou
+   et de saturation que .glass-surface, un reflet en haut à gauche, une lumière rasante en
+   bas, et un liseré spéculaire (::before) clair en haut à gauche et en bas à droite, là où
+   la lumière se réfracte. Ne pose ni rayon ni bordure : le liseré hérite du rayon.
+   Attention : `position: relative` hors couche l'emporte sur `absolute` ; envelopper la
+   matière dans un conteneur positionné plutôt que de les combiner. */
+.glass-liquid,
+.glass-frost {
+  position: relative;
+  isolation: isolate;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.glass-liquid {
+  background:
+    radial-gradient(120% 70% at 18% 0%, rgba(255, 255, 255, 0.13), transparent 62%),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.025) 50%,
+      rgba(255, 255, 255, 0.05)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -22px 34px -28px rgba(155, 165, 255, 0.55),
+    0 30px 70px -34px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(24px) saturate(1.7);
+}
+
+.glass-liquid:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -22px 34px -26px rgba(155, 165, 255, 0.7),
+    0 34px 76px -34px rgba(0, 0, 0, 0.8),
+    0 0 46px -22px rgba(34, 211, 238, 0.5);
+}
+
+.glass-liquid::before,
+.glass-frost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1px;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.glass-liquid::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.08) 32%,
+    rgba(255, 255, 255, 0.02) 62%,
+    rgba(165, 180, 252, 0.35)
+  );
+}
+
+/* La même bulle sur une surface claire : blanc givré, liseré blanc, ombre d'encre. */
+.glass-frost {
+  background:
+    radial-gradient(120% 70% at 18% 0%, rgba(255, 255, 255, 0.85), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.46));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -18px 30px -26px rgba(99, 102, 241, 0.28),
+    0 1px 2px rgba(20, 24, 51, 0.06),
+    0 30px 60px -36px rgba(20, 24, 51, 0.38);
+  backdrop-filter: blur(22px) saturate(1.6);
+}
+
+.glass-frost:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -18px 30px -24px rgba(99, 102, 241, 0.38),
+    0 1px 2px rgba(20, 24, 51, 0.06),
+    0 34px 66px -34px rgba(20, 24, 51, 0.45);
+}
+
+.glass-frost::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.45) 35%,
+    rgba(20, 24, 51, 0.08) 65%,
+    rgba(99, 102, 241, 0.3)
+  );
+}
+
+/* Repli sans flou : la bulle devient opaque, le texte ne se pose jamais sur le décor brut. */
+html[data-perf="reduced"] .glass-liquid,
+html[data-perf="minimal"] .glass-liquid {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, rgba(26, 30, 54, 0.96), rgba(15, 18, 34, 0.96));
+}
+
+html[data-perf="reduced"] .glass-frost,
+html[data-perf="minimal"] .glass-frost {
+  backdrop-filter: none;
+  background: linear-gradient(160deg, #ffffff, #f6f7fc);
+}
+
+@supports not (backdrop-filter: blur(4px)) {
+  .glass-liquid {
+    background: linear-gradient(160deg, rgba(26, 30, 54, 0.96), rgba(15, 18, 34, 0.96));
+  }
+
+  .glass-frost {
+    background: linear-gradient(160deg, #ffffff, #f6f7fc);
+  }
+}
+
 .surface-card {
   border: 1px solid rgba(255, 255, 255, 0.09);
   background:
@@ -788,6 +920,23 @@ html[data-perf="minimal"] .glass-inset {
 .hero-enter-fade {
   animation: hero-fade 1s ease backwards;
   animation-delay: var(--enter-delay, 0s);
+}
+
+/* Navigation entre pages (octobre 2026) : l'entrée en cascade ci-dessus (titre invisible
+   au départ, jusqu'à 1,2 s avant que tout soit posé) ne joue qu'au premier chargement.
+   Après un clic, le hero est lisible tout de suite, avec un léger glissé qui ne cache
+   jamais le texte. data-nav est posé par PageTransition au premier changement de page. */
+@keyframes hero-settle {
+  from { transform: translateY(10px); }
+  to   { transform: translateY(0); }
+}
+
+html[data-nav="client"] .hero-enter {
+  animation: hero-settle 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-nav="client"] .hero-enter-fade {
+  animation: none;
 }
 
 /* CTA du film hero (design_handoff_hero_film, chapitre final) : pilule dégradé

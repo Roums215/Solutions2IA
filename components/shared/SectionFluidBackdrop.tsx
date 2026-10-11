@@ -44,7 +44,11 @@ export type BackdropVariant =
   // /automatisation (V3) : trajectoires de flux, pas de points ni de particules
   | "flowHero"
   | "flowLight"
-  | "flowDark";
+  | "flowDark"
+  // /rag : des strates fines, comme des pages empilées ; un seul fil cyan les traverse.
+  | "ragHero"
+  | "ragLight"
+  | "ragDark";
 
 /** Opacité d'ensemble par variante : les sections claires portent moins que les sombres. */
 const STRENGTH: Record<BackdropVariant, string> = {
@@ -69,6 +73,9 @@ const STRENGTH: Record<BackdropVariant, string> = {
   flowHero: "opacity-90",
   flowLight: "opacity-85",
   flowDark: "opacity-80",
+  ragHero: "opacity-90",
+  ragLight: "opacity-85",
+  ragDark: "opacity-80",
 };
 
 export function SectionFluidBackdrop({
@@ -140,7 +147,9 @@ function Defs({ variant }: { variant: BackdropVariant }) {
     variant === "appsCase" ||
     variant === "aiDark" ||
     variant === "flowHero" ||
-    variant === "flowDark";
+    variant === "flowDark" ||
+    variant === "ragHero" ||
+    variant === "ragDark";
   const a = dark ? 0.16 : 0.17;
   const b = dark ? 0.08 : 0.1;
 
@@ -396,6 +405,52 @@ function Desktop({ variant, shape }: { variant: BackdropVariant; shape: number }
         </>
       );
 
+    // /rag · hero : une pile de pages fines derrière la démonstration, un fil cyan au milieu.
+    case "ragHero":
+      return (
+        <>
+          <ellipse cx="820" cy="400" rx="400" ry="260" fill={C} />
+          <path d="M -60 600 C 240 540, 520 640, 820 580 C 1000 544, 1120 560, 1260 540 L 1260 860 L -60 860 Z" fill={A} opacity={0.55} />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <path
+              key={i}
+              d={`M 480 ${190 + i * 22} C 700 ${168 + i * 22}, 920 ${226 + i * 22}, 1260 ${184 + i * 22}`}
+              {...thread}
+              stroke={i === 3 ? CYAN : INDIGO}
+              strokeOpacity={i === 3 ? 0.16 : 0.08}
+            />
+          ))}
+        </>
+      );
+
+    // Section claire : une nappe pâle, et trois lignes de page en bas à droite.
+    case "ragLight":
+      return (
+        <>
+          <path d="M -60 160 C 260 110, 540 240, 840 190 C 1020 160, 1130 180, 1260 160 L 1260 340 C 1100 370, 980 330, 800 370 C 520 430, 240 300, -60 360 Z" fill={A} opacity={0.45} />
+          {[0, 1, 2].map((i) => (
+            <path key={i} d={`M 640 ${640 + i * 20} C 840 ${624 + i * 20}, 1040 ${664 + i * 20}, 1260 ${636 + i * 20}`} {...thread} strokeOpacity={0.1} />
+          ))}
+        </>
+      );
+
+    // Section sombre : une nappe basse, et des strates qui traversent en haut.
+    case "ragDark":
+      return (
+        <>
+          <path d="M -60 560 C 240 490, 520 620, 820 550 C 1000 506, 1120 530, 1260 490 L 1260 860 L -60 860 Z" fill={A} opacity={0.5} />
+          {[0, 1, 2, 3].map((i) => (
+            <path
+              key={i}
+              d={`M -60 ${250 + i * 24} C 300 ${200 + i * 24}, 640 ${300 + i * 24}, 1260 ${230 + i * 24}`}
+              {...thread}
+              stroke={i === 1 ? CYAN : INDIGO}
+              strokeOpacity={i === 1 ? 0.1 : 0.07}
+            />
+          ))}
+        </>
+      );
+
     // Étude de cas : une diagonale du terrain (bas gauche) vers le bureau (haut droite).
     case "appsCase":
       return (
@@ -477,5 +532,17 @@ function Mobile({ variant }: { variant: BackdropVariant }) {
       return <path d="M -40 520 C 120 470, 260 560, 470 500 L 470 860 L -40 860 Z" fill={A} opacity={0.6} />;
     case "flowLight":
       return <path d="M -40 180 C 120 150, 280 240, 470 200 L 470 330 C 280 370, 120 290, -40 320 Z" fill={A} opacity={0.45} />;
+    case "ragHero":
+    case "ragDark":
+      return (
+        <>
+          <path d="M -40 540 C 120 490, 260 580, 470 520 L 470 860 L -40 860 Z" fill={A} opacity={0.6} />
+          {[0, 1, 2].map((i) => (
+            <path key={i} d={`M -40 ${300 + i * 18} C 140 ${276 + i * 18}, 300 ${326 + i * 18}, 470 ${296 + i * 18}`} fill="none" stroke={i === 1 ? CYAN : INDIGO} strokeOpacity={0.1} strokeWidth={1} />
+          ))}
+        </>
+      );
+    case "ragLight":
+      return <path d="M -40 170 C 120 140, 280 230, 470 190 L 470 320 C 280 360, 120 280, -40 310 Z" fill={A} opacity={0.45} />;
   }
 }

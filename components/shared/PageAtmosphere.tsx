@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { usePerformanceMode } from "@/lib/animation/usePerformanceMode";
 
-type Preset = "home" | "services" | "web" | "apps" | "ai" | "automation" | "flow" | "studio" | "about" | "contact";
+type Preset = "home" | "services" | "web" | "apps" | "ai" | "automation" | "flow" | "rag" | "studio" | "about" | "contact";
 
 interface PageAtmosphereProps {
   preset: Preset;
@@ -59,10 +59,11 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
     );
   }
 
-  // reduced (mobile / low-end / FPS guard) : ambiance allégée — 2 orbs
-  // respirants + grille statique. Pas de presets riches.
+  // reduced (mobile / low-end / FPS guard) : ambiance allégée, 2 orbs + grille statique.
+  // Octobre 2026 : les orbs ne respirent plus (aucune boucle pendant le défilement sur
+  // téléphone : batterie et fluidité). Pas de presets riches.
   if (tier === "reduced") {
-    const animate = disableContentMotion ? undefined : { opacity: [0.55, 0.8, 0.55], scale: [1, 1.04, 1] };
+    const animate = undefined;
     const transition = { duration: 9, repeat: Infinity, ease: "easeInOut" as const };
 
     return (
@@ -75,7 +76,7 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
         />
         <motion.div
           className="absolute bottom-[-12rem] right-[-10rem] h-[30rem] w-[30rem] rounded-full bg-cyan/[0.055] blur-[120px]"
-          animate={disableContentMotion ? undefined : { opacity: [0.45, 0.68, 0.45], scale: [1, 1.05, 1] }}
+          animate={undefined}
           transition={{ ...transition, delay: 2.5 }}
         />
         <div className="absolute inset-0 bg-grid opacity-[0.018]" />
@@ -163,6 +164,9 @@ export function PageAtmosphere({ preset }: PageAtmosphereProps) {
 
       {/* /automatisation (V3) : des systèmes reliés, pas un cyberespace. */}
       {preset === "flow" && <FlowSystemField />}
+
+      {/* /rag (octobre 2026) : des strates fines, comme des pages empilées. Statique. */}
+      {preset === "rag" && <RagSystemField />}
 
       {/* ═══════════ ABOUT ═══════════ */}
       {preset === "about" && (
@@ -258,6 +262,29 @@ function FlowSystemField() {
       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
         {curves.map((d, i) => (
           <path key={d} d={d} fill="none" stroke={i === 1 ? "var(--color-cyan)" : "var(--color-accent-light)"} strokeOpacity={0.07} strokeWidth={1} />
+        ))}
+      </svg>
+    </>
+  );
+}
+
+function RagSystemField() {
+  const sheets = [0, 1, 2, 3, 4];
+  return (
+    <>
+      <div className="absolute inset-0 bg-radial-top opacity-60" />
+      <div className="absolute -top-40 right-[10%] h-[34rem] w-[34rem] rounded-full bg-cyan/[0.04] blur-[120px]" />
+      <div className="absolute bottom-[-12rem] left-[8%] h-[30rem] w-[30rem] rounded-full bg-accent-primary/[0.05] blur-[120px]" />
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        {sheets.map((i) => (
+          <path
+            key={i}
+            d={`M -80 ${560 + i * 26} C 360 ${510 + i * 26}, 760 ${610 + i * 26}, 1540 ${540 + i * 26}`}
+            fill="none"
+            stroke={i === 2 ? "var(--color-cyan)" : "var(--color-accent-light)"}
+            strokeOpacity={0.06}
+            strokeWidth={1}
+          />
         ))}
       </svg>
     </>

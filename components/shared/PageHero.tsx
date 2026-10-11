@@ -66,14 +66,6 @@ function MobileHeroPreview({
           </span>
           <span className="mt-1 block truncate text-sm font-semibold text-text-primary">{label}</span>
         </div>
-        <div className="flex items-center gap-1.5 rounded-full border border-success/20 bg-success/10 px-2.5 py-1 text-[10px] font-medium text-success">
-          <motion.span
-            className="h-1.5 w-1.5 rounded-full bg-success"
-            animate={reduceMotion ? undefined : { opacity: [0.45, 1, 0.45], scale: [0.9, 1.2, 0.9] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          Live
-        </div>
       </div>
 
       <div className="relative mt-5 grid gap-3">
@@ -154,15 +146,8 @@ export function PageHero({
         <div className={hasVisual ? "grid lg:grid-cols-[minmax(0,1fr)_minmax(360px,620px)] gap-12 lg:gap-10 items-center" : "max-w-3xl mx-auto text-center"}>
           {/* Text — entrée CSS pure : le h1/description (LCP) peint avant l'hydration */}
           <div className={hasVisual ? "max-w-2xl" : ""}>
-            <div
-              className={`hero-enter inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-medium bg-bg-card/55 backdrop-blur-sm mb-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] ${!hasVisual ? "mx-auto" : ""}`}
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-light opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-light" />
-              </span>
-              <span className="text-xs text-text-secondary font-medium tracking-wide">{label}</span>
-            </div>
+            {/* Octobre 2026 : plus de capsule ni de point qui clignote, de simples petites capitales. */}
+            <p className="hero-enter mb-7 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan">{label}</p>
 
             <h1
               className="hero-enter text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-bold tracking-[-0.03em] leading-[1.04] text-balance"

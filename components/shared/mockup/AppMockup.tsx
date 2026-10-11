@@ -42,7 +42,7 @@ export type WeekCell = { day: string; items: { label: string; tone: Tone }[] };
 export const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const TONE_DOT: Record<Tone, string> = {
-  ok: "bg-success",
+  ok: "bg-cyan",
   warn: "bg-warning",
   alert: "bg-danger",
   info: "bg-accent-primary",
@@ -50,7 +50,7 @@ export const TONE_DOT: Record<Tone, string> = {
   neutral: "bg-ink-3",
 };
 export const TONE_TEXT: Record<Tone, string> = {
-  ok: "text-success-ink",
+  ok: "text-accent-dark",
   warn: "text-warning-ink",
   alert: "text-danger-ink",
   info: "text-accent-dark",
@@ -58,7 +58,7 @@ export const TONE_TEXT: Record<Tone, string> = {
   neutral: "text-ink-2",
 };
 export const TONE_SOFT: Record<Tone, string> = {
-  ok: "bg-success/15 text-success-ink",
+  ok: "bg-cyan/20 text-ink",
   warn: "bg-warning/15 text-warning-ink",
   alert: "bg-danger/15 text-danger-ink",
   info: "bg-accent-primary/12 text-accent-dark",
@@ -66,7 +66,7 @@ export const TONE_SOFT: Record<Tone, string> = {
   neutral: "bg-paper-3 text-ink-2",
 };
 export const TONE_BAR: Record<Tone, string> = {
-  ok: "bg-success",
+  ok: "bg-cyan",
   warn: "bg-warning",
   alert: "bg-danger",
   info: "bg-accent-primary",
@@ -74,7 +74,7 @@ export const TONE_BAR: Record<Tone, string> = {
   neutral: "bg-ink-3/35",
 };
 export const TONE_STROKE: Record<Tone, string> = {
-  ok: "var(--color-success)",
+  ok: "var(--color-cyan)",
   warn: "var(--color-warning)",
   alert: "var(--color-danger)",
   info: "var(--color-accent-primary)",
@@ -84,13 +84,13 @@ export const TONE_STROKE: Record<Tone, string> = {
 const ACCENT_BADGE: Record<Accent, string> = {
   cyan: "bg-cyan/15 text-ink",
   info: "bg-accent-primary/12 text-accent-dark",
-  ok: "bg-success/15 text-success-ink",
+  ok: "bg-cyan/15 text-ink",
   warn: "bg-warning/15 text-warning-ink",
 };
 const ACCENT_LINE: Record<Accent, string> = {
   cyan: "bg-cyan",
   info: "bg-accent-primary",
-  ok: "bg-success",
+  ok: "bg-cyan",
   warn: "bg-warning",
 };
 
@@ -172,9 +172,9 @@ export function Chrome({
       <div className={`h-1 ${ACCENT_LINE[accent]}`} aria-hidden />
       <div className="flex items-center gap-3 bg-paper px-4 py-3 sm:px-5">
         <span className="hidden gap-1.5 sm:flex" aria-hidden>
-          <span className="h-2.5 w-2.5 rounded-full bg-danger/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-warning/70" />
-          <span className="h-2.5 w-2.5 rounded-full bg-success/70" />
+          <span className="h-2 w-2 rounded-full bg-ink/15" />
+          <span className="h-2 w-2 rounded-full bg-ink/15" />
+          <span className="h-2 w-2 rounded-full bg-ink/15" />
         </span>
         <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${ACCENT_BADGE[accent]}`}>
           <Icon size={16} aria-hidden />
@@ -648,7 +648,7 @@ export function Legend({ items }: { items: [Tone, string][] }) {
 
 /** Barre des outils connectés : exemples d'outils courants du métier. */
 export function Integrations({ tools }: { tools: Integration[] }) {
-  const dot = { live: "bg-success", sync: "bg-accent-primary", todo: "bg-ink-3" } as const;
+  const dot = { live: "bg-cyan", sync: "bg-accent-primary", todo: "bg-ink-3" } as const;
   return (
     <div className="rounded-xl border border-paper-line bg-paper p-3.5 sm:p-4">
       <div className="mb-2.5 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
@@ -679,7 +679,7 @@ export function Checklist({ items, appearance = "dot" }: { items: CheckItem[]; a
       {items.map((it) => (
         <li key={it.label} className="flex items-start gap-2.5">
           {it.state === "done" ? (
-            <CircleCheck size={15} className={`mt-0.5 shrink-0 ${tone || "text-success-ink"}`} aria-hidden />
+            <CircleCheck size={15} className={`mt-0.5 shrink-0 ${tone || "text-accent-dark"}`} aria-hidden />
           ) : it.state === "progress" ? (
             <Clock3 size={15} className={`mt-0.5 shrink-0 ${tone || "text-warning-ink"}`} aria-hidden />
           ) : (
